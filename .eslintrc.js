@@ -6,12 +6,15 @@ module.exports = {
   },
   plugins: [
     '@typescript-eslint',
+    'prettier'
   ],
   extends: [
+    "prettier",
     "react-app",
     "react-app/jest",
     'airbnb-typescript',
   ],
   rules: {
+    "object-curly-newline": 0,
   }
 };

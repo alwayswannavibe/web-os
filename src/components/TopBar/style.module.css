@@ -1,0 +1,12 @@
+.container {
+  height: var(--topBarHeight);
+  background-color: var(--layout-background-color);
+  display: flex;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  align-items: center;
+  font-size: 24px;
+  justify-content: space-between;
+  color: var(--font-color);
+}

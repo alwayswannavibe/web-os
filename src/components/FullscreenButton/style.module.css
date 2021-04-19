@@ -1,0 +1,7 @@
+.fullscreenButton {
+  margin: 0 10px;
+}
+
+.fullscreenButton:hover {
+  cursor: pointer;
+}

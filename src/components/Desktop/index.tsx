@@ -8,7 +8,7 @@ import { TopBar } from 'components/TopBar';
 
 // Types
 type PropsType = {
-  children?: never
+  children?: never;
 };
 
 export const Desktop: FC<PropsType> = () => (

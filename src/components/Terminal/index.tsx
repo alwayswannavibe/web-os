@@ -73,7 +73,9 @@ export const Terminal: FC<PropsType> = () => {
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    setText(text.trim().toLowerCase());
+    const textToReadable = text.trim().toLowerCase();
+    if (!textToReadable) return;
+    setText(textToReadable);
     dispatch(addTerminalHistory(`< ${text}`));
     switch (text) {
       case 'clear': {

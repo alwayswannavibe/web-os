@@ -14,10 +14,10 @@ const terminalSlice = createSlice({
   initialState: {
     isTerminalOpen: localStorage.getItem('isTerminalOpen') === 'true' || false,
     isTerminalCollapsed: localStorage.getItem('isTerminalCollapsed') === 'true' || false,
-    terminalIconTopCoord: localStorage.getItem('terminalIconTopCoord') || '100px',
-    terminalIconLeftCoord: localStorage.getItem('terminalIconLeftCoord') || '20px',
-    terminalTopCoord: localStorage.getItem('terminalTopCoord') || '150px',
-    terminalLeftCoord: localStorage.getItem('terminalLeftCoord') || '150px',
+    terminalIconTopCoord: localStorage.getItem('terminalIconTopCoord') || '3rem',
+    terminalIconLeftCoord: localStorage.getItem('terminalIconLeftCoord') || '1rem',
+    terminalTopCoord: localStorage.getItem('terminalTopCoord') || '5rem',
+    terminalLeftCoord: localStorage.getItem('terminalLeftCoord') || '5rem',
     terminalHistory,
   },
   reducers: {

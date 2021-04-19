@@ -1,14 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { Locales } from 'types/locales';
+
+type LocaleType = {
+  payload: Locales;
+};
 
 const localeSlice = createSlice({
   name: 'locale',
   initialState: {
-    locale: 'en-GB',
+    locale: Locales.Britain,
   },
   reducers: {
-    setLocale(state, action) {
+    setLocale(state, { payload }: LocaleType) {
       // eslint-disable-next-line no-param-reassign
-      state.locale = action.payload;
+      state.locale = payload;
     },
   },
 });

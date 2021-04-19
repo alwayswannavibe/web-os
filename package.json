@@ -25,7 +25,8 @@
     "lint:style": "npx stylelint \"src/**/*.css\"",
     "lint:ts": "npx eslint \"./src\" --ext .js,.jsx,.ts,.tsx",
     "prettier": "prettier --write \"./src\"",
-    "lint": "npm run lint:style && npm run lint:ts"
+    "lint": "npm run lint:style && npm run lint:ts",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {

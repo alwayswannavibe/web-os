@@ -1,0 +1,8 @@
+.container {
+  position: fixed;
+  bottom: 0;
+  height: var(--bottomPartHeight);
+  background-color: var(--layout-background-color);
+  z-index: 5;
+  width: 100%;
+}

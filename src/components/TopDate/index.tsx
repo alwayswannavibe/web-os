@@ -1,6 +1,10 @@
 // React
 import React, { FC, useEffect, useState } from 'react';
 
+// Redux
+import { useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
+
 // Styles
 import styles from './style.module.css';
 
@@ -11,6 +15,7 @@ type PropsType = {
 
 export const TopDate: FC<PropsType> = () => {
   // Init
+  const locale = useSelector((state: RootState) => state.locale.locale);
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
@@ -20,8 +25,7 @@ export const TopDate: FC<PropsType> = () => {
 
   return (
     <div className={styles.date}>
-      {date.toLocaleDateString('en-GB', {
-        year: 'numeric',
+      {date.toLocaleDateString(locale, {
         month: 'long',
         day: 'numeric',
         hour: 'numeric',

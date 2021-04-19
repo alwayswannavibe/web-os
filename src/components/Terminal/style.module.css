@@ -1,5 +1,5 @@
 .input {
-  width: 700px;
+  width: 42rem;
   background-color: #222222;
   outline: none;
   border: none;
@@ -17,4 +17,5 @@
 .terminalText {
   max-height: calc(100% - 50px);
   overflow-y: scroll;
+  overflow-x: hidden;
 }

@@ -1,12 +1,12 @@
 .window {
-  width: 32rem;
-  height: 18rem;
+  width: 48rem;
+  height: 27rem;
   border: 2px solid #353535;
   position: absolute;
 }
 
 .windowTop {
-  height: 1rem;
+  height: 1.5rem;
   background-color: rgba(29, 35, 41, 0.8);
   display: flex;
   justify-content: space-between;
@@ -15,13 +15,13 @@
 
 .windowBody {
   background-color: #222222;
-  height: 17rem;
+  height: 25.5rem;
   padding: 5px;
 }
 
 .btn {
-  font-size: 20px;
-  height: 1rem;
+  font-size: 1rem;
+  height: 1.5rem;
   width: calc(1rem + 10px);
   display: flex;
   justify-content: center;
@@ -36,7 +36,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 13rem;
+  margin-left: 22rem;
   user-select: none;
   font-size: 1rem;
 }

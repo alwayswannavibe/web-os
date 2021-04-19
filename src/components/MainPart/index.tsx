@@ -9,6 +9,9 @@ import sea from 'assets/images/backgrounds/sea.jpg';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 
+// Types import
+import { Themes } from 'types/themes';
+
 // Styles
 import styles from './style.module.css';
 
@@ -19,16 +22,16 @@ type PropsType = {
 
 export const MainPart: FC<PropsType> = () => {
   // Init
-  const theme = useSelector((state: RootState) => state.theme.theme);
-  const [themeBackground, setThemeBackground] = useState('planet');
+  const theme: Themes = useSelector((state: RootState) => state.theme.theme);
+  const [themeBackground, setThemeBackground] = useState('');
 
   useEffect(() => {
     switch (theme) {
-      case 'planet': {
+      case Themes.Planet: {
         setThemeBackground(planet);
         break;
       }
-      case 'sea': {
+      case Themes.Sea: {
         setThemeBackground(sea);
         break;
       }

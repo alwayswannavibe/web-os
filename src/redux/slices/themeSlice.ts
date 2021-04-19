@@ -1,14 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { Themes } from '../../types/themes';
+
+type ThemeType = {
+  payload: Themes;
+};
 
 const themeSlice = createSlice({
   name: 'theme',
   initialState: {
-    theme: 'planet',
+    theme: Themes.Planet,
   },
   reducers: {
-    setTheme(state, action) {
+    setTheme(state, { payload }: ThemeType) {
       // eslint-disable-next-line no-param-reassign
-      state.theme = action.payload;
+      state.theme = payload;
     },
   },
 });

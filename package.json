@@ -13,7 +13,6 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "remove": "^0.1.5",
     "typescript": "^4.2.4",
     "web-vitals": "^1.1.1"
   },
@@ -27,12 +26,6 @@
     "prettier": "prettier --write \"./src\"",
     "lint": "npm run lint:style && npm run lint:ts",
     "prepare": "husky install"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run prettier && npm run lint",
-      "pre-push": "npm run prettier && npm run lint"
-    }
   },
   "browserslist": {
     "production": [

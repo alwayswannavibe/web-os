@@ -28,6 +28,7 @@ import imgSource from 'assets/images/icons/settings.svg';
 
 // Styles
 import styles from './style.module.css';
+import { addWindow, deleteWindow, setWindowActive } from '../../redux/slices/appsSlice';
 
 // Types
 type PropsType = {
@@ -47,10 +48,12 @@ export const Settings: FC<PropsType> = () => {
   const settingsLeftCoord = useSelector((state: RootState) => state.settings.settingsLeftCoord);
   const theme = useSelector((state: RootState) => state.theme.theme);
   const locale = useSelector((state: RootState) => state.locale.locale);
+  const apps = useSelector((state: RootState) => state.apps.apps);
 
   // Handlers
   const handleClose = () => {
     dispatch(closeSettings());
+    dispatch(deleteWindow(Apps.Settings));
   };
 
   const handleCollapse = () => {
@@ -62,6 +65,7 @@ export const Settings: FC<PropsType> = () => {
       dispatch(toggleCollapseSettings());
     } else {
       dispatch(openSettings());
+      dispatch(addWindow(Apps.Settings));
     }
   };
 
@@ -80,7 +84,8 @@ export const Settings: FC<PropsType> = () => {
   };
 
   return (
-    <>
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+    <div onClick={() => setWindowActive(Apps.Settings)}>
       <Icon
         title={Apps.Settings}
         topCoord={settingsIconTopCoord}
@@ -97,6 +102,8 @@ export const Settings: FC<PropsType> = () => {
           topCoord={settingsTopCoord}
           leftCoord={settingsLeftCoord}
           changeCoord={changeSettingsCoord}
+          zIndexProp={100 - apps.indexOf(Apps.Settings)}
+          handleSetActive={() => dispatch(setWindowActive(Apps.Settings))}
         >
           <form className={styles.form}>
             <div>
@@ -104,13 +111,9 @@ export const Settings: FC<PropsType> = () => {
               <label htmlFor="themeSelect" className={styles.label}>
                 Theme:
               </label>
-              <select id="themeSelect" className={styles.select} onChange={handleChangeTheme}>
-                <option value={Themes.Planet} selected={theme === Themes.Planet}>
-                  {Themes.Planet}
-                </option>
-                <option value={Themes.Sea} selected={theme === Themes.Sea}>
-                  {Themes.Sea}
-                </option>
+              <select id="themeSelect" className={styles.select} onChange={handleChangeTheme} defaultValue={theme}>
+                <option value={Themes.Planet}>{Themes.Planet}</option>
+                <option value={Themes.Sea}>{Themes.Sea}</option>
               </select>
             </div>
             <div>
@@ -118,13 +121,9 @@ export const Settings: FC<PropsType> = () => {
               <label htmlFor="localeSelect" className={styles.label}>
                 Locale:
               </label>
-              <select id="localeSelect" className={styles.select} onChange={handleLocaleTheme}>
-                <option value={Locales.Britain} selected={locale === Locales.Britain}>
-                  {Locales.Britain}
-                </option>
-                <option value={Locales.Russian} selected={locale === Locales.Russian}>
-                  {Locales.Russian}
-                </option>
+              <select id="localeSelect" className={styles.select} onChange={handleLocaleTheme} defaultValue={locale}>
+                <option value={Locales.Britain}>{Locales.Britain}</option>
+                <option value={Locales.Russian}>{Locales.Russian}</option>
               </select>
             </div>
             <div className={styles.resetContainer}>
@@ -142,6 +141,6 @@ export const Settings: FC<PropsType> = () => {
           </form>
         </Window>
       )}
-    </>
+    </div>
   );
 };

@@ -16,8 +16,10 @@ type PropsType = {
   title: string;
   handleClose: () => void;
   handleCollapse: () => void;
+  handleSetActive: () => void;
   topCoord: string;
   leftCoord: string;
+  zIndexProp: number;
   changeCoord: ActionCreatorWithPayload<CoordsType, string>;
   // eslint-disable-next-line react/require-default-props
   children?: ReactNode;
@@ -31,6 +33,8 @@ export const Window: FC<PropsType> = ({
   topCoord,
   leftCoord,
   changeCoord,
+  zIndexProp,
+  handleSetActive,
 }: PropsType) => {
   const [topCoordLocal, setTopCoordLocal] = useState(topCoord);
   const [leftCoordLocal, setLeftCoordLocal] = useState(leftCoord);
@@ -82,8 +86,13 @@ export const Window: FC<PropsType> = ({
   }, [windowIsDrag, drag, stopDrag]);
 
   return (
-    <div className={styles.window} style={{ top: topCoordLocal, left: leftCoordLocal }}>
-      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+    <div
+      className={styles.window}
+      style={{ top: topCoordLocal, left: leftCoordLocal, zIndex: zIndexProp }}
+      onClick={handleSetActive}
+    >
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */}
       <div className={styles.windowTop} onMouseDown={startDrag} ref={windowTop}>
         <span className={styles.title}>{title}</span>
         <div className={styles.buttonsContainer}>

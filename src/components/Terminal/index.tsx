@@ -21,6 +21,7 @@ import {
 import { openSettings } from 'redux/slices/settingsSlice';
 import { setLocale } from 'redux/slices/localeSlice';
 import { setTheme } from 'redux/slices/themeSlice';
+import { addWindow, deleteWindow, setWindowActive } from 'redux/slices/appsSlice';
 
 // import Types
 import { Apps } from 'types/apps';
@@ -48,6 +49,7 @@ export const Terminal: FC<PropsType> = () => {
   const terminalIconLeftCoord = useSelector((state: RootState) => state.terminal.terminalIconLeftCoord);
   const terminalTopCoord = useSelector((state: RootState) => state.terminal.terminalTopCoord);
   const terminalLeftCoord = useSelector((state: RootState) => state.terminal.terminalLeftCoord);
+  const apps = useSelector((state: RootState) => state.apps.apps);
 
   // Init
   const dispatch = useDispatch();
@@ -62,6 +64,7 @@ export const Terminal: FC<PropsType> = () => {
   // Handlers
   const handleClose = () => {
     dispatch(closeTerminal());
+    dispatch(deleteWindow(Apps.Terminal));
     dispatch(clearTerminalHistory());
   };
 
@@ -78,6 +81,7 @@ export const Terminal: FC<PropsType> = () => {
       dispatch(toggleCollapseTerminal());
     } else {
       dispatch(openTerminal());
+      dispatch(addWindow(Apps.Terminal));
     }
   };
 
@@ -167,7 +171,8 @@ export const Terminal: FC<PropsType> = () => {
   }, [terminalHistory]);
 
   return (
-    <>
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+    <div onClick={() => setWindowActive(Apps.Terminal)}>
       <Icon
         title={Apps.Terminal}
         topCoord={terminalIconTopCoord}
@@ -184,6 +189,8 @@ export const Terminal: FC<PropsType> = () => {
           topCoord={terminalTopCoord}
           leftCoord={terminalLeftCoord}
           changeCoord={changeTerminalCoord}
+          zIndexProp={100 - apps.indexOf(Apps.Terminal)}
+          handleSetActive={() => dispatch(setWindowActive(Apps.Terminal))}
         >
           <div className={styles.terminalText} id="terminalHistory">
             {terminalHistory.map((terminalMessage: TerminalMessage) => (
@@ -207,6 +214,6 @@ export const Terminal: FC<PropsType> = () => {
           </pre>
         </Window>
       )}
-    </>
+    </div>
   );
 };

@@ -3,6 +3,7 @@ import themeSlice from 'redux/slices/themeSlice';
 import localeSlice from 'redux/slices/localeSlice';
 import terminalSlice from 'redux/slices/terminalSlice';
 import settingsSlice from 'redux/slices/settingsSlice';
+import appsSlice from 'redux/slices/appsSlice';
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     locale: localeSlice,
     terminal: terminalSlice,
     settings: settingsSlice,
+    apps: appsSlice,
   },
 });
 

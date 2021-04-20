@@ -1,0 +1,21 @@
+.input {
+  width: 40rem;
+  background-color: #222222;
+  outline: none;
+  border: none;
+  overflow: hidden;
+  caret-color: aliceblue;
+  color: aliceblue;
+  font-size: 1rem;
+}
+
+.pre {
+  display: flex;
+  margin-top: 10px;
+}
+
+.terminalText {
+  max-height: calc(100% - 50px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

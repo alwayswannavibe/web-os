@@ -5,6 +5,9 @@ import React, { FC, useEffect, useState } from 'react';
 import planet from 'assets/images/backgrounds/darkPlanet.jpg';
 import sea from 'assets/images/backgrounds/sea.jpg';
 
+// Components
+import { Terminal } from 'components/Terminal';
+
 // Redux
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
@@ -43,7 +46,11 @@ export const MainPart: FC<PropsType> = () => {
 
   return (
     <>
-      <div style={{ backgroundImage: `url(${themeBackground})` }} className={styles.container} />
+      <div style={{ backgroundImage: `url(${themeBackground})` }} className={styles.container}>
+        <div>
+          <Terminal />
+        </div>
+      </div>
     </>
   );
 };

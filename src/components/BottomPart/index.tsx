@@ -4,9 +4,9 @@ import React, { FC } from 'react';
 // Redux
 import { RootState } from 'redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCollapseTerminal } from 'redux/slices/terminalSlice';
-import { toggleCollapseSettings } from 'redux/slices/settingsSlice';
-import { setWindowActive } from 'redux/slices/appsSlice';
+import { openTerminal, toggleCollapseTerminal } from 'redux/slices/terminalSlice';
+import { openSettings, toggleCollapseSettings } from 'redux/slices/settingsSlice';
+import { addWindow, setWindowActive } from 'redux/slices/appsSlice';
 
 // type import
 import { Apps } from 'types/apps';
@@ -43,8 +43,24 @@ export const BottomPart: FC<PropsType> = () => {
     }
   };
 
+  const handleOpenTerminal = () => {
+    dispatch(openTerminal());
+    dispatch(addWindow(Apps.Terminal));
+  };
+
+  const handleOpenSettings = () => {
+    dispatch(openSettings());
+    dispatch(addWindow(Apps.Settings));
+  };
+
   return (
     <div className={styles.container}>
+      {!apps.includes(Apps.Terminal) && (
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+        <div className={`${styles.close} ${styles.tab}`} onClick={handleOpenTerminal}>
+          <i className="fas fa-terminal" />
+        </div>
+      )}
       {apps.includes(Apps.Terminal) && (
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
         <div
@@ -52,6 +68,12 @@ export const BottomPart: FC<PropsType> = () => {
           onClick={handleTerminalClick}
         >
           <i className="fas fa-terminal" />
+        </div>
+      )}
+      {!apps.includes(Apps.Settings) && (
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+        <div className={`${styles.close} ${styles.tab}`} onClick={handleOpenSettings}>
+          <i className="fas fa-cogs" />
         </div>
       )}
       {apps.includes(Apps.Settings) && (

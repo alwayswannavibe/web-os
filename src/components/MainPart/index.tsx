@@ -26,7 +26,7 @@ type PropsType = {
 
 export const MainPart: FC<PropsType> = () => {
   // Init
-  const theme: Themes = useSelector((state: RootState) => state.theme.theme);
+  const theme = useSelector((state: RootState) => state.theme.theme);
   const [themeBackground, setThemeBackground] = useState('');
 
   useEffect(() => {

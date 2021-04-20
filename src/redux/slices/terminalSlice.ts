@@ -1,16 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { CoordsType } from 'types/coord';
 import { v4 as uuidv } from 'uuid';
 
 export type TerminalMessage = {
   message: string;
   id: string;
-};
-
-type CoordsType = {
-  payload: {
-    top: string;
-    left: string;
-  };
 };
 
 const terminalHistory: TerminalMessage[] = [];

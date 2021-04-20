@@ -11,7 +11,8 @@ type PropsType = {
   handleCollapse: () => void;
   topCoord: string;
   leftCoord: string;
-  children: ReactNode;
+  // eslint-disable-next-line react/require-default-props
+  children?: ReactNode;
 };
 
 export const Window: FC<PropsType> = ({

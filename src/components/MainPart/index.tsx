@@ -7,6 +7,7 @@ import sea from 'assets/images/backgrounds/sea.jpg';
 
 // Components
 import { Terminal } from 'components/Terminal';
+import { Settings } from 'components/Settings';
 
 // Redux
 import { useSelector } from 'react-redux';
@@ -49,6 +50,7 @@ export const MainPart: FC<PropsType> = () => {
       <div style={{ backgroundImage: `url(${themeBackground})` }} className={styles.container}>
         <div>
           <Terminal />
+          <Settings />
         </div>
       </div>
     </>

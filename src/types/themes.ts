@@ -1,6 +1,6 @@
 enum Themes {
-  Planet = 'planet',
-  Sea = 'sea',
+  Planet = 'Planet',
+  Sea = 'Sea',
 }
 
 export { Themes };

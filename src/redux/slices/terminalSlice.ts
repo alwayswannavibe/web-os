@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { CoordsType } from 'types/coord';
 import { v4 as uuidv } from 'uuid';
 
 export type TerminalMessage = {
@@ -6,14 +7,8 @@ export type TerminalMessage = {
   id: string;
 };
 
-type CoordsType = {
-  payload: {
-    top: string;
-    left: string;
-  };
-};
-
 const terminalHistory: TerminalMessage[] = [];
+const inputHistory: string[] = [];
 
 const terminalSlice = createSlice({
   name: 'terminal',
@@ -25,6 +20,7 @@ const terminalSlice = createSlice({
     terminalTopCoord: localStorage.getItem('terminalTopCoord') || '5rem',
     terminalLeftCoord: localStorage.getItem('terminalLeftCoord') || '5rem',
     terminalHistory,
+    inputHistory,
   },
   reducers: {
     openTerminal(state) {
@@ -42,11 +38,19 @@ const terminalSlice = createSlice({
       state.isTerminalCollapsed = !state.isTerminalCollapsed;
       localStorage.setItem('isSettingsCollapsed', state.isTerminalCollapsed.toString());
     },
-    addTerminalHistory(state, action) {
+    addTerminalHistory(state, { payload }) {
       state.terminalHistory.push({
-        message: action.payload,
+        message: payload,
         id: uuidv(),
       });
+      if (payload.split(' ')[0] === '<') {
+        state.inputHistory.push(
+          payload
+            .split(' ')
+            .splice(1, payload.length - 1)
+            .join(' '),
+        );
+      }
     },
     clearTerminalHistory(state) {
       // eslint-disable-next-line no-param-reassign

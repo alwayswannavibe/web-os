@@ -1,0 +1,24 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.5rem;
+}
+
+.label {
+  margin: 1rem 0 0 2rem;
+}
+
+.select {
+  margin: 0.5rem;
+  background-color: #404040;
+  outline: none;
+  border: none;
+  padding: 0.5rem;
+  color: var(--font-color);
+  width: 15rem;
+  border-radius: 5px;
+}
+
+.select button {
+  background-color: #c12a2a;
+}

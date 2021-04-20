@@ -1,6 +1,9 @@
 // React
 import React, { FC } from 'react';
 
+// import Types
+import { Apps } from 'types/apps';
+
 // Styles
 import styles from './style.module.css';
 
@@ -10,7 +13,7 @@ type PropsType = {
   // eslint-disable-next-line react/require-default-props
   children?: never;
   handleClick: () => void;
-  title: string;
+  title: Apps;
   topCoord: string;
   leftCoord: string;
 };

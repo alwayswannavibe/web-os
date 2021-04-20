@@ -16,9 +16,14 @@ import {
   TerminalMessage,
   toggleCollapseTerminal,
 } from 'redux/slices/terminalSlice';
+import { openSettings } from 'redux/slices/settingsSlice';
+import { setLocale } from 'redux/slices/localeSlice';
+import { setTheme } from 'redux/slices/themeSlice';
 
 // import Types
 import { Apps } from 'types/apps';
+import { Themes } from 'types/themes';
+import { Locales } from 'types/locales';
 
 // Assets
 import imgSource from 'assets/images/icons/terminal.svg';
@@ -32,19 +37,21 @@ type PropsType = {
 };
 
 export const Terminal: FC<PropsType> = () => {
-  // Init
-  const dispatch = useDispatch();
-  const [text, setText] = useState('');
-  const inputEl = useRef<HTMLInputElement>(null);
-
   // Selectors
   const isTerminalOpen = useSelector((state: RootState) => state.terminal.isTerminalOpen);
   const isTerminalCollapsed = useSelector((state: RootState) => state.terminal.isTerminalCollapsed);
   const terminalHistory = useSelector((state: RootState) => state.terminal.terminalHistory);
+  const inputHistory = useSelector((state: RootState) => state.terminal.inputHistory);
   const terminalIconTopCoord = useSelector((state: RootState) => state.terminal.terminalIconTopCoord);
   const terminalIconLeftCoord = useSelector((state: RootState) => state.terminal.terminalIconLeftCoord);
   const terminalTopCoord = useSelector((state: RootState) => state.terminal.terminalTopCoord);
   const terminalLeftCoord = useSelector((state: RootState) => state.terminal.terminalLeftCoord);
+
+  // Init
+  const dispatch = useDispatch();
+  const [text, setText] = useState('');
+  const [inputHistoryNumber, setInputHistoryNumber] = useState(inputHistory.length);
+  const inputEl = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     inputEl.current?.scrollIntoView();
@@ -72,6 +79,20 @@ export const Terminal: FC<PropsType> = () => {
     }
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.keyCode === 38) {
+      event.preventDefault();
+      setText(inputHistory[inputHistoryNumber]);
+      setInputHistoryNumber((prevState) => (prevState - 1 >= 0 ? prevState - 1 : prevState));
+    } else if (event.keyCode === 40) {
+      event.preventDefault();
+      setText(inputHistory[inputHistoryNumber]);
+      setInputHistoryNumber((prevState) => (prevState + 1 < inputHistory.length ? prevState + 1 : prevState));
+    } else {
+      setInputHistoryNumber(inputHistory.length);
+    }
+  };
+
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
     const textToReadable = text.trim().toLowerCase();
@@ -79,24 +100,55 @@ export const Terminal: FC<PropsType> = () => {
     setText(textToReadable);
     dispatch(addTerminalHistory(`< ${text}`));
     switch (text) {
+      case 'settings': {
+        dispatch(addTerminalHistory('> Settings open'));
+        dispatch(openSettings());
+        break;
+      }
       case 'clear': {
         dispatch(clearTerminalHistory());
         break;
       }
       case 'help': {
-        dispatch(addTerminalHistory('< Available commands: settings, clear'));
+        dispatch(addTerminalHistory('> Available commands: settings, clear, change'));
+        break;
+      }
+      case 'change -l ru': {
+        dispatch(setLocale(Locales.Russian));
+        break;
+      }
+      case 'change -l br': {
+        dispatch(setLocale(Locales.Britain));
+        break;
+      }
+      case 'change -t planet': {
+        dispatch(setTheme(Themes.Planet));
+        break;
+      }
+      case 'change -t sea': {
+        dispatch(setTheme(Themes.Sea));
         break;
       }
       case 'settings --help':
       case 'help settings':
       case 'settings -h': {
-        dispatch(addTerminalHistory('< This command opens settings'));
+        dispatch(addTerminalHistory('> This command opens settings'));
         break;
       }
       case 'clear --help':
       case 'help clear':
       case 'clear -h': {
-        dispatch(addTerminalHistory('< This command clears terminal history'));
+        dispatch(addTerminalHistory('> This command clears terminal history'));
+        break;
+      }
+      case 'change --help':
+      case 'help change':
+      case 'change -h': {
+        dispatch(addTerminalHistory('> This command change locales or themes'));
+        dispatch(addTerminalHistory('> "change -t" changes themes'));
+        dispatch(addTerminalHistory('> available options: planet, sea'));
+        dispatch(addTerminalHistory('> "change -l" changes locales'));
+        dispatch(addTerminalHistory('> available options: ru, br'));
         break;
       }
       default: {
@@ -139,7 +191,14 @@ export const Terminal: FC<PropsType> = () => {
           <pre className={styles.pre}>
             {'root < '}
             <form onSubmit={handleSubmit}>
-              <input type="text" ref={inputEl} className={styles.input} onChange={handleChange} value={text} />
+              <input
+                type="text"
+                ref={inputEl}
+                className={styles.input}
+                onChange={handleChange}
+                value={text}
+                onKeyDown={handleKeyDown}
+              />
             </form>
           </pre>
         </Window>

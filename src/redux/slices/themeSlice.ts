@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Themes } from '../../types/themes';
+import { Themes } from 'types/themes';
 
 type ThemeType = {
   payload: Themes;
@@ -8,12 +8,13 @@ type ThemeType = {
 const themeSlice = createSlice({
   name: 'theme',
   initialState: {
-    theme: Themes.Planet,
+    theme: localStorage.getItem('theme') || Themes.Planet,
   },
   reducers: {
     setTheme(state, { payload }: ThemeType) {
       // eslint-disable-next-line no-param-reassign
       state.theme = payload;
+      localStorage.setItem('theme', payload);
     },
   },
 });

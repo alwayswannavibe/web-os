@@ -9,7 +9,7 @@ const settingsSlice = createSlice({
     settingsIconTopCoord: localStorage.getItem('settingsIconTopCoord') || '8rem',
     settingsIconLeftCoord: localStorage.getItem('settingsIconLeftCoord') || '1rem',
     settingsTopCoord: localStorage.getItem('settingsTopCoord') || '7rem',
-    settingsLeftCoord: localStorage.getItem('settingsLeftCoord') || '9rem',
+    settingsLeftCoord: localStorage.getItem('settingsLeftCoord') || '20rem',
   },
   reducers: {
     openSettings(state) {

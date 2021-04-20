@@ -9,12 +9,19 @@ import { Icon } from 'components/Icon';
 import { RootState } from 'redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeSettings, openSettings, toggleCollapseSettings } from 'redux/slices/settingsSlice';
+import { setTheme } from 'redux/slices/themeSlice';
+import { setLocale } from 'redux/slices/localeSlice';
 
 // import Types
 import { Apps } from 'types/apps';
+import { Themes } from 'types/themes';
+import { Locales } from 'types/locales';
 
 // Assets
 import imgSource from 'assets/images/icons/settings.svg';
+
+// Styles
+import styles from './style.module.css';
 
 // Types
 type PropsType = {
@@ -32,6 +39,8 @@ export const Settings: FC<PropsType> = () => {
   const settingsIconLeftCoord = useSelector((state: RootState) => state.settings.settingsIconLeftCoord);
   const settingsTopCoord = useSelector((state: RootState) => state.settings.settingsTopCoord);
   const settingsLeftCoord = useSelector((state: RootState) => state.settings.settingsLeftCoord);
+  const theme = useSelector((state: RootState) => state.theme.theme);
+  const locale = useSelector((state: RootState) => state.locale.locale);
 
   // Handlers
   const handleClose = () => {
@@ -47,6 +56,20 @@ export const Settings: FC<PropsType> = () => {
       dispatch(toggleCollapseSettings());
     } else {
       dispatch(openSettings());
+    }
+  };
+
+  const handleChangeTheme = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const seletedTheme: Themes = event.target.selectedOptions[0].value as Themes;
+    if (Object.values(Themes).includes(seletedTheme)) {
+      dispatch(setTheme(seletedTheme));
+    }
+  };
+
+  const handleLocaleTheme = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const seletedLocale: Locales = event.target.selectedOptions[0].value as Locales;
+    if (Object.values(Locales).includes(seletedLocale)) {
+      dispatch(setLocale(seletedLocale));
     }
   };
 
@@ -66,7 +89,38 @@ export const Settings: FC<PropsType> = () => {
           title={Apps.Settings}
           topCoord={settingsTopCoord}
           leftCoord={settingsLeftCoord}
-        />
+        >
+          <form className={styles.form}>
+            <div className="formItem">
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+              <label htmlFor="themeSelect" className={styles.label}>
+                Theme:
+              </label>
+              <select id="themeSelect" className={styles.select} onChange={handleChangeTheme}>
+                <option value={Themes.Planet} selected={theme === Themes.Planet}>
+                  {Themes.Planet}
+                </option>
+                <option value={Themes.Sea} selected={theme === Themes.Sea}>
+                  {Themes.Sea}
+                </option>
+              </select>
+            </div>
+            <div className="formItem">
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+              <label htmlFor="localeSelect" className={styles.label}>
+                Locale:
+              </label>
+              <select id="localeSelect" className={styles.select} onChange={handleLocaleTheme}>
+                <option value={Locales.Britain} selected={locale === Locales.Britain}>
+                  {Locales.Britain}
+                </option>
+                <option value={Locales.Russian} selected={locale === Locales.Russian}>
+                  {Locales.Russian}
+                </option>
+              </select>
+            </div>
+          </form>
+        </Window>
       )}
     </>
   );

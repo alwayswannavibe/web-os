@@ -13,6 +13,7 @@ import {
   clearTerminalHistory,
   closeTerminal,
   openTerminal,
+  TerminalMessage,
   toggleCollapseTerminal,
 } from 'redux/slices/terminalSlice';
 
@@ -129,9 +130,9 @@ export const Terminal: FC<PropsType> = () => {
           leftCoord={terminalLeftCoord}
         >
           <div className={styles.terminalText} id="terminalHistory">
-            {terminalHistory.map((el) => (
-              <p key={el} className="historyItem">
-                {el}
+            {terminalHistory.map((terminalMessage: TerminalMessage) => (
+              <p key={terminalMessage.id} className="historyItem">
+                {terminalMessage.message}
               </p>
             ))}
           </div>

@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { v4 as uuidv } from 'uuid';
 
-const terminalHistory: string[] = [];
+export type TerminalMessage = {
+  message: string;
+  id: string;
+};
 
 type CoordsType = {
   payload: {
@@ -8,6 +12,8 @@ type CoordsType = {
     left: string;
   };
 };
+
+const terminalHistory: TerminalMessage[] = [];
 
 const terminalSlice = createSlice({
   name: 'terminal',
@@ -37,7 +43,10 @@ const terminalSlice = createSlice({
       localStorage.setItem('isSettingsCollapsed', state.isTerminalCollapsed.toString());
     },
     addTerminalHistory(state, action) {
-      state.terminalHistory.push(action.payload);
+      state.terminalHistory.push({
+        message: action.payload,
+        id: uuidv(),
+      });
     },
     clearTerminalHistory(state) {
       // eslint-disable-next-line no-param-reassign

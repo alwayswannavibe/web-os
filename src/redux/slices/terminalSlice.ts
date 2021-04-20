@@ -56,17 +56,21 @@ const terminalSlice = createSlice({
       // eslint-disable-next-line no-param-reassign
       state.terminalHistory = [];
     },
-    changeTerminalCoord(state, { payload }: CoordsType) {
+    changeTerminalCoord(state, { payload }: { payload: CoordsType }) {
       // eslint-disable-next-line no-param-reassign
       state.terminalTopCoord = payload.top;
       // eslint-disable-next-line no-param-reassign
       state.terminalLeftCoord = payload.left;
+      localStorage.setItem('terminalTopCoord', payload.top);
+      localStorage.setItem('terminalLeftCoord', payload.left);
     },
-    changeTerminalIconCoord(state, { payload }: CoordsType) {
+    changeTerminalIconCoord(state, { payload }: { payload: CoordsType }) {
       // eslint-disable-next-line no-param-reassign
       state.terminalIconTopCoord = payload.top;
       // eslint-disable-next-line no-param-reassign
       state.terminalIconLeftCoord = payload.left;
+      localStorage.setItem('terminalIconTopCoord', payload.top);
+      localStorage.setItem('terminalIconLeftCoord', payload.left);
     },
   },
 });

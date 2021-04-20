@@ -1,6 +1,4 @@
 export type CoordsType = {
-  payload: {
-    top: string;
-    left: string;
-  };
+  top: string;
+  left: string;
 };

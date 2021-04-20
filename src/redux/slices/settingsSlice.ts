@@ -27,17 +27,21 @@ const settingsSlice = createSlice({
       state.isSettingsCollapsed = !state.isSettingsCollapsed;
       localStorage.setItem('isSettingsCollapsed', state.isSettingsCollapsed.toString());
     },
-    changeSettingsCoord(state, { payload }: CoordsType) {
+    changeSettingsCoord(state, { payload }: { payload: CoordsType }) {
       // eslint-disable-next-line no-param-reassign
       state.settingsTopCoord = payload.top;
       // eslint-disable-next-line no-param-reassign
       state.settingsLeftCoord = payload.left;
+      localStorage.setItem('settingsTopCoord', payload.top);
+      localStorage.setItem('settingsLeftCoord', payload.left);
     },
-    changeSettingsIconCoord(state, { payload }: CoordsType) {
+    changeSettingsIconCoord(state, { payload }: { payload: CoordsType }) {
       // eslint-disable-next-line no-param-reassign
       state.settingsIconTopCoord = payload.top;
       // eslint-disable-next-line no-param-reassign
       state.settingsIconLeftCoord = payload.left;
+      localStorage.setItem('settingsIconTopCoord', payload.top);
+      localStorage.setItem('settingsIconLeftCoord', payload.left);
     },
   },
 });

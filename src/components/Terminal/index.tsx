@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import {
   addTerminalHistory,
+  changeTerminalCoord,
+  changeTerminalIconCoord,
   clearTerminalHistory,
   closeTerminal,
   openTerminal,
@@ -172,6 +174,7 @@ export const Terminal: FC<PropsType> = () => {
         leftCoord={terminalIconLeftCoord}
         handleClick={handleIconClick}
         imgSource={imgSource}
+        changeCoord={changeTerminalIconCoord}
       />
       {isTerminalOpen && !isTerminalCollapsed && (
         <Window
@@ -180,6 +183,7 @@ export const Terminal: FC<PropsType> = () => {
           title={Apps.Terminal}
           topCoord={terminalTopCoord}
           leftCoord={terminalLeftCoord}
+          changeCoord={changeTerminalCoord}
         >
           <div className={styles.terminalText} id="terminalHistory">
             {terminalHistory.map((terminalMessage: TerminalMessage) => (

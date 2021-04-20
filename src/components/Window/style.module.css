@@ -25,13 +25,11 @@
 .btn {
   font-size: 1rem;
   height: 1.5rem;
-  width: 1.5rem;
+  width: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.closeBtn:hover {
+  transition: background-color 0.25s linear;
   cursor: pointer;
 }
 
@@ -39,9 +37,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 22rem;
   user-select: none;
   font-size: 1rem;
+  flex-grow: 1;
+  padding-left: 5rem;
 }
 
 .closeBtn:hover {

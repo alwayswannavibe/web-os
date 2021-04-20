@@ -70,6 +70,11 @@ export const Terminal: FC<PropsType> = () => {
 
   const handleCollapse = () => {
     dispatch(toggleCollapseTerminal());
+    if (isTerminalCollapsed) {
+      dispatch(setWindowActive(Apps.Terminal));
+    } else if (apps.indexOf(Apps.Terminal) === 0) {
+      dispatch(setWindowActive(apps[1]));
+    }
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -79,7 +84,7 @@ export const Terminal: FC<PropsType> = () => {
   const handleIconClick = () => {
     if (isTerminalCollapsed) {
       dispatch(toggleCollapseTerminal());
-    } else {
+    } else if (!isTerminalOpen) {
       dispatch(openTerminal());
       dispatch(addWindow(Apps.Terminal));
     }

@@ -5,4 +5,29 @@
   background-color: var(--layout-background-color);
   z-index: 5;
   width: 100%;
+  display: flex;
+}
+
+.isActive {
+  background-color: #777575;
+}
+
+.tab {
+  padding: 0 20px;
+  border-bottom: 3px solid #61dafb;
+  user-select: none;
+  cursor: pointer;
+  transition: background-color 0.25s linear;
+}
+
+.tab:hover {
+  background-color: #145967;
+}
+
+.tab:active {
+  background-color: #092d34;
+}
+
+.active {
+  background-color: #373535;
 }

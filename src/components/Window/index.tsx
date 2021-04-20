@@ -87,14 +87,13 @@ export const Window: FC<PropsType> = ({
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-    <div
-      className={styles.window}
-      style={{ top: topCoordLocal, left: leftCoordLocal, zIndex: zIndexProp }}
-      onClick={handleSetActive}
-    >
+    <div className={styles.window} style={{ top: topCoordLocal, left: leftCoordLocal, zIndex: zIndexProp }}>
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */}
       <div className={styles.windowTop} onMouseDown={startDrag} ref={windowTop}>
-        <span className={styles.title}>{title}</span>
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+        <div onClick={handleSetActive} className={styles.title}>
+          {title}
+        </div>
         <div className={styles.buttonsContainer}>
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
           <div className={`${styles.collapseBtn} ${styles.btn}`} onClick={handleCollapse}>
@@ -106,7 +105,10 @@ export const Window: FC<PropsType> = ({
           </div>
         </div>
       </div>
-      <div className={styles.windowBody}>{children}</div>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+      <div className={styles.windowBody} onClick={handleSetActive}>
+        {children}
+      </div>
     </div>
   );
 };

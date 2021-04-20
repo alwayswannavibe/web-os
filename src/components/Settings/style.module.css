@@ -16,7 +16,7 @@
   padding: 0.5rem;
   color: var(--font-color);
   width: 15rem;
-  border-radius: 5px;
+  border-radius: 0.2rem;
 }
 
 .select button {
@@ -32,10 +32,13 @@
   font-size: 0.75rem;
   cursor: pointer;
   border-radius: 0.2rem;
+  transition: background-color 0.25s linear;
+  transition: border-radius 0.25s linear;
 }
 
 .resetBtn:hover {
   background-color: #6b1b1b;
+  border-radius: 0.5rem;
 }
 
 .resetBtn:active {

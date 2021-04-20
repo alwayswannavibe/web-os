@@ -58,12 +58,17 @@ export const Settings: FC<PropsType> = () => {
 
   const handleCollapse = () => {
     dispatch(toggleCollapseSettings());
+    if (isSettingsCollapsed) {
+      dispatch(setWindowActive(Apps.Settings));
+    } else if (apps.indexOf(Apps.Settings) === 0) {
+      dispatch(setWindowActive(apps[1]));
+    }
   };
 
   const handleIconClick = () => {
     if (isSettingsCollapsed) {
       dispatch(toggleCollapseSettings());
-    } else {
+    } else if (!isSettingsOpen) {
       dispatch(openSettings());
       dispatch(addWindow(Apps.Settings));
     }

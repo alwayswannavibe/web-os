@@ -23,7 +23,6 @@ type PropsType = {
   leftCoord: string;
   zIndexProp: number;
   changeCoord: ActionCreatorWithPayload<CoordsType, string>;
-  // eslint-disable-next-line react/require-default-props
   children?: ReactNode;
 };
 

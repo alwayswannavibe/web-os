@@ -19,7 +19,6 @@ type PropsType = {
   topCoord: string;
   leftCoord: string;
   changeCoord: ActionCreatorWithPayload<CoordsType, string>;
-  // eslint-disable-next-line react/require-default-props
   children?: never;
 };
 
@@ -29,9 +28,7 @@ export const Icon: FC<PropsType> = ({ imgSource, handleClick, title, topCoord, l
   const { startDrag, topCoordLocal, leftCoordLocal } = useDragNDrop(changeCoord, icon, topCoord, leftCoord);
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div className={styles.container} style={{ top: topCoordLocal, left: leftCoordLocal }}>
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
       <div onClick={handleClick} className={styles.imgContainer} onMouseDown={startDrag} ref={icon}>
         <img src={imgSource} alt="" className={`${styles.img}`} />
       </div>

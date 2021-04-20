@@ -29,9 +29,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.closeBtn:hover {
+  transition: background-color 0.25s linear;
   cursor: pointer;
 }
 

@@ -5,4 +5,5 @@
   background-color: var(--layout-background-color);
   z-index: 5;
   width: 100%;
+  display: flex;
 }

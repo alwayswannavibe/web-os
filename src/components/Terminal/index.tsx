@@ -79,7 +79,7 @@ export const Terminal: FC<PropsType> = () => {
   const handleIconClick = () => {
     if (isTerminalCollapsed) {
       dispatch(toggleCollapseTerminal());
-    } else {
+    } else if (!isTerminalOpen) {
       dispatch(openTerminal());
       dispatch(addWindow(Apps.Terminal));
     }

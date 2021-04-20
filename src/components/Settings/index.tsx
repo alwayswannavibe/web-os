@@ -63,7 +63,7 @@ export const Settings: FC<PropsType> = () => {
   const handleIconClick = () => {
     if (isSettingsCollapsed) {
       dispatch(toggleCollapseSettings());
-    } else {
+    } else if (!isSettingsOpen) {
       dispatch(openSettings());
       dispatch(addWindow(Apps.Settings));
     }

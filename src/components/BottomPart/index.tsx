@@ -5,17 +5,14 @@ import React, { FC } from 'react';
 import { RootState } from 'redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleCollapseTerminal } from 'redux/slices/terminalSlice';
-
-// Components
-import { BottomTab } from 'components/BottomTab';
+import { toggleCollapseSettings } from 'redux/slices/settingsSlice';
+import { setWindowActive } from 'redux/slices/appsSlice';
 
 // type import
 import { Apps } from 'types/apps';
 
 // Styles
 import styles from './style.module.css';
-import { toggleCollapseSettings } from '../../redux/slices/settingsSlice';
-import { setWindowActive } from '../../redux/slices/appsSlice';
 
 // Types
 type PropsType = {
@@ -54,7 +51,7 @@ export const BottomPart: FC<PropsType> = () => {
           className={apps.indexOf(Apps.Terminal) === 0 ? `${styles.isActive} ${styles.tab}` : styles.tab}
           onClick={handleTerminalClick}
         >
-          <BottomTab title={Apps.Terminal} />
+          <i className="fas fa-terminal" />
         </div>
       )}
       {apps.includes(Apps.Settings) && (
@@ -63,7 +60,7 @@ export const BottomPart: FC<PropsType> = () => {
           className={apps.indexOf(Apps.Settings) === 0 ? `${styles.isActive} ${styles.tab}` : styles.tab}
           onClick={handleSettingsClick}
         >
-          <BottomTab title={Apps.Settings} />
+          <i className="fas fa-cogs" />
         </div>
       )}
     </div>

@@ -22,3 +22,28 @@
 .select button {
   background-color: #c12a2a;
 }
+
+.resetBtn {
+  padding: 0.2rem 1rem;
+  background-color: #882323;
+  border: 2px solid #222222;
+  color: #ffffff;
+  outline: none;
+  font-size: 0.75rem;
+  cursor: pointer;
+  border-radius: 0.2rem;
+}
+
+.resetBtn:hover {
+  background-color: #6b1b1b;
+}
+
+.resetBtn:active {
+  background-color: #210c0c;
+}
+
+.resetContainer {
+  position: absolute;
+  bottom: 1rem;
+  left: 2rem;
+}

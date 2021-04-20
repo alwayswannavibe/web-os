@@ -8,7 +8,13 @@ import { Icon } from 'components/Icon';
 // Redux
 import { RootState } from 'redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeSettings, openSettings, toggleCollapseSettings } from 'redux/slices/settingsSlice';
+import {
+  changeSettingsCoord,
+  changeSettingsIconCoord,
+  closeSettings,
+  openSettings,
+  toggleCollapseSettings,
+} from 'redux/slices/settingsSlice';
 import { setTheme } from 'redux/slices/themeSlice';
 import { setLocale } from 'redux/slices/localeSlice';
 
@@ -81,6 +87,7 @@ export const Settings: FC<PropsType> = () => {
         leftCoord={settingsIconLeftCoord}
         handleClick={handleIconClick}
         imgSource={imgSource}
+        changeCoord={changeSettingsIconCoord}
       />
       {isSettingsOpen && !isSettingsCollapsed && (
         <Window
@@ -89,9 +96,10 @@ export const Settings: FC<PropsType> = () => {
           title={Apps.Settings}
           topCoord={settingsTopCoord}
           leftCoord={settingsLeftCoord}
+          changeCoord={changeSettingsCoord}
         >
           <form className={styles.form}>
-            <div className="formItem">
+            <div>
               {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label htmlFor="themeSelect" className={styles.label}>
                 Theme:
@@ -105,7 +113,7 @@ export const Settings: FC<PropsType> = () => {
                 </option>
               </select>
             </div>
-            <div className="formItem">
+            <div>
               {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label htmlFor="localeSelect" className={styles.label}>
                 Locale:
@@ -118,6 +126,18 @@ export const Settings: FC<PropsType> = () => {
                   {Locales.Russian}
                 </option>
               </select>
+            </div>
+            <div className={styles.resetContainer}>
+              <button
+                className={styles.resetBtn}
+                type="button"
+                onClick={() => {
+                  localStorage.clear();
+                  window.location.reload();
+                }}
+              >
+                Reset
+              </button>
             </div>
           </form>
         </Window>

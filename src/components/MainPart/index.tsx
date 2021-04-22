@@ -18,6 +18,7 @@ import { Themes } from 'types/themes';
 
 // Styles
 import styles from './style.module.css';
+import { Calculator } from '../Calculator';
 
 // Types
 type PropsType = {
@@ -51,6 +52,7 @@ export const MainPart: FC<PropsType> = () => {
         <div>
           <Terminal />
           <Settings />
+          <Calculator />
         </div>
       </div>
     </>

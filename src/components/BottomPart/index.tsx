@@ -11,6 +11,7 @@ import { Apps } from 'types/apps';
 
 // Styles
 import styles from './style.module.css';
+import { useCalculator } from '../../hooks/useCalculator';
 
 type PropsType = {
   children?: never;
@@ -19,6 +20,7 @@ type PropsType = {
 export const BottomPart: FC<PropsType> = () => {
   const { handleTerminalCollapseToggle, handleOpenTerminal } = useTerminal();
   const { handleSettingsCollapseToggle, handleOpenSettings } = useSettings();
+  const { handleCalculatorCollapseToggle, handleOpenCalculator } = useCalculator();
   const { isIncludeApp, getAppIndex } = useApps();
 
   return (
@@ -47,6 +49,19 @@ export const BottomPart: FC<PropsType> = () => {
           onClick={handleSettingsCollapseToggle}
         >
           <i className="fas fa-cogs" />
+        </div>
+      )}
+      {!isIncludeApp(Apps.Calculator) && (
+        <div className={`${styles.close} ${styles.tab}`} onClick={handleOpenCalculator}>
+          <i className="fas fa-calculator" />
+        </div>
+      )}
+      {isIncludeApp(Apps.Calculator) && (
+        <div
+          className={getAppIndex(Apps.Calculator) === 0 ? `${styles.isActive} ${styles.tab}` : styles.tab}
+          onClick={handleCalculatorCollapseToggle}
+        >
+          <i className="fas fa-calculator" />
         </div>
       )}
     </div>

@@ -16,7 +16,7 @@ const terminalSlice = createSlice({
     isTerminalOpen: localStorage.getItem('isTerminalOpen') === 'true' || false,
     isTerminalCollapsed: localStorage.getItem('isTerminalCollapsed') === 'true' || false,
     terminalIconTopCoord: localStorage.getItem('terminalIconTopCoord') || '3rem',
-    terminalIconLeftCoord: localStorage.getItem('terminalIconLeftCoord') || '1rem',
+    terminalIconLeftCoord: localStorage.getItem('terminalIconLeftCoord') || '2rem',
     terminalTopCoord: localStorage.getItem('terminalTopCoord') || '5rem',
     terminalLeftCoord: localStorage.getItem('terminalLeftCoord') || '5rem',
     terminalHistory,

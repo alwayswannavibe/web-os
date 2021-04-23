@@ -10,23 +10,19 @@
 
 .select {
   margin: 0.5rem;
-  background-color: #404040;
+  background-color: #2d2d37;
   outline: none;
-  border: none;
+  border: 2px solid #2d2d37;
   padding: 0.5rem;
   color: var(--font-color);
   width: 15rem;
   border-radius: 0.2rem;
 }
 
-.select button {
-  background-color: #c12a2a;
-}
-
 .resetBtn {
   padding: 0.2rem 1rem;
   background-color: #882323;
-  border: 2px solid #222222;
+  border: 2px solid #2d2d37;
   color: #ffffff;
   outline: none;
   font-size: 0.75rem;

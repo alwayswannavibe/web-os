@@ -13,20 +13,20 @@ import {
   changeTerminalCoord,
   changeTerminalIconCoord,
   clearTerminalHistory,
-  closeTerminal,
-  openTerminal,
   TerminalMessage,
-  toggleCollapseTerminal,
 } from 'redux/slices/terminalSlice';
 import { openSettings } from 'redux/slices/settingsSlice';
 import { setLocale } from 'redux/slices/localeSlice';
 import { setTheme } from 'redux/slices/themeSlice';
-import { addWindow, deleteWindow, setWindowActive } from 'redux/slices/appsSlice';
+import { setWindowActive } from 'redux/slices/appsSlice';
 
 // import Types
 import { Apps } from 'types/apps';
 import { Themes } from 'types/themes';
 import { Locales } from 'types/locales';
+
+// Hooks
+import { useTerminal } from 'hooks/useTerminal';
 
 // Assets
 import imgSource from 'assets/images/icons/terminal.svg';
@@ -55,6 +55,7 @@ export const Terminal: FC<PropsType> = () => {
   const dispatch = useDispatch();
   const [text, setText] = useState('');
   const [inputHistoryNumber, setInputHistoryNumber] = useState(inputHistory.length);
+  const { handleTerminalCollapseToggle, handleOpenTerminal, handleCloseTerminal } = useTerminal();
   const inputEl = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -62,32 +63,8 @@ export const Terminal: FC<PropsType> = () => {
   }, [text]);
 
   // Handlers
-  const handleClose = () => {
-    dispatch(closeTerminal());
-    dispatch(deleteWindow(Apps.Terminal));
-    dispatch(clearTerminalHistory());
-  };
-
-  const handleCollapse = () => {
-    dispatch(toggleCollapseTerminal());
-    if (isTerminalCollapsed) {
-      dispatch(setWindowActive(Apps.Terminal));
-    } else if (apps.indexOf(Apps.Terminal) === 0) {
-      dispatch(setWindowActive(apps[1]));
-    }
-  };
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
-  };
-
-  const handleIconClick = () => {
-    if (isTerminalCollapsed) {
-      dispatch(toggleCollapseTerminal());
-    } else if (!isTerminalOpen) {
-      dispatch(openTerminal());
-      dispatch(addWindow(Apps.Terminal));
-    }
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -182,14 +159,14 @@ export const Terminal: FC<PropsType> = () => {
         title={Apps.Terminal}
         topCoord={terminalIconTopCoord}
         leftCoord={terminalIconLeftCoord}
-        handleClick={handleIconClick}
+        handleClick={handleOpenTerminal}
         imgSource={imgSource}
         changeCoord={changeTerminalIconCoord}
       />
       {isTerminalOpen && !isTerminalCollapsed && (
         <Window
-          handleClose={handleClose}
-          handleCollapse={handleCollapse}
+          handleClose={handleCloseTerminal}
+          handleCollapse={handleTerminalCollapseToggle}
           title={Apps.Terminal}
           topCoord={terminalTopCoord}
           leftCoord={terminalLeftCoord}

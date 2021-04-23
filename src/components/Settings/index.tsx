@@ -8,15 +8,11 @@ import { Icon } from 'components/Icon';
 // Redux
 import { RootState } from 'redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  changeSettingsCoord,
-  changeSettingsIconCoord,
-  closeSettings,
-  openSettings,
-  toggleCollapseSettings,
-} from 'redux/slices/settingsSlice';
+import { changeSettingsCoord, changeSettingsIconCoord } from 'redux/slices/settingsSlice';
 import { setTheme } from 'redux/slices/themeSlice';
 import { setLocale } from 'redux/slices/localeSlice';
+import { setWindowActive } from 'redux/slices/appsSlice';
+import { useSettings } from 'hooks/useSettings';
 
 // import Types
 import { Apps } from 'types/apps';
@@ -28,7 +24,6 @@ import imgSource from 'assets/images/icons/settings.svg';
 
 // Styles
 import styles from './style.module.css';
-import { addWindow, deleteWindow, setWindowActive } from '../../redux/slices/appsSlice';
 
 // Types
 type PropsType = {
@@ -49,31 +44,9 @@ export const Settings: FC<PropsType> = () => {
   const theme = useSelector((state: RootState) => state.theme.theme);
   const locale = useSelector((state: RootState) => state.locale.locale);
   const apps = useSelector((state: RootState) => state.apps.apps);
+  const { handleSettingsCollapseToggle, handleOpenSettings, handleCloseSettings } = useSettings();
 
   // Handlers
-  const handleClose = () => {
-    dispatch(closeSettings());
-    dispatch(deleteWindow(Apps.Settings));
-  };
-
-  const handleCollapse = () => {
-    dispatch(toggleCollapseSettings());
-    if (isSettingsCollapsed) {
-      dispatch(setWindowActive(Apps.Settings));
-    } else if (apps.indexOf(Apps.Settings) === 0) {
-      dispatch(setWindowActive(apps[1]));
-    }
-  };
-
-  const handleIconClick = () => {
-    if (isSettingsCollapsed) {
-      dispatch(toggleCollapseSettings());
-    } else if (!isSettingsOpen) {
-      dispatch(openSettings());
-      dispatch(addWindow(Apps.Settings));
-    }
-  };
-
   const handleChangeTheme = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const seletedTheme: Themes = event.target.selectedOptions[0].value as Themes;
     if (Object.values(Themes).includes(seletedTheme)) {
@@ -95,14 +68,14 @@ export const Settings: FC<PropsType> = () => {
         title={Apps.Settings}
         topCoord={settingsIconTopCoord}
         leftCoord={settingsIconLeftCoord}
-        handleClick={handleIconClick}
+        handleClick={handleOpenSettings}
         imgSource={imgSource}
         changeCoord={changeSettingsIconCoord}
       />
       {isSettingsOpen && !isSettingsCollapsed && (
         <Window
-          handleClose={handleClose}
-          handleCollapse={handleCollapse}
+          handleClose={handleCloseSettings}
+          handleCollapse={handleSettingsCollapseToggle}
           title={Apps.Settings}
           topCoord={settingsTopCoord}
           leftCoord={settingsLeftCoord}

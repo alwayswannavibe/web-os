@@ -1,88 +1,67 @@
-// React
+// React, Redux
 import React, { FC } from 'react';
 
-// Redux
-import { RootState } from 'redux/store';
-import { useDispatch, useSelector } from 'react-redux';
-import { openTerminal, toggleCollapseTerminal } from 'redux/slices/terminalSlice';
-import { openSettings, toggleCollapseSettings } from 'redux/slices/settingsSlice';
-import { addWindow, setWindowActive } from 'redux/slices/appsSlice';
+// Hooks
+import { useTerminal } from 'hooks/useTerminal';
+import { useSettings } from 'hooks/useSettings';
+import { useApps } from 'hooks/useApps';
 
-// type import
+// Types
 import { Apps } from 'types/apps';
 
 // Styles
 import styles from './style.module.css';
+import { useCalculator } from '../../hooks/useCalculator';
 
-// Types
 type PropsType = {
   children?: never;
 };
 
 export const BottomPart: FC<PropsType> = () => {
-  const apps = useSelector((state: RootState) => state.apps.apps);
-  const isSettingsCollapsed = useSelector((state: RootState) => state.settings.isSettingsCollapsed);
-  const isTerminalCollapsed = useSelector((state: RootState) => state.terminal.isTerminalCollapsed);
-  const dispatch = useDispatch();
-
-  const handleTerminalClick = () => {
-    dispatch(toggleCollapseTerminal());
-    if (isTerminalCollapsed) {
-      dispatch(setWindowActive(Apps.Terminal));
-    } else if (apps.indexOf(Apps.Terminal) === 0) {
-      dispatch(setWindowActive(apps[1]));
-    }
-  };
-
-  const handleSettingsClick = () => {
-    dispatch(toggleCollapseSettings());
-    if (isSettingsCollapsed) {
-      dispatch(setWindowActive(Apps.Settings));
-    } else if (apps.indexOf(Apps.Settings) === 0) {
-      dispatch(setWindowActive(apps[1]));
-    }
-  };
-
-  const handleOpenTerminal = () => {
-    dispatch(openTerminal());
-    dispatch(addWindow(Apps.Terminal));
-  };
-
-  const handleOpenSettings = () => {
-    dispatch(openSettings());
-    dispatch(addWindow(Apps.Settings));
-  };
+  const { handleTerminalCollapseToggle, handleOpenTerminal } = useTerminal();
+  const { handleSettingsCollapseToggle, handleOpenSettings } = useSettings();
+  const { handleCalculatorCollapseToggle, handleOpenCalculator } = useCalculator();
+  const { isIncludeApp, getAppIndex } = useApps();
 
   return (
     <div className={styles.container}>
-      {!apps.includes(Apps.Terminal) && (
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+      {!isIncludeApp(Apps.Terminal) && (
         <div className={`${styles.close} ${styles.tab}`} onClick={handleOpenTerminal}>
           <i className="fas fa-terminal" />
         </div>
       )}
-      {apps.includes(Apps.Terminal) && (
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+      {isIncludeApp(Apps.Terminal) && (
         <div
-          className={apps.indexOf(Apps.Terminal) === 0 ? `${styles.isActive} ${styles.tab}` : styles.tab}
-          onClick={handleTerminalClick}
+          className={getAppIndex(Apps.Terminal) === 0 ? `${styles.isActive} ${styles.tab}` : styles.tab}
+          onClick={handleTerminalCollapseToggle}
         >
           <i className="fas fa-terminal" />
         </div>
       )}
-      {!apps.includes(Apps.Settings) && (
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+      {!isIncludeApp(Apps.Settings) && (
         <div className={`${styles.close} ${styles.tab}`} onClick={handleOpenSettings}>
           <i className="fas fa-cogs" />
         </div>
       )}
-      {apps.includes(Apps.Settings) && (
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+      {isIncludeApp(Apps.Settings) && (
         <div
-          className={apps.indexOf(Apps.Settings) === 0 ? `${styles.isActive} ${styles.tab}` : styles.tab}
-          onClick={handleSettingsClick}
+          className={getAppIndex(Apps.Settings) === 0 ? `${styles.isActive} ${styles.tab}` : styles.tab}
+          onClick={handleSettingsCollapseToggle}
         >
           <i className="fas fa-cogs" />
+        </div>
+      )}
+      {!isIncludeApp(Apps.Calculator) && (
+        <div className={`${styles.close} ${styles.tab}`} onClick={handleOpenCalculator}>
+          <i className="fas fa-calculator" />
+        </div>
+      )}
+      {isIncludeApp(Apps.Calculator) && (
+        <div
+          className={getAppIndex(Apps.Calculator) === 0 ? `${styles.isActive} ${styles.tab}` : styles.tab}
+          onClick={handleCalculatorCollapseToggle}
+        >
+          <i className="fas fa-calculator" />
         </div>
       )}
     </div>

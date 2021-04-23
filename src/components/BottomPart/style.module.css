@@ -3,6 +3,7 @@
   bottom: 0;
   height: var(--bottomPartHeight);
   background-color: var(--layout-background-color);
+  background-image: linear-gradient(75deg, #373941, #28323b);
   z-index: 5;
   width: 100%;
   display: flex;
@@ -18,6 +19,8 @@
   border-left: 1px solid rgba(14, 14, 14, 0.15);
   border-right: 1px solid rgba(14, 14, 14, 0.15);
   border-collapse: collapse;
+  width: 2.8rem;
+  text-align: center;
 }
 
 .tab:hover {

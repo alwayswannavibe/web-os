@@ -91,7 +91,12 @@ export const Settings: FC<PropsType> = () => {
               </label>
               <select id="themeSelect" className={styles.select} onChange={handleChangeTheme} defaultValue={theme}>
                 <option value={Themes.Planet}>{Themes.Planet}</option>
+                <option value={Themes.Dynamic}>{Themes.Dynamic}</option>
+                <option value={Themes.Dynamic2}>{Themes.Dynamic2}</option>
                 <option value={Themes.Sea}>{Themes.Sea}</option>
+                <option value={Themes.Car}>{Themes.Car}</option>
+                <option value={Themes.Road}>{Themes.Road}</option>
+                <option value={Themes.Tree}>{Themes.Tree}</option>
               </select>
             </div>
             <div>

@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 
 // Components
 import { BottomPanel } from 'components/BottomPanel';
-import { MainPart } from 'components/MainPart';
+import { Main } from 'components/Main';
 import { TopBar } from 'components/TopBar';
 
 // Types
@@ -14,7 +14,7 @@ type PropsType = {
 export const Desktop: FC<PropsType> = () => (
   <>
     <TopBar />
-    <MainPart />
+    <Main />
     <BottomPanel />
   </>
 );

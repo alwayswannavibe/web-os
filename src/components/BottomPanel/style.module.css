@@ -7,4 +7,5 @@
   z-index: 5;
   width: 100%;
   display: flex;
+  z-index: 1000;
 }

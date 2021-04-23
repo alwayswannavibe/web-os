@@ -33,7 +33,11 @@ const useTerminal = () => {
     dispatch(clearTerminalHistory());
   };
 
-  return { handleTerminalCollapseToggle, handleOpenTerminal, handleCloseTerminal };
+  return {
+    handleTerminalCollapseToggle,
+    handleOpenTerminal,
+    handleCloseTerminal,
+  };
 };
 
 export { useTerminal };

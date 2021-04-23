@@ -32,7 +32,11 @@ const useSettings = () => {
     dispatch(deleteWindow(Apps.Settings));
   };
 
-  return { handleSettingsCollapseToggle, handleOpenSettings, handleCloseSettings };
+  return {
+    handleSettingsCollapseToggle,
+    handleOpenSettings,
+    handleCloseSettings,
+  };
 };
 
 export { useSettings };

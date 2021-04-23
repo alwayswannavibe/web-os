@@ -32,7 +32,11 @@ const useCalculator = () => {
     dispatch(deleteWindow(Apps.Calculator));
   };
 
-  return { handleOpenCalculator, handleCloseCalculator, handleCalculatorCollapseToggle };
+  return {
+    handleOpenCalculator,
+    handleCloseCalculator,
+    handleCalculatorCollapseToggle,
+  };
 };
 
 export { useCalculator };

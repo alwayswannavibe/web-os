@@ -78,8 +78,8 @@ const calculatorSlice = createSlice({
 
       const compare = (symbol1: string, symbol2: string) => {
         if (
-          (operators.indexOf(symbol1) < operators.indexOf(symbol2) && operators.indexOf(symbol1) !== -1)
-          || operators.indexOf(symbol2) === -1
+          (operators.indexOf(symbol1) < operators.indexOf(symbol2) && operators.indexOf(symbol1) !== -1) ||
+          operators.indexOf(symbol2) === -1
         ) {
           return operators.indexOf(symbol1);
         }
@@ -110,14 +110,14 @@ const calculatorSlice = createSlice({
         }
         if (operators.indexOf('+') === index) {
           if (decimalLength) {
-            numbers[index - 1] = (numbers[index - 1] * 10 ** decimalLength + numbers[index] * 10 ** decimalLength)
-              / 10 ** decimalLength;
+            numbers[index - 1] =
+              (numbers[index - 1] * 10 ** decimalLength + numbers[index] * 10 ** decimalLength) / 10 ** decimalLength;
           } else {
             numbers[index - 1] = numbers[index - 1] + numbers[index];
           }
         } else if (decimalLength) {
-          numbers[index - 1] = (numbers[index - 1] * 10 ** decimalLength - numbers[index] * 10 ** decimalLength)
-            / 10 ** decimalLength;
+          numbers[index - 1] =
+            (numbers[index - 1] * 10 ** decimalLength - numbers[index] * 10 ** decimalLength) / 10 ** decimalLength;
         } else {
           numbers[index - 1] = numbers[index - 1] - numbers[index];
         }

@@ -2,7 +2,7 @@
 import React, { FC } from 'react';
 
 // Components
-import { BottomPart } from 'components/BottomPart';
+import { BottomPanel } from 'components/BottomPanel';
 import { MainPart } from 'components/MainPart';
 import { TopBar } from 'components/TopBar';
 
@@ -15,6 +15,6 @@ export const Desktop: FC<PropsType> = () => (
   <>
     <TopBar />
     <MainPart />
-    <BottomPart />
+    <BottomPanel />
   </>
 );

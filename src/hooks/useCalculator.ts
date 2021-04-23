@@ -23,6 +23,9 @@ const useCalculator = () => {
   };
 
   const handleOpenCalculator = () => {
+    if (isCalculatorCollapsed) {
+      dispatch(toggleCollapseCalculator());
+    }
     dispatch(openCalculator());
     dispatch(addWindow(Apps.Calculator));
   };

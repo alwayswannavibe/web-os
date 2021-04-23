@@ -41,7 +41,7 @@ const Calculator: FC<PropsType> = () => {
   const dispatch = useDispatch();
 
   return (
-    <div onClick={() => setWindowActive(Apps.Calculator)}>
+    <>
       <Icon
         title={Apps.Calculator}
         topCoord={calculatorIconTopCoord}
@@ -67,7 +67,7 @@ const Calculator: FC<PropsType> = () => {
           </div>
         </Window>
       )}
-    </div>
+    </>
   );
 };
 

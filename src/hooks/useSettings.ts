@@ -23,6 +23,9 @@ const useSettings = () => {
   };
 
   const handleOpenSettings = () => {
+    if (isSettingsCollapsed) {
+      dispatch(toggleCollapseSettings());
+    }
     dispatch(openSettings());
     dispatch(addWindow(Apps.Settings));
   };

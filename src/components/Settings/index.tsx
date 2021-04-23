@@ -63,7 +63,7 @@ export const Settings: FC<PropsType> = () => {
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-    <div onClick={() => setWindowActive(Apps.Settings)}>
+    <>
       <Icon
         title={Apps.Settings}
         topCoord={settingsIconTopCoord}
@@ -124,6 +124,6 @@ export const Settings: FC<PropsType> = () => {
           </form>
         </Window>
       )}
-    </div>
+    </>
   );
 };

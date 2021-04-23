@@ -19,6 +19,7 @@ import { openSettings } from 'redux/slices/settingsSlice';
 import { setLocale } from 'redux/slices/localeSlice';
 import { setTheme } from 'redux/slices/themeSlice';
 import { setWindowActive } from 'redux/slices/appsSlice';
+import { clearToDo, openToDo } from 'redux/slices/toDoSlice';
 
 // import Types
 import { Apps } from 'types/apps';
@@ -33,6 +34,7 @@ import imgSource from 'assets/images/icons/terminal.svg';
 
 // Styles
 import styles from './style.module.css';
+import { openCalculator } from '../../redux/slices/calculatorSlice';
 
 // Types
 type PropsType = {
@@ -89,8 +91,18 @@ export const Terminal: FC<PropsType> = () => {
     dispatch(addTerminalHistory(`< ${text}`));
     switch (text) {
       case 'settings': {
-        dispatch(addTerminalHistory('> Settings open'));
+        dispatch(addTerminalHistory('> Settings opened'));
         dispatch(openSettings());
+        break;
+      }
+      case 'calculator': {
+        dispatch(addTerminalHistory('> Calculator opened'));
+        dispatch(openCalculator());
+        break;
+      }
+      case 'todo': {
+        dispatch(addTerminalHistory('> ToDo opened'));
+        dispatch(openToDo());
         break;
       }
       case 'clear': {
@@ -98,7 +110,7 @@ export const Terminal: FC<PropsType> = () => {
         break;
       }
       case 'help': {
-        dispatch(addTerminalHistory('> Available commands: settings, clear, change'));
+        dispatch(addTerminalHistory('> Available commands: settings, todo, calculator, clear, change'));
         break;
       }
       case 'change -l ru': {
@@ -117,6 +129,26 @@ export const Terminal: FC<PropsType> = () => {
         dispatch(setTheme(Themes.Sea));
         break;
       }
+      case 'change -t car': {
+        dispatch(setTheme(Themes.Car));
+        break;
+      }
+      case 'change -t tree': {
+        dispatch(setTheme(Themes.Tree));
+        break;
+      }
+      case 'change -t road': {
+        dispatch(setTheme(Themes.Road));
+        break;
+      }
+      case 'change -t dynamic': {
+        dispatch(setTheme(Themes.Dynamic));
+        break;
+      }
+      case 'change -t dynamic2': {
+        dispatch(setTheme(Themes.Dynamic2));
+        break;
+      }
       case 'settings --help':
       case 'help settings':
       case 'settings -h': {
@@ -129,12 +161,30 @@ export const Terminal: FC<PropsType> = () => {
         dispatch(addTerminalHistory('> This command clears terminal history'));
         break;
       }
+      case 'calculator --help':
+      case 'help calculator':
+      case 'calculator -h': {
+        dispatch(addTerminalHistory('> This command opens calculator'));
+        break;
+      }
+      case 'todo --help':
+      case 'help todo':
+      case 'todo -h': {
+        dispatch(addTerminalHistory('> This command opens todo'));
+        dispatch(addTerminalHistory('> Available commands: clear'));
+        break;
+      }
+      case 'todo clear': {
+        dispatch(clearToDo());
+        dispatch(addTerminalHistory('> todo list cleared'));
+        break;
+      }
       case 'change --help':
       case 'help change':
       case 'change -h': {
         dispatch(addTerminalHistory('> This command change locales or themes'));
         dispatch(addTerminalHistory('> "change -t" changes themes'));
-        dispatch(addTerminalHistory('> available options: planet, sea'));
+        dispatch(addTerminalHistory('> available options: planet, sea, car, road, tree, dynamic, dynamic2'));
         dispatch(addTerminalHistory('> "change -l" changes locales'));
         dispatch(addTerminalHistory('> available options: ru, br'));
         break;

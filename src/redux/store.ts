@@ -5,6 +5,7 @@ import terminalSlice from 'redux/slices/terminalSlice';
 import settingsSlice from 'redux/slices/settingsSlice';
 import appsSlice from 'redux/slices/appsSlice';
 import calculatorSlice from 'redux/slices/calculatorSlice';
+import toDoSlice from './slices/toDoSlice';
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     settings: settingsSlice,
     apps: appsSlice,
     calculator: calculatorSlice,
+    toDo: toDoSlice,
   },
 });
 

@@ -1,0 +1,47 @@
+.input {
+  width: 44rem;
+  font-size: 1.5rem;
+  background-color: transparent;
+  border: 3px solid #4e4441;
+  margin: 0 0.2rem;
+  outline: none;
+  color: var(--font-color);
+  padding: 0.05rem 0.5rem;
+  border-radius: 0.3rem;
+}
+
+.addContainer {
+  position: absolute;
+  bottom: 0.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-collapse: collapse;
+}
+
+.container {
+  height: 100%;
+}
+
+.toDoItemsContainer {
+  height: 21.5rem;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.addItemButton {
+  padding: 0.55rem;
+  width: 4rem;
+  font-size: 1.5rem;
+  color: #178517;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.25s linear;
+  transition: color 0.25s linear;
+}
+
+.addItemButton:active {
+  color: #043c06;
+}

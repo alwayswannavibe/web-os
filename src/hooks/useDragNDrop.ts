@@ -12,8 +12,8 @@ const useDragNDrop = (changeCoord: any, element: RefObject<HTMLDivElement>, topC
 
   const drag = useCallback(
     (event: MouseEvent) => {
-      const heigthOfWindow = (element!.current?.getBoundingClientRect().height || 0) * 18;
-      const topLimit = heigthOfWindow / 18 + 7;
+      const heigthOfWindow = element!.current?.getBoundingClientRect().height || 0;
+      const topLimit = heigthOfWindow + 7;
       const leftLimit = 0;
       const bottomLimit = window.screen.availHeight - heigthOfWindow;
       const rightLimit = window.screen.availWidth - (element!.current?.getBoundingClientRect().width || 0);
@@ -37,7 +37,7 @@ const useDragNDrop = (changeCoord: any, element: RefObject<HTMLDivElement>, topC
       setTopCoordLocal(`${top}px`);
       setLeftCoordLocal(`${left}px`);
     },
-    [shiftLeft, shiftTop],
+    [element, shiftLeft, shiftTop],
   );
 
   const stopDrag = useCallback(() => {

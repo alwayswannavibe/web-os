@@ -67,6 +67,10 @@ const toDoSlice = createSlice({
       localStorage.setItem('toDoIconTopCoord', payload.top);
       localStorage.setItem('toDoIconLeftCoord', payload.left);
     },
+    clearToDo(state) {
+      // eslint-disable-next-line no-param-reassign
+      state.toDoList = [];
+    },
   },
 });
 
@@ -80,4 +84,5 @@ export const {
   toggleCompleteToDoItem,
   toggleCollapseToDo,
   openToDo,
+  clearToDo,
 } = toDoSlice.actions;

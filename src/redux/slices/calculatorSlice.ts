@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { CoordsType } from 'types/coord';
+import { getCalcResult } from 'logic/calculator';
 
 const calculatorSlice = createSlice({
   name: 'locale',
@@ -45,88 +46,8 @@ const calculatorSlice = createSlice({
       localStorage.setItem('terminalIconLeftCoord', payload.left);
     },
     getCalculatorResult(state) {
-      if (['*', '/', '+', '-', '^', '.'].includes(state.inputValue[0])) {
-        // eslint-disable-next-line no-param-reassign
-        state.inputValue = '';
-        return;
-      }
-
-      let prevElIsOperator = false;
-      let thisElISOperator = false;
-
-      // eslint-disable-next-line no-restricted-syntax
-      for (const el of state.inputValue.split('')) {
-        thisElISOperator = ['*', '/', '+', '-', '^', '.'].includes(el);
-        if (thisElISOperator && prevElIsOperator) {
-          // eslint-disable-next-line no-param-reassign
-          state.inputValue = '';
-          return;
-        }
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        prevElIsOperator = thisElISOperator;
-      }
-
-      const numbers = state.inputValue.split(/[*+\-/^]/).map(Number);
-      const operators = state.inputValue.split(/[0-9, .]+/);
-      let index = operators.lastIndexOf('^');
-      while (index !== -1) {
-        numbers[index - 1] = numbers[index - 1] ** numbers[index];
-        numbers.splice(index, 1);
-        operators.splice(index, 1);
-        index = operators.lastIndexOf('^');
-      }
-
-      const compare = (symbol1: string, symbol2: string) => {
-        if (
-          (operators.indexOf(symbol1) < operators.indexOf(symbol2) && operators.indexOf(symbol1) !== -1) ||
-          operators.indexOf(symbol2) === -1
-        ) {
-          return operators.indexOf(symbol1);
-        }
-        return operators.indexOf(symbol2);
-      };
-
-      index = compare('/', '*');
-      while (index !== -1) {
-        if (operators.indexOf('/') === index) {
-          numbers[index - 1] = numbers[index - 1] / numbers[index];
-        } else {
-          numbers[index - 1] = numbers[index - 1] * numbers[index];
-        }
-        numbers.splice(index, 1);
-        operators.splice(index, 1);
-        index = compare('/', '*');
-      }
-
-      index = compare('+', '-');
-      let decimalLength = 0;
-      while (index !== -1) {
-        decimalLength = 0;
-        if (numbers[index - 1] % 1 || numbers[index] % 1) {
-          decimalLength = Math.max(
-            numbers[index - 1].toString().split('.')[1].length,
-            numbers[index].toString().split('.')[1].length,
-          );
-        }
-        if (operators.indexOf('+') === index) {
-          if (decimalLength) {
-            numbers[index - 1] =
-              (numbers[index - 1] * 10 ** decimalLength + numbers[index] * 10 ** decimalLength) / 10 ** decimalLength;
-          } else {
-            numbers[index - 1] = numbers[index - 1] + numbers[index];
-          }
-        } else if (decimalLength) {
-          numbers[index - 1] =
-            (numbers[index - 1] * 10 ** decimalLength - numbers[index] * 10 ** decimalLength) / 10 ** decimalLength;
-        } else {
-          numbers[index - 1] = numbers[index - 1] - numbers[index];
-        }
-        numbers.splice(index, 1);
-        operators.splice(index, 1);
-        index = compare('+', '-');
-      }
       // eslint-disable-next-line no-param-reassign
-      state.inputValue = numbers[0].toString();
+      state.inputValue = getCalcResult(state.inputValue);
     },
     addToCalculatorInput(state, { payload }: { payload: string }) {
       // eslint-disable-next-line no-param-reassign

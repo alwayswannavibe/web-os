@@ -3,7 +3,8 @@
   height: 100%;
   font-size: 1rem;
   transition: all 0.25s linear;
-  background-image: linear-gradient(30deg, #3b4762, #29495f);
+  background-color: rgba(65, 65, 74, 0.99);
+  background-image: linear-gradient(30deg, rgba(65, 65, 74, 0.99), rgba(69, 69, 78, 0.84));
   border: 1px solid #292926;
   color: var(--font-color);
   transition: all 0.25s linear;
@@ -12,11 +13,13 @@
 }
 
 .button:hover {
-  box-shadow: #2f405d 0 0 10px 5px;
-  background-image: linear-gradient(30deg, #4b5e88, #3a7698);
+  box-shadow: rgba(44, 46, 55, 0.72) 0 0 10px 5px;
+  background-color: #292c32;
+  background-image: linear-gradient(30deg, #292c32, #2c2e37);
 }
 
 .button:active {
-  box-shadow: #2f405d 0 0 10px 5px;
-  background-image: linear-gradient(30deg, #08143b, #052337);
+  box-shadow: rgba(5, 5, 5, 0.71) 0 0 10px 5px;
+  background-color: #1d1d1d;
+  background-image: linear-gradient(30deg, #1d1d1d, #050505);
 }

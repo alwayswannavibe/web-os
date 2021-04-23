@@ -37,7 +37,7 @@ const useDragNDrop = (changeCoord: any, element: RefObject<HTMLDivElement>, topC
       setTopCoordLocal(`${top}px`);
       setLeftCoordLocal(`${left}px`);
     },
-    [shiftLeft, shiftTop],
+    [element, shiftLeft, shiftTop],
   );
 
   const stopDrag = useCallback(() => {

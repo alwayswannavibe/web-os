@@ -1,0 +1,43 @@
+.buttons {
+  display: flex;
+  margin-top: 2rem;
+}
+
+.numberButtons {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.operationButtons {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.numberButton {
+  width: 7rem;
+  height: 4rem;
+}
+
+.operationButton {
+  width: 7rem;
+  height: 4rem;
+}
+
+.enterButton {
+  height: 5rem;
+  width: 21rem;
+}
+
+.zeroButton {
+  height: 5rem;
+  width: 21rem;
+}
+
+.clearOneButton {
+  height: 4rem;
+  width: 14rem;
+}

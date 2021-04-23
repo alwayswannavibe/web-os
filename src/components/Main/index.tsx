@@ -21,6 +21,7 @@ import { Calculator } from 'components/Calculator';
 import { Themes } from 'types/themes';
 
 // Styles
+import { ToDoList } from 'components/ToDoList';
 import styles from './style.module.css';
 
 // Types
@@ -76,6 +77,7 @@ const Main: FC<PropsType> = () => {
           <Terminal />
           <Settings />
           <Calculator />
+          <ToDoList />
         </div>
       </div>
     </>

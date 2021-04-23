@@ -36,7 +36,7 @@ const terminalSlice = createSlice({
     toggleCollapseTerminal(state) {
       // eslint-disable-next-line no-param-reassign
       state.isTerminalCollapsed = !state.isTerminalCollapsed;
-      localStorage.setItem('isSettingsCollapsed', state.isTerminalCollapsed.toString());
+      localStorage.setItem('isTerminalCollapsed', state.isTerminalCollapsed.toString());
     },
     addTerminalHistory(state, { payload }) {
       state.terminalHistory.push({

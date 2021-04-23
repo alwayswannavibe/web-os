@@ -8,6 +8,9 @@ if (localStorage.getItem('isTerminalOpen') === 'true') {
 if (localStorage.getItem('isSettingsOpen') === 'true') {
   apps.push(Apps.Settings);
 }
+if (localStorage.getItem('isCalculatorOpen') === 'true') {
+  apps.push(Apps.Calculator);
+}
 
 const appsSlice = createSlice({
   name: 'apps',

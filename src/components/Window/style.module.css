@@ -1,22 +1,22 @@
 .window {
   width: 48rem;
-  height: calc(27rem + 4px);
-  border: 2px solid #343030;
+  height: calc(27rem + 6px);
+  border: 3px solid #343030;
   position: absolute;
   z-index: 10;
-  border-radius: 0.2rem;
+  border-radius: 0.4rem;
 }
 
 .windowTop {
   height: 1.5rem;
-  background-color: rgba(29, 35, 41, 0.8);
+  background-color: rgba(23, 23, 24, 0.9);
   display: flex;
   justify-content: space-between;
   border-bottom: 2px solid #353535;
 }
 
 .windowBody {
-  background-image: linear-gradient(75deg, #373941, #28323b);
+  background-color: #1e1e22;
   height: 25.5rem;
   padding: 5px;
   position: relative;

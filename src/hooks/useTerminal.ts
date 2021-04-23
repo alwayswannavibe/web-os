@@ -23,6 +23,9 @@ const useTerminal = () => {
   };
 
   const handleOpenTerminal = () => {
+    if (isTerminalCollapsed) {
+      dispatch(toggleCollapseTerminal());
+    }
     dispatch(openTerminal());
     dispatch(addWindow(Apps.Terminal));
   };
@@ -33,7 +36,11 @@ const useTerminal = () => {
     dispatch(clearTerminalHistory());
   };
 
-  return { handleTerminalCollapseToggle, handleOpenTerminal, handleCloseTerminal };
+  return {
+    handleTerminalCollapseToggle,
+    handleOpenTerminal,
+    handleCloseTerminal,
+  };
 };
 
 export { useTerminal };

@@ -63,7 +63,7 @@ export const Settings: FC<PropsType> = () => {
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-    <div onClick={() => setWindowActive(Apps.Settings)}>
+    <>
       <Icon
         title={Apps.Settings}
         topCoord={settingsIconTopCoord}
@@ -91,7 +91,12 @@ export const Settings: FC<PropsType> = () => {
               </label>
               <select id="themeSelect" className={styles.select} onChange={handleChangeTheme} defaultValue={theme}>
                 <option value={Themes.Planet}>{Themes.Planet}</option>
+                <option value={Themes.Dynamic}>{Themes.Dynamic}</option>
+                <option value={Themes.Dynamic2}>{Themes.Dynamic2}</option>
                 <option value={Themes.Sea}>{Themes.Sea}</option>
+                <option value={Themes.Car}>{Themes.Car}</option>
+                <option value={Themes.Road}>{Themes.Road}</option>
+                <option value={Themes.Tree}>{Themes.Tree}</option>
               </select>
             </div>
             <div>
@@ -119,6 +124,6 @@ export const Settings: FC<PropsType> = () => {
           </form>
         </Window>
       )}
-    </div>
+    </>
   );
 };

@@ -154,7 +154,7 @@ export const Terminal: FC<PropsType> = () => {
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-    <div onClick={() => setWindowActive(Apps.Terminal)}>
+    <>
       <Icon
         title={Apps.Terminal}
         topCoord={terminalIconTopCoord}
@@ -196,6 +196,6 @@ export const Terminal: FC<PropsType> = () => {
           </pre>
         </Window>
       )}
-    </div>
+    </>
   );
 };

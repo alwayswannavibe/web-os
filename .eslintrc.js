@@ -21,6 +21,7 @@ module.exports = {
     "react/require-default-props": 0,
     "jsx-a11y/no-static-element-interactions": 0,
     "jsx-a11y/click-events-have-key-events": 0,
-    "no-mixed-operators": 0
+    "no-mixed-operators": 0,
+    "operator-linebreak": 0,
   }
 };

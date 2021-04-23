@@ -1,3 +1,4 @@
+// React, Redux
 import React, { FC } from 'react';
 
 // Styles

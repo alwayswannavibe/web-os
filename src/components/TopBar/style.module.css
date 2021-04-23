@@ -10,4 +10,5 @@
   font-size: 1.5rem;
   justify-content: space-between;
   color: var(--font-color);
+  z-index: 1000;
 }

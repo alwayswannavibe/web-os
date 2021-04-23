@@ -2,8 +2,8 @@
 import React, { FC } from 'react';
 
 // Components
-import { BottomPart } from 'components/BottomPart';
-import { MainPart } from 'components/MainPart';
+import { BottomPanel } from 'components/BottomPanel';
+import { Main } from 'components/Main';
 import { TopBar } from 'components/TopBar';
 
 // Types
@@ -14,7 +14,7 @@ type PropsType = {
 export const Desktop: FC<PropsType> = () => (
   <>
     <TopBar />
-    <MainPart />
-    <BottomPart />
+    <Main />
+    <BottomPanel />
   </>
 );

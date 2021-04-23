@@ -23,6 +23,9 @@ const useCalculator = () => {
   };
 
   const handleOpenCalculator = () => {
+    if (isCalculatorCollapsed) {
+      dispatch(toggleCollapseCalculator());
+    }
     dispatch(openCalculator());
     dispatch(addWindow(Apps.Calculator));
   };
@@ -32,7 +35,11 @@ const useCalculator = () => {
     dispatch(deleteWindow(Apps.Calculator));
   };
 
-  return { handleOpenCalculator, handleCloseCalculator, handleCalculatorCollapseToggle };
+  return {
+    handleOpenCalculator,
+    handleCloseCalculator,
+    handleCalculatorCollapseToggle,
+  };
 };
 
 export { useCalculator };

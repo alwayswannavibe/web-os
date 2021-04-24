@@ -23,6 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:coverage": "npm test -- --env=jsdom --coverage",
     "eject": "react-scripts eject",
     "lint:style": "npx stylelint \"src/**/*.css\"",
     "lint:ts": "npx eslint \"./src\" --ext .js,.jsx,.ts,.tsx",

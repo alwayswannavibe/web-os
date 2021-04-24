@@ -30,7 +30,9 @@ const BottomTab: FC<PropsType> = ({ handleOpen, handleCollapse, type, iconName }
       )}
       {isIncludeApp(type) && (
         <div
-          className={getAppIndex(type) === 0 ? `${styles.isActive} ${styles.tab}` : styles.tab}
+          className={
+            getAppIndex(type) === 0 ? `${styles.isActive} ${styles.tab} ${styles.open}` : `${styles.tab} ${styles.open}`
+          }
           onClick={handleCollapse}
         >
           <i className={`fas fa-${iconName}`} />

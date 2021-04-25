@@ -8,7 +8,7 @@ export type TerminalMessage = {
 };
 
 const terminalHistory: TerminalMessage[] = [];
-const inputHistory: string[] = [];
+const terminalInputHistory: string[] = [];
 
 const terminalSlice = createSlice({
   name: 'terminal',
@@ -20,7 +20,7 @@ const terminalSlice = createSlice({
     terminalTopCoord: localStorage.getItem('terminalTopCoord') || '5rem',
     terminalLeftCoord: localStorage.getItem('terminalLeftCoord') || '5rem',
     terminalHistory,
-    inputHistory,
+    terminalInputHistory,
   },
   reducers: {
     openTerminal(state) {
@@ -44,7 +44,7 @@ const terminalSlice = createSlice({
         id: uuidv(),
       });
       if (payload.split(' ')[0] === '<') {
-        state.inputHistory.push(
+        state.terminalInputHistory.push(
           payload
             .split(' ')
             .splice(1, payload.length - 1)
@@ -55,6 +55,10 @@ const terminalSlice = createSlice({
     clearTerminalHistory(state) {
       // eslint-disable-next-line no-param-reassign
       state.terminalHistory = [];
+    },
+    clearTerminalInputHistory(state) {
+      // eslint-disable-next-line no-param-reassign
+      state.terminalInputHistory = [];
     },
     changeTerminalCoord(state, { payload }: { payload: CoordsType }) {
       // eslint-disable-next-line no-param-reassign
@@ -84,4 +88,5 @@ export const {
   clearTerminalHistory,
   changeTerminalCoord,
   changeTerminalIconCoord,
+  clearTerminalInputHistory,
 } = terminalSlice.actions;

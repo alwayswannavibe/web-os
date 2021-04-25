@@ -7,7 +7,7 @@ import {
   toggleCollapseSettings,
 } from './settingsSlice';
 
-describe('calculator slice', () => {
+describe('settings slice', () => {
   it('opens then calls openSettings', () => {
     store.dispatch(openSettings());
     expect(store.getState().settings.isSettingsOpen).toEqual(true);

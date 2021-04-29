@@ -15,6 +15,8 @@ const settingsSlice = createSlice({
     openSettings(state) {
       // eslint-disable-next-line no-param-reassign
       state.isSettingsOpen = true;
+      // eslint-disable-next-line no-param-reassign
+      state.isSettingsCollapsed = false;
       localStorage.setItem('isSettingsOpen', 'true');
     },
     closeSettings(state) {

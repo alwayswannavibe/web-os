@@ -17,6 +17,8 @@ const calculatorSlice = createSlice({
     openCalculator(state) {
       // eslint-disable-next-line no-param-reassign
       state.isCalculatorOpen = true;
+      // eslint-disable-next-line no-param-reassign
+      state.isCalculatorCollapsed = false;
       localStorage.setItem('isCalculatorOpen', 'true');
     },
     closeCalculator(state) {

@@ -5,21 +5,21 @@ import configureStore from 'redux-mock-store';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Middleware, Dispatch, AnyAction } from 'redux';
 import { Apps } from 'types/apps';
-import { useSettings } from './useSettings';
+import { useToDo } from './useToDo';
 
-describe('use settings hook', () => {
+describe('use to do hook', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
   const mockStore = configureStore(middlewares);
 
-  describe('handleSettingsCollapseToggle function', () => {
-    it('toggle coolapse if settings not collapsed and not active', () => {
+  describe('handleToDoCollapseToggle function', () => {
+    it('toggle coolapse if to do not collapsed and not active', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Terminal, Apps.Settings],
+          apps: [Apps.Terminal, Apps.ToDo],
         },
-        settings: {
-          isSettingsCollapsed: false,
-          isSettingsOpen: true,
+        toDo: {
+          isToDoCollapsed: false,
+          isToDoOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -27,27 +27,27 @@ describe('use settings hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useSettings(), { wrapper });
+      const { result } = renderHook(() => useToDo(), { wrapper });
 
       act(() => {
-        result.current.handleSettingsCollapseToggle();
+        result.current.handleToDoCollapseToggle();
       });
 
       expect(mockDispatch).toBeCalledTimes(1);
       expect(mockDispatch).toBeCalledWith({
         payload: undefined,
-        type: 'settings/toggleCollapseSettings',
+        type: 'toDo/toggleCollapseToDo',
       });
     });
 
-    it('toggle coolapse if settings collapsed and not active', () => {
+    it('toggle coolapse if to do collapsed and not active', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Terminal, Apps.Settings],
+          apps: [Apps.Terminal, Apps.ToDo],
         },
-        settings: {
-          isSettingsCollapsed: true,
-          isSettingsOpen: true,
+        toDo: {
+          isToDoCollapsed: true,
+          isToDoOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -55,31 +55,31 @@ describe('use settings hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useSettings(), { wrapper });
+      const { result } = renderHook(() => useToDo(), { wrapper });
 
       act(() => {
-        result.current.handleSettingsCollapseToggle();
+        result.current.handleToDoCollapseToggle();
       });
 
       expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
-        payload: Apps.Settings,
+        payload: Apps.ToDo,
         type: 'apps/setWindowActive',
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
         payload: undefined,
-        type: 'settings/toggleCollapseSettings',
+        type: 'toDo/toggleCollapseToDo',
       });
     });
 
-    it('toggle coolapse if settings not collapsed and active', () => {
+    it('toggle coolapse if to do not collapsed and active', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Settings, Apps.Terminal],
+          apps: [Apps.ToDo, Apps.Terminal],
         },
-        settings: {
-          isSettingsCollapsed: false,
-          isSettingsOpen: true,
+        toDo: {
+          isToDoCollapsed: false,
+          isToDoOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -87,10 +87,10 @@ describe('use settings hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useSettings(), { wrapper });
+      const { result } = renderHook(() => useToDo(), { wrapper });
 
       act(() => {
-        result.current.handleSettingsCollapseToggle();
+        result.current.handleToDoCollapseToggle();
       });
 
       expect(mockDispatch).toBeCalledTimes(2);
@@ -100,20 +100,20 @@ describe('use settings hook', () => {
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
         payload: undefined,
-        type: 'settings/toggleCollapseSettings',
+        type: 'toDo/toggleCollapseToDo',
       });
     });
   });
 
-  describe('handleOpenSettings function', () => {
-    it('toggle coolapse if settings open and collapsed', () => {
+  describe('handleOpenToDo function', () => {
+    it('toggle coolapse if to do open and collapsed', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Settings],
+          apps: [Apps.ToDo],
         },
-        settings: {
-          isSettingsCollapsed: true,
-          isSettingsOpen: true,
+        toDo: {
+          isToDoCollapsed: true,
+          isToDoOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -121,31 +121,31 @@ describe('use settings hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useSettings(), { wrapper });
+      const { result } = renderHook(() => useToDo(), { wrapper });
 
       act(() => {
-        result.current.handleOpenSettings();
+        result.current.handleOpenToDo();
       });
 
       expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
         payload: undefined,
-        type: 'settings/toggleCollapseSettings',
+        type: 'toDo/toggleCollapseToDo',
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
-        payload: Apps.Settings,
+        payload: Apps.ToDo,
         type: 'apps/setWindowActive',
       });
     });
 
-    it('does nothing if settings open and not collapsed', () => {
+    it('does nothing if to do open and not collapsed', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Settings],
+          apps: [Apps.ToDo],
         },
-        settings: {
-          isSettingsCollapsed: false,
-          isSettingsOpen: true,
+        toDo: {
+          isToDoCollapsed: false,
+          isToDoOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -153,23 +153,23 @@ describe('use settings hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useSettings(), { wrapper });
+      const { result } = renderHook(() => useToDo(), { wrapper });
 
       act(() => {
-        result.current.handleOpenSettings();
+        result.current.handleOpenToDo();
       });
 
       expect(mockDispatch).toBeCalledTimes(0);
     });
 
-    it('open settings if settings closed', () => {
+    it('open to do if settings closed', () => {
       const initialState = {
         apps: {
           apps: [],
         },
-        settings: {
-          isSettingsCollapsed: false,
-          isSettingsOpen: false,
+        toDo: {
+          isToDoCollapsed: false,
+          isToDoOpen: false,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -177,33 +177,33 @@ describe('use settings hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useSettings(), { wrapper });
+      const { result } = renderHook(() => useToDo(), { wrapper });
 
       act(() => {
-        result.current.handleOpenSettings();
+        result.current.handleOpenToDo();
       });
 
       expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
         payload: undefined,
-        type: 'settings/openSettings',
+        type: 'toDo/openToDo',
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
-        payload: Apps.Settings,
+        payload: Apps.ToDo,
         type: 'apps/addWindow',
       });
     });
   });
 
-  describe('handleCloseSettings function', () => {
-    it('close settings and delete window if settings open', () => {
+  describe('handleCloseToDo function', () => {
+    it('close to do and delete window if to do open', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Settings],
+          apps: [Apps.ToDo],
         },
-        settings: {
-          isSettingsCollapsed: true,
-          isSettingsOpen: true,
+        toDo: {
+          isToDoCollapsed: true,
+          isToDoOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -211,31 +211,31 @@ describe('use settings hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useSettings(), { wrapper });
+      const { result } = renderHook(() => useToDo(), { wrapper });
 
       act(() => {
-        result.current.handleCloseSettings();
+        result.current.handleCloseToDo();
       });
 
       expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
         payload: undefined,
-        type: 'settings/closeSettings',
+        type: 'toDo/closeToDo',
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
-        payload: Apps.Settings,
+        payload: Apps.ToDo,
         type: 'apps/deleteWindow',
       });
     });
 
-    it('does nothing if settings closed', () => {
+    it('does nothing if to do closed', () => {
       const initialState = {
         apps: {
           apps: [],
         },
-        settings: {
-          isSettingsCollapsed: true,
-          isSettingsOpen: false,
+        toDo: {
+          isToDoCollapsed: true,
+          isToDoOpen: false,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -243,10 +243,10 @@ describe('use settings hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useSettings(), { wrapper });
+      const { result } = renderHook(() => useToDo(), { wrapper });
 
       act(() => {
-        result.current.handleCloseSettings();
+        result.current.handleCloseToDo();
       });
 
       expect(mockDispatch).toBeCalledTimes(0);

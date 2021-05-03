@@ -9,7 +9,7 @@ import configureStore from 'redux-mock-store';
 import { BottomTab } from '.';
 import styles from './style.module.css';
 
-describe('bottom tab', () => {
+describe('bottom tab component', () => {
   const handleOpen = jest.fn();
   const handleCollapse = jest.fn();
   const iconName = 'terminal';

@@ -40,32 +40,40 @@ const Calculator: FC<PropsType> = () => {
   const { getAppIndex } = useApps();
   const dispatch = useDispatch();
 
+  const handleSetActive = () => {
+    dispatch(setWindowActive(Apps.Calculator));
+  };
+
   return (
     <>
-      <Icon
-        title={Apps.Calculator}
-        topCoord={calculatorIconTopCoord}
-        leftCoord={calculatorIconLeftCoord}
-        handleClick={handleOpenCalculator}
-        imgSource={imgSource}
-        changeCoord={changeCalculatorIconCoord}
-      />
-      {isCalculatorOpen && !isCalculatorCollapsed && (
-        <Window
-          handleClose={handleCloseCalculator}
-          handleCollapse={handleCalculatorCollapseToggle}
+      <div id="calculator-icon">
+        <Icon
           title={Apps.Calculator}
-          topCoord={calculatorTopCoord}
-          leftCoord={calculatorLeftCoord}
-          changeCoord={changeCalculatorCoord}
-          zIndexProp={100 - getAppIndex(Apps.Calculator)}
-          handleSetActive={() => dispatch(setWindowActive(Apps.Calculator))}
-        >
-          <div className={styles.container}>
-            <CalculatorInput />
-            <CalculatorButtons />
-          </div>
-        </Window>
+          topCoord={calculatorIconTopCoord}
+          leftCoord={calculatorIconLeftCoord}
+          handleClick={handleOpenCalculator}
+          imgSource={imgSource}
+          changeCoord={changeCalculatorIconCoord}
+        />
+      </div>
+      {isCalculatorOpen && !isCalculatorCollapsed && (
+        <div id="calculator-window">
+          <Window
+            handleClose={handleCloseCalculator}
+            handleCollapse={handleCalculatorCollapseToggle}
+            title={Apps.Calculator}
+            topCoord={calculatorTopCoord}
+            leftCoord={calculatorLeftCoord}
+            changeCoord={changeCalculatorCoord}
+            zIndexProp={100 - getAppIndex(Apps.Calculator)}
+            handleSetActive={handleSetActive}
+          >
+            <div className={styles.container} id="calculator-content">
+              <CalculatorInput />
+              <CalculatorButtons />
+            </div>
+          </Window>
+        </div>
       )}
     </>
   );

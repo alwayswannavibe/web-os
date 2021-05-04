@@ -7,7 +7,9 @@ import styles from './style.module.css';
 describe('calculator  components', () => {
   const mockHandleClick = jest.fn();
 
-  render(<CalculatorButton value="1" handleClick={mockHandleClick} />);
+  beforeEach(() => {
+    render(<CalculatorButton value="1" handleClick={mockHandleClick} />);
+  });
 
   it('calls handleClick on click', () => {
     const button = document.getElementsByClassName(styles.button)[0];

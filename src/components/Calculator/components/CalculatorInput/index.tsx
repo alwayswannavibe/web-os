@@ -16,7 +16,7 @@ const CalculatorInput: FC<PropsType> = () => {
   const dispatch = useDispatch();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const regExp = new RegExp(/^[\d, +, \-, *, ^, /, .]*$/);
+    const regExp = new RegExp(/^[\d+\-*^/.]*$/);
     const regExp2 = new RegExp(/^\S*$/);
     if (regExp.test(event.target.value) && regExp2.test(event.target.value)) {
       dispatch(setCalculatorInput(event.target.value));

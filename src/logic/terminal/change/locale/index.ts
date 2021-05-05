@@ -8,10 +8,12 @@ const terminalProcessChangeLocale = (input: string) => {
 
   switch (input.split(' ')[0]) {
     case 'ru': {
+      dispatch(addTerminalHistory('> Locale was change'));
       dispatch(setLocale(Locales.Russian));
       break;
     }
     case 'br': {
+      dispatch(addTerminalHistory('> Locale was change'));
       dispatch(setLocale(Locales.Britain));
       break;
     }

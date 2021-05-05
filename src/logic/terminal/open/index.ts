@@ -19,7 +19,7 @@ const terminalProcessOpenCommand = (input: string) => {
       break;
     }
     case 'todo': {
-      dispatch(addTerminalHistory('> ToDo opened'));
+      dispatch(addTerminalHistory('> To do opened'));
       dispatch(openToDo());
       break;
     }

@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleCompleteToDoItem, deleteToDoItem } from 'redux/slices/toDoSlice';
+import { RootState } from 'redux/store';
 import styles from './styles.module.css';
-import { RootState } from '../../../../redux/store';
 
 type PropsType = {
   children?: never;

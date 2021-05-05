@@ -4,8 +4,8 @@ import configureStore from 'redux-mock-store';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import React from 'react';
+import { Apps } from 'types/apps';
 import { Calculator } from './index';
-import { Apps } from '../../types/apps';
 
 describe('calculator component', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];

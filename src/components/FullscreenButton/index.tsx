@@ -26,7 +26,7 @@ export const FullscreenButton: FC<PropsType> = () => {
   const handleFullscreen = () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen();
-    } else if (document.exitFullscreen) {
+    } else {
       document.exitFullscreen();
     }
   };
@@ -34,7 +34,7 @@ export const FullscreenButton: FC<PropsType> = () => {
   return (
     // eslint-disable-next-line max-len
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-    <div onClick={handleFullscreen}>
+    <div onClick={handleFullscreen} id="fullscreen-btn">
       <i className={`fas ${isFullscreen ? 'fa-compress' : 'fa-expand'} ${styles.fullscreenButton}`} />
     </div>
   );

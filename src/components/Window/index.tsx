@@ -1,24 +1,26 @@
-// React
+// React and Redux
 import React, { FC, ReactNode, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
+import { setWindowActive } from 'redux/slices/appsSlice';
 
 // types import
 import { CoordsType } from 'types/coord';
 
-// Redux
-import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
-
 // Hooks
 import { useDragNDrop } from 'hooks/useDragNDrop';
+
+// Types
+import { Apps } from 'types/apps';
 
 // Styles
 import styles from './style.module.css';
 
-// Types
 type PropsType = {
   title: string;
   handleClose: () => void;
   handleCollapse: () => void;
-  handleSetActive: () => void;
+  appType: Apps;
   topCoord: string;
   leftCoord: string;
   zIndexProp: number;
@@ -35,11 +37,17 @@ export const Window: FC<PropsType> = ({
   leftCoord,
   changeCoord,
   zIndexProp,
-  handleSetActive,
+  appType,
 }: PropsType) => {
   const windowTop = useRef<HTMLDivElement>(null);
 
   const { startDrag, topCoordLocal, leftCoordLocal } = useDragNDrop(changeCoord, windowTop, topCoord, leftCoord);
+
+  const dispatch = useDispatch();
+
+  const handleSetActive = () => {
+    dispatch(setWindowActive(appType));
+  };
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions

@@ -23,6 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:coverage": "npm test -- --env=jsdom --coverage --watchAll",
     "eject": "react-scripts eject",
     "lint:style": "npx stylelint \"src/**/*.css\"",
     "lint:ts": "npx eslint \"./src\" --ext .js,.jsx,.ts,.tsx",
@@ -43,12 +44,15 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "^5.1.2",
+    "@types/redux-mock-store": "^1.0.2",
     "@types/uuid": "^8.3.0",
     "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-config-prettier": "^8.2.0",
     "eslint-plugin-prettier": "^3.4.0",
     "husky": "^6.0.0",
     "prettier": "^2.2.1",
+    "redux-mock-store": "^1.5.4",
     "stylelint": "^13.12.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-prettier": "^1.2.0"

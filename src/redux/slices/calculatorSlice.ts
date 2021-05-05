@@ -3,7 +3,7 @@ import { CoordsType } from 'types/coord';
 import { getCalcResult } from 'logic/calculator';
 
 const calculatorSlice = createSlice({
-  name: 'locale',
+  name: 'calculator',
   initialState: {
     isCalculatorOpen: localStorage.getItem('isCalculatorOpen') === 'true' || false,
     isCalculatorCollapsed: localStorage.getItem('isCalculatorCollapsed') === 'true' || false,
@@ -17,6 +17,8 @@ const calculatorSlice = createSlice({
     openCalculator(state) {
       // eslint-disable-next-line no-param-reassign
       state.isCalculatorOpen = true;
+      // eslint-disable-next-line no-param-reassign
+      state.isCalculatorCollapsed = false;
       localStorage.setItem('isCalculatorOpen', 'true');
     },
     closeCalculator(state) {

@@ -10,27 +10,33 @@ import { Apps } from 'types/apps';
 const useSettings = () => {
   const apps = useSelector((state: RootState) => state.apps.apps);
   const isSettingsCollapsed = useSelector((state: RootState) => state.settings.isSettingsCollapsed);
+  const isSettingsOpen = useSelector((state: RootState) => state.settings.isSettingsOpen);
 
   const dispatch = useDispatch();
 
   const handleSettingsCollapseToggle = () => {
-    dispatch(toggleCollapseSettings());
     if (isSettingsCollapsed) {
       dispatch(setWindowActive(Apps.Settings));
     } else if (apps.indexOf(Apps.Settings) === 0) {
       dispatch(setWindowActive(apps[1]));
     }
+    dispatch(toggleCollapseSettings());
   };
 
   const handleOpenSettings = () => {
-    if (isSettingsCollapsed) {
+    if (isSettingsCollapsed && isSettingsOpen) {
       dispatch(toggleCollapseSettings());
+      dispatch(setWindowActive(Apps.Settings));
+    } else if (!isSettingsOpen) {
+      dispatch(openSettings());
+      dispatch(addWindow(Apps.Settings));
     }
-    dispatch(openSettings());
-    dispatch(addWindow(Apps.Settings));
   };
 
   const handleCloseSettings = () => {
+    if (!isSettingsOpen) {
+      return;
+    }
     dispatch(closeSettings());
     dispatch(deleteWindow(Apps.Settings));
   };

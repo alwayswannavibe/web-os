@@ -10,27 +10,33 @@ import { Apps } from 'types/apps';
 const useToDo = () => {
   const apps = useSelector((state: RootState) => state.apps.apps);
   const isToDoCollapsed = useSelector((state: RootState) => state.toDo.isToDoCollapsed);
+  const isToDoOpen = useSelector((state: RootState) => state.toDo.isToDoOpen);
 
   const dispatch = useDispatch();
 
   const handleToDoCollapseToggle = () => {
-    dispatch(toggleCollapseToDo());
     if (isToDoCollapsed) {
       dispatch(setWindowActive(Apps.ToDo));
     } else if (apps.indexOf(Apps.ToDo) === 0) {
       dispatch(setWindowActive(apps[1]));
     }
+    dispatch(toggleCollapseToDo());
   };
 
   const handleOpenToDo = () => {
-    if (isToDoCollapsed) {
+    if (isToDoCollapsed && isToDoOpen) {
       dispatch(toggleCollapseToDo());
+      dispatch(setWindowActive(Apps.ToDo));
+    } else if (!isToDoOpen) {
+      dispatch(openToDo());
+      dispatch(addWindow(Apps.ToDo));
     }
-    dispatch(openToDo());
-    dispatch(addWindow(Apps.ToDo));
   };
 
   const handleCloseToDo = () => {
+    if (!isToDoOpen) {
+      return;
+    }
     dispatch(closeToDo());
     dispatch(deleteWindow(Apps.ToDo));
   };

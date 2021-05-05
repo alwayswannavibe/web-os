@@ -14,7 +14,7 @@ type PropsType = {
 };
 
 export const TopBar: FC<PropsType> = () => (
-  <div className={styles.container}>
+  <div className={styles.container} id="top-bar">
     <TopDate />
     <FullscreenButton />
   </div>

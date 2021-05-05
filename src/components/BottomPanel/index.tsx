@@ -13,8 +13,8 @@ import { useCalculator } from 'hooks/useCalculator';
 import { Apps } from 'types/apps';
 
 // Styles
+import { useToDo } from 'hooks/useToDo';
 import styles from './style.module.css';
-import { useToDo } from '../../hooks/useToDo';
 
 type PropsType = {
   children?: never;

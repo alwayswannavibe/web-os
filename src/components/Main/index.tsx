@@ -13,15 +13,15 @@ import dynamic from 'assets/images/backgrounds/dynamic.gif';
 import dynamic2 from 'assets/images/backgrounds/dynamic2.gif';
 
 // Components
-import { Terminal } from 'components/Terminal';
-import { Settings } from 'components/Settings';
-import { Calculator } from 'components/Calculator';
+import { Terminal } from 'apps/Terminal';
+import { Settings } from 'apps/Settings';
+import { Calculator } from 'apps/Calculator';
+import { ToDoList } from 'apps/ToDoList';
 
 // Types import
 import { Themes } from 'types/themes';
 
 // Styles
-import { ToDoList } from 'components/ToDoList';
 import styles from './style.module.css';
 
 // Types
@@ -72,7 +72,7 @@ const Main: FC<PropsType> = () => {
 
   return (
     <>
-      <div style={{ backgroundImage: `url(${themeBackground})` }} className={styles.container}>
+      <div style={{ backgroundImage: `url(${themeBackground})` }} className={styles.container} id="main-container">
         <div>
           <Terminal />
           <Settings />

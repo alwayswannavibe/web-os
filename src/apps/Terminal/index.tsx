@@ -12,28 +12,23 @@ import {
   addTerminalHistory,
   changeTerminalCoord,
   changeTerminalIconCoord,
-  clearTerminalHistory,
   TerminalMessage,
 } from 'redux/slices/terminalSlice';
-import { openSettings } from 'redux/slices/settingsSlice';
-import { setLocale } from 'redux/slices/localeSlice';
-import { setTheme } from 'redux/slices/themeSlice';
-import { clearToDo, openToDo } from 'redux/slices/toDoSlice';
 
 // import Types
 import { Apps } from 'types/apps';
-import { Themes } from 'types/themes';
-import { Locales } from 'types/locales';
 
 // Hooks
 import { useTerminal } from 'hooks/useTerminal';
+
+// Logic
+import { processTerminalInput } from 'logic/terminal';
 
 // Assets
 import imgSource from 'assets/images/icons/terminal.svg';
 
 // Styles
 import styles from './style.module.css';
-import { openCalculator } from '../../redux/slices/calculatorSlice';
 
 // Types
 type PropsType = {
@@ -88,111 +83,7 @@ export const Terminal: FC<PropsType> = () => {
     if (!textToReadable) return;
     setText(textToReadable);
     dispatch(addTerminalHistory(`< ${text}`));
-    switch (text) {
-      case 'settings': {
-        dispatch(addTerminalHistory('> Settings opened'));
-        dispatch(openSettings());
-        break;
-      }
-      case 'calculator': {
-        dispatch(addTerminalHistory('> Calculator opened'));
-        dispatch(openCalculator());
-        break;
-      }
-      case 'todo': {
-        dispatch(addTerminalHistory('> ToDo opened'));
-        dispatch(openToDo());
-        break;
-      }
-      case 'clear': {
-        dispatch(clearTerminalHistory());
-        break;
-      }
-      case 'help': {
-        dispatch(addTerminalHistory('> Available commands: settings, todo, calculator, clear, change'));
-        break;
-      }
-      case 'change -l ru': {
-        dispatch(setLocale(Locales.Russian));
-        break;
-      }
-      case 'change -l br': {
-        dispatch(setLocale(Locales.Britain));
-        break;
-      }
-      case 'change -t planet': {
-        dispatch(setTheme(Themes.Planet));
-        break;
-      }
-      case 'change -t sea': {
-        dispatch(setTheme(Themes.Sea));
-        break;
-      }
-      case 'change -t car': {
-        dispatch(setTheme(Themes.Car));
-        break;
-      }
-      case 'change -t tree': {
-        dispatch(setTheme(Themes.Tree));
-        break;
-      }
-      case 'change -t road': {
-        dispatch(setTheme(Themes.Road));
-        break;
-      }
-      case 'change -t dynamic': {
-        dispatch(setTheme(Themes.Dynamic));
-        break;
-      }
-      case 'change -t dynamic2': {
-        dispatch(setTheme(Themes.Dynamic2));
-        break;
-      }
-      case 'settings --help':
-      case 'help settings':
-      case 'settings -h': {
-        dispatch(addTerminalHistory('> This command opens settings'));
-        break;
-      }
-      case 'clear --help':
-      case 'help clear':
-      case 'clear -h': {
-        dispatch(addTerminalHistory('> This command clears terminal history'));
-        break;
-      }
-      case 'calculator --help':
-      case 'help calculator':
-      case 'calculator -h': {
-        dispatch(addTerminalHistory('> This command opens calculator'));
-        break;
-      }
-      case 'todo --help':
-      case 'help todo':
-      case 'todo -h': {
-        dispatch(addTerminalHistory('> This command opens todo'));
-        dispatch(addTerminalHistory('> Available commands: clear'));
-        break;
-      }
-      case 'todo clear': {
-        dispatch(clearToDo());
-        dispatch(addTerminalHistory('> todo list cleared'));
-        break;
-      }
-      case 'change --help':
-      case 'help change':
-      case 'change -h': {
-        dispatch(addTerminalHistory('> This command change locales or themes'));
-        dispatch(addTerminalHistory('> "change -t" changes themes'));
-        dispatch(addTerminalHistory('> available options: planet, sea, car, road, tree, dynamic, dynamic2'));
-        dispatch(addTerminalHistory('> "change -l" changes locales'));
-        dispatch(addTerminalHistory('> available options: ru, br'));
-        break;
-      }
-      default: {
-        dispatch(addTerminalHistory('> Unknown command'));
-        dispatch(addTerminalHistory('> Type "help" to view commands'));
-      }
-    }
+    processTerminalInput(text);
     setText('');
   };
 

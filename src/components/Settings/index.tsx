@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeSettingsCoord, changeSettingsIconCoord } from 'redux/slices/settingsSlice';
 import { setTheme } from 'redux/slices/themeSlice';
 import { setLocale } from 'redux/slices/localeSlice';
-import { setWindowActive } from 'redux/slices/appsSlice';
 import { useSettings } from 'hooks/useSettings';
 
 // import Types
@@ -81,7 +80,7 @@ export const Settings: FC<PropsType> = () => {
           leftCoord={settingsLeftCoord}
           changeCoord={changeSettingsCoord}
           zIndexProp={100 - apps.indexOf(Apps.Settings)}
-          handleSetActive={() => dispatch(setWindowActive(Apps.Settings))}
+          appType={Apps.Settings}
         >
           <form className={styles.form}>
             <div>

@@ -1,9 +1,8 @@
 // React, Redux
 import React, { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { changeCalculatorCoord, changeCalculatorIconCoord } from 'redux/slices/calculatorSlice';
 import { RootState } from 'redux/store';
-import { setWindowActive } from 'redux/slices/appsSlice';
 
 // Components
 import { CalculatorButtons } from 'components/Calculator/components/CalculatorButtons';
@@ -38,11 +37,6 @@ const Calculator: FC<PropsType> = () => {
 
   const { handleOpenCalculator, handleCloseCalculator, handleCalculatorCollapseToggle } = useCalculator();
   const { getAppIndex } = useApps();
-  const dispatch = useDispatch();
-
-  const handleSetActive = () => {
-    dispatch(setWindowActive(Apps.Calculator));
-  };
 
   return (
     <>
@@ -66,7 +60,7 @@ const Calculator: FC<PropsType> = () => {
             leftCoord={calculatorLeftCoord}
             changeCoord={changeCalculatorCoord}
             zIndexProp={100 - getAppIndex(Apps.Calculator)}
-            handleSetActive={handleSetActive}
+            appType={Apps.Calculator}
           >
             <div className={styles.container} id="calculator-content">
               <CalculatorInput />

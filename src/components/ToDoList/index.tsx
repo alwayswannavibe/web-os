@@ -7,7 +7,6 @@ import { useToDo } from 'hooks/useToDo';
 import { changeToDoIconCoord, changeToDoCoord, addToDoItem } from 'redux/slices/toDoSlice';
 import imgSource from 'assets/images/icons/toDo.svg';
 import { Window } from 'components/Window';
-import { setWindowActive } from 'redux/slices/appsSlice';
 import { ToDoItem } from 'components/ToDoList/components/ToDoItem';
 import styles from './style.module.css';
 
@@ -56,7 +55,7 @@ const ToDoList: FC<PropsType> = () => {
       {isToDoOpen && !isToDoCollapsed && (
         <Window
           handleClose={handleCloseToDo}
-          handleSetActive={() => dispatch(setWindowActive(Apps.ToDo))}
+          appType={Apps.ToDo}
           handleCollapse={handleToDoCollapseToggle}
           changeCoord={changeToDoCoord}
           topCoord={toDoTopCoord}

@@ -18,7 +18,6 @@ import {
 import { openSettings } from 'redux/slices/settingsSlice';
 import { setLocale } from 'redux/slices/localeSlice';
 import { setTheme } from 'redux/slices/themeSlice';
-import { setWindowActive } from 'redux/slices/appsSlice';
 import { clearToDo, openToDo } from 'redux/slices/toDoSlice';
 
 // import Types
@@ -222,7 +221,7 @@ export const Terminal: FC<PropsType> = () => {
           leftCoord={terminalLeftCoord}
           changeCoord={changeTerminalCoord}
           zIndexProp={100 - apps.indexOf(Apps.Terminal)}
-          handleSetActive={() => dispatch(setWindowActive(Apps.Terminal))}
+          appType={Apps.Terminal}
         >
           <div className={styles.terminalText} id="terminalHistory">
             {terminalHistory.map((terminalMessage: TerminalMessage) => (

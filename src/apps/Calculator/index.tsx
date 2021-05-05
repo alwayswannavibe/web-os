@@ -5,10 +5,10 @@ import { changeCalculatorCoord, changeCalculatorIconCoord } from 'redux/slices/c
 import { RootState } from 'redux/store';
 
 // Components
-import { CalculatorButtons } from 'components/Calculator/components/CalculatorButtons';
-import { CalculatorInput } from 'components/Calculator/components/CalculatorInput';
 import { Window } from 'components/Window';
 import { Icon } from 'components/Icon';
+import { CalculatorButtons } from 'apps/Calculator/components/CalculatorButtons';
+import { CalculatorInput } from 'apps/Calculator/components/CalculatorInput';
 
 // Hooks
 import { useCalculator } from 'hooks/useCalculator';

@@ -7,7 +7,7 @@ import { useToDo } from 'hooks/useToDo';
 import { changeToDoIconCoord, changeToDoCoord, addToDoItem } from 'redux/slices/toDoSlice';
 import imgSource from 'assets/images/icons/toDo.svg';
 import { Window } from 'components/Window';
-import { ToDoItem } from 'components/ToDoList/components/ToDoItem';
+import { ToDoItem } from 'apps/ToDoList/components/ToDoItem';
 import styles from './style.module.css';
 
 type PropsType = {

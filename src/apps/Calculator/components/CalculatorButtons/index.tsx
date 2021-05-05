@@ -9,7 +9,7 @@ import {
 } from 'redux/slices/calculatorSlice';
 
 // Components
-import { CalculatorButton } from 'components/Calculator/components/CalculatorButton';
+import { CalculatorButton } from 'apps/Calculator/components/CalculatorButton';
 
 // Styles
 import styles from './style.module.css';

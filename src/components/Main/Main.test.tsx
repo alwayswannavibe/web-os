@@ -5,10 +5,10 @@ import configureStore from 'redux-mock-store';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { Themes } from 'types/themes';
-import * as Terminal from 'components/Terminal';
-import * as Settings from 'components/Settings';
-import * as Calculator from 'components/Calculator';
-import * as ToDoList from 'components/ToDoList';
+import * as Terminal from 'apps/Terminal';
+import * as Settings from 'apps/Settings';
+import * as Calculator from 'apps/Calculator';
+import * as ToDoList from 'apps/ToDoList';
 import { Main } from '.';
 
 describe('main component', () => {

@@ -72,7 +72,7 @@ const Main: FC<PropsType> = () => {
 
   return (
     <>
-      <div style={{ backgroundImage: `url(${themeBackground})` }} className={styles.container}>
+      <div style={{ backgroundImage: `url(${themeBackground})` }} className={styles.container} id="main-container">
         <div>
           <Terminal />
           <Settings />

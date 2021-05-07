@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 
 // Components
 import { FullscreenButton } from 'components/FullscreenButton';
+import { Username } from 'components/Username';
 import { TopDate } from 'components/TopDate';
 
 // Styles
@@ -16,6 +17,7 @@ type PropsType = {
 export const TopBar: FC<PropsType> = () => (
   <div className={styles.container} id="top-bar">
     <TopDate />
+    <Username />
     <FullscreenButton />
   </div>
 );

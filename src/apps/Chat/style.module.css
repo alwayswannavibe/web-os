@@ -1,0 +1,108 @@
+.input {
+  width: calc(100% - 2rem);
+  background: transparent;
+  outline: none;
+  border: none;
+  overflow: hidden;
+  caret-color: aliceblue;
+  color: aliceblue;
+  font-size: 1rem;
+  border: 2px solid #374160;
+  border-radius: 0.2rem;
+  margin-top: 0.2rem;
+  padding: 0.2rem;
+}
+
+.messagesList {
+  height: 23rem;
+  list-style: none;
+  overflow-y: scroll;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+}
+
+.msgContainer {
+  width: 45%;
+  background-color: #30303c;
+  border-radius: 0.6rem;
+  padding: 0.2rem;
+  margin: 0.2rem;
+  display: flex;
+}
+
+.avatar {
+  border: 1px spolid black;
+  border-radius: 0.5rem;
+  margin: 0 0.5rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.nameAndMsgContainer {
+  display: flex;
+  flex-direction: column;
+  width: 17rem;
+}
+
+.ownerAndDateContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.msgOwner {
+  color: #bbdeee;
+}
+
+.otherMsg {
+  border-radius: 0.2rem;
+  margin-top: 0.2rem;
+  width: 100%;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+}
+
+.myMsg {
+  background-color: #292d47;
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.sendBtn {
+  font-size: 1rem;
+  color: var(--font-color);
+  background-color: transparent;
+  border: none;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  transition: color 0.2s linear;
+}
+
+.sendBtn:hover {
+  color: #586366;
+}
+
+.sendBtn:active {
+  color: #373737;
+}
+
+.messagesList::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.messagesList::-webkit-scrollbar {
+  width: 12px;
+  background-color: transparent;
+}
+
+.messagesList::-webkit-scrollbar-thumb {
+  border-radius: 0.2rem;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #3b3b3b;
+}

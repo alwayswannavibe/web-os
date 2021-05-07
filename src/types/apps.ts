@@ -3,6 +3,7 @@ enum Apps {
   Settings = 'Settings',
   Calculator = 'Calculator',
   ToDo = 'ToDo',
+  Chat = 'Chat',
 }
 
 export { Apps };

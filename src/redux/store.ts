@@ -6,6 +6,8 @@ import settingsSlice from 'redux/slices/settingsSlice';
 import appsSlice from 'redux/slices/appsSlice';
 import calculatorSlice from 'redux/slices/calculatorSlice';
 import toDoSlice from './slices/toDoSlice';
+import userSlice from './slices/userSlice';
+import chatSlice from './slices/chatSlice';
 
 const store = configureStore({
   reducer: {
@@ -16,6 +18,8 @@ const store = configureStore({
     apps: appsSlice,
     calculator: calculatorSlice,
     toDo: toDoSlice,
+    user: userSlice,
+    chat: chatSlice,
   },
 });
 

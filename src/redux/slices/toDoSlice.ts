@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ToDoItem } from 'types/toDo';
 import { v4 as uuid } from 'uuid';
-import { CoordsType } from '../../types/coord';
+import { CoordsType } from 'types/coord';
 
 const toDoList: ToDoItem[] = [];
 

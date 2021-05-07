@@ -28,8 +28,8 @@ export const Icon: FC<PropsType> = ({ imgSource, handleClick, title, topCoord, l
   const { startDrag, topCoordLocal, leftCoordLocal } = useDragNDrop(changeCoord, icon, topCoord, leftCoord);
 
   return (
-    <div className={styles.container} style={{ top: topCoordLocal, left: leftCoordLocal }}>
-      <div onClick={handleClick} className={styles.imgContainer} onMouseDown={startDrag} ref={icon}>
+    <div className={styles.container} style={{ top: topCoordLocal, left: leftCoordLocal }} ref={icon}>
+      <div onDoubleClick={handleClick} className={styles.imgContainer} onMouseDown={startDrag}>
         <img src={imgSource} alt="" className={`${styles.img}`} />
       </div>
       <span className={styles.title}>{title}</span>

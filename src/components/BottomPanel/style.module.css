@@ -9,3 +9,25 @@
   display: flex;
   z-index: 1000;
 }
+
+.logBtn {
+  position: absolute;
+  right: 0px;
+  width: 4rem;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--font-color);
+  cursor: pointer;
+  transition: background-color 0.25s linear;
+  border-left: 1px solid rgba(14, 14, 14, 0.15);
+}
+
+.logBtn:hover {
+  background-color: #145967;
+}
+
+.logBtn:active {
+  background-color: #092d34;
+}

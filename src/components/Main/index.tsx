@@ -17,6 +17,7 @@ import { Terminal } from 'apps/Terminal';
 import { Settings } from 'apps/Settings';
 import { Calculator } from 'apps/Calculator';
 import { ToDoList } from 'apps/ToDoList';
+import { Chat } from 'apps/Chat';
 
 // Types import
 import { Themes } from 'types/themes';
@@ -78,6 +79,7 @@ const Main: FC<PropsType> = () => {
           <Settings />
           <Calculator />
           <ToDoList />
+          <Chat />
         </div>
       </div>
     </>

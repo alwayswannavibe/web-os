@@ -1,4 +1,4 @@
-import { addTerminalHistory } from 'redux/slices/terminalSlice';
+import { addTerminalHistory } from 'redux/slices/appsSlicesBus/terminalSlice';
 import store from 'redux/store';
 import { terminalProcessChangeLocale } from './locale';
 import { terminalProcessChangeTheme } from './theme';

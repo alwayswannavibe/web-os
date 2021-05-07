@@ -1,5 +1,5 @@
 import store from 'redux/store';
-import { addTerminalHistory } from 'redux/slices/terminalSlice';
+import { addTerminalHistory } from 'redux/slices/appsSlicesBus/terminalSlice';
 import { setTheme } from 'redux/slices/themeSlice';
 import { Themes } from 'types/themes';
 

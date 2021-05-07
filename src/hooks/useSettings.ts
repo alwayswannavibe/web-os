@@ -1,6 +1,6 @@
 // React, Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { closeSettings, openSettings, toggleCollapseSettings } from 'redux/slices/settingsSlice';
+import { closeSettings, openSettings, toggleCollapseSettings } from 'redux/slices/appsSlicesBus/settingsSlice';
 import { addWindow, deleteWindow, setWindowActive } from 'redux/slices/appsSlice';
 import { RootState } from 'redux/store';
 

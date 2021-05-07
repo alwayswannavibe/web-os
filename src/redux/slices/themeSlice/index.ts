@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 import { createSlice } from '@reduxjs/toolkit';
 import { Themes } from 'types/themes';
 
@@ -12,7 +14,6 @@ const themeSlice = createSlice({
   },
   reducers: {
     setTheme(state, { payload }: ThemeType) {
-      // eslint-disable-next-line no-param-reassign
       state.theme = payload;
       localStorage.setItem('theme', payload);
     },

@@ -1,7 +1,7 @@
 // React, Redux
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { changeCalculatorCoord, changeCalculatorIconCoord } from 'redux/slices/calculatorSlice';
+import { changeCalculatorCoord, changeCalculatorIconCoord } from 'redux/slices/appsSlicesBus/calculatorSlice';
 import { RootState } from 'redux/store';
 
 // Components

@@ -1,11 +1,11 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { setMessages } from 'redux/slices/chatSlice';
-import store from 'redux/store';
-import { Message } from 'types/message';
 import { v4 as uuid } from 'uuid';
-import { login } from '../redux/slices/userSlice';
+import { setMessages } from 'redux/slices/appsSlicesBus/chatSlice';
+import store from 'redux/store';
+import { login } from 'redux/slices/userSlice';
+import { Message } from 'types/message';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCtrDQtgNZrUiWMKYlFnmYB8TvpaKq2MWQ',

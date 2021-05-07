@@ -1,6 +1,8 @@
+/* eslint-disable no-param-reassign */
+
 import { createSlice } from '@reduxjs/toolkit';
-import { CoordsType } from 'types/coord';
 import { v4 as uuidv } from 'uuid';
+import { CoordsType } from 'types/coord';
 
 export type TerminalMessage = {
   message: string;
@@ -24,17 +26,14 @@ const terminalSlice = createSlice({
   },
   reducers: {
     openTerminal(state) {
-      // eslint-disable-next-line no-param-reassign
       state.isTerminalOpen = true;
       localStorage.setItem('isTerminalOpen', 'true');
     },
     closeTerminal(state) {
-      // eslint-disable-next-line no-param-reassign
       state.isTerminalOpen = false;
       localStorage.setItem('isTerminalOpen', 'false');
     },
     toggleCollapseTerminal(state) {
-      // eslint-disable-next-line no-param-reassign
       state.isTerminalCollapsed = !state.isTerminalCollapsed;
       localStorage.setItem('isTerminalCollapsed', state.isTerminalCollapsed.toString());
     },
@@ -53,25 +52,19 @@ const terminalSlice = createSlice({
       }
     },
     clearTerminalHistory(state) {
-      // eslint-disable-next-line no-param-reassign
       state.terminalHistory = [];
     },
     clearTerminalInputHistory(state) {
-      // eslint-disable-next-line no-param-reassign
       state.terminalInputHistory = [];
     },
     changeTerminalCoord(state, { payload }: { payload: CoordsType }) {
-      // eslint-disable-next-line no-param-reassign
       state.terminalTopCoord = payload.top;
-      // eslint-disable-next-line no-param-reassign
       state.terminalLeftCoord = payload.left;
       localStorage.setItem('terminalTopCoord', payload.top);
       localStorage.setItem('terminalLeftCoord', payload.left);
     },
     changeTerminalIconCoord(state, { payload }: { payload: CoordsType }) {
-      // eslint-disable-next-line no-param-reassign
       state.terminalIconTopCoord = payload.top;
-      // eslint-disable-next-line no-param-reassign
       state.terminalIconLeftCoord = payload.left;
       localStorage.setItem('terminalIconTopCoord', payload.top);
       localStorage.setItem('terminalIconLeftCoord', payload.left);

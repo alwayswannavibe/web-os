@@ -10,7 +10,7 @@ import {
   openCalculator,
   setCalculatorInput,
   toggleCollapseCalculator,
-} from './calculatorSlice';
+} from '.';
 
 describe('calculator slice', () => {
   it('opens then calls openCalculator', () => {

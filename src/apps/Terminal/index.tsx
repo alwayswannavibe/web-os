@@ -13,7 +13,7 @@ import {
   changeTerminalCoord,
   changeTerminalIconCoord,
   TerminalMessage,
-} from 'redux/slices/terminalSlice';
+} from 'redux/slices/appsSlicesBus/terminalSlice';
 
 // import Types
 import { Apps } from 'types/apps';

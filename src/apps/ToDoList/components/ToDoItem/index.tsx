@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCompleteToDoItem, deleteToDoItem } from 'redux/slices/toDoSlice';
+import { toggleCompleteToDoItem, deleteToDoItem } from 'redux/slices/appsSlicesBus/toDoSlice';
 import { RootState } from 'redux/store';
 import styles from './styles.module.css';
 

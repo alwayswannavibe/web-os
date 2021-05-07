@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 import { createSlice } from '@reduxjs/toolkit';
 import { CoordsType } from 'types/coord';
 import { getCalcResult } from 'logic/calculator';
@@ -15,56 +17,43 @@ const calculatorSlice = createSlice({
   },
   reducers: {
     openCalculator(state) {
-      // eslint-disable-next-line no-param-reassign
       state.isCalculatorOpen = true;
-      // eslint-disable-next-line no-param-reassign
       state.isCalculatorCollapsed = false;
       localStorage.setItem('isCalculatorOpen', 'true');
     },
     closeCalculator(state) {
-      // eslint-disable-next-line no-param-reassign
       state.isCalculatorOpen = false;
       localStorage.setItem('isCalculatorOpen', 'false');
     },
     toggleCollapseCalculator(state) {
-      // eslint-disable-next-line no-param-reassign
       state.isCalculatorCollapsed = !state.isCalculatorCollapsed;
       localStorage.setItem('isCalculatorCollapsed', state.isCalculatorCollapsed.toString());
     },
     changeCalculatorCoord(state, { payload }: { payload: CoordsType }) {
-      // eslint-disable-next-line no-param-reassign
       state.calculatorTopCoord = payload.top;
-      // eslint-disable-next-line no-param-reassign
       state.calculatorLeftCoord = payload.left;
       localStorage.setItem('terminalTopCoord', payload.top);
       localStorage.setItem('terminalLeftCoord', payload.left);
     },
     changeCalculatorIconCoord(state, { payload }: { payload: CoordsType }) {
-      // eslint-disable-next-line no-param-reassign
       state.calculatorIconTopCoord = payload.top;
-      // eslint-disable-next-line no-param-reassign
       state.calculatorIconLeftCoord = payload.left;
       localStorage.setItem('terminalIconTopCoord', payload.top);
       localStorage.setItem('terminalIconLeftCoord', payload.left);
     },
     getCalculatorResult(state) {
-      // eslint-disable-next-line no-param-reassign
       state.inputValue = getCalcResult(state.inputValue);
     },
     addToCalculatorInput(state, { payload }: { payload: string }) {
-      // eslint-disable-next-line no-param-reassign
       state.inputValue += payload;
     },
     deleteLastCalculatorInput(state) {
-      // eslint-disable-next-line no-param-reassign
       state.inputValue = state.inputValue.slice(0, state.inputValue.length - 1);
     },
     setCalculatorInput(state, { payload }: { payload: string }) {
-      // eslint-disable-next-line no-param-reassign
       state.inputValue = payload;
     },
     clearCalculatorInput(state) {
-      // eslint-disable-next-line no-param-reassign
       state.inputValue = '';
     },
   },

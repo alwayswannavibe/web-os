@@ -1,7 +1,7 @@
 import store from 'redux/store';
 import { setLocale } from 'redux/slices/localeSlice';
 import { Locales } from 'types/locales';
-import { addTerminalHistory } from 'redux/slices/terminalSlice';
+import { addTerminalHistory } from 'redux/slices/appsSlicesBus/terminalSlice';
 
 const terminalProcessChangeLocale = (input: string) => {
   const { dispatch } = store;

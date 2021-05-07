@@ -1,6 +1,11 @@
 // React, Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { clearTerminalHistory, closeTerminal, openTerminal, toggleCollapseTerminal } from 'redux/slices/terminalSlice';
+import {
+  clearTerminalHistory,
+  closeTerminal,
+  openTerminal,
+  toggleCollapseTerminal,
+} from 'redux/slices/appsSlicesBus/terminalSlice';
 import { addWindow, deleteWindow, setWindowActive } from 'redux/slices/appsSlice';
 import { RootState } from 'redux/store';
 

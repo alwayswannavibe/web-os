@@ -1,6 +1,6 @@
 import store from 'redux/store';
 import { Locales } from 'types/locales';
-import { setLocale } from './localeSlice';
+import { setLocale } from '.';
 
 describe('locale slice', () => {
   it('sets correctly locale then calls setLocale', () => {

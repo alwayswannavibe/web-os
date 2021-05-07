@@ -1,7 +1,7 @@
-import { addTerminalHistory } from 'redux/slices/terminalSlice';
-import { openSettings } from 'redux/slices/settingsSlice';
-import { openCalculator } from 'redux/slices/calculatorSlice';
-import { openToDo } from 'redux/slices/toDoSlice';
+import { addTerminalHistory } from 'redux/slices/appsSlicesBus/terminalSlice';
+import { openSettings } from 'redux/slices/appsSlicesBus/settingsSlice';
+import { openCalculator } from 'redux/slices/appsSlicesBus/calculatorSlice';
+import { openToDo } from 'redux/slices/appsSlicesBus/toDoSlice';
 import store from 'redux/store';
 
 const terminalProcessOpenCommand = (input: string) => {

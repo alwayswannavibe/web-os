@@ -1,6 +1,6 @@
 // React, Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { openToDo, closeToDo, toggleCollapseToDo } from 'redux/slices/toDoSlice';
+import { openToDo, closeToDo, toggleCollapseToDo } from 'redux/slices/appsSlicesBus/toDoSlice';
 import { addWindow, deleteWindow, setWindowActive } from 'redux/slices/appsSlice';
 import { RootState } from 'redux/store';
 

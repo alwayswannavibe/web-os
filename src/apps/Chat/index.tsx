@@ -8,7 +8,7 @@ import { Icon } from 'components/Icon';
 // Redux
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
-import { changeChatCoord, changeChatIconCoord } from 'redux/slices/chatSlice';
+import { changeChatCoord, changeChatIconCoord } from 'redux/slices/appsSlicesBus/chatSlice';
 
 // import Types
 import { Apps } from 'types/apps';

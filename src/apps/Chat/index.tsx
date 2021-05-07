@@ -47,7 +47,6 @@ export const Chat: FC<PropsType> = () => {
   const username = useSelector((state: RootState) => state.user.username);
   const inputEl = useRef<HTMLInputElement>(null);
   const photoURL = useSelector((state: RootState) => state.user.photo);
-  const locale = useSelector((state: RootState) => state.locale.locale);
 
   // Handlers
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -114,14 +113,7 @@ export const Chat: FC<PropsType> = () => {
                 <div className={styles.nameAndMsgContainer}>
                   <div className={styles.ownerAndDateContainer}>
                     <p className={styles.msgOwner}>{message.username || 'anonymous'}</p>
-                    <p className={styles.msgDate}>
-                      {message.date?.toLocaleDateString(locale, {
-                        month: 'long',
-                        day: 'numeric',
-                        hour: 'numeric',
-                        minute: 'numeric',
-                      }) || ''}
-                    </p>
+                    <p className={styles.msgDate}>{message.date || ''}</p>
                   </div>
                   <p className={styles.otherMsg}>{message.text}</p>
                 </div>

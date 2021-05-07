@@ -3,7 +3,7 @@ type Message = {
   text: string;
   photo: string;
   id: string;
-  date: Date;
+  date: string;
 };
 
 export type { Message };

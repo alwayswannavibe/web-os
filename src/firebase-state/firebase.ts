@@ -4,6 +4,7 @@ import 'firebase/firestore';
 import { setMessages } from 'redux/slices/chatSlice';
 import store from 'redux/store';
 import { Message } from 'types/message';
+import { v4 as uuid } from 'uuid';
 import { login } from '../redux/slices/userSlice';
 
 const firebaseConfig = {
@@ -20,7 +21,9 @@ const auth = firebase.auth();
 const firestore = firebase.firestore();
 
 firebase.auth().onAuthStateChanged(() => {
-  const username = auth.currentUser?.email?.split('@')[0] || '';
+  const username =
+    auth.currentUser?.email?.split('@')[0] || localStorage.getItem('username') || `User-${uuid().slice(0, 8)}`;
+  localStorage.setItem('username', username);
   const name = auth.currentUser?.displayName || '';
   const photo = auth.currentUser?.photoURL || '';
   store.dispatch(
@@ -46,7 +49,12 @@ firestore.collection('chat').onSnapshot(async () => {
           text: doc.data().text,
           photo: doc.data().photoURL,
           id: doc.id,
-          date: doc.data().date?.toDate() || new Date(),
+          date: (doc.data().date?.toDate() || new Date()).toLocaleDateString(store.getState().locale.locale, {
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+          }),
         });
       });
     });

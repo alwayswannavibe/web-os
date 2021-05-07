@@ -11,7 +11,7 @@ const chatSlice = createSlice({
     isChatOpen: localStorage.getItem('isChatOpen') === 'true' || false,
     isChatCollapsed: localStorage.getItem('isChatCollapsed') === 'true' || false,
     chatIconTopCoord: localStorage.getItem('chatIconTopCoord') || '23rem',
-    chatIconLeftCoord: localStorage.getItem('chatIconLeftCoord') || '3rem',
+    chatIconLeftCoord: localStorage.getItem('chatIconLeftCoord') || '1rem',
     chatTopCoord: localStorage.getItem('chatTopCoord') || '7rem',
     chatLeftCoord: localStorage.getItem('chatLeftCoord') || '20rem',
   },

@@ -7,7 +7,7 @@ const settingsSlice = createSlice({
     isSettingsOpen: localStorage.getItem('isSettingsOpen') === 'true' || false,
     isSettingsCollapsed: localStorage.getItem('isSettingsCollapsed') === 'true' || false,
     settingsIconTopCoord: localStorage.getItem('settingsIconTopCoord') || '8rem',
-    settingsIconLeftCoord: localStorage.getItem('settingsIconLeftCoord') || '2rem',
+    settingsIconLeftCoord: localStorage.getItem('settingsIconLeftCoord') || '1rem',
     settingsTopCoord: localStorage.getItem('settingsTopCoord') || '7rem',
     settingsLeftCoord: localStorage.getItem('settingsLeftCoord') || '20rem',
   },

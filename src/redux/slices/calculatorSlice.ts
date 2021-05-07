@@ -8,7 +8,7 @@ const calculatorSlice = createSlice({
     isCalculatorOpen: localStorage.getItem('isCalculatorOpen') === 'true' || false,
     isCalculatorCollapsed: localStorage.getItem('isCalculatorCollapsed') === 'true' || false,
     calculatorIconTopCoord: localStorage.getItem('calculatorIconTopCoord') || '13rem',
-    calculatorIconLeftCoord: localStorage.getItem('calculatorIconLeftCoord') || '1.5rem',
+    calculatorIconLeftCoord: localStorage.getItem('calculatorIconLeftCoord') || '1rem',
     calculatorTopCoord: localStorage.getItem('calculatorTopCoord') || '15rem',
     calculatorLeftCoord: localStorage.getItem('calculatorLeftCoord') || '8rem',
     inputValue: '',

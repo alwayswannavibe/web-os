@@ -11,7 +11,7 @@ const toDoSlice = createSlice({
     isToDoOpen: localStorage.getItem('isToDoOpen') === 'true' || false,
     isToDoCollapsed: localStorage.getItem('isToDoCollapsed') === 'true' || false,
     toDoIconTopCoord: localStorage.getItem('toDoIconTopCoord') || '18rem',
-    toDoIconLeftCoord: localStorage.getItem('toDoIconLeftCoord') || '3rem',
+    toDoIconLeftCoord: localStorage.getItem('toDoIconLeftCoord') || '1rem',
     toDoTopCoord: localStorage.getItem('toDoTopCoord') || '10rem',
     toDoLeftCoord: localStorage.getItem('toDoLeftCoord') || '35rem',
     toDoList,

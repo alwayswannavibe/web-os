@@ -1,6 +1,6 @@
 import store from 'redux/store';
 import { Themes } from 'types/themes';
-import { setTheme } from './themeSlice';
+import { setTheme } from '.';
 
 describe('theme slice', () => {
   it('sets correctly theme then calls setTheme', () => {

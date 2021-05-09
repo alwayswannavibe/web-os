@@ -1,11 +1,5 @@
 import store from 'redux/store';
-import {
-  changeSettingsCoord,
-  changeSettingsIconCoord,
-  closeSettings,
-  openSettings,
-  toggleCollapseSettings,
-} from './settingsSlice';
+import { changeSettingsCoord, changeSettingsIconCoord, closeSettings, openSettings, toggleCollapseSettings } from '.';
 
 describe('settings slice', () => {
   it('opens then calls openSettings', () => {

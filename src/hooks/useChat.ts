@@ -1,6 +1,6 @@
 // React, Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { closeChat, openChat, toggleCollapseChat } from 'redux/slices/chatSlice';
+import { closeChat, openChat, toggleCollapseChat } from 'redux/slices/appsSlicesBus/chatSlice';
 import { addWindow, deleteWindow, setWindowActive } from 'redux/slices/appsSlice';
 import { RootState } from 'redux/store';
 

@@ -9,7 +9,7 @@ import {
   openToDo,
   toggleCollapseToDo,
   toggleCompleteToDoItem,
-} from './toDoSlice';
+} from '.';
 
 describe('to do slice', () => {
   it('opens then calls openToDo', () => {

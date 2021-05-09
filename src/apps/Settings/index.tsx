@@ -8,7 +8,7 @@ import { Icon } from 'components/Icon';
 // Redux
 import { RootState } from 'redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeSettingsCoord, changeSettingsIconCoord } from 'redux/slices/settingsSlice';
+import { changeSettingsCoord, changeSettingsIconCoord } from 'redux/slices/appsSlicesBus/settingsSlice';
 import { setTheme } from 'redux/slices/themeSlice';
 import { setLocale } from 'redux/slices/localeSlice';
 import { useSettings } from 'hooks/useSettings';

@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import themeSlice from 'redux/slices/themeSlice';
 import localeSlice from 'redux/slices/localeSlice';
-import terminalSlice from 'redux/slices/terminalSlice';
-import settingsSlice from 'redux/slices/settingsSlice';
 import appsSlice from 'redux/slices/appsSlice';
-import calculatorSlice from 'redux/slices/calculatorSlice';
-import toDoSlice from './slices/toDoSlice';
-import userSlice from './slices/userSlice';
-import chatSlice from './slices/chatSlice';
+import userSlice from 'redux/slices/userSlice';
+
+// Apps
+import terminalSlice from 'redux/slices/appsSlicesBus/terminalSlice';
+import settingsSlice from 'redux/slices/appsSlicesBus/settingsSlice';
+import calculatorSlice from 'redux/slices/appsSlicesBus/calculatorSlice';
+import toDoSlice from 'redux/slices/appsSlicesBus/toDoSlice';
+import chatSlice from 'redux/slices/appsSlicesBus/chatSlice';
 
 const store = configureStore({
   reducer: {

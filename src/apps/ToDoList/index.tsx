@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import { Icon } from 'components/Icon';
 import { useToDo } from 'hooks/useToDo';
-import { changeToDoIconCoord, changeToDoCoord, addToDoItem } from 'redux/slices/toDoSlice';
+import { changeToDoIconCoord, changeToDoCoord, addToDoItem } from 'redux/slices/appsSlicesBus/toDoSlice';
 import imgSource from 'assets/images/icons/toDo.svg';
 import { Window } from 'components/Window';
 import { ToDoItem } from 'apps/ToDoList/components/ToDoItem';

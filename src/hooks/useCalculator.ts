@@ -1,6 +1,6 @@
 // React, Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { openCalculator, closeCalculator, toggleCollapseCalculator } from 'redux/slices/calculatorSlice';
+import { openCalculator, closeCalculator, toggleCollapseCalculator } from 'redux/slices/appsSlicesBus/calculatorSlice';
 import { addWindow, deleteWindow, setWindowActive } from 'redux/slices/appsSlice';
 import { RootState } from 'redux/store';
 

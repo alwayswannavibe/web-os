@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 import { createSlice } from '@reduxjs/toolkit';
 import { Apps } from 'types/apps';
 
@@ -22,7 +24,6 @@ const appsSlice = createSlice({
       const index = state.apps.indexOf(payload);
       const firstPart: Apps[] = state.apps.slice(0, index);
       const secondPart: Apps[] = state.apps.slice(index + 1);
-      // eslint-disable-next-line no-param-reassign
       state.apps = [payload, ...firstPart, ...secondPart];
     },
     addWindow(state, { payload }: { payload: Apps }) {

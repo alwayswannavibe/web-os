@@ -6,7 +6,7 @@ import {
   clearCalculatorInput,
   deleteLastCalculatorInput,
   getCalculatorResult,
-} from 'redux/slices/calculatorSlice';
+} from 'redux/slices/appsSlicesBus/calculatorSlice';
 
 // Components
 import { CalculatorButton } from 'apps/Calculator/components/CalculatorButton';

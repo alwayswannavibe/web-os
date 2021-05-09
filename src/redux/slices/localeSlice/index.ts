@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 import { createSlice } from '@reduxjs/toolkit';
 import { Locales } from 'types/locales';
 
@@ -12,7 +14,6 @@ const localeSlice = createSlice({
   },
   reducers: {
     setLocale(state, { payload }: LocaleType) {
-      // eslint-disable-next-line no-param-reassign
       state.locale = payload;
       localStorage.setItem('selectedLocale', payload);
     },

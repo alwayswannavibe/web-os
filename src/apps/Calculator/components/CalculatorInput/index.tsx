@@ -2,7 +2,7 @@
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
-import { getCalculatorResult, setCalculatorInput } from 'redux/slices/calculatorSlice';
+import { getCalculatorResult, setCalculatorInput } from 'redux/slices/appsSlicesBus/calculatorSlice';
 
 // Styles
 import styles from './style.module.css';

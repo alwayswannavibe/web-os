@@ -1,5 +1,5 @@
 .img {
-  border: 0.1vh solid #fff;
+  padding: 0.1rem;
   background: #fff;
   position: relative;
   width: 2rem;
@@ -19,11 +19,12 @@
   font-size: 14px;
   user-select: none;
   position: absolute;
+  width: 4rem;
 }
 
 .title {
   position: relative;
-  font-size: 1rem;
+  font-size: 0.75rem;
 }
 
 .imgContainer {

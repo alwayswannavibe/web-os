@@ -8,7 +8,7 @@ import {
   closeTerminal,
   openTerminal,
   toggleCollapseTerminal,
-} from './terminalSlice';
+} from '.';
 
 describe('terminal slice', () => {
   it('opens then calls openTerminal', () => {

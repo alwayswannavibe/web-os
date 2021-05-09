@@ -1,5 +1,8 @@
 // React, Redux
 import React, { FC } from 'react';
+import { RootState } from 'redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from 'redux/slices/userSlice';
 
 // Components
 import { BottomTab } from 'components/BottomTab';
@@ -8,20 +11,19 @@ import { BottomTab } from 'components/BottomTab';
 import { useTerminal } from 'hooks/useTerminal';
 import { useSettings } from 'hooks/useSettings';
 import { useCalculator } from 'hooks/useCalculator';
+import { useChat } from 'hooks/useChat';
+import { useToDo } from 'hooks/useToDo';
 
 // Types
 import { Apps } from 'types/apps';
 
-// Styles
-import { useToDo } from 'hooks/useToDo';
+// Other
 import firebase from 'firebase';
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from 'redux/slices/userSlice';
 // eslint-disable-next-line import/no-cycle
 import { auth } from 'firebase-state/firebase';
-import { RootState } from 'redux/store';
+
+// Styles
 import styles from './style.module.css';
-import { useChat } from '../../hooks/useChat';
 
 type PropsType = {
   children?: never;

@@ -1,6 +1,9 @@
+// React and Redux
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
+
+// Styles
 import styles from './style.module.css';
 
 type PropsType = {

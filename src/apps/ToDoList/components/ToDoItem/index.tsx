@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleCompleteToDoItem, deleteToDoItem } from 'redux/slices/appsSlicesBus/toDoSlice';
 import { RootState } from 'redux/store';
+import { motion } from 'framer-motion';
 import styles from './styles.module.css';
 
 type PropsType = {
@@ -18,7 +19,13 @@ const ToDoItem: FC<PropsType> = ({ text, id }: PropsType) => {
 
   return (
     <div className={styles.toDoItem}>
-      <p className={`${styles.text} ${completed ? styles.completed : ''}`}>{text}</p>
+      <motion.p
+        className={`${styles.text} ${completed ? styles.completed : ''}`}
+        initial={{ y: 50, opacity: 0.2 }}
+        animate={{ y: 0, opacity: 1 }}
+      >
+        {text}
+      </motion.p>
       <div className={`${styles.button} ${styles.checkButton}`}>
         <i className="fas fa-check" onClick={() => dispatch(toggleCompleteToDoItem(id))} />
       </div>

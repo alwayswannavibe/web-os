@@ -103,39 +103,38 @@ export const Terminal: FC<PropsType> = () => {
         imgSource={imgSource}
         changeCoord={changeTerminalIconCoord}
       />
-      {isTerminalOpen && !isTerminalCollapsed && (
-        <Window
-          handleClose={handleCloseTerminal}
-          handleCollapse={handleTerminalCollapseToggle}
-          title={Apps.Terminal}
-          topCoord={terminalTopCoord}
-          leftCoord={terminalLeftCoord}
-          changeCoord={changeTerminalCoord}
-          zIndexProp={100 - apps.indexOf(Apps.Terminal)}
-          appType={Apps.Terminal}
-        >
-          <div className={styles.terminalText} id="terminalHistory">
-            {terminalHistory.map((terminalMessage: TerminalMessage) => (
-              <p key={terminalMessage.id} className="historyItem">
-                {terminalMessage.message}
-              </p>
-            ))}
-          </div>
-          <pre className={styles.pre}>
-            {'root < '}
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                ref={inputEl}
-                className={styles.input}
-                onChange={handleChange}
-                value={text}
-                onKeyDown={handleKeyDown}
-              />
-            </form>
-          </pre>
-        </Window>
-      )}
+      <Window
+        handleClose={handleCloseTerminal}
+        handleCollapse={handleTerminalCollapseToggle}
+        title={Apps.Terminal}
+        topCoord={terminalTopCoord}
+        leftCoord={terminalLeftCoord}
+        changeCoord={changeTerminalCoord}
+        zIndexProp={100 - apps.indexOf(Apps.Terminal)}
+        appType={Apps.Terminal}
+        isOpen={isTerminalOpen && !isTerminalCollapsed}
+      >
+        <div className={styles.terminalText} id="terminalHistory">
+          {terminalHistory.map((terminalMessage: TerminalMessage) => (
+            <p key={terminalMessage.id} className="historyItem">
+              {terminalMessage.message}
+            </p>
+          ))}
+        </div>
+        <pre className={styles.pre}>
+          {'root < '}
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              ref={inputEl}
+              className={styles.input}
+              onChange={handleChange}
+              value={text}
+              onKeyDown={handleKeyDown}
+            />
+          </form>
+        </pre>
+      </Window>
     </>
   );
 };

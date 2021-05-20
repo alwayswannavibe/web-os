@@ -4,11 +4,14 @@ import { useDispatch } from 'react-redux';
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { setWindowActive } from 'redux/slices/appsSlice';
 
-// types import
+// Types import
 import { CoordsType } from 'types/coord';
 
 // Hooks
 import { useDragNDrop } from 'hooks/useDragNDrop';
+
+// Other
+import { AnimatePresence, motion } from 'framer-motion';
 
 // Types
 import { Apps } from 'types/apps';
@@ -24,6 +27,7 @@ type PropsType = {
   topCoord: string;
   leftCoord: string;
   zIndexProp: number;
+  isOpen: boolean;
   changeCoord: ActionCreatorWithPayload<CoordsType, string>;
   children?: ReactNode;
 };
@@ -38,6 +42,7 @@ export const Window: FC<PropsType> = ({
   changeCoord,
   zIndexProp,
   appType,
+  isOpen,
 }: PropsType) => {
   const windowTop = useRef<HTMLDivElement>(null);
 
@@ -50,29 +55,41 @@ export const Window: FC<PropsType> = ({
   };
 
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-    <div className={styles.window} style={{ top: topCoordLocal, left: leftCoordLocal, zIndex: zIndexProp }}>
-      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */}
-      <div className={styles.windowTop} onMouseDown={startDrag} ref={windowTop}>
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-        <div onClick={handleSetActive} className={styles.title}>
-          {title}
-        </div>
-        <div className={styles.buttonsContainer}>
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-          <div className={`${styles.collapseBtn} ${styles.btn}`} onClick={handleCollapse}>
-            <i className="fas fa-window-minimize" />
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          className={styles.window}
+          style={{ top: topCoordLocal, left: leftCoordLocal, zIndex: zIndexProp }}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          exit={{ scale: 0 }}
+          transition={{
+            duration: 0.3,
+          }}
+        >
+          {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */}
+          <div className={styles.windowTop} onMouseDown={startDrag} ref={windowTop}>
+            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+            <div onClick={handleSetActive} className={styles.title}>
+              {title}
+            </div>
+            <div className={styles.buttonsContainer}>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+              <div className={`${styles.collapseBtn} ${styles.btn}`} onClick={handleCollapse}>
+                <i className="fas fa-window-minimize" />
+              </div>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+              <div className={`${styles.closeBtn} ${styles.btn}`} onClick={handleClose}>
+                <i className="fas fa-times" />
+              </div>
+            </div>
           </div>
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-          <div className={`${styles.closeBtn} ${styles.btn}`} onClick={handleClose}>
-            <i className="fas fa-times" />
+          <div className={styles.windowBody} onClick={handleSetActive}>
+            {children}
           </div>
-        </div>
-      </div>
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-      <div className={styles.windowBody} onClick={handleSetActive}>
-        {children}
-      </div>
-    </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };

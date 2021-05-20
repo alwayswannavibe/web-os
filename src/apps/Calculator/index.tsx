@@ -50,25 +50,24 @@ const Calculator: FC<PropsType> = () => {
           changeCoord={changeCalculatorIconCoord}
         />
       </div>
-      {isCalculatorOpen && !isCalculatorCollapsed && (
-        <div id="calculator-window">
-          <Window
-            handleClose={handleCloseCalculator}
-            handleCollapse={handleCalculatorCollapseToggle}
-            title={Apps.Calculator}
-            topCoord={calculatorTopCoord}
-            leftCoord={calculatorLeftCoord}
-            changeCoord={changeCalculatorCoord}
-            zIndexProp={100 - getAppIndex(Apps.Calculator)}
-            appType={Apps.Calculator}
-          >
-            <div className={styles.container} id="calculator-content">
-              <CalculatorInput />
-              <CalculatorButtons />
-            </div>
-          </Window>
-        </div>
-      )}
+      <div id="calculator-window">
+        <Window
+          handleClose={handleCloseCalculator}
+          handleCollapse={handleCalculatorCollapseToggle}
+          title={Apps.Calculator}
+          topCoord={calculatorTopCoord}
+          leftCoord={calculatorLeftCoord}
+          changeCoord={changeCalculatorCoord}
+          zIndexProp={100 - getAppIndex(Apps.Calculator)}
+          appType={Apps.Calculator}
+          isOpen={isCalculatorOpen && !isCalculatorCollapsed}
+        >
+          <div className={styles.container} id="calculator-content">
+            <CalculatorInput />
+            <CalculatorButtons />
+          </div>
+        </Window>
+      </div>
     </>
   );
 };

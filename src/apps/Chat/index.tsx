@@ -16,6 +16,9 @@ import { Apps } from 'types/apps';
 // Hooks
 import { useChat } from 'hooks/useChat';
 
+// Other
+import { motion } from 'framer-motion';
+
 // Assets
 import imgSource from 'assets/images/icons/chat.svg';
 
@@ -83,51 +86,52 @@ export const Chat: FC<PropsType> = () => {
         imgSource={imgSource}
         changeCoord={changeChatIconCoord}
       />
-      {isChatOpen && !isChatCollapsed && (
-        <Window
-          handleClose={handleCloseChat}
-          handleCollapse={handleChatCollapseToggle}
-          title={Apps.Chat}
-          topCoord={chatTopCoord}
-          leftCoord={chatLeftCoord}
-          changeCoord={changeChatCoord}
-          zIndexProp={100 - apps.indexOf(Apps.Chat)}
-          appType={Apps.Chat}
-        >
-          <ul className={styles.messagesList}>
-            {messages.map((message: Message) => (
-              <li
-                className={`${styles.msgContainer} ${username === message.username ? styles.myMsg : ''}`}
-                key={message.id}
-              >
-                <img
-                  src={
-                    message.photo ||
-                    'https://d11a6trkgmumsb.cloudfront.net/original/3X/d/8/d8b5d0a738295345ebd8934b859fa1fca1c8c6ad.jpeg'
-                  }
-                  alt="avatar"
-                  width="60px"
-                  height="60px"
-                  className={styles.avatar}
-                />
-                <div className={styles.nameAndMsgContainer}>
-                  <div className={styles.ownerAndDateContainer}>
-                    <p className={styles.msgOwner}>{message.username || 'anonymous'}</p>
-                    <p className={styles.msgDate}>{message.date || ''}</p>
-                  </div>
-                  <p className={styles.otherMsg}>{message.text}</p>
+      <Window
+        handleClose={handleCloseChat}
+        handleCollapse={handleChatCollapseToggle}
+        title={Apps.Chat}
+        topCoord={chatTopCoord}
+        leftCoord={chatLeftCoord}
+        changeCoord={changeChatCoord}
+        zIndexProp={100 - apps.indexOf(Apps.Chat)}
+        appType={Apps.Chat}
+        isOpen={isChatOpen && !isChatCollapsed}
+      >
+        <ul className={styles.messagesList}>
+          {messages.map((message: Message) => (
+            <motion.li
+              className={`${styles.msgContainer} ${username === message.username ? styles.myMsg : ''}`}
+              key={message.id}
+              initial={{ y: 50, opacity: 0.5 }}
+              animate={{ y: 0, opacity: 1 }}
+            >
+              <img
+                src={
+                  message.photo ||
+                  'https://d11a6trkgmumsb.cloudfront.net/original/3X/d/8/d8b5d0a738295345ebd8934b859fa1fca1c8c6ad.jpeg'
+                }
+                alt="avatar"
+                width="60px"
+                height="60px"
+                className={styles.avatar}
+              />
+              <div className={styles.nameAndMsgContainer}>
+                <div className={styles.ownerAndDateContainer}>
+                  <p className={styles.msgOwner}>{message.username || 'anonymous'}</p>
+                  <p className={styles.msgDate}>{message.date || ''}</p>
                 </div>
-              </li>
-            ))}
-          </ul>
-          <form onSubmit={handleSubmit} className={styles.form}>
-            <input type="text" ref={inputEl} className={styles.input} onChange={handleChange} value={text} />
-            <button className={styles.sendBtn} type="submit">
-              <i className="fas fa-paper-plane" />
-            </button>
-          </form>
-        </Window>
-      )}
+                <p className={styles.otherMsg}>{message.text}</p>
+              </div>
+            </motion.li>
+          ))}
+        </ul>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <input type="text" ref={inputEl} className={styles.input} onChange={handleChange} value={text} />
+          <button className={styles.sendBtn} type="submit">
+            <i className="fas fa-paper-plane" />
+          </button>
+        </form>
+      </Window>
     </>
   );
 };

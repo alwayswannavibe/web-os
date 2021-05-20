@@ -52,34 +52,33 @@ const ToDoList: FC<PropsType> = () => {
         changeCoord={changeToDoIconCoord}
         imgSource={imgSource}
       />
-      {isToDoOpen && !isToDoCollapsed && (
-        <Window
-          handleClose={handleCloseToDo}
-          appType={Apps.ToDo}
-          handleCollapse={handleToDoCollapseToggle}
-          changeCoord={changeToDoCoord}
-          topCoord={toDoTopCoord}
-          leftCoord={toDoLeftCoord}
-          title={Apps.ToDo}
-          zIndexProp={100 - apps.indexOf(Apps.ToDo)}
-        >
-          <div className={styles.container}>
-            <div className={styles.toDoItemsContainer}>
-              {toDoList.map((toDoItem) => (
-                <ToDoItem key={toDoItem.id} text={toDoItem.text} id={toDoItem.id} />
-              ))}
-            </div>
-            <div className={styles.addContainer}>
-              <form onSubmit={handleSubmit}>
-                <input type="text" className={styles.input} ref={input} />
-              </form>
-              <div className={styles.addItemButton}>
-                <i className="fas fa-plus" onClick={handleClick} />
-              </div>
+      <Window
+        handleClose={handleCloseToDo}
+        appType={Apps.ToDo}
+        handleCollapse={handleToDoCollapseToggle}
+        changeCoord={changeToDoCoord}
+        topCoord={toDoTopCoord}
+        leftCoord={toDoLeftCoord}
+        title={Apps.ToDo}
+        zIndexProp={100 - apps.indexOf(Apps.ToDo)}
+        isOpen={isToDoOpen && !isToDoCollapsed}
+      >
+        <div className={styles.container}>
+          <div className={styles.toDoItemsContainer}>
+            {toDoList.map((toDoItem) => (
+              <ToDoItem key={toDoItem.id} text={toDoItem.text} id={toDoItem.id} />
+            ))}
+          </div>
+          <div className={styles.addContainer}>
+            <form onSubmit={handleSubmit}>
+              <input type="text" className={styles.input} ref={input} />
+            </form>
+            <div className={styles.addItemButton}>
+              <i className="fas fa-plus" onClick={handleClick} />
             </div>
           </div>
-        </Window>
-      )}
+        </div>
+      </Window>
     </>
   );
 };

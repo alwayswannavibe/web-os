@@ -13,7 +13,7 @@ const userSlice = createSlice({
   },
   reducers: {
     logout(state) {
-      state.username = localStorage.getItem('username') || `User-${uuidv4().slice(0, 8)}`;
+      state.username = `User-${uuidv4().slice(0, 8)}`;
       state.photo = '';
       state.name = '';
       localStorage.setItem('username', state.username);

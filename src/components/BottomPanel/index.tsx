@@ -84,7 +84,7 @@ const BottomPanel: FC<PropsType> = () => {
         iconName="comment-dots"
       />
       {!loading &&
-        (username ? (
+        (!/^User-[\w]{8}$/.test(username) ? (
           <button onClick={() => handleLogout()} type="button" className={styles.logBtn}>
             <i className="fa fa-sign-out" />
           </button>

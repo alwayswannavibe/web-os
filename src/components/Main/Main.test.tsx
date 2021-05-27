@@ -9,6 +9,7 @@ import * as Terminal from 'apps/Terminal';
 import * as Settings from 'apps/Settings';
 import * as Calculator from 'apps/Calculator';
 import * as ToDoList from 'apps/ToDoList';
+import * as Chat from 'apps/Chat';
 import { Main } from '.';
 
 describe('main component', () => {
@@ -22,6 +23,7 @@ describe('main component', () => {
     jest.spyOn(Settings, 'Settings').mockImplementation(() => null);
     jest.spyOn(Calculator, 'Calculator').mockImplementation(() => null);
     jest.spyOn(ToDoList, 'ToDoList').mockImplementation(() => null);
+    jest.spyOn(Chat, 'Chat').mockImplementation(() => null);
   });
 
   afterAll(() => {

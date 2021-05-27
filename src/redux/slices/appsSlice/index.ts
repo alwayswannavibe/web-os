@@ -4,6 +4,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Apps } from 'types/apps';
 
 const apps: Apps[] = [];
+
+// Initialize apps
 if (localStorage.getItem('isTerminalOpen') === 'true') {
   apps.push(Apps.Terminal);
 }
@@ -12,6 +14,12 @@ if (localStorage.getItem('isSettingsOpen') === 'true') {
 }
 if (localStorage.getItem('isCalculatorOpen') === 'true') {
   apps.push(Apps.Calculator);
+}
+if (localStorage.getItem('isChatOpen') === 'true') {
+  apps.push(Apps.Chat);
+}
+if (localStorage.getItem('isToDoOpen') === 'true') {
+  apps.push(Apps.ToDo);
 }
 
 const appsSlice = createSlice({

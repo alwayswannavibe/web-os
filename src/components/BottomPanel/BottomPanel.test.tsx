@@ -28,6 +28,13 @@ describe('bottom panel component', () => {
       isToDoOpen: false,
       isToDoCollapsed: false,
     },
+    chat: {
+      isChatOpen: false,
+      isChatCollapsed: false,
+    },
+    user: {
+      username: 'User-asd13da3',
+    },
   };
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
   const mockStore = configureStore(middlewares);
@@ -40,7 +47,7 @@ describe('bottom panel component', () => {
 
   it('correct render icons', () => {
     const icons = document.getElementsByClassName(styles.container)[0].children;
-    expect(icons).toHaveLength(4);
+    expect(icons).toHaveLength(6);
   });
 });
 

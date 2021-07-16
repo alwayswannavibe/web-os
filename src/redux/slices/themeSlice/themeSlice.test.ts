@@ -1,5 +1,5 @@
-import store from 'redux/store';
-import { Themes } from 'types/themes';
+import store from 'src/redux/store';
+import { Themes } from 'src/types/themes';
 import { setTheme } from '.';
 
 describe('theme slice', () => {

@@ -1,11 +1,11 @@
-// React, Redux
+// React, redux
 import { useDispatch, useSelector } from 'react-redux';
-import { openToDo, closeToDo, toggleCollapseToDo } from 'redux/slices/appsSlicesBus/toDoSlice';
-import { addWindow, deleteWindow, setWindowActive } from 'redux/slices/appsSlice';
-import { RootState } from 'redux/store';
+import { openToDo, closeToDo, toggleCollapseToDo } from 'src/redux/slices/appsSlicesBus/toDoSlice';
+import { addWindow, deleteWindow, setWindowActive } from 'src/redux/slices/appsSlice';
+import { RootState } from 'src/redux/store';
 
 // Types
-import { Apps } from 'types/apps';
+import { Apps } from 'src/types/apps';
 
 const useToDo = () => {
   const apps = useSelector((state: RootState) => state.apps.apps);

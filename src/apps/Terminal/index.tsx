@@ -1,36 +1,29 @@
-// React
+// React, redux
 import React, { FC, useEffect, useRef, useState } from 'react';
-
-// Components
-import { Window } from 'components/Window';
-import { Icon } from 'components/Icon';
-
-// Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'redux/store';
+import { RootState } from 'src/redux/store';
 import {
   addTerminalHistory,
   changeTerminalCoord,
   changeTerminalIconCoord,
   TerminalMessage,
-} from 'redux/slices/appsSlicesBus/terminalSlice';
-
-// import Types
-import { Apps } from 'types/apps';
-
-// Hooks
-import { useTerminal } from 'hooks/useTerminal';
-
-// Logic
-import { processTerminalInput } from 'logic/terminal';
+} from 'src/redux/slices/appsSlicesBus/terminalSlice';
+import { Apps } from 'src/types/apps';
+import { processTerminalInput } from 'src/logic/terminal';
 
 // Assets
-import imgSource from 'assets/images/icons/terminal.svg';
+import imgSource from 'src/assets/images/icons/terminal.svg';
+
+// Hooks
+import { useTerminal } from 'src/hooks/useTerminal';
+
+// Components
+import { Window } from 'src/components/Window';
+import { Icon } from 'src/components/Icon';
 
 // Styles
-import styles from './style.module.css';
+import styles from './terminal.module.css';
 
-// Types
 type PropsType = {
   children?: never;
 };

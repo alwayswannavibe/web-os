@@ -1,9 +1,11 @@
-import React from 'react';
+// React, redux
 import { Provider } from 'react-redux';
-import store from 'redux/store';
-import { TopBar } from './components/TopBar';
-import { Main } from './components/Main';
-import { BottomPanel } from './components/BottomPanel';
+import store from 'src/redux/store';
+
+// Components
+import { TopBar } from 'src/components/TopBar';
+import { Main } from 'src/components/Main';
+import { BottomPanel } from 'src/components/BottomPanel';
 
 const App = () => (
   <Provider store={store}>

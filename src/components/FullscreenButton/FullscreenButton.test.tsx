@@ -1,7 +1,9 @@
+// React, redux
 import { act, render } from '@testing-library/react';
-import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { FullscreenButton } from './index';
+
+// Components
+import { FullscreenButton } from '.';
 
 describe('fullscreen button', () => {
   document.documentElement.requestFullscreen = jest.fn();

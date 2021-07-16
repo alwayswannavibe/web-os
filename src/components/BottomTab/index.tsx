@@ -1,11 +1,11 @@
-// React, Redux
-import React, { FC } from 'react';
+// React, redux
+import { FC } from 'react';
 
 // Types
-import { Apps } from 'types/apps';
+import { Apps } from 'src/types/apps';
 
 // Hooks
-import { useApps } from 'hooks/useApps';
+import { useApps } from 'src/hooks/useApps';
 
 // Styles
 import styles from './style.module.css';
@@ -22,7 +22,7 @@ const BottomTab: FC<PropsType> = ({ handleOpen, handleCollapse, type, iconName }
   const { isIncludeApp, getAppIndex } = useApps();
 
   return (
-    <>
+    <div data-cy="bottom-tab">
       {!isIncludeApp(type) && (
         <div className={`${styles.close} ${styles.tab}`} onClick={handleOpen}>
           <i className={`fas fa-${iconName}`} />
@@ -38,7 +38,7 @@ const BottomTab: FC<PropsType> = ({ handleOpen, handleCollapse, type, iconName }
           <i className={`fas fa-${iconName}`} />
         </div>
       )}
-    </>
+    </div>
   );
 };
 

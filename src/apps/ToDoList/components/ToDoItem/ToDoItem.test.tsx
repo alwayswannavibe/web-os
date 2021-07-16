@@ -5,8 +5,8 @@ import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { ToDoItem } from './index';
-import styles from './styles.module.css';
+import { ToDoItem } from 'src/apps/ToDoList/components/ToDoItem';
+import styles from 'src/apps/ToDoList/components/ToDoItem/toDoItem.module.css';
 
 describe('to do item component', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];

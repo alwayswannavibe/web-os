@@ -1,26 +1,24 @@
-// React, Redux
-import React, { FC } from 'react';
-import { RootState } from 'redux/store';
+// React, redux
+import { FC } from 'react';
+import { RootState } from 'src/redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from 'redux/slices/userSlice';
-
-// Components
-import { BottomTab } from 'components/BottomTab';
-
-// Hooks
-import { useTerminal } from 'hooks/useTerminal';
-import { useSettings } from 'hooks/useSettings';
-import { useCalculator } from 'hooks/useCalculator';
-import { useChat } from 'hooks/useChat';
-import { useToDo } from 'hooks/useToDo';
-
-// Types
-import { Apps } from 'types/apps';
-
-// Other
+import { logout } from 'src/redux/slices/userSlice';
 import firebase from 'firebase';
 // eslint-disable-next-line import/no-cycle
-import { auth } from 'firebase-state/firebase';
+import { auth } from 'src/firebase-state/firebase';
+
+// Hooks
+import { useTerminal } from 'src/hooks/useTerminal';
+import { useSettings } from 'src/hooks/useSettings';
+import { useCalculator } from 'src/hooks/useCalculator';
+import { useChat } from 'src/hooks/useChat';
+import { useToDo } from 'src/hooks/useToDo';
+
+// Types
+import { Apps } from 'src/types/apps';
+
+// Components
+import { BottomTab } from 'src/components/BottomTab';
 
 // Styles
 import styles from './style.module.css';
@@ -29,7 +27,7 @@ type PropsType = {
   children?: never;
 };
 
-const BottomPanel: FC<PropsType> = () => {
+export const BottomPanel: FC<PropsType> = () => {
   const { handleTerminalCollapseToggle, handleOpenTerminal } = useTerminal();
   const { handleSettingsCollapseToggle, handleOpenSettings } = useSettings();
   const { handleCalculatorCollapseToggle, handleOpenCalculator } = useCalculator();
@@ -96,5 +94,3 @@ const BottomPanel: FC<PropsType> = () => {
     </div>
   );
 };
-
-export { BottomPanel };

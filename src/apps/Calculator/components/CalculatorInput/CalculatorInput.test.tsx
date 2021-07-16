@@ -1,3 +1,4 @@
+// React, redux
 import { render } from '@testing-library/react';
 import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -5,7 +6,9 @@ import { AnyAction, Dispatch, Middleware } from 'redux';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import userEvent from '@testing-library/user-event';
-import { CalculatorInput } from './index';
+
+// Components
+import { CalculatorInput } from '.';
 
 describe('calculator input component', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];

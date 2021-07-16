@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 import { createSlice } from '@reduxjs/toolkit';
-import { Apps } from 'types/apps';
+import { Apps } from 'src/types/apps';
 
 const apps: Apps[] = [];
 

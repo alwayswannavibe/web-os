@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
 
 import { createSlice } from '@reduxjs/toolkit';
-import { CoordsType } from 'types/coord';
-import { getCalcResult } from 'logic/calculator';
+import { CoordsType } from 'src/types/coord';
+import { getCalcResult } from 'src/logic/calculator';
 
 const calculatorSlice = createSlice({
   name: 'calculator',

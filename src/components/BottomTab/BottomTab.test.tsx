@@ -1,12 +1,18 @@
-import React from 'react';
+// React, redux
 import { render } from '@testing-library/react';
-import { Apps } from 'types/apps';
 import { Provider } from 'react-redux';
 import userEvent from '@testing-library/user-event';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { AnyAction, Dispatch, Middleware } from 'redux';
 import configureStore from 'redux-mock-store';
+
+// Types
+import { Apps } from 'src/types/apps';
+
+// Components
 import { BottomTab } from '.';
+
+// Styles
 import styles from './style.module.css';
 
 describe('bottom tab component', () => {

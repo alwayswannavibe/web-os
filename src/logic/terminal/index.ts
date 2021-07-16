@@ -1,5 +1,5 @@
-import { addTerminalHistory, clearTerminalHistory } from 'redux/slices/appsSlicesBus/terminalSlice';
-import store from 'redux/store';
+import { addTerminalHistory, clearTerminalHistory } from 'src/redux/slices/appsSlicesBus/terminalSlice';
+import store from 'src/redux/store';
 import { terminalProcessOpenCommand } from './open';
 import { terminalProcessChangeCommand } from './change';
 

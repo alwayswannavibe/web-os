@@ -2,8 +2,8 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
-import { ToDoItem } from 'types/toDo';
-import { CoordsType } from 'types/coord';
+import { ToDoItem } from 'src/types/toDo';
+import { CoordsType } from 'src/types/coord';
 
 const toDoList: ToDoItem[] = [];
 

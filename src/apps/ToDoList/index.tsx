@@ -1,14 +1,25 @@
+// React, redux
 import React, { FC, FormEvent, useRef } from 'react';
-import { Apps } from 'types/apps';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'redux/store';
-import { Icon } from 'components/Icon';
-import { useToDo } from 'hooks/useToDo';
-import { changeToDoIconCoord, changeToDoCoord, addToDoItem } from 'redux/slices/appsSlicesBus/toDoSlice';
-import imgSource from 'assets/images/icons/toDo.svg';
-import { Window } from 'components/Window';
-import { ToDoItem } from 'apps/ToDoList/components/ToDoItem';
-import styles from './style.module.css';
+import { RootState } from 'src/redux/store';
+import { changeToDoIconCoord, changeToDoCoord, addToDoItem } from 'src/redux/slices/appsSlicesBus/toDoSlice';
+import { ToDoItem } from 'src/apps/ToDoList/components/ToDoItem';
+
+// Types
+import { Apps } from 'src/types/apps';
+
+// Assets
+import imgSource from 'src/assets/images/icons/toDo.svg';
+
+// Hooks
+import { useToDo } from 'src/hooks/useToDo';
+
+// Components
+import { Window } from 'src/components/Window';
+import { Icon } from 'src/components/Icon';
+
+// Styles
+import styles from './toDoList.module.css';
 
 type PropsType = {
   children?: never;

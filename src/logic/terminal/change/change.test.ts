@@ -1,4 +1,5 @@
-import store from 'redux/store';
+// React, redux
+import store from 'src/redux/store';
 import * as terminalProcessChangeTheme from './theme/index';
 import * as terminalProcessChangeLocale from './locale/index';
 import { terminalProcessChangeCommand } from '.';

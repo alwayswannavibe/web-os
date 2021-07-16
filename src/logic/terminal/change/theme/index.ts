@@ -1,7 +1,10 @@
-import store from 'redux/store';
-import { addTerminalHistory } from 'redux/slices/appsSlicesBus/terminalSlice';
-import { setTheme } from 'redux/slices/themeSlice';
-import { Themes } from 'types/themes';
+// React, redux
+import store from 'src/redux/store';
+import { addTerminalHistory } from 'src/redux/slices/appsSlicesBus/terminalSlice';
+import { setTheme } from 'src/redux/slices/themeSlice';
+
+// Types
+import { Themes } from 'src/types/themes';
 
 const terminalProcessChangeTheme = (input: string) => {
   const { dispatch } = store;

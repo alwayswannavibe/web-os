@@ -1,10 +1,14 @@
+// React, redux
 import { render } from '@testing-library/react';
-import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { AnyAction, Dispatch, Middleware } from 'redux';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import { BottomPanel } from './index';
+
+// Components
+import { BottomPanel } from '.';
+
+// Styles
 import styles from './style.module.css';
 
 describe('bottom panel component', () => {

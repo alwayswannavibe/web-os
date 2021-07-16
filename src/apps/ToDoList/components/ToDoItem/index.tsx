@@ -1,9 +1,12 @@
+// React, redux
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCompleteToDoItem, deleteToDoItem } from 'redux/slices/appsSlicesBus/toDoSlice';
-import { RootState } from 'redux/store';
+import { toggleCompleteToDoItem, deleteToDoItem } from 'src/redux/slices/appsSlicesBus/toDoSlice';
+import { RootState } from 'src/redux/store';
 import { motion } from 'framer-motion';
-import styles from './styles.module.css';
+
+// Styles
+import styles from './toDoItem.module.css';
 
 type PropsType = {
   children?: never;
@@ -18,7 +21,7 @@ const ToDoItem: FC<PropsType> = ({ text, id }: PropsType) => {
   );
 
   return (
-    <div className={styles.toDoItem}>
+    <div className={styles.toDoItem} data-cy="todo-item">
       <motion.p
         className={`${styles.text} ${completed ? styles.completed : ''}`}
         initial={{ y: 50, opacity: 0.2 }}

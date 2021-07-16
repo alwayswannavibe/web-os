@@ -86,7 +86,6 @@ const processAddAndSubtract = (numbers: number[], operators: string[]): [number[
   return [numbersCopy, operatorsCopy];
 };
 
-// eslint-disable-next-line consistent-return
 const getCalcResult = (inputValue: string): string => {
   if (!checkInputValueCorrect(inputValue)) return '';
 

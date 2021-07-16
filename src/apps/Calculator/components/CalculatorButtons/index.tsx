@@ -1,4 +1,4 @@
-// React, Redux
+// React, redux
 import React, { FC, ReactNode } from 'react';
 import { useDispatch } from 'react-redux';
 import {
@@ -6,13 +6,13 @@ import {
   clearCalculatorInput,
   deleteLastCalculatorInput,
   getCalculatorResult,
-} from 'redux/slices/appsSlicesBus/calculatorSlice';
+} from 'src/redux/slices/appsSlicesBus/calculatorSlice';
 
 // Components
-import { CalculatorButton } from 'apps/Calculator/components/CalculatorButton';
+import { CalculatorButton } from 'src/apps/Calculator/components/CalculatorButton';
 
 // Styles
-import styles from './style.module.css';
+import styles from 'src/apps/Calculator/components/CalculatorButtons/calculatorButtons.module.css';
 
 type PropsType = {
   children?: never;

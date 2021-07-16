@@ -31,7 +31,8 @@
     "lint:ts": "npx eslint \"./src\" --ext .js,.jsx,.ts,.tsx",
     "prettier": "prettier --write \"./src\"",
     "lint": "npm run lint:style && npm run lint:ts",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "cypress:open": "cypress open"
   },
   "browserslist": {
     "production": [

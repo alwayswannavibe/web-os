@@ -1,16 +1,16 @@
-// React, Redux
+// Recact, redux
 import { useDispatch, useSelector } from 'react-redux';
 import {
   clearTerminalHistory,
   closeTerminal,
   openTerminal,
   toggleCollapseTerminal,
-} from 'redux/slices/appsSlicesBus/terminalSlice';
-import { addWindow, deleteWindow, setWindowActive } from 'redux/slices/appsSlice';
-import { RootState } from 'redux/store';
+} from 'src/redux/slices/appsSlicesBus/terminalSlice';
+import { addWindow, deleteWindow, setWindowActive } from 'src/redux/slices/appsSlice';
+import { RootState } from 'src/redux/store';
 
 // Types
-import { Apps } from 'types/apps';
+import { Apps } from 'src/types/apps';
 
 const useTerminal = () => {
   const apps = useSelector((state: RootState) => state.apps.apps);

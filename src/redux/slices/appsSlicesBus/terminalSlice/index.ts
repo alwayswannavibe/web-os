@@ -2,7 +2,7 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv } from 'uuid';
-import { CoordsType } from 'types/coord';
+import { CoordsType } from 'src/types/coord';
 
 export type TerminalMessage = {
   message: string;

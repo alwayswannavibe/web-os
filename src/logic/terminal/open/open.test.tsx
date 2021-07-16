@@ -1,4 +1,4 @@
-import store from 'redux/store';
+import store from 'src/redux/store';
 import { terminalProcessOpenCommand } from '.';
 
 describe('open terminal module', () => {

@@ -1,13 +1,13 @@
-// React, Redux
-import React, { FC, useRef } from 'react';
+// React, redux
+import { FC, useRef } from 'react';
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 
 // Hooks
-import { useDragNDrop } from 'hooks/useDragNDrop';
+import { useDragNDrop } from 'src/hooks/useDragNDrop';
 
 // Types
-import { Apps } from 'types/apps';
-import { CoordsType } from 'types/coord';
+import { Apps } from 'src/types/apps';
+import { CoordsType } from 'src/types/coord';
 
 // Styles
 import styles from './style.module.css';
@@ -28,7 +28,7 @@ export const Icon: FC<PropsType> = ({ imgSource, handleClick, title, topCoord, l
   const { startDrag, topCoordLocal, leftCoordLocal } = useDragNDrop(changeCoord, icon, topCoord, leftCoord);
 
   return (
-    <div className={styles.container} style={{ top: topCoordLocal, left: leftCoordLocal }} ref={icon}>
+    <div className={styles.container} style={{ top: topCoordLocal, left: leftCoordLocal }} ref={icon} data-cy={`icon-${title}`}>
       <div onDoubleClick={handleClick} className={styles.imgContainer} onMouseDown={startDrag}>
         <img src={imgSource} alt="" className={`${styles.img}`} />
       </div>

@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 import { createSlice } from '@reduxjs/toolkit';
-import { Locales } from 'types/locales';
+import { Locales } from 'src/types/locales';
 
 type LocaleType = {
   payload: Locales;

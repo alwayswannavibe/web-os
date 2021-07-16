@@ -1,4 +1,5 @@
-import React, { RefObject, useCallback, useEffect, useState } from 'react';
+// React, redux
+import { RefObject, useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 const useDragNDrop = (changeCoord: any, element: RefObject<HTMLDivElement>, topCoord: string, leftCoord: string) => {

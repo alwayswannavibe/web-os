@@ -1,29 +1,31 @@
+// React, redux
 import React from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { AnyAction, Dispatch, Middleware } from 'redux';
+import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
 import configureStore from 'redux-mock-store';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { Themes } from 'types/themes';
-import * as Terminal from 'apps/Terminal';
-import * as Settings from 'apps/Settings';
-import * as Calculator from 'apps/Calculator';
-import * as ToDoList from 'apps/ToDoList';
-import * as Chat from 'apps/Chat';
+import { Themes } from 'src/types/themes';
+
+// Components
+import * as Terminal from 'src/apps/Terminal';
+import * as Settings from 'src/apps/Settings';
+import * as Calculator from 'src/apps/Calculator';
+import * as ToDoList from 'src/apps/ToDoList';
+import * as Chat from 'src/apps/Chat';
 import { Main } from '.';
 
 describe('main component', () => {
   const mockState = '';
   const mockSetState = jest.fn();
-  jest.spyOn(React, 'useState').mockImplementation(() => [mockState, mockSetState]);
+  jest.spyOn(React, 'useState').mockReturnValue([mockState, mockSetState]);
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
 
   beforeEach(() => {
-    jest.spyOn(Terminal, 'Terminal').mockImplementation(() => null);
-    jest.spyOn(Settings, 'Settings').mockImplementation(() => null);
-    jest.spyOn(Calculator, 'Calculator').mockImplementation(() => null);
-    jest.spyOn(ToDoList, 'ToDoList').mockImplementation(() => null);
-    jest.spyOn(Chat, 'Chat').mockImplementation(() => null);
+    jest.spyOn(Terminal, 'Terminal').mockReturnValue(null);
+    jest.spyOn(Settings, 'Settings').mockReturnValue(null);
+    jest.spyOn(Calculator, 'Calculator').mockReturnValue(null);
+    jest.spyOn(ToDoList, 'ToDoList').mockReturnValue(null);
+    jest.spyOn(Chat, 'Chat').mockReturnValue(null);
   });
 
   afterAll(() => {

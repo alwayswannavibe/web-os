@@ -23,5 +23,6 @@ module.exports = {
     "jsx-a11y/click-events-have-key-events": 0,
     "no-mixed-operators": 0,
     "operator-linebreak": 0,
+    "react/react-in-jsx-scope": 0,
   }
 };

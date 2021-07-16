@@ -1,15 +1,14 @@
-// React
-import React, { FC } from 'react';
+// React, redux
+import { FC } from 'react';
 
 // Components
-import { FullscreenButton } from 'components/FullscreenButton';
-import { Username } from 'components/Username';
-import { TopDate } from 'components/TopDate';
+import { FullscreenButton } from 'src/components/FullscreenButton';
+import { Username } from 'src/components/Username';
+import { TopDate } from 'src/components/TopDate';
 
 // Styles
 import styles from './style.module.css';
 
-// Types
 type PropsType = {
   children?: never;
 };

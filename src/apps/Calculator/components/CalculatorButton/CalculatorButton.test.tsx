@@ -1,8 +1,13 @@
+// Redux, react
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { CalculatorButton } from './index';
-import styles from './style.module.css';
+
+// Components
+import { CalculatorButton } from '.';
+
+// Styles
+import styles from './calculatorButton.module.css';
 
 describe('calculator  components', () => {
   const mockHandleClick = jest.fn();

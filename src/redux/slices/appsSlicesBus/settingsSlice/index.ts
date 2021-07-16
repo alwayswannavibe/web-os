@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 import { createSlice } from '@reduxjs/toolkit';
-import { CoordsType } from 'types/coord';
+import { CoordsType } from 'src/types/coord';
 
 const settingsSlice = createSlice({
   name: 'settings',

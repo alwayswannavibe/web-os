@@ -1,0 +1,37 @@
+.input {
+  width: calc(100% - 2rem);
+  background: transparent;
+  outline: none;
+  border: none;
+  overflow: hidden;
+  caret-color: aliceblue;
+  color: aliceblue;
+  font-size: 1rem;
+  border: 2px solid #374160;
+  border-radius: 0.2rem;
+  margin-top: 0.2rem;
+  padding: 0.2rem;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+}
+
+.sendBtn {
+  font-size: 1rem;
+  color: var(--font-color);
+  background-color: transparent;
+  border: none;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  transition: color 0.2s linear;
+}
+
+.sendBtn:hover {
+  color: #586366;
+}
+
+.sendBtn:active {
+  color: #373737;
+}

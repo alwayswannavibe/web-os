@@ -1,40 +1,33 @@
-// React
-import React, { FC, useEffect, useRef, useState } from 'react';
-
-// Components
-import { Window } from 'components/Window';
-import { Icon } from 'components/Icon';
-
-// Redux
+// React, redux
+import { FC, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from 'redux/store';
-import { changeChatCoord, changeChatIconCoord } from 'redux/slices/appsSlicesBus/chatSlice';
-
-// import Types
-import { Apps } from 'types/apps';
+import { RootState } from 'src/redux/store';
+import { changeChatCoord, changeChatIconCoord } from 'src/redux/slices/appsSlicesBus/chatSlice';
+import { firestore } from 'src/firebase-state/firebase';
+import firebase from 'firebase';
 
 // Hooks
-import { useChat } from 'hooks/useChat';
-
-// Other
-import { motion } from 'framer-motion';
+import { useChat } from 'src/hooks/useChat';
 
 // Assets
-import imgSource from 'assets/images/icons/chat.svg';
-
-// Styles
-import { Message } from 'types/message';
-import { firestore } from 'firebase-state/firebase';
-import firebase from 'firebase';
-import styles from './style.module.css';
+import imgSource from 'src/assets/images/icons/chat.svg';
 
 // Types
+import { Apps } from 'src/types/apps';
+
+// Components
+import { Window } from 'src/components/Window';
+import { Icon } from 'src/components/Icon';
+import { MessagesList } from './components/MessagesList';
+
+// Styles
+import styles from './chat.module.css';
+
 type PropsType = {
   children?: never;
 };
 
 export const Chat: FC<PropsType> = () => {
-  // Selectors
   const isChatOpen = useSelector((state: RootState) => state.chat.isChatOpen);
   const isChatCollapsed = useSelector((state: RootState) => state.chat.isChatCollapsed);
   const chatIconTopCoord = useSelector((state: RootState) => state.chat.chatIconTopCoord);
@@ -42,16 +35,13 @@ export const Chat: FC<PropsType> = () => {
   const chatTopCoord = useSelector((state: RootState) => state.chat.chatTopCoord);
   const chatLeftCoord = useSelector((state: RootState) => state.chat.chatLeftCoord);
   const apps = useSelector((state: RootState) => state.apps.apps);
-  const messages = useSelector((state: RootState) => state.chat.messages);
+  const username = useSelector((state: RootState) => state.user.username);
 
-  // Init
   const [text, setText] = useState('');
   const { handleChatCollapseToggle, handleOpenChat, handleCloseChat } = useChat();
-  const username = useSelector((state: RootState) => state.user.username);
   const inputEl = useRef<HTMLInputElement>(null);
   const photoURL = useSelector((state: RootState) => state.user.photo);
 
-  // Handlers
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
   };
@@ -69,11 +59,6 @@ export const Chat: FC<PropsType> = () => {
     });
     setText('');
   };
-
-  useEffect(() => {
-    const messagesList = document.getElementsByClassName(styles.otherMsg);
-    messagesList[messagesList.length - 1]?.scrollIntoView();
-  }, [messages]);
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
@@ -97,34 +82,7 @@ export const Chat: FC<PropsType> = () => {
         appType={Apps.Chat}
         isOpen={isChatOpen && !isChatCollapsed}
       >
-        <ul className={styles.messagesList}>
-          {messages.map((message: Message) => (
-            <motion.li
-              className={`${styles.msgContainer} ${username === message.username ? styles.myMsg : ''}`}
-              key={message.id}
-              initial={{ y: 50, opacity: 0.5 }}
-              animate={{ y: 0, opacity: 1 }}
-            >
-              <img
-                src={
-                  message.photo ||
-                  'https://d11a6trkgmumsb.cloudfront.net/original/3X/d/8/d8b5d0a738295345ebd8934b859fa1fca1c8c6ad.jpeg'
-                }
-                alt="avatar"
-                width="60px"
-                height="60px"
-                className={styles.avatar}
-              />
-              <div className={styles.nameAndMsgContainer}>
-                <div className={styles.ownerAndDateContainer}>
-                  <p className={styles.msgOwner}>{message.username || 'anonymous'}</p>
-                  <p className={styles.msgDate}>{message.date || ''}</p>
-                </div>
-                <p className={styles.otherMsg}>{message.text}</p>
-              </div>
-            </motion.li>
-          ))}
-        </ul>
+        <MessagesList />
         <form onSubmit={handleSubmit} className={styles.form}>
           <input type="text" ref={inputEl} className={styles.input} onChange={handleChange} value={text} />
           <button className={styles.sendBtn} type="submit">

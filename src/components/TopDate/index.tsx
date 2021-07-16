@@ -1,14 +1,11 @@
-// React
-import React, { FC, useEffect, useState } from 'react';
-
-// Redux
+// React, redux
+import { FC, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from 'redux/store';
+import { RootState } from 'src/redux/store';
 
 // Styles
 import styles from './style.module.css';
 
-// Types
 type PropsType = {
   children?: never;
 };

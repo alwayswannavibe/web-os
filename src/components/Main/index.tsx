@@ -1,37 +1,35 @@
-// React, Redux
+// React, redux
 import React, { FC, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from 'redux/store';
+import { RootState } from 'src/redux/store';
 
 // Assets
-import planet from 'assets/images/backgrounds/darkPlanet.jpg';
-import sea from 'assets/images/backgrounds/sea.jpg';
-import tree from 'assets/images/backgrounds/tree.jpg';
-import road from 'assets/images/backgrounds/road.jpg';
-import car from 'assets/images/backgrounds/car.jpg';
-import dynamic from 'assets/images/backgrounds/dynamic.gif';
-import dynamic2 from 'assets/images/backgrounds/dynamic2.gif';
+import planet from 'src/assets/images/backgrounds/darkPlanet.jpg';
+import sea from 'src/assets/images/backgrounds/sea.jpg';
+import tree from 'src/assets/images/backgrounds/tree.jpg';
+import road from 'src/assets/images/backgrounds/road.jpg';
+import car from 'src/assets/images/backgrounds/car.jpg';
+import dynamic from 'src/assets/images/backgrounds/dynamic.gif';
+import dynamic2 from 'src/assets/images/backgrounds/dynamic2.gif';
 
 // Components
-import { Terminal } from 'apps/Terminal';
-import { Settings } from 'apps/Settings';
-import { Calculator } from 'apps/Calculator';
-import { ToDoList } from 'apps/ToDoList';
-import { Chat } from 'apps/Chat';
+import { Terminal } from 'src/apps/Terminal';
+import { Settings } from 'src/apps/Settings';
+import { Calculator } from 'src/apps/Calculator';
+import { ToDoList } from 'src/apps/ToDoList';
+import { Chat } from 'src/apps/Chat';
 
-// Types import
-import { Themes } from 'types/themes';
+// Types
+import { Themes } from 'src/types/themes';
 
 // Styles
 import styles from './style.module.css';
 
-// Types
 type PropsType = {
   children?: never;
 };
 
 const Main: FC<PropsType> = () => {
-  // Init
   const theme = useSelector((state: RootState) => state.theme.theme);
   const [themeBackground, setThemeBackground] = useState('');
 

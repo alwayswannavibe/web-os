@@ -1,5 +1,5 @@
-import store from 'redux/store';
-import { Apps } from 'types/apps';
+import store from 'src/redux/store';
+import { Apps } from 'src/types/apps';
 import { addWindow, deleteWindow, setWindowActive } from '.';
 
 describe('app slice', () => {

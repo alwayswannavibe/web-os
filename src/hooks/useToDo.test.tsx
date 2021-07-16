@@ -1,10 +1,14 @@
+// React, redux
 import { act, renderHook } from '@testing-library/react-hooks';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { Middleware, Dispatch, AnyAction } from 'redux';
-import { Apps } from 'types/apps';
+import { Middleware, Dispatch, AnyAction } from '@reduxjs/toolkit';
+
+// Types
+import { Apps } from 'src/types/apps';
+
+// Hooks
 import { useToDo } from './useToDo';
 
 describe('use to do hook', () => {

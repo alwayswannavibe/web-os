@@ -1,6 +1,6 @@
-import store from 'redux/store';
-import * as terminalProcessOpenCommand from 'logic/terminal/open';
-import * as terminalProcessChangeCommand from 'logic/terminal/change';
+import store from 'src/redux/store';
+import * as terminalProcessOpenCommand from 'src/logic/terminal/open';
+import * as terminalProcessChangeCommand from 'src/logic/terminal/change';
 import { processTerminalInput } from '.';
 
 describe('main terminal module', () => {

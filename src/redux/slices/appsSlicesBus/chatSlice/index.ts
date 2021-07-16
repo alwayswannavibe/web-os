@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
 
 import { createSlice } from '@reduxjs/toolkit';
-import { CoordsType } from 'types/coord';
-import { Message } from 'types/message';
+import { CoordsType } from 'src/types/coord';
+import { Message } from 'src/types/message';
 
 const messages: Message[] = [];
 

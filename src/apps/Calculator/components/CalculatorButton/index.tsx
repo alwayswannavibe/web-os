@@ -1,8 +1,8 @@
 // React, Redux
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 // Styles
-import styles from './style.module.css';
+import styles from 'src/apps/Calculator/components/CalculatorButton/calculatorButton.module.css';
 
 type PropsType = {
   children?: never;

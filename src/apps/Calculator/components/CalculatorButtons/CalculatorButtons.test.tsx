@@ -1,3 +1,4 @@
+// React, redux
 import { render } from '@testing-library/react';
 import React from 'react';
 import { Provider } from 'react-redux';
@@ -5,8 +6,12 @@ import { Provider } from 'react-redux';
 import { AnyAction, Dispatch, Middleware } from 'redux';
 import configureStore from 'redux-mock-store';
 import userEvent from '@testing-library/user-event';
-import styles from './style.module.css';
-import { CalculatorButtons } from './index';
+
+// Components
+import { CalculatorButtons } from '.';
+
+// Styles
+import styles from './calculatorButtons.module.css';
 
 describe('calculator buttons component', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];

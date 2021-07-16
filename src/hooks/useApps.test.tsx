@@ -1,10 +1,15 @@
-import { Apps } from 'types/apps';
+// React, redux
 import { renderHook } from '@testing-library/react-hooks';
 import { Provider } from 'react-redux';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
+import configureStore from 'redux-mock-store';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { AnyAction, Dispatch, Middleware } from 'redux';
-import configureStore from 'redux-mock-store';
+
+// Types
+import { Apps } from 'src/types/apps';
+
+// Hooks
 import { useApps } from './useApps';
 
 describe('use apps hook', () => {

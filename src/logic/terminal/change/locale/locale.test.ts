@@ -1,5 +1,8 @@
-import store from 'redux/store';
-import { Locales } from 'types/locales';
+// Types
+import { Locales } from 'src/types/locales';
+
+// React, redux
+import store from 'src/redux/store';
 import { terminalProcessChangeLocale } from '.';
 
 describe('change locale terminal module', () => {

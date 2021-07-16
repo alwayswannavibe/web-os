@@ -1,5 +1,8 @@
-import store from 'redux/store';
-import { Themes } from 'types/themes';
+// Types
+import { Themes } from 'src/types/themes';
+
+// React, redux
+import store from 'src/redux/store';
 import { terminalProcessChangeTheme } from '.';
 
 describe('change theme terminal module', () => {

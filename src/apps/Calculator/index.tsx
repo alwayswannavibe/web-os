@@ -1,27 +1,25 @@
-// React, Redux
-import React, { FC } from 'react';
+// React, redux
+import { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { changeCalculatorCoord, changeCalculatorIconCoord } from 'redux/slices/appsSlicesBus/calculatorSlice';
-import { RootState } from 'redux/store';
+import { changeCalculatorCoord, changeCalculatorIconCoord } from 'src/redux/slices/appsSlicesBus/calculatorSlice';
+import { RootState } from 'src/redux/store';
 
 // Components
-import { Window } from 'components/Window';
-import { Icon } from 'components/Icon';
-import { CalculatorButtons } from 'apps/Calculator/components/CalculatorButtons';
-import { CalculatorInput } from 'apps/Calculator/components/CalculatorInput';
+import { Window } from 'src/components/Window';
+import { Icon } from 'src/components/Icon';
+import { CalculatorButtons } from 'src/apps/Calculator/components/CalculatorButtons';
+import { CalculatorInput } from 'src/apps/Calculator/components/CalculatorInput';
 
 // Hooks
-import { useCalculator } from 'hooks/useCalculator';
-import { useApps } from 'hooks/useApps';
-
-// Types
-import { Apps } from 'types/apps';
+import { useCalculator } from 'src/hooks/useCalculator';
+import { useApps } from 'src/hooks/useApps';
+import { Apps } from 'src/types/apps';
 
 // Assets
-import imgSource from 'assets/images/icons/calculator.svg';
+import imgSource from 'src/assets/images/icons/calculator.svg';
 
 // Styles
-import styles from './style.module.css';
+import styles from './calculator.module.css';
 
 type PropsType = {
   children?: never;
@@ -35,8 +33,8 @@ const Calculator: FC<PropsType> = () => {
   const calculatorTopCoord = useSelector((state: RootState) => state.calculator.calculatorTopCoord);
   const calculatorLeftCoord = useSelector((state: RootState) => state.calculator.calculatorLeftCoord);
 
-  const { handleOpenCalculator, handleCloseCalculator, handleCalculatorCollapseToggle } = useCalculator();
   const { getAppIndex } = useApps();
+  const { handleOpenCalculator, handleCloseCalculator, handleCalculatorCollapseToggle } = useCalculator();
 
   return (
     <>

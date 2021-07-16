@@ -1,39 +1,36 @@
-// React
+// React, redux
 import React, { FC } from 'react';
-
-// Components
-import { Window } from 'components/Window';
-import { Icon } from 'components/Icon';
-
-// Redux
-import { RootState } from 'redux/store';
+import { RootState } from 'src/redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeSettingsCoord, changeSettingsIconCoord } from 'redux/slices/appsSlicesBus/settingsSlice';
-import { setTheme } from 'redux/slices/themeSlice';
-import { setLocale } from 'redux/slices/localeSlice';
-import { useSettings } from 'hooks/useSettings';
+import { changeSettingsCoord, changeSettingsIconCoord } from 'src/redux/slices/appsSlicesBus/settingsSlice';
+import { setTheme } from 'src/redux/slices/themeSlice';
+import { setLocale } from 'src/redux/slices/localeSlice';
 
-// import Types
-import { Apps } from 'types/apps';
-import { Themes } from 'types/themes';
-import { Locales } from 'types/locales';
-
-// Assets
-import imgSource from 'assets/images/icons/settings.svg';
-
-// Styles
-import styles from './style.module.css';
+// Hooks
+import { useSettings } from 'src/hooks/useSettings';
 
 // Types
+import { Apps } from 'src/types/apps';
+import { Themes } from 'src/types/themes';
+import { Locales } from 'src/types/locales';
+
+// Assets
+import imgSource from 'src/assets/images/icons/settings.svg';
+
+// Components
+import { Window } from 'src/components/Window';
+import { Icon } from 'src/components/Icon';
+
+// Styles
+import styles from './settings.module.css';
+
 type PropsType = {
   children?: never;
 };
 
 export const Settings: FC<PropsType> = () => {
-  // Init
   const dispatch = useDispatch();
 
-  // Selectors
   const isSettingsOpen = useSelector((state: RootState) => state.settings.isSettingsOpen);
   const isSettingsCollapsed = useSelector((state: RootState) => state.settings.isSettingsCollapsed);
   const settingsIconTopCoord = useSelector((state: RootState) => state.settings.settingsIconTopCoord);
@@ -45,7 +42,6 @@ export const Settings: FC<PropsType> = () => {
   const apps = useSelector((state: RootState) => state.apps.apps);
   const { handleSettingsCollapseToggle, handleOpenSettings, handleCloseSettings } = useSettings();
 
-  // Handlers
   const handleChangeTheme = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const seletedTheme: Themes = event.target.selectedOptions[0].value as Themes;
     if (Object.values(Themes).includes(seletedTheme)) {

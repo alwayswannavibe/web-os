@@ -1,20 +1,16 @@
-// React and Redux
-import React, { FC, ReactNode, useRef } from 'react';
+// React, redux
+import { FC, ReactNode, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
-import { setWindowActive } from 'redux/slices/appsSlice';
-
-// Types import
-import { CoordsType } from 'types/coord';
-
-// Hooks
-import { useDragNDrop } from 'hooks/useDragNDrop';
-
-// Other
+import { setWindowActive } from 'src/redux/slices/appsSlice';
 import { AnimatePresence, motion } from 'framer-motion';
 
 // Types
-import { Apps } from 'types/apps';
+import { CoordsType } from 'src/types/coord';
+import { Apps } from 'src/types/apps';
+
+// Hooks
+import { useDragNDrop } from 'src/hooks/useDragNDrop';
 
 // Styles
 import styles from './style.module.css';
@@ -66,6 +62,7 @@ export const Window: FC<PropsType> = ({
           transition={{
             duration: 0.3,
           }}
+          data-cy={`window-${title}`}
         >
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */}
           <div className={styles.windowTop} onMouseDown={startDrag} ref={windowTop}>

@@ -1,11 +1,11 @@
-// React, Redux
+// React, redux
 import { useDispatch, useSelector } from 'react-redux';
-import { closeChat, openChat, toggleCollapseChat } from 'redux/slices/appsSlicesBus/chatSlice';
-import { addWindow, deleteWindow, setWindowActive } from 'redux/slices/appsSlice';
-import { RootState } from 'redux/store';
+import { closeChat, openChat, toggleCollapseChat } from 'src/redux/slices/appsSlicesBus/chatSlice';
+import { addWindow, deleteWindow, setWindowActive } from 'src/redux/slices/appsSlice';
+import { RootState } from 'src/redux/store';
 
 // Types
-import { Apps } from 'types/apps';
+import { Apps } from 'src/types/apps';
 
 const useChat = () => {
   const apps = useSelector((state: RootState) => state.apps.apps);

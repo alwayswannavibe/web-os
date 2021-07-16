@@ -1,11 +1,11 @@
 // React, Redux
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'redux/store';
-import { getCalculatorResult, setCalculatorInput } from 'redux/slices/appsSlicesBus/calculatorSlice';
+import { RootState } from 'src/redux/store';
+import { getCalculatorResult, setCalculatorInput } from 'src/redux/slices/appsSlicesBus/calculatorSlice';
 
 // Styles
-import styles from './style.module.css';
+import styles from 'src/apps/Calculator/components/CalculatorInput/calculatorInput.module.css';
 
 type PropsType = {
   children?: never;

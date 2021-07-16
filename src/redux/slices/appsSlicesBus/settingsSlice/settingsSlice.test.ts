@@ -1,4 +1,4 @@
-import store from 'redux/store';
+import store from 'src/redux/store';
 import { changeSettingsCoord, changeSettingsIconCoord, closeSettings, openSettings, toggleCollapseSettings } from '.';
 
 describe('settings slice', () => {

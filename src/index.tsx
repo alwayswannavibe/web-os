@@ -1,8 +1,11 @@
+// React, redux
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+// Styles
 import './index.css';
 
-// eslint-disable-next-line import/no-cycle
+// Components
 import App from './App';
 
 ReactDOM.render(

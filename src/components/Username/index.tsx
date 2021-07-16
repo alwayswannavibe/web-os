@@ -1,7 +1,7 @@
-// React and Redux
-import React, { FC } from 'react';
+// React, redux
+import { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from 'redux/store';
+import { RootState } from 'src/redux/store';
 
 // Styles
 import styles from './style.module.css';

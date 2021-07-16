@@ -1,11 +1,11 @@
-// React, Redux
+// React, redux
 import { useDispatch, useSelector } from 'react-redux';
-import { closeSettings, openSettings, toggleCollapseSettings } from 'redux/slices/appsSlicesBus/settingsSlice';
-import { addWindow, deleteWindow, setWindowActive } from 'redux/slices/appsSlice';
-import { RootState } from 'redux/store';
+import { closeSettings, openSettings, toggleCollapseSettings } from 'src/redux/slices/appsSlicesBus/settingsSlice';
+import { addWindow, deleteWindow, setWindowActive } from 'src/redux/slices/appsSlice';
+import { RootState } from 'src/redux/store';
 
 // Types
-import { Apps } from 'types/apps';
+import { Apps } from 'src/types/apps';
 
 const useSettings = () => {
   const apps = useSelector((state: RootState) => state.apps.apps);

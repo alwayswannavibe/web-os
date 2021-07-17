@@ -13,6 +13,7 @@ import { useSettings } from 'src/hooks/useSettings';
 import { useCalculator } from 'src/hooks/useCalculator';
 import { useChat } from 'src/hooks/useChat';
 import { useToDo } from 'src/hooks/useToDo';
+import { useSimon } from 'src/hooks/useSimon';
 
 // Types
 import { Apps } from 'src/types/apps';
@@ -33,6 +34,7 @@ export const BottomPanel: FC<PropsType> = () => {
   const { handleCalculatorCollapseToggle, handleOpenCalculator } = useCalculator();
   const { handleToDoCollapseToggle, handleOpenToDo } = useToDo();
   const { handleChatCollapseToggle, handleOpenChat } = useChat();
+  const { handleSimonCollapseToggle, handleOpenSimon } = useSimon();
 
   const username = useSelector((state: RootState) => state.user.username);
   const loading = useSelector((state: RootState) => state.user.loading);
@@ -80,6 +82,12 @@ export const BottomPanel: FC<PropsType> = () => {
         handleCollapse={handleChatCollapseToggle}
         type={Apps.Chat}
         iconName="comment-dots"
+      />
+      <BottomTab
+        handleOpen={handleOpenSimon}
+        handleCollapse={handleSimonCollapseToggle}
+        type={Apps.Simon}
+        iconName="th-large"
       />
       {!loading &&
         (!/^User-[\w]{8}$/.test(username) ? (

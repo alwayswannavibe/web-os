@@ -18,6 +18,7 @@ import { Settings } from 'src/apps/Settings';
 import { Calculator } from 'src/apps/Calculator';
 import { ToDoList } from 'src/apps/ToDoList';
 import { Chat } from 'src/apps/Chat';
+import { Simon } from 'src/apps/Simon';
 
 // Types
 import { Themes } from 'src/types/themes';
@@ -78,6 +79,7 @@ const Main: FC<PropsType> = () => {
           <Calculator />
           <ToDoList />
           <Chat />
+          <Simon />
         </div>
       </div>
     </>

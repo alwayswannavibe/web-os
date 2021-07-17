@@ -11,12 +11,12 @@ import { login } from 'src/redux/slices/userSlice';
 import { Message } from 'src/types/message';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCtrDQtgNZrUiWMKYlFnmYB8TvpaKq2MWQ',
-  authDomain: 'web-os-5d6eb.firebaseapp.com',
-  projectId: 'web-os-5d6eb',
-  storageBucket: 'web-os-5d6eb.appspot.com',
-  messagingSenderId: '816527099816',
-  appId: '1:816527099816:web:1527e4bc304b4c6490ff9d',
+  apiKey: 'AIzaSyA42y_gIdsMEU3xrR_yLMQHzavK9xCEjfY',
+  authDomain: 'web-os-new.firebaseapp.com',
+  projectId: 'web-os-new',
+  storageBucket: 'web-os-new.appspot.com',
+  messagingSenderId: '434791000983',
+  appId: '1:434791000983:web:1d472f9409469be70b72d2',
 };
 
 firebase.initializeApp(firebaseConfig);

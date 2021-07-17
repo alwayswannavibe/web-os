@@ -20,7 +20,7 @@ import { Window } from 'src/components/Window';
 import { SimonEasy } from './components/SimonEasy';
 
 // Styles
-import styles from './saymon.module.css';
+import styles from './simon.module.css';
 
 type PropsType = {
   children?: never;

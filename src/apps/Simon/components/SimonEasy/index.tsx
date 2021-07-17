@@ -37,6 +37,7 @@ export const SimonEasy: FC<PropsType> = () => {
         dispatch(updateStatus({ status: SimonStatus.Playing }));
       }, 900 * pattern.length + 200);
     }
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, [dispatch, status]);
 
   const handleClick = (numberOfButton: number) => {

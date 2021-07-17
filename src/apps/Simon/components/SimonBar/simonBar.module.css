@@ -1,0 +1,19 @@
+.wrapper {
+  margin-top: 2rem;
+  text-align: center;
+  width: 24rem;
+}
+
+.startBtn {
+  padding: 1rem 4rem;
+  margin-top: 13rem;
+  cursor: pointer;
+}
+
+.startBtn:disabled {
+  cursor: default;
+}
+
+.level {
+  margin-top: 2rem;
+}

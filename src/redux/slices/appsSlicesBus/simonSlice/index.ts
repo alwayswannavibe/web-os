@@ -74,12 +74,8 @@ const simonSlice = createSlice({
         state.pattern = updatePattern(state.pattern, 9);
       }
       state.pattern.forEach((el, index) => {
-        setTimeout(() => {
-          // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-          payload.buttons[el].current!.classList!.add(payload.activeClass);
-        }, 200 * (index + 1) + 700 * index);
-        // eslint-disable-next-line @typescript-eslint/no-implied-eval
-        setTimeout(() => payload.buttons[el].current!.classList!.remove(payload.activeClass), 700 * (index + 1) + 200 * index);
+        setTimeout(() => payload.buttons[el]?.current?.classList!.add(payload.activeClass), 900 * index + 200);
+        setTimeout(() => payload.buttons[el]?.current?.classList!.remove(payload.activeClass), 900 * index + 700);
       });
     },
     simonClick(state, { payload }: { payload: { numberOfButton: number } }) {

@@ -12,7 +12,7 @@ import { SimonStatus } from 'src/types/simonStatus';
 import { SimonBar } from 'src/apps/Simon/components/SimonBar/index';
 
 // Styles
-import styles from './symonEasy.module.css';
+import styles from './simonEasy.module.css';
 
 type PropsType = {
   children?: never;
@@ -23,6 +23,8 @@ export const SimonEasy: FC<PropsType> = () => {
 
   const status = useSelector((store: RootState) => store.simon.simonStatus);
   const pattern = useSelector((store: RootState) => store.simon.pattern);
+  const level = useSelector((store: RootState) => store.simon.level);
+  const isSimonOpen = useSelector((store: RootState) => store.simon.isSimonOpen);
 
   const btn1 = useRef<HTMLButtonElement>(null);
   const btn2 = useRef<HTMLButtonElement>(null);
@@ -32,13 +34,15 @@ export const SimonEasy: FC<PropsType> = () => {
   useEffect(() => {
     const buttons = [btn1, btn2, btn3, btn4];
     if (status === SimonStatus.Showing) {
-      dispatch(startShowing({ buttons, activeClass: styles.btnActive }));
-      setTimeout(() => {
-        dispatch(updateStatus({ status: SimonStatus.Playing }));
-      }, 900 * pattern.length + 200);
+      if (pattern.length !== 3 + (level - 1)) {
+        dispatch(startShowing({ buttons, activeClass: styles.btnActive }));
+      } else {
+        setTimeout(() => {
+          dispatch(updateStatus({ status: SimonStatus.Playing }));
+        }, 900 * pattern.length + 400);
+      }
     }
-    /* eslint-disable-next-line react-hooks/exhaustive-deps */
-  }, [dispatch, status]);
+  }, [dispatch, isSimonOpen, level, pattern, status]);
 
   const handleClick = (numberOfButton: number) => {
     const buttons = [btn1, btn2, btn3, btn4];

@@ -11,7 +11,6 @@ type PropsType = {
 };
 
 export const TopDate: FC<PropsType> = () => {
-  // Init
   const locale = useSelector((state: RootState) => state.locale.locale);
   const [date, setDate] = useState(new Date());
 

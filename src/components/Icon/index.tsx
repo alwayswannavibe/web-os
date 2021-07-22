@@ -29,9 +29,9 @@ export const Icon: FC<PropsType> = ({ imgSource, handleClick, title, topCoord, l
 
   return (
     <div className={styles.container} style={{ top: topCoordLocal, left: leftCoordLocal }} ref={icon} data-cy={`icon-${title}`}>
-      <div onDoubleClick={handleClick} className={styles.imgContainer} onMouseDown={startDrag}>
+      <button type="button" onDoubleClick={handleClick} className={styles.imgContainer} onMouseDown={startDrag} aria-label={`${title} icon`}>
         <img src={imgSource} alt="" className={`${styles.img}`} />
-      </div>
+      </button>
       <span className={styles.title}>{title}</span>
     </div>
   );

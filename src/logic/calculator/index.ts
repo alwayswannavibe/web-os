@@ -61,8 +61,8 @@ const processAddAndSubtract = (numbers: number[], operators: string[]): [number[
     decimalLength = 0;
     if (numbersCopy[index - 1] % 1 || numbersCopy[index] % 1) {
       decimalLength = Math.max(
-        numbersCopy[index - 1].toString().split('.')[1].length,
-        numbersCopy[index].toString().split('.')[1].length,
+        numbersCopy[index - 1].toString().split('.')[1]?.length,
+        numbersCopy[index].toString().split('.')[1]?.length,
       );
     }
     if (operatorsCopy.indexOf('+') === index) {
@@ -104,7 +104,7 @@ const getCalcResult = (inputValue: string): string => {
   numbers = [...numbersAfterASProcess];
   operators = [...operatorsAfterASProcess];
 
-  return numbers[0].toString();
+  return typeof numbers[0] === 'number' && !Number.isNaN(numbers[0]) ? numbers[0].toString() : 'Error';
 };
 
 export { getCalcResult };

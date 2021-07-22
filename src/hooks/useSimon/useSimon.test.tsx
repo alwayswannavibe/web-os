@@ -3,28 +3,27 @@ import { act, renderHook } from '@testing-library/react-hooks';
 import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { Middleware, Dispatch, AnyAction } from 'redux';
+import { Middleware, Dispatch, AnyAction } from '@reduxjs/toolkit';
 
 // Types
 import { Apps } from 'src/types/apps';
 
 // Hooks
-import { useCalculator } from './useCalculator';
+import { useSimon } from '.';
 
-describe('use calculator hook', () => {
+describe('useSimon hook', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
   const mockStore = configureStore(middlewares);
 
-  describe('handleCalculatorCollapseToggle function', () => {
-    it('toggle coolapse if calculator not collapsed and not active', () => {
+  describe('handleSimonCollapseToggle function', () => {
+    it('should toggle coolapse if simon not collapsed and not active', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Terminal, Apps.Calculator],
+          apps: [Apps.Terminal, Apps.Simon],
         },
-        calculator: {
-          isCalculatorCollapsed: false,
-          isCalculatorOpen: true,
+        simon: {
+          isSimonCollapsed: false,
+          isSimonOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -32,27 +31,27 @@ describe('use calculator hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useCalculator(), { wrapper });
+      const { result } = renderHook(() => useSimon(), { wrapper });
 
       act(() => {
-        result.current.handleCalculatorCollapseToggle();
+        result.current.handleSimonCollapseToggle();
       });
 
       expect(mockDispatch).toBeCalledTimes(1);
       expect(mockDispatch).toBeCalledWith({
         payload: undefined,
-        type: 'calculator/toggleCollapseCalculator',
+        type: 'simon/toggleCollapseSimon',
       });
     });
 
-    it('toggle coolapse if calculator collapsed and not active', () => {
+    it('should toggle coolapse if simon collapsed and not active', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Terminal, Apps.Calculator],
+          apps: [Apps.Terminal, Apps.Simon],
         },
-        calculator: {
-          isCalculatorCollapsed: true,
-          isCalculatorOpen: true,
+        simon: {
+          isSimonCollapsed: true,
+          isSimonOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -60,31 +59,31 @@ describe('use calculator hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useCalculator(), { wrapper });
+      const { result } = renderHook(() => useSimon(), { wrapper });
 
       act(() => {
-        result.current.handleCalculatorCollapseToggle();
+        result.current.handleSimonCollapseToggle();
       });
 
       expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
-        payload: Apps.Calculator,
+        payload: Apps.Simon,
         type: 'apps/setWindowActive',
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
         payload: undefined,
-        type: 'calculator/toggleCollapseCalculator',
+        type: 'simon/toggleCollapseSimon',
       });
     });
 
-    it('toggle coolapse if calculator not collapsed and active', () => {
+    it('should toggle coolapse if simon not collapsed and active', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Calculator, Apps.Terminal],
+          apps: [Apps.Simon, Apps.Terminal],
         },
-        calculator: {
-          isCalculatorCollapsed: false,
-          isCalculatorOpen: true,
+        simon: {
+          isSimonCollapsed: false,
+          isSimonOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -92,10 +91,10 @@ describe('use calculator hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useCalculator(), { wrapper });
+      const { result } = renderHook(() => useSimon(), { wrapper });
 
       act(() => {
-        result.current.handleCalculatorCollapseToggle();
+        result.current.handleSimonCollapseToggle();
       });
 
       expect(mockDispatch).toBeCalledTimes(2);
@@ -105,20 +104,20 @@ describe('use calculator hook', () => {
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
         payload: undefined,
-        type: 'calculator/toggleCollapseCalculator',
+        type: 'simon/toggleCollapseSimon',
       });
     });
   });
 
-  describe('handleOpenCalculator function', () => {
-    it('toggle coolapse if calculator open and collapsed', () => {
+  describe('handleOpenSimon function', () => {
+    it('should toggle coolapse if simon open and collapsed', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Calculator],
+          apps: [Apps.Simon],
         },
-        calculator: {
-          isCalculatorCollapsed: true,
-          isCalculatorOpen: true,
+        simon: {
+          isSimonCollapsed: true,
+          isSimonOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -126,31 +125,31 @@ describe('use calculator hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useCalculator(), { wrapper });
+      const { result } = renderHook(() => useSimon(), { wrapper });
 
       act(() => {
-        result.current.handleOpenCalculator();
+        result.current.handleOpenSimon();
       });
 
       expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
         payload: undefined,
-        type: 'calculator/toggleCollapseCalculator',
+        type: 'simon/toggleCollapseSimon',
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
-        payload: Apps.Calculator,
+        payload: Apps.Simon,
         type: 'apps/setWindowActive',
       });
     });
 
-    it('does nothing if calculator open and not collapsed', () => {
+    it('should does nothing if simon open and not collapsed', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Calculator],
+          apps: [Apps.Simon],
         },
-        calculator: {
-          isCalculatorCollapsed: false,
-          isCalculatorOpen: true,
+        simon: {
+          isSimonCollapsed: false,
+          isSimonOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -158,23 +157,23 @@ describe('use calculator hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useCalculator(), { wrapper });
+      const { result } = renderHook(() => useSimon(), { wrapper });
 
       act(() => {
-        result.current.handleOpenCalculator();
+        result.current.handleOpenSimon();
       });
 
       expect(mockDispatch).toBeCalledTimes(0);
     });
 
-    it('open calculator if calculator closed', () => {
+    it('should open simon if it closed', () => {
       const initialState = {
         apps: {
           apps: [],
         },
-        calculator: {
-          isCalculatorCollapsed: false,
-          isCalculatorOpen: false,
+        simon: {
+          isSimonCollapsed: false,
+          isSimonOpen: false,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -182,33 +181,33 @@ describe('use calculator hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useCalculator(), { wrapper });
+      const { result } = renderHook(() => useSimon(), { wrapper });
 
       act(() => {
-        result.current.handleOpenCalculator();
+        result.current.handleOpenSimon();
       });
 
       expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
         payload: undefined,
-        type: 'calculator/openCalculator',
+        type: 'simon/openSimon',
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
-        payload: Apps.Calculator,
+        payload: Apps.Simon,
         type: 'apps/addWindow',
       });
     });
   });
 
-  describe('handleCloseCalculator function', () => {
-    it('close calculator and delete window if calculator open', () => {
+  describe('handleCloseSimon function', () => {
+    it('shoud close simon and delete window if it open', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Calculator],
+          apps: [Apps.Simon],
         },
-        calculator: {
-          isCalculatorCollapsed: true,
-          isCalculatorOpen: true,
+        simon: {
+          isSimonCollapsed: true,
+          isSimonOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -216,31 +215,31 @@ describe('use calculator hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useCalculator(), { wrapper });
+      const { result } = renderHook(() => useSimon(), { wrapper });
 
       act(() => {
-        result.current.handleCloseCalculator();
+        result.current.handleCloseSimon();
       });
 
       expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
         payload: undefined,
-        type: 'calculator/closeCalculator',
+        type: 'simon/closeSimon',
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
-        payload: Apps.Calculator,
+        payload: Apps.Simon,
         type: 'apps/deleteWindow',
       });
     });
 
-    it('does nothing if calculator closed', () => {
+    it('should does nothing if simon closed', () => {
       const initialState = {
         apps: {
           apps: [],
         },
-        calculator: {
-          isCalculatorCollapsed: true,
-          isCalculatorOpen: false,
+        simon: {
+          isSimonCollapsed: true,
+          isSimonOpen: false,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -248,10 +247,10 @@ describe('use calculator hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useCalculator(), { wrapper });
+      const { result } = renderHook(() => useSimon(), { wrapper });
 
       act(() => {
-        result.current.handleCloseCalculator();
+        result.current.handleCloseSimon();
       });
 
       expect(mockDispatch).toBeCalledTimes(0);

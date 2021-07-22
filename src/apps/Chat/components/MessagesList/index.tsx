@@ -1,8 +1,13 @@
-import { Message } from 'src/types/message';
+// React, redux
 import { motion } from 'framer-motion';
-import React, { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
+
+// Types
+import { Message } from 'src/types/message';
+
+// Styles
 import styles from './messagesList.module.css';
 
 type PropsType = {
@@ -12,11 +17,6 @@ type PropsType = {
 export const MessagesList: FC<PropsType> = () => {
   const messages = useSelector((state: RootState) => state.chat.messages);
   const username = useSelector((state: RootState) => state.user.username);
-
-  useEffect(() => {
-    const messagesList = document.getElementsByClassName(styles.otherMsg);
-    messagesList[messagesList.length - 1]?.scrollIntoView();
-  }, [messages]);
 
   return (
     <ul className={styles.messagesList}>

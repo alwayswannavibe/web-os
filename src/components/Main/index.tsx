@@ -19,6 +19,7 @@ import { Calculator } from 'src/apps/Calculator';
 import { ToDoList } from 'src/apps/ToDoList';
 import { Chat } from 'src/apps/Chat';
 import { Simon } from 'src/apps/Simon';
+import { MessageAlert } from 'src/components/MessageAlert';
 
 // Types
 import { Themes } from 'src/types/themes';
@@ -80,6 +81,7 @@ const Main: FC<PropsType> = () => {
           <ToDoList />
           <Chat />
           <Simon />
+          <MessageAlert />
         </div>
       </div>
     </>

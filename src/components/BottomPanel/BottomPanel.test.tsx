@@ -1,7 +1,6 @@
 // React, redux
 import { render } from '@testing-library/react';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { AnyAction, Dispatch, Middleware } from 'redux';
+import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 
@@ -36,6 +35,10 @@ describe('bottom panel component', () => {
       isChatOpen: false,
       isChatCollapsed: false,
     },
+    simon: {
+      isSimonOpen: false,
+      isCimonCollapsed: false,
+    },
     user: {
       username: 'User-asd13da3',
     },
@@ -51,7 +54,7 @@ describe('bottom panel component', () => {
 
   it('correct render icons', () => {
     const icons = document.getElementsByClassName(styles.container)[0].children;
-    expect(icons).toHaveLength(6);
+    expect(icons).toHaveLength(7);
   });
 });
 

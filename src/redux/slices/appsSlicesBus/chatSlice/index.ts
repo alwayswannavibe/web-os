@@ -16,6 +16,7 @@ const chatSlice = createSlice({
     chatIconLeftCoord: localStorage.getItem('chatIconLeftCoord') || '1rem',
     chatTopCoord: localStorage.getItem('chatTopCoord') || '7rem',
     chatLeftCoord: localStorage.getItem('chatLeftCoord') || '20rem',
+    numberOfRender: 0,
   },
   reducers: {
     openChat(state) {
@@ -45,6 +46,7 @@ const chatSlice = createSlice({
     },
     setMessages(state, { payload }: { payload: Message[] }) {
       state.messages = payload;
+      state.numberOfRender++;
     },
   },
 });

@@ -24,19 +24,20 @@ const BottomTab: FC<PropsType> = ({ handleOpen, handleCollapse, type, iconName }
   return (
     <div data-cy="bottom-tab">
       {!isIncludeApp(type) && (
-        <div className={`${styles.close} ${styles.tab}`} onClick={handleOpen}>
+        <button type="button" className={`${styles.close} ${styles.tab}`} onClick={handleOpen} aria-label={`${type} bottom icon`}>
           <i className={`fas fa-${iconName}`} />
-        </div>
+        </button>
       )}
       {isIncludeApp(type) && (
-        <div
+        <button
+          type="button"
           className={
             getAppIndex(type) === 0 ? `${styles.isActive} ${styles.tab} ${styles.open}` : `${styles.tab} ${styles.open}`
           }
           onClick={handleCollapse}
         >
           <i className={`fas fa-${iconName}`} />
-        </div>
+        </button>
       )}
     </div>
   );

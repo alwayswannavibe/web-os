@@ -64,24 +64,19 @@ export const Window: FC<PropsType> = ({
           }}
           data-cy={`window-${title}`}
         >
-          {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */}
           <div className={styles.windowTop} onMouseDown={startDrag} ref={windowTop}>
-            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
             <div onClick={handleSetActive} className={styles.title}>
               {title}
             </div>
             <div className={styles.buttonsContainer}>
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-              <div className={`${styles.collapseBtn} ${styles.btn}`} onClick={handleCollapse}>
+              <button type="button" className={`${styles.collapseBtn} ${styles.btn}`} onClick={handleCollapse}>
                 <i className="fas fa-window-minimize" />
-              </div>
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-              <div className={`${styles.closeBtn} ${styles.btn}`} onClick={handleClose}>
+              </button>
+              <button type="button" className={`${styles.closeBtn} ${styles.btn}`} onClick={handleClose}>
                 <i className="fas fa-times" />
-              </div>
+              </button>
             </div>
           </div>
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
           <div className={styles.windowBody} onClick={handleSetActive}>
             {children}
           </div>

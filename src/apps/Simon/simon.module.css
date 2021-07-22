@@ -1,6 +1,7 @@
 .difficulties {
   padding-top: 3rem;
   text-align: center;
+  user-select: none;
 }
 
 .difficultiesList {

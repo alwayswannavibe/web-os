@@ -15,14 +15,14 @@ describe('fullscreen button', () => {
     },
   });
 
-  it('correct render', () => {
+  it('should render', () => {
     render(<FullscreenButton />);
 
     const expandButton = document.getElementsByClassName('fa-expand');
     expect(expandButton).toHaveLength(1);
   });
 
-  it('click on button activates fullscreen', () => {
+  it('should activates fullscreen on click', () => {
     render(<FullscreenButton />);
 
     const fullscreenButton = document.getElementById('fullscreen-btn');
@@ -31,7 +31,7 @@ describe('fullscreen button', () => {
     expect(document.exitFullscreen).toHaveBeenCalledTimes(0);
   });
 
-  it('click twice on button leaves fullscreen', () => {
+  it('should leaves fullscreen on double click', () => {
     render(<FullscreenButton />);
 
     // @ts-ignore

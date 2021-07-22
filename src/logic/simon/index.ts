@@ -12,4 +12,12 @@ const updatePattern = (pattern: number[], max: number): number[] => {
   return newPattern;
 };
 
-export { generatePattern, updatePattern };
+const regeneratePattern = (len: number, max: number): number[] => {
+  const randomList: number[] = [];
+  for (let i = 0; i < len; ++i) {
+    randomList.push(Math.round(-0.5 + Math.random() * max));
+  }
+  return randomList;
+};
+
+export { generatePattern, updatePattern, regeneratePattern };

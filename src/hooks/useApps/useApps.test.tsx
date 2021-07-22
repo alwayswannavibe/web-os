@@ -10,7 +10,7 @@ import { AnyAction, Dispatch, Middleware } from 'redux';
 import { Apps } from 'src/types/apps';
 
 // Hooks
-import { useApps } from './useApps';
+import { useApps } from '.';
 
 describe('use apps hook', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];

@@ -10,21 +10,21 @@ import { Middleware, Dispatch, AnyAction } from 'redux';
 import { Apps } from 'src/types/apps';
 
 // Hooks
-import { useSettings } from './useSettings';
+import { useTerminal } from '.';
 
-describe('use settings hook', () => {
+describe('use terminal hook', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
   const mockStore = configureStore(middlewares);
 
-  describe('handleSettingsCollapseToggle function', () => {
-    it('toggle coolapse if settings not collapsed and not active', () => {
+  describe('handleTerminalCollapseToggle function', () => {
+    it('toggle coolapse if terminal not collapsed and not active', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Terminal, Apps.Settings],
+          apps: [Apps.Settings, Apps.Terminal],
         },
-        settings: {
-          isSettingsCollapsed: false,
-          isSettingsOpen: true,
+        terminal: {
+          isTerminalCollapsed: false,
+          isTerminalOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -32,59 +32,27 @@ describe('use settings hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useSettings(), { wrapper });
+      const { result } = renderHook(() => useTerminal(), { wrapper });
 
       act(() => {
-        result.current.handleSettingsCollapseToggle();
+        result.current.handleTerminalCollapseToggle();
       });
 
       expect(mockDispatch).toBeCalledTimes(1);
       expect(mockDispatch).toBeCalledWith({
         payload: undefined,
-        type: 'settings/toggleCollapseSettings',
+        type: 'terminal/toggleCollapseTerminal',
       });
     });
 
-    it('toggle coolapse if settings collapsed and not active', () => {
-      const initialState = {
-        apps: {
-          apps: [Apps.Terminal, Apps.Settings],
-        },
-        settings: {
-          isSettingsCollapsed: true,
-          isSettingsOpen: true,
-        },
-      };
-      const mockStoreWithState = mockStore(initialState);
-      const mockDispatch = jest.spyOn(mockStoreWithState, 'dispatch');
-      const wrapper = ({ children }: { children: ReactNode }) => (
-        <Provider store={mockStoreWithState}>{children}</Provider>
-      );
-      const { result } = renderHook(() => useSettings(), { wrapper });
-
-      act(() => {
-        result.current.handleSettingsCollapseToggle();
-      });
-
-      expect(mockDispatch).toBeCalledTimes(2);
-      expect(mockDispatch).toHaveBeenNthCalledWith(1, {
-        payload: Apps.Settings,
-        type: 'apps/setWindowActive',
-      });
-      expect(mockDispatch).toHaveBeenNthCalledWith(2, {
-        payload: undefined,
-        type: 'settings/toggleCollapseSettings',
-      });
-    });
-
-    it('toggle coolapse if settings not collapsed and active', () => {
+    it('toggle coolapse if terminal collapsed and not active', () => {
       const initialState = {
         apps: {
           apps: [Apps.Settings, Apps.Terminal],
         },
-        settings: {
-          isSettingsCollapsed: false,
-          isSettingsOpen: true,
+        terminal: {
+          isTerminalCollapsed: true,
+          isTerminalOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -92,10 +60,10 @@ describe('use settings hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useSettings(), { wrapper });
+      const { result } = renderHook(() => useTerminal(), { wrapper });
 
       act(() => {
-        result.current.handleSettingsCollapseToggle();
+        result.current.handleTerminalCollapseToggle();
       });
 
       expect(mockDispatch).toBeCalledTimes(2);
@@ -105,20 +73,18 @@ describe('use settings hook', () => {
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
         payload: undefined,
-        type: 'settings/toggleCollapseSettings',
+        type: 'terminal/toggleCollapseTerminal',
       });
     });
-  });
 
-  describe('handleOpenSettings function', () => {
-    it('toggle coolapse if settings open and collapsed', () => {
+    it('toggle coolapse if terminal not collapsed and active', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Settings],
+          apps: [Apps.Terminal, Apps.Settings],
         },
-        settings: {
-          isSettingsCollapsed: true,
-          isSettingsOpen: true,
+        terminal: {
+          isTerminalCollapsed: false,
+          isTerminalOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -126,31 +92,65 @@ describe('use settings hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useSettings(), { wrapper });
+      const { result } = renderHook(() => useTerminal(), { wrapper });
 
       act(() => {
-        result.current.handleOpenSettings();
+        result.current.handleTerminalCollapseToggle();
+      });
+
+      expect(mockDispatch).toBeCalledTimes(2);
+      expect(mockDispatch).toHaveBeenNthCalledWith(1, {
+        payload: Apps.Settings,
+        type: 'apps/setWindowActive',
+      });
+      expect(mockDispatch).toHaveBeenNthCalledWith(2, {
+        payload: undefined,
+        type: 'terminal/toggleCollapseTerminal',
+      });
+    });
+  });
+
+  describe('handleOpenTerminal function', () => {
+    it('toggle coolapse if terminal open and collapsed', () => {
+      const initialState = {
+        apps: {
+          apps: [Apps.Terminal],
+        },
+        terminal: {
+          isTerminalCollapsed: true,
+          isTerminalOpen: true,
+        },
+      };
+      const mockStoreWithState = mockStore(initialState);
+      const mockDispatch = jest.spyOn(mockStoreWithState, 'dispatch');
+      const wrapper = ({ children }: { children: ReactNode }) => (
+        <Provider store={mockStoreWithState}>{children}</Provider>
+      );
+      const { result } = renderHook(() => useTerminal(), { wrapper });
+
+      act(() => {
+        result.current.handleOpenTerminal();
       });
 
       expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
         payload: undefined,
-        type: 'settings/toggleCollapseSettings',
+        type: 'terminal/toggleCollapseTerminal',
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
-        payload: Apps.Settings,
+        payload: Apps.Terminal,
         type: 'apps/setWindowActive',
       });
     });
 
-    it('does nothing if settings open and not collapsed', () => {
+    it('does nothing if terminal open and not collapsed', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Settings],
+          apps: [Apps.Terminal],
         },
-        settings: {
-          isSettingsCollapsed: false,
-          isSettingsOpen: true,
+        terminal: {
+          isTerminalCollapsed: false,
+          isTerminalOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -158,23 +158,23 @@ describe('use settings hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useSettings(), { wrapper });
+      const { result } = renderHook(() => useTerminal(), { wrapper });
 
       act(() => {
-        result.current.handleOpenSettings();
+        result.current.handleOpenTerminal();
       });
 
       expect(mockDispatch).toBeCalledTimes(0);
     });
 
-    it('open settings if settings closed', () => {
+    it('open terminal if terminal closed', () => {
       const initialState = {
         apps: {
           apps: [],
         },
-        settings: {
-          isSettingsCollapsed: false,
-          isSettingsOpen: false,
+        terminal: {
+          isTerminalCollapsed: false,
+          isTerminalOpen: false,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -182,33 +182,33 @@ describe('use settings hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useSettings(), { wrapper });
+      const { result } = renderHook(() => useTerminal(), { wrapper });
 
       act(() => {
-        result.current.handleOpenSettings();
+        result.current.handleOpenTerminal();
       });
 
       expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
         payload: undefined,
-        type: 'settings/openSettings',
+        type: 'terminal/openTerminal',
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
-        payload: Apps.Settings,
+        payload: Apps.Terminal,
         type: 'apps/addWindow',
       });
     });
   });
 
-  describe('handleCloseSettings function', () => {
-    it('close settings and delete window if settings open', () => {
+  describe('handleCloseTerminal function', () => {
+    it('close terminal and delete window if terminal open', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Settings],
+          apps: [Apps.Terminal],
         },
-        settings: {
-          isSettingsCollapsed: true,
-          isSettingsOpen: true,
+        terminal: {
+          isTerminalCollapsed: true,
+          isTerminalOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -216,31 +216,35 @@ describe('use settings hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useSettings(), { wrapper });
+      const { result } = renderHook(() => useTerminal(), { wrapper });
 
       act(() => {
-        result.current.handleCloseSettings();
+        result.current.handleCloseTerminal();
       });
 
-      expect(mockDispatch).toBeCalledTimes(2);
+      expect(mockDispatch).toBeCalledTimes(3);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
         payload: undefined,
-        type: 'settings/closeSettings',
+        type: 'terminal/closeTerminal',
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
-        payload: Apps.Settings,
+        payload: Apps.Terminal,
         type: 'apps/deleteWindow',
+      });
+      expect(mockDispatch).toHaveBeenNthCalledWith(3, {
+        payload: undefined,
+        type: 'terminal/clearTerminalHistory',
       });
     });
 
-    it('does nothing if settings closed', () => {
+    it('does nothing if terminal closed', () => {
       const initialState = {
         apps: {
           apps: [],
         },
-        settings: {
-          isSettingsCollapsed: true,
-          isSettingsOpen: false,
+        terminal: {
+          isTerminalCollapsed: true,
+          isTerminalOpen: false,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -248,10 +252,10 @@ describe('use settings hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useSettings(), { wrapper });
+      const { result } = renderHook(() => useTerminal(), { wrapper });
 
       act(() => {
-        result.current.handleCloseSettings();
+        result.current.handleCloseTerminal();
       });
 
       expect(mockDispatch).toBeCalledTimes(0);

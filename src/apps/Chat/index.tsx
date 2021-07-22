@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
 import { changeChatCoord, changeChatIconCoord } from 'src/redux/slices/appsSlicesBus/chatSlice';
 import { firestore } from 'src/firebase-state/firebase';
-import firebase from 'firebase';
 
 // Hooks
 import { useChat } from 'src/hooks/useChat';
@@ -55,13 +54,12 @@ export const Chat: FC<PropsType> = () => {
       username,
       text,
       photoURL,
-      date: firebase.firestore.FieldValue.serverTimestamp(),
+      date: new Date(),
     });
     setText('');
   };
 
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
     <>
       <Icon
         title={Apps.Chat}

@@ -21,6 +21,9 @@ if (localStorage.getItem('isChatOpen') === 'true') {
 if (localStorage.getItem('isToDoOpen') === 'true') {
   apps.push(Apps.ToDo);
 }
+if (localStorage.getItem('isSimonOpen') === 'true') {
+  apps.push(Apps.Simon);
+}
 
 const appsSlice = createSlice({
   name: 'apps',

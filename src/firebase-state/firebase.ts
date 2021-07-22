@@ -52,7 +52,7 @@ firestore.collection('chat').onSnapshot(async () => {
           text: doc.data().text,
           photo: doc.data().photoURL,
           id: doc.id,
-          date: (doc.data().date?.toDate() || new Date()).toLocaleDateString(store.getState().locale.locale, {
+          date: (doc.data().date.toDate() || new Date()).toLocaleDateString(store.getState().locale.locale, {
             month: 'long',
             day: 'numeric',
             hour: 'numeric',

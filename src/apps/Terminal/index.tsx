@@ -29,7 +29,6 @@ type PropsType = {
 };
 
 export const Terminal: FC<PropsType> = () => {
-  // Selectors
   const isTerminalOpen = useSelector((state: RootState) => state.terminal.isTerminalOpen);
   const isTerminalCollapsed = useSelector((state: RootState) => state.terminal.isTerminalCollapsed);
   const terminalHistory = useSelector((state: RootState) => state.terminal.terminalHistory);
@@ -40,7 +39,6 @@ export const Terminal: FC<PropsType> = () => {
   const terminalLeftCoord = useSelector((state: RootState) => state.terminal.terminalLeftCoord);
   const apps = useSelector((state: RootState) => state.apps.apps);
 
-  // Init
   const dispatch = useDispatch();
   const [text, setText] = useState('');
   const [inputHistoryNumber, setInputHistoryNumber] = useState(inputHistory.length);
@@ -51,7 +49,6 @@ export const Terminal: FC<PropsType> = () => {
     inputEl.current?.scrollIntoView();
   }, [text]);
 
-  // Handlers
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
   };

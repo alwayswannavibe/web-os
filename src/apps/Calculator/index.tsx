@@ -38,7 +38,7 @@ const Calculator: FC<PropsType> = () => {
 
   return (
     <>
-      <div id="calculator-icon">
+      <div>
         <Icon
           title={Apps.Calculator}
           topCoord={calculatorIconTopCoord}
@@ -59,7 +59,7 @@ const Calculator: FC<PropsType> = () => {
         appType={Apps.Calculator}
         isOpen={isCalculatorOpen && !isCalculatorCollapsed}
       >
-        <div className={styles.container} id="calculator-content">
+        <div className={styles.container}>
           <CalculatorInput />
           <CalculatorButtons />
         </div>

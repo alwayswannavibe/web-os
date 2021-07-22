@@ -5,7 +5,7 @@ import { RootState } from 'src/redux/store';
 import { getCalculatorResult, setCalculatorInput } from 'src/redux/slices/appsSlicesBus/calculatorSlice';
 
 // Styles
-import styles from 'src/apps/Calculator/components/CalculatorInput/calculatorInput.module.css';
+import styles from './calculatorInput.module.css';
 
 type PropsType = {
   children?: never;
@@ -16,9 +16,9 @@ const CalculatorInput: FC<PropsType> = () => {
   const dispatch = useDispatch();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const regExp = new RegExp(/^[\d+\-*^/.]*$/);
-    const regExp2 = new RegExp(/^\S*$/);
-    if (regExp.test(event.target.value) && regExp2.test(event.target.value)) {
+    const numbersAndOperatorsRegExp = new RegExp(/^[\d+\-*^/.]*$/);
+    const notSpaceRegExp = new RegExp(/^\S*$/);
+    if (numbersAndOperatorsRegExp.test(event.target.value) && notSpaceRegExp.test(event.target.value)) {
       dispatch(setCalculatorInput(event.target.value));
     }
   };
@@ -30,7 +30,13 @@ const CalculatorInput: FC<PropsType> = () => {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <input type="text" className={styles.input} value={inputValue} onChange={handleChange} />
+      <input
+        type="text"
+        className={styles.input}
+        value={inputValue !== 'Error' && inputValue !== 'Infinity' ? inputValue : ''}
+        placeholder={inputValue === 'Error' || inputValue === 'Infinity' ? inputValue : ''}
+        onChange={handleChange}
+      />
     </form>
   );
 };

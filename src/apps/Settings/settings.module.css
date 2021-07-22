@@ -6,6 +6,7 @@
 
 .label {
   margin: 1rem 0 0 2rem;
+  user-select: none;
 }
 
 .select {

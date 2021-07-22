@@ -12,6 +12,7 @@
 .pre {
   display: flex;
   margin-top: 10px;
+  user-select: none;
 }
 
 .terminalText {

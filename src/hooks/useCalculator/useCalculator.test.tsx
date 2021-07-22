@@ -10,21 +10,21 @@ import { Middleware, Dispatch, AnyAction } from 'redux';
 import { Apps } from 'src/types/apps';
 
 // Hooks
-import { useTerminal } from './useTerminal';
+import { useCalculator } from '.';
 
-describe('use terminal hook', () => {
+describe('use calculator hook', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
   const mockStore = configureStore(middlewares);
 
-  describe('handleTerminalCollapseToggle function', () => {
-    it('toggle coolapse if terminal not collapsed and not active', () => {
+  describe('handleCalculatorCollapseToggle function', () => {
+    it('toggle coolapse if calculator not collapsed and not active', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Settings, Apps.Terminal],
+          apps: [Apps.Terminal, Apps.Calculator],
         },
-        terminal: {
-          isTerminalCollapsed: false,
-          isTerminalOpen: true,
+        calculator: {
+          isCalculatorCollapsed: false,
+          isCalculatorOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -32,27 +32,27 @@ describe('use terminal hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useTerminal(), { wrapper });
+      const { result } = renderHook(() => useCalculator(), { wrapper });
 
       act(() => {
-        result.current.handleTerminalCollapseToggle();
+        result.current.handleCalculatorCollapseToggle();
       });
 
       expect(mockDispatch).toBeCalledTimes(1);
       expect(mockDispatch).toBeCalledWith({
         payload: undefined,
-        type: 'terminal/toggleCollapseTerminal',
+        type: 'calculator/toggleCollapseCalculator',
       });
     });
 
-    it('toggle coolapse if terminal collapsed and not active', () => {
+    it('toggle coolapse if calculator collapsed and not active', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Settings, Apps.Terminal],
+          apps: [Apps.Terminal, Apps.Calculator],
         },
-        terminal: {
-          isTerminalCollapsed: true,
-          isTerminalOpen: true,
+        calculator: {
+          isCalculatorCollapsed: true,
+          isCalculatorOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -60,10 +60,42 @@ describe('use terminal hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useTerminal(), { wrapper });
+      const { result } = renderHook(() => useCalculator(), { wrapper });
 
       act(() => {
-        result.current.handleTerminalCollapseToggle();
+        result.current.handleCalculatorCollapseToggle();
+      });
+
+      expect(mockDispatch).toBeCalledTimes(2);
+      expect(mockDispatch).toHaveBeenNthCalledWith(1, {
+        payload: Apps.Calculator,
+        type: 'apps/setWindowActive',
+      });
+      expect(mockDispatch).toHaveBeenNthCalledWith(2, {
+        payload: undefined,
+        type: 'calculator/toggleCollapseCalculator',
+      });
+    });
+
+    it('toggle coolapse if calculator not collapsed and active', () => {
+      const initialState = {
+        apps: {
+          apps: [Apps.Calculator, Apps.Terminal],
+        },
+        calculator: {
+          isCalculatorCollapsed: false,
+          isCalculatorOpen: true,
+        },
+      };
+      const mockStoreWithState = mockStore(initialState);
+      const mockDispatch = jest.spyOn(mockStoreWithState, 'dispatch');
+      const wrapper = ({ children }: { children: ReactNode }) => (
+        <Provider store={mockStoreWithState}>{children}</Provider>
+      );
+      const { result } = renderHook(() => useCalculator(), { wrapper });
+
+      act(() => {
+        result.current.handleCalculatorCollapseToggle();
       });
 
       expect(mockDispatch).toBeCalledTimes(2);
@@ -73,52 +105,20 @@ describe('use terminal hook', () => {
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
         payload: undefined,
-        type: 'terminal/toggleCollapseTerminal',
-      });
-    });
-
-    it('toggle coolapse if terminal not collapsed and active', () => {
-      const initialState = {
-        apps: {
-          apps: [Apps.Terminal, Apps.Settings],
-        },
-        terminal: {
-          isTerminalCollapsed: false,
-          isTerminalOpen: true,
-        },
-      };
-      const mockStoreWithState = mockStore(initialState);
-      const mockDispatch = jest.spyOn(mockStoreWithState, 'dispatch');
-      const wrapper = ({ children }: { children: ReactNode }) => (
-        <Provider store={mockStoreWithState}>{children}</Provider>
-      );
-      const { result } = renderHook(() => useTerminal(), { wrapper });
-
-      act(() => {
-        result.current.handleTerminalCollapseToggle();
-      });
-
-      expect(mockDispatch).toBeCalledTimes(2);
-      expect(mockDispatch).toHaveBeenNthCalledWith(1, {
-        payload: Apps.Settings,
-        type: 'apps/setWindowActive',
-      });
-      expect(mockDispatch).toHaveBeenNthCalledWith(2, {
-        payload: undefined,
-        type: 'terminal/toggleCollapseTerminal',
+        type: 'calculator/toggleCollapseCalculator',
       });
     });
   });
 
-  describe('handleOpenTerminal function', () => {
-    it('toggle coolapse if terminal open and collapsed', () => {
+  describe('handleOpenCalculator function', () => {
+    it('toggle coolapse if calculator open and collapsed', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Terminal],
+          apps: [Apps.Calculator],
         },
-        terminal: {
-          isTerminalCollapsed: true,
-          isTerminalOpen: true,
+        calculator: {
+          isCalculatorCollapsed: true,
+          isCalculatorOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -126,31 +126,31 @@ describe('use terminal hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useTerminal(), { wrapper });
+      const { result } = renderHook(() => useCalculator(), { wrapper });
 
       act(() => {
-        result.current.handleOpenTerminal();
+        result.current.handleOpenCalculator();
       });
 
       expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
         payload: undefined,
-        type: 'terminal/toggleCollapseTerminal',
+        type: 'calculator/toggleCollapseCalculator',
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
-        payload: Apps.Terminal,
+        payload: Apps.Calculator,
         type: 'apps/setWindowActive',
       });
     });
 
-    it('does nothing if terminal open and not collapsed', () => {
+    it('does nothing if calculator open and not collapsed', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Terminal],
+          apps: [Apps.Calculator],
         },
-        terminal: {
-          isTerminalCollapsed: false,
-          isTerminalOpen: true,
+        calculator: {
+          isCalculatorCollapsed: false,
+          isCalculatorOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -158,23 +158,23 @@ describe('use terminal hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useTerminal(), { wrapper });
+      const { result } = renderHook(() => useCalculator(), { wrapper });
 
       act(() => {
-        result.current.handleOpenTerminal();
+        result.current.handleOpenCalculator();
       });
 
       expect(mockDispatch).toBeCalledTimes(0);
     });
 
-    it('open terminal if terminal closed', () => {
+    it('open calculator if calculator closed', () => {
       const initialState = {
         apps: {
           apps: [],
         },
-        terminal: {
-          isTerminalCollapsed: false,
-          isTerminalOpen: false,
+        calculator: {
+          isCalculatorCollapsed: false,
+          isCalculatorOpen: false,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -182,33 +182,33 @@ describe('use terminal hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useTerminal(), { wrapper });
+      const { result } = renderHook(() => useCalculator(), { wrapper });
 
       act(() => {
-        result.current.handleOpenTerminal();
+        result.current.handleOpenCalculator();
       });
 
       expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
         payload: undefined,
-        type: 'terminal/openTerminal',
+        type: 'calculator/openCalculator',
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
-        payload: Apps.Terminal,
+        payload: Apps.Calculator,
         type: 'apps/addWindow',
       });
     });
   });
 
-  describe('handleCloseTerminal function', () => {
-    it('close terminal and delete window if terminal open', () => {
+  describe('handleCloseCalculator function', () => {
+    it('close calculator and delete window if calculator open', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Terminal],
+          apps: [Apps.Calculator],
         },
-        terminal: {
-          isTerminalCollapsed: true,
-          isTerminalOpen: true,
+        calculator: {
+          isCalculatorCollapsed: true,
+          isCalculatorOpen: true,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -216,35 +216,31 @@ describe('use terminal hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useTerminal(), { wrapper });
+      const { result } = renderHook(() => useCalculator(), { wrapper });
 
       act(() => {
-        result.current.handleCloseTerminal();
+        result.current.handleCloseCalculator();
       });
 
-      expect(mockDispatch).toBeCalledTimes(3);
+      expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
         payload: undefined,
-        type: 'terminal/closeTerminal',
+        type: 'calculator/closeCalculator',
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
-        payload: Apps.Terminal,
+        payload: Apps.Calculator,
         type: 'apps/deleteWindow',
-      });
-      expect(mockDispatch).toHaveBeenNthCalledWith(3, {
-        payload: undefined,
-        type: 'terminal/clearTerminalHistory',
       });
     });
 
-    it('does nothing if terminal closed', () => {
+    it('does nothing if calculator closed', () => {
       const initialState = {
         apps: {
           apps: [],
         },
-        terminal: {
-          isTerminalCollapsed: true,
-          isTerminalOpen: false,
+        calculator: {
+          isCalculatorCollapsed: true,
+          isCalculatorOpen: false,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -252,10 +248,10 @@ describe('use terminal hook', () => {
       const wrapper = ({ children }: { children: ReactNode }) => (
         <Provider store={mockStoreWithState}>{children}</Provider>
       );
-      const { result } = renderHook(() => useTerminal(), { wrapper });
+      const { result } = renderHook(() => useCalculator(), { wrapper });
 
       act(() => {
-        result.current.handleCloseTerminal();
+        result.current.handleCloseCalculator();
       });
 
       expect(mockDispatch).toBeCalledTimes(0);

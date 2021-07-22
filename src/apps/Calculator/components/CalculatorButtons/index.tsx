@@ -1,12 +1,5 @@
 // React, redux
 import React, { FC, ReactNode } from 'react';
-import { useDispatch } from 'react-redux';
-import {
-  addToCalculatorInput,
-  clearCalculatorInput,
-  deleteLastCalculatorInput,
-  getCalculatorResult,
-} from 'src/redux/slices/appsSlicesBus/calculatorSlice';
 
 // Components
 import { CalculatorButton } from 'src/apps/Calculator/components/CalculatorButton';
@@ -22,47 +15,33 @@ const CalculatorButtons: FC<PropsType> = () => {
   const numberButtons = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
   const operationButtons = ['+', '-', '*', '/', '^', '.', 'C'];
 
-  const dispatch = useDispatch();
-
-  const handleClick = (value: string) => {
-    if (value === 'Enter') {
-      dispatch(getCalculatorResult());
-    } else if (value === '←') {
-      dispatch(deleteLastCalculatorInput());
-    } else if (value === 'C') {
-      dispatch(clearCalculatorInput());
-    } else {
-      dispatch(addToCalculatorInput(value));
-    }
-  };
-
   return (
     <div className={styles.buttons}>
       <div className={styles.numberButtons}>
         {numberButtons.map(
           (value): ReactNode => (
             <div className={styles.numberButton} key={value}>
-              <CalculatorButton value={value} handleClick={handleClick} />
+              <CalculatorButton value={value} />
             </div>
           ),
         )}
         <div className={styles.zeroButton}>
-          <CalculatorButton value="0" handleClick={handleClick} />
+          <CalculatorButton value="0" />
         </div>
       </div>
       <div className={styles.operationButtons}>
         {operationButtons.map(
           (value): ReactNode => (
             <div className={styles.operationButton} key={value}>
-              <CalculatorButton value={value} handleClick={handleClick} />
+              <CalculatorButton value={value} />
             </div>
           ),
         )}
         <div className={styles.clearOneButton}>
-          <CalculatorButton value="←" handleClick={handleClick} />
+          <CalculatorButton value="←" />
         </div>
         <div className={styles.enterButton}>
-          <CalculatorButton value="Enter" handleClick={handleClick} />
+          <CalculatorButton value="Enter" />
         </div>
       </div>
     </div>

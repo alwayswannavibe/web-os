@@ -32,14 +32,14 @@ const calculatorSlice = createSlice({
     changeCalculatorCoord(state, { payload }: { payload: CoordsType }) {
       state.calculatorTopCoord = payload.top;
       state.calculatorLeftCoord = payload.left;
-      localStorage.setItem('terminalTopCoord', payload.top);
-      localStorage.setItem('terminalLeftCoord', payload.left);
+      localStorage.setItem('calculatorTopCoord', payload.top);
+      localStorage.setItem('calculatorLeftCoord', payload.left);
     },
     changeCalculatorIconCoord(state, { payload }: { payload: CoordsType }) {
       state.calculatorIconTopCoord = payload.top;
       state.calculatorIconLeftCoord = payload.left;
-      localStorage.setItem('terminalIconTopCoord', payload.top);
-      localStorage.setItem('terminalIconLeftCoord', payload.left);
+      localStorage.setItem('calculatorIconTopCoord', payload.top);
+      localStorage.setItem('calculatorIconLeftCoord', payload.left);
     },
     getCalculatorResult(state) {
       state.inputValue = getCalcResult(state.inputValue);

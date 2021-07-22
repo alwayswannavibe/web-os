@@ -31,6 +31,9 @@
   align-items: center;
   transition: background-color 0.25s linear;
   cursor: pointer;
+  background-color: transparent;
+  color: inherit;
+  border: none;
 }
 
 .title {

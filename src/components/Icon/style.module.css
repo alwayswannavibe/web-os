@@ -30,4 +30,7 @@
 .imgContainer {
   position: relative;
   width: 2rem;
+  border: none;
+  border-radius: 0.3rem;
+  background: transparent;
 }

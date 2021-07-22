@@ -15,6 +15,6 @@ describe('top bar component', () => {
     );
 
     const topBar = document.getElementById('top-bar');
-    expect(topBar).not.toBeNull();
+    expect(topBar).toBeInTheDocument();
   });
 });

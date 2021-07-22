@@ -1,19 +1,41 @@
 // React, Redux
 import { FC } from 'react';
+import { useDispatch } from 'react-redux';
+import {
+  addToCalculatorInput,
+  clearCalculatorInput,
+  deleteLastCalculatorInput,
+  getCalculatorResult,
+} from 'src/redux/slices/appsSlicesBus/calculatorSlice';
 
 // Styles
-import styles from 'src/apps/Calculator/components/CalculatorButton/calculatorButton.module.css';
+import styles from './calculatorButton.module.css';
 
 type PropsType = {
   children?: never;
   value: string;
-  handleClick: (value: string) => void;
 };
 
-const CalculatorButton: FC<PropsType> = ({ value, handleClick }: PropsType) => (
-  <button type="button" className={styles.button} onClick={() => handleClick(value)}>
-    {value}
-  </button>
-);
+const CalculatorButton: FC<PropsType> = ({ value }: PropsType) => {
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    if (value === 'Enter') {
+      dispatch(getCalculatorResult());
+    } else if (value === '←') {
+      dispatch(deleteLastCalculatorInput());
+    } else if (value === 'C') {
+      dispatch(clearCalculatorInput());
+    } else {
+      dispatch(addToCalculatorInput(value));
+    }
+  };
+
+  return (
+    <button type="button" className={styles.button} onClick={handleClick}>
+      {value}
+    </button>
+  );
+};
 
 export { CalculatorButton };

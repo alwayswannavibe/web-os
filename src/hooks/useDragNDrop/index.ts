@@ -35,8 +35,8 @@ const useDragNDrop = (changeCoord: any, element: RefObject<HTMLDivElement>, topC
         left = rightLimit;
       }
 
-      setTopCoordLocal(`${top}px`);
-      setLeftCoordLocal(`${left}px`);
+      setTopCoordLocal(`${top / (window.innerHeight * 0.02)}rem`);
+      setLeftCoordLocal(`${left / (window.innerHeight * 0.02)}rem`);
     },
     [element, shiftLeft, shiftTop],
   );

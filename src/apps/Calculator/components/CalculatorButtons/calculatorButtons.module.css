@@ -17,21 +17,13 @@
   flex-wrap: wrap;
 }
 
-.numberButton {
-  width: 7rem;
-  height: 4rem;
-}
-
+.numberButton,
 .operationButton {
   width: 7rem;
   height: 4rem;
 }
 
-.enterButton {
-  height: 5rem;
-  width: 21rem;
-}
-
+.enterButton,
 .zeroButton {
   height: 5rem;
   width: 21rem;

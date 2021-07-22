@@ -23,6 +23,9 @@ const store = configureStore({
     chat: chatSlice,
     simon: simonSlice,
   },
+  middleware: ((getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false,
+  })),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

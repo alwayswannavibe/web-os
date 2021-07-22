@@ -22,8 +22,8 @@ describe('bottom tab component', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
   const mockStore = configureStore(middlewares);
 
-  describe('renders right components', () => {
-    it('renders close icon for closed app', () => {
+  describe('should renders components', () => {
+    it('should renders close icon for closed app', () => {
       const initialState = {
         apps: {
           apps: [],
@@ -41,7 +41,7 @@ describe('bottom tab component', () => {
       expect(openedIcon).toHaveLength(0);
     });
 
-    it('renders open icon for opened app', () => {
+    it('should renders open icon for opened app', () => {
       const initialState = {
         apps: {
           apps: [Apps.Terminal],
@@ -60,8 +60,8 @@ describe('bottom tab component', () => {
     });
   });
 
-  describe('calls correct functions on click', () => {
-    it('calls handleOpen on click on open icon', () => {
+  describe('should calls functions on click', () => {
+    it('should calls handleOpen on click on open icon', () => {
       const initialState = {
         apps: {
           apps: [],
@@ -78,7 +78,7 @@ describe('bottom tab component', () => {
       expect(handleOpen).toHaveBeenCalledTimes(1);
     });
 
-    it('calls handleCollapse on click on close icon', () => {
+    it('should calls handleCollapse on click on close icon', () => {
       const initialState = {
         apps: {
           apps: [Apps.Terminal],
@@ -96,8 +96,8 @@ describe('bottom tab component', () => {
     });
   });
 
-  describe('have correct visual', () => {
-    it('renders correct icon', () => {
+  describe('should have correct visual', () => {
+    it('should renders icon', () => {
       const initialState = {
         apps: {
           apps: [],
@@ -115,7 +115,7 @@ describe('bottom tab component', () => {
       expect(icons).toHaveLength(1);
     });
 
-    it('rednders active icon if window active', () => {
+    it('should rednders active icon if window active', () => {
       const initialState = {
         apps: {
           apps: [Apps.Terminal],
@@ -133,7 +133,7 @@ describe('bottom tab component', () => {
       expect(openIcon).toHaveLength(1);
     });
 
-    it('rednders not active icon if window not active', () => {
+    it('should rednders not active icon if window not active', () => {
       const initialState = {
         apps: {
           apps: [Apps.ToDo, Apps.Terminal],

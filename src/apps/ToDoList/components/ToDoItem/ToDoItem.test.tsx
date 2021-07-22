@@ -34,7 +34,7 @@ describe('to do item component', () => {
   const text2 = 'a2 text';
 
   describe('correct render', () => {
-    it('correct render uncompleted item', () => {
+    it('should render uncompleted item', () => {
       render(
         <Provider store={mockStoreWithState}>
           <ToDoItem text={text2} id={id2} />
@@ -45,7 +45,7 @@ describe('to do item component', () => {
       expect(completedItem).toHaveLength(0);
     });
 
-    it('correct render completed item', () => {
+    it('should render completed item', () => {
       render(
         <Provider store={mockStoreWithState}>
           <ToDoItem text={text} id={id} />
@@ -56,7 +56,7 @@ describe('to do item component', () => {
       expect(completedItem).toHaveLength(1);
     });
 
-    it('correct render text', () => {
+    it('should render text', () => {
       render(
         <Provider store={mockStoreWithState}>
           <ToDoItem text={text} id={id} />
@@ -67,7 +67,7 @@ describe('to do item component', () => {
       expect(textParagraph.textContent).toBe(text);
     });
 
-    it('correct render icons', () => {
+    it('should render icons', () => {
       render(
         <Provider store={mockStoreWithState}>
           <ToDoItem text={text} id={id} />
@@ -81,8 +81,8 @@ describe('to do item component', () => {
     });
   });
 
-  describe('dispatch correct actions on clicks', () => {
-    it('dispatch correct action on click complete button', () => {
+  describe('should dispatch correct actions on clicks', () => {
+    it('should dispatch correct action on click complete button', () => {
       render(
         <Provider store={mockStoreWithState}>
           <ToDoItem text={text} id={id} />
@@ -98,7 +98,7 @@ describe('to do item component', () => {
       });
     });
 
-    it('dispatch correct action on click delete button', () => {
+    it('should dispatch correct action on click delete button', () => {
       render(
         <Provider store={mockStoreWithState}>
           <ToDoItem text={text} id={id} />

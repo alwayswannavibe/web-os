@@ -3,27 +3,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Apps } from 'src/types/apps';
 
-const apps: Apps[] = [];
-
-// Initialize apps
-if (localStorage.getItem('isTerminalOpen') === 'true') {
-  apps.push(Apps.Terminal);
-}
-if (localStorage.getItem('isSettingsOpen') === 'true') {
-  apps.push(Apps.Settings);
-}
-if (localStorage.getItem('isCalculatorOpen') === 'true') {
-  apps.push(Apps.Calculator);
-}
-if (localStorage.getItem('isChatOpen') === 'true') {
-  apps.push(Apps.Chat);
-}
-if (localStorage.getItem('isToDoOpen') === 'true') {
-  apps.push(Apps.ToDo);
-}
-if (localStorage.getItem('isSimonOpen') === 'true') {
-  apps.push(Apps.Simon);
-}
+const apps: Apps[] = JSON.parse(localStorage.getItem('apps') || '[]');
 
 const appsSlice = createSlice({
   name: 'apps',
@@ -36,12 +16,15 @@ const appsSlice = createSlice({
       const firstPart: Apps[] = state.apps.slice(0, index);
       const secondPart: Apps[] = state.apps.slice(index + 1);
       state.apps = [payload, ...firstPart, ...secondPart];
+      localStorage.setItem('apps', JSON.stringify(state.apps));
     },
     addWindow(state, { payload }: { payload: Apps }) {
       state.apps.unshift(payload);
+      localStorage.setItem('apps', JSON.stringify(state.apps));
     },
     deleteWindow(state, { payload }: { payload: Apps }) {
       state.apps.splice(state.apps.indexOf(payload), 1);
+      localStorage.setItem('apps', JSON.stringify(state.apps));
     },
   },
 });

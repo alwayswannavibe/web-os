@@ -23,75 +23,75 @@ const initialState: {
 } = {
   apps: {
     [Apps.Calculator]: {
-      isOpened: false,
-      isCollapsed: false,
+      isOpened: JSON.parse(localStorage.getItem(`${[Apps.Calculator]}IsOpened`) || 'false'),
+      isCollapsed: JSON.parse(localStorage.getItem(`${[Apps.Calculator]}IsCollapsed`) || 'false'),
       iconPos: {
-        top: '28rem',
-        left: '1rem',
+        top: localStorage.getItem(`${[Apps.Calculator]}IconTopCoord`) || '28rem',
+        left: localStorage.getItem(`${[Apps.Calculator]}IconLeftCoord`) || '1rem',
       },
       windowPos: {
-        top: '15rem',
-        left: '8rem',
+        top: localStorage.getItem(`${[Apps.Calculator]}TopCoord`) || '15rem',
+        left: localStorage.getItem(`${[Apps.Calculator]}TopCoord`) || '8rem',
       },
     },
     [Apps.Settings]: {
-      isOpened: false,
-      isCollapsed: false,
+      isOpened: JSON.parse(localStorage.getItem(`${[Apps.Settings]}IsOpened`) || 'false'),
+      isCollapsed: JSON.parse(localStorage.getItem(`${[Apps.Settings]}IsCollapsed`) || 'false'),
       iconPos: {
-        top: '23rem',
-        left: '1rem',
+        top: localStorage.getItem(`${[Apps.Settings]}IconTopCoord`) || '23rem',
+        left: localStorage.getItem(`${[Apps.Settings]}IconLeftCoord`) || '1rem',
       },
       windowPos: {
-        top: '15rem',
-        left: '8rem',
+        top: localStorage.getItem(`${[Apps.Settings]}TopCoord`) || '15rem',
+        left: localStorage.getItem(`${[Apps.Settings]}LeftCoord`) || '8rem',
       },
     },
     [Apps.Chat]: {
-      isOpened: false,
-      isCollapsed: false,
+      isOpened: JSON.parse(localStorage.getItem(`${[Apps.Chat]}IsOpened`) || 'false'),
+      isCollapsed: JSON.parse(localStorage.getItem(`${[Apps.Chat]}IsCollapsed`) || 'false'),
       iconPos: {
-        top: '18rem',
-        left: '1rem',
+        top: localStorage.getItem(`${[Apps.Chat]}IconTopCoord`) || '18rem',
+        left: localStorage.getItem(`${[Apps.Chat]}IconLeftCoord`) || '1rem',
       },
       windowPos: {
-        top: '15rem',
-        left: '8rem',
+        top: localStorage.getItem(`${[Apps.Chat]}TopCoord`) || '15rem',
+        left: localStorage.getItem(`${[Apps.Chat]}LeftCoord`) || '8rem',
       },
     },
     [Apps.Simon]: {
-      isOpened: false,
-      isCollapsed: false,
+      isOpened: JSON.parse(localStorage.getItem(`${[Apps.Simon]}IsOpened`) || 'false'),
+      isCollapsed: JSON.parse(localStorage.getItem(`${[Apps.Simon]}IsCollapsed`) || 'false'),
       iconPos: {
-        top: '13rem',
-        left: '1rem',
+        top: localStorage.getItem(`${[Apps.Simon]}IconTopCoord`) || '13rem',
+        left: localStorage.getItem(`${[Apps.Simon]}IconLeftCoord`) || '1rem',
       },
       windowPos: {
-        top: '15rem',
-        left: '8rem',
+        top: localStorage.getItem(`${[Apps.Simon]}TopCoord`) || '15rem',
+        left: localStorage.getItem(`${[Apps.Simon]}LeftCoord`) || '8rem',
       },
     },
     [Apps.Terminal]: {
-      isOpened: false,
-      isCollapsed: false,
+      isOpened: JSON.parse(localStorage.getItem(`${[Apps.Terminal]}IsOpened`) || 'false'),
+      isCollapsed: JSON.parse(localStorage.getItem(`${[Apps.Terminal]}IsCollapsed`) || 'false'),
       iconPos: {
-        top: '8rem',
-        left: '1rem',
+        top: localStorage.getItem(`${[Apps.Terminal]}IconTopCoord`) || '8rem',
+        left: localStorage.getItem(`${[Apps.Terminal]}IconLeftCoord`) || '1rem',
       },
       windowPos: {
-        top: '15rem',
-        left: '8rem',
+        top: localStorage.getItem(`${[Apps.Terminal]}TopCoord`) || '15rem',
+        left: localStorage.getItem(`${[Apps.Terminal]}LeftCoord`) || '8rem',
       },
     },
     [Apps.ToDo]: {
-      isOpened: false,
-      isCollapsed: false,
+      isOpened: JSON.parse(localStorage.getItem(`${[Apps.ToDo]}IsOpened`) || 'false'),
+      isCollapsed: JSON.parse(localStorage.getItem(`${[Apps.ToDo]}IsCollapsed`) || 'false'),
       iconPos: {
-        top: '3rem',
-        left: '1rem',
+        top: localStorage.getItem(`${[Apps.ToDo]}IconTopCoord`) || '3rem',
+        left: localStorage.getItem(`${[Apps.ToDo]}IconLeftCoord`) || '1rem',
       },
       windowPos: {
-        top: '15rem',
-        left: '8rem',
+        top: localStorage.getItem(`${[Apps.ToDo]}TopCoord`) || '15rem',
+        left: localStorage.getItem(`${[Apps.ToDo]}LeftCoord`) || '8rem',
       },
     },
   },
@@ -104,21 +104,30 @@ const appsStateSlice = createSlice({
     openApp(state, { payload }: { payload: { type: Apps } }) {
       state.apps[payload.type].isOpened = true;
       state.apps[payload.type].isCollapsed = false;
+      localStorage.setItem(`${[payload.type]}IsOpened`, 'true');
+      localStorage.setItem(`${[payload.type]}IsCollapsed`, 'false');
     },
     toggleCollapseApp(state, { payload }: { payload: { type: Apps } }) {
       state.apps[payload.type].isCollapsed = !state.apps[payload.type].isCollapsed;
+      localStorage.setItem(`${[payload.type]}IsCollapsed`, state.apps[payload.type].isCollapsed.toString());
     },
     closeApp(state, { payload }: { payload: { type: Apps } }) {
       state.apps[payload.type].isOpened = false;
       state.apps[payload.type].isCollapsed = false;
+      localStorage.setItem(`${[payload.type]}IsOpened`, 'false');
+      localStorage.setItem(`${[payload.type]}IsCollapsed`, 'false');
     },
     changeIconPos(state, { payload }: { payload: { type: Apps, coords: CoordsType } }) {
       state.apps[payload.type].iconPos.top = payload.coords.top;
       state.apps[payload.type].iconPos.left = payload.coords.left;
+      localStorage.setItem(`${[payload.type]}IconTopCoord`, payload.coords.top);
+      localStorage.setItem(`${[payload.type]}IconLeftCoord`, payload.coords.left);
     },
     changeWindowPos(state, { payload }: { payload: { type: Apps, coords: CoordsType } }) {
       state.apps[payload.type].windowPos.top = payload.coords.top;
       state.apps[payload.type].windowPos.left = payload.coords.left;
+      localStorage.setItem(`${[payload.type]}TopCoord`, payload.coords.top);
+      localStorage.setItem(`${[payload.type]}LeftCoord`, payload.coords.left);
     },
   },
 });

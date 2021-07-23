@@ -42,9 +42,6 @@ describe('main component', () => {
       theme: {
         theme: Themes.Planet,
       },
-      chat: {
-        isChatOpen: false,
-      },
     };
     const mockStoreWithState = mockStore(initialState);
 
@@ -69,41 +66,6 @@ describe('main component', () => {
     expect(chat).toBeInTheDocument();
     expect(simon).toBeInTheDocument();
     expect(messageAlert).toBeInTheDocument();
-  });
-
-  it("shouldn't render MessageAlert if chat open", () => {
-    const mockStore = configureStore(middlewares);
-    const initialState = {
-      theme: {
-        theme: Themes.Planet,
-      },
-      chat: {
-        isChatOpen: true,
-      },
-    };
-    const mockStoreWithState = mockStore(initialState);
-
-    render(
-      <Provider store={mockStoreWithState}>
-        <Main />
-      </Provider>,
-    );
-
-    const terminal = screen.queryByTestId('Terminal');
-    const calculator = screen.queryByTestId('Calculator');
-    const toDo = screen.queryByTestId('ToDoList');
-    const settings = screen.queryByTestId('Settings');
-    const chat = screen.queryByTestId('Chat');
-    const simon = screen.queryByTestId('Simon');
-    const messageAlert = screen.queryByTestId('MessageAlert');
-
-    expect(terminal).toBeInTheDocument();
-    expect(calculator).toBeInTheDocument();
-    expect(toDo).toBeInTheDocument();
-    expect(settings).toBeInTheDocument();
-    expect(chat).toBeInTheDocument();
-    expect(simon).toBeInTheDocument();
-    expect(messageAlert).not.toBeInTheDocument();
   });
 
   describe('should render themes', () => {

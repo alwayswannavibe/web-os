@@ -4,6 +4,9 @@ import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 
+// Types
+import { Apps } from 'src/types/apps';
+
 // Components
 import { BottomPanel } from '.';
 
@@ -15,29 +18,33 @@ describe('bottom panel component', () => {
     apps: {
       apps: [],
     },
-    terminal: {
-      isTerminalOpen: false,
-      isTerminalCollapsed: false,
-    },
-    settings: {
-      isSettingsOpen: false,
-      isSettingsCollapsed: false,
-    },
-    calculator: {
-      isCalculatorOpen: false,
-      isCalculatorCollapsed: false,
-    },
-    toDo: {
-      isToDoOpen: false,
-      isToDoCollapsed: false,
-    },
-    chat: {
-      isChatOpen: false,
-      isChatCollapsed: false,
-    },
-    simon: {
-      isSimonOpen: false,
-      isCimonCollapsed: false,
+    appsState: {
+      apps: {
+        [Apps.Terminal]: {
+          isOpen: false,
+          isCollapsed: false,
+        },
+        [Apps.Simon]: {
+          isOpen: false,
+          isCollapsed: false,
+        },
+        [Apps.Settings]: {
+          isOpen: false,
+          isCollapsed: false,
+        },
+        [Apps.Chat]: {
+          isOpen: false,
+          isCollapsed: false,
+        },
+        [Apps.ToDo]: {
+          isOpen: false,
+          isCollapsed: false,
+        },
+        [Apps.Calculator]: {
+          isOpen: false,
+          isCollapsed: false,
+        },
+      },
     },
     user: {
       username: 'User-asd13da3',

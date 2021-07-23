@@ -1,7 +1,6 @@
 // React, redux
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import userEvent from '@testing-library/user-event';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { AnyAction, Dispatch, Middleware } from 'redux';
 import configureStore from 'redux-mock-store';
@@ -16,8 +15,6 @@ import { BottomTab } from '.';
 import styles from './style.module.css';
 
 describe('bottom tab component', () => {
-  const handleOpen = jest.fn();
-  const handleCollapse = jest.fn();
   const iconName = 'terminal';
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
   const mockStore = configureStore(middlewares);
@@ -28,11 +25,19 @@ describe('bottom tab component', () => {
         apps: {
           apps: [],
         },
+        appsState: {
+          apps: {
+            [Apps.Terminal]: {
+              isCollapsed: false,
+              isOpened: false,
+            },
+          },
+        },
       };
       const mockStoreWithState = mockStore(initialState);
       render(
         <Provider store={mockStoreWithState}>
-          <BottomTab handleOpen={handleOpen} handleCollapse={handleCollapse} type={Apps.Terminal} iconName={iconName} />
+          <BottomTab type={Apps.Terminal} iconName={iconName} />
         </Provider>,
       );
       const closedIcon = document.getElementsByClassName(styles.close);
@@ -46,11 +51,19 @@ describe('bottom tab component', () => {
         apps: {
           apps: [Apps.Terminal],
         },
+        appsState: {
+          apps: {
+            [Apps.Terminal]: {
+              isCollapsed: false,
+              isOpened: true,
+            },
+          },
+        },
       };
       const mockStoreWithState = mockStore(initialState);
       render(
         <Provider store={mockStoreWithState}>
-          <BottomTab handleOpen={handleOpen} handleCollapse={handleCollapse} type={Apps.Terminal} iconName={iconName} />
+          <BottomTab type={Apps.Terminal} iconName={iconName} />
         </Provider>,
       );
       const closedIcon = document.getElementsByClassName(styles.close);
@@ -60,53 +73,25 @@ describe('bottom tab component', () => {
     });
   });
 
-  describe('should calls functions on click', () => {
-    it('should calls handleOpen on click on open icon', () => {
-      const initialState = {
-        apps: {
-          apps: [],
-        },
-      };
-      const mockStoreWithState = mockStore(initialState);
-      render(
-        <Provider store={mockStoreWithState}>
-          <BottomTab handleOpen={handleOpen} handleCollapse={handleCollapse} type={Apps.Terminal} iconName={iconName} />
-        </Provider>,
-      );
-      const openIcon = document.getElementsByClassName(styles.close);
-      userEvent.click(openIcon[0]);
-      expect(handleOpen).toHaveBeenCalledTimes(1);
-    });
-
-    it('should calls handleCollapse on click on close icon', () => {
-      const initialState = {
-        apps: {
-          apps: [Apps.Terminal],
-        },
-      };
-      const mockStoreWithState = mockStore(initialState);
-      render(
-        <Provider store={mockStoreWithState}>
-          <BottomTab handleOpen={handleOpen} handleCollapse={handleCollapse} type={Apps.Terminal} iconName={iconName} />
-        </Provider>,
-      );
-      const openedIcon = document.getElementsByClassName(styles.open);
-      userEvent.click(openedIcon[0]);
-      expect(handleCollapse).toHaveBeenCalledTimes(1);
-    });
-  });
-
   describe('should have correct visual', () => {
     it('should renders icon', () => {
       const initialState = {
         apps: {
           apps: [],
         },
+        appsState: {
+          apps: {
+            [Apps.Terminal]: {
+              isCollapsed: false,
+              isOpened: false,
+            },
+          },
+        },
       };
       const mockStoreWithState = mockStore(initialState);
       render(
         <Provider store={mockStoreWithState}>
-          <BottomTab handleOpen={handleOpen} handleCollapse={handleCollapse} type={Apps.Terminal} iconName={iconName} />
+          <BottomTab type={Apps.Terminal} iconName={iconName} />
         </Provider>,
       );
       const icon = document.getElementsByClassName(`fa-${iconName}`);
@@ -120,11 +105,19 @@ describe('bottom tab component', () => {
         apps: {
           apps: [Apps.Terminal],
         },
+        appsState: {
+          apps: {
+            [Apps.Terminal]: {
+              isCollapsed: false,
+              isOpened: true,
+            },
+          },
+        },
       };
       const mockStoreWithState = mockStore(initialState);
       render(
         <Provider store={mockStoreWithState}>
-          <BottomTab handleOpen={handleOpen} handleCollapse={handleCollapse} type={Apps.Terminal} iconName={iconName} />
+          <BottomTab type={Apps.Terminal} iconName={iconName} />
         </Provider>,
       );
       const activeIcon = document.getElementsByClassName(styles.isActive);
@@ -138,11 +131,19 @@ describe('bottom tab component', () => {
         apps: {
           apps: [Apps.ToDo, Apps.Terminal],
         },
+        appsState: {
+          apps: {
+            [Apps.Terminal]: {
+              isCollapsed: false,
+              isOpened: true,
+            },
+          },
+        },
       };
       const mockStoreWithState = mockStore(initialState);
       render(
         <Provider store={mockStoreWithState}>
-          <BottomTab handleOpen={handleOpen} handleCollapse={handleCollapse} type={Apps.Terminal} iconName={iconName} />
+          <BottomTab type={Apps.Terminal} iconName={iconName} />
         </Provider>,
       );
       const activeIcon = document.getElementsByClassName(styles.isActive);

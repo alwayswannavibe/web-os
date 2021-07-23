@@ -2,74 +2,9 @@ import { Difficulties } from 'src/types/difficulties';
 import { SimonStatus } from 'src/types/simonStatus';
 import store from 'src/redux/store';
 import * as simonLogic from 'src/logic/simon';
-import {
-  changeDifficulty,
-  changeSimonCoord,
-  changeSimonIconCoord,
-  closeSimon,
-  openSimon,
-  restartGame,
-  startShowing,
-  toggleCollapseSimon,
-  updateStatus,
-} from '.';
+import { changeDifficulty, restartGame, startShowing, updateStatus } from '.';
 
 describe('simon slice', () => {
-  it('opens then calls openSimon', () => {
-    store.dispatch(openSimon());
-    expect(store.getState().simon.isSimonOpen).toEqual(true);
-    store.dispatch(closeSimon());
-  });
-
-  it('closes then calls closeSimon', () => {
-    store.dispatch(openSimon());
-    store.dispatch(closeSimon());
-    expect(store.getState().simon.isSimonOpen).toEqual(false);
-  });
-
-  it('toggles collapse then calls toggleCollapseSimon', () => {
-    store.dispatch(openSimon());
-    store.dispatch(toggleCollapseSimon());
-    expect(store.getState().simon.isSimonCollapsed).toEqual(true);
-    store.dispatch(toggleCollapseSimon());
-    expect(store.getState().simon.isSimonCollapsed).toEqual(false);
-    store.dispatch(closeSimon());
-  });
-
-  it('changes coordinates then calls changeSimonCoord', () => {
-    store.dispatch(
-      changeSimonCoord({
-        top: '23px',
-        left: '250px',
-      }),
-    );
-    expect(store.getState().simon.simonLeftCoord).toEqual('250px');
-    expect(store.getState().simon.simonTopCoord).toEqual('23px');
-    store.dispatch(
-      changeSimonCoord({
-        top: '13rem',
-        left: '1.5rem',
-      }),
-    );
-  });
-
-  it('changes icon coordinates then calls changeSimonIconCoord', () => {
-    store.dispatch(
-      changeSimonIconCoord({
-        top: '210px',
-        left: '750px',
-      }),
-    );
-    expect(store.getState().simon.simonIconLeftCoord).toEqual('750px');
-    expect(store.getState().simon.simonIconTopCoord).toEqual('210px');
-    store.dispatch(
-      changeSimonIconCoord({
-        top: '15rem',
-        left: '8rem',
-      }),
-    );
-  });
-
   it('should change difficulty then calls changeDifficulty', () => {
     store.dispatch(changeDifficulty({ difficulty: Difficulties.Normal }));
 

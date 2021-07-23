@@ -2,6 +2,7 @@
 import store from 'src/redux/store';
 import { setLocale } from 'src/redux/slices/localeSlice';
 import { addTerminalHistory } from 'src/redux/slices/appsSlicesBus/terminalSlice';
+import i18n from 'src/i18n/i18next';
 
 // Types
 import { Locales } from 'src/types/locales';
@@ -11,29 +12,29 @@ const terminalProcessChangeLocale = (input: string) => {
 
   switch (input.split(' ')[0]) {
     case 'ru': {
-      dispatch(addTerminalHistory('> Locale was change'));
+      dispatch(addTerminalHistory(`> ${i18n.t('terminal.localeChange')}`));
       dispatch(setLocale(Locales.Russian));
       break;
     }
-    case 'br': {
-      dispatch(addTerminalHistory('> Locale was change'));
+    case 'en': {
+      dispatch(addTerminalHistory(`> ${i18n.t('terminal.localeChange')}`));
       dispatch(setLocale(Locales.Britain));
       break;
     }
     case 'help':
     case '-h': {
-      dispatch(addTerminalHistory('> This command changes locale'));
-      dispatch(addTerminalHistory('> Available locales: ru, br'));
+      dispatch(addTerminalHistory(`> ${i18n.t('terminal.changeLocaleHelpInfo')}`));
+      dispatch(addTerminalHistory(`> ${i18n.t('terminal.availableLocales')}: ru, en`));
       break;
     }
     case '': {
-      dispatch(addTerminalHistory('> Unknown syntax, please try again'));
-      dispatch(addTerminalHistory('> Syntax: change "category to change" "new value"'));
+      dispatch(addTerminalHistory(`> ${i18n.t('terminal.wrongCommand')}`));
+      dispatch(addTerminalHistory(`> ${i18n.t('terminal.changeExample')}`));
       break;
     }
     default: {
-      dispatch(addTerminalHistory('> Unknown locale'));
-      dispatch(addTerminalHistory('> Available locales: ru, br'));
+      dispatch(addTerminalHistory(`> ${i18n.t('terminal.unknownLocale')}`));
+      dispatch(addTerminalHistory(`> ${i18n.t('terminal.availableLocales')}: ru, en`));
     }
   }
 };

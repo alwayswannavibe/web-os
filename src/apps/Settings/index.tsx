@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeSettingsCoord, changeSettingsIconCoord } from 'src/redux/slices/appsSlicesBus/settingsSlice';
 import { setTheme } from 'src/redux/slices/themeSlice';
 import { setLocale } from 'src/redux/slices/localeSlice';
+import { useTranslation } from 'react-i18next';
+import 'src/i18n/i18next';
 
 // Hooks
 import { useSettings } from 'src/hooks/useSettings';
@@ -41,6 +43,7 @@ export const Settings: FC<PropsType> = () => {
   const locale = useSelector((state: RootState) => state.locale.locale);
   const apps = useSelector((state: RootState) => state.apps.apps);
   const { handleSettingsCollapseToggle, handleOpenSettings, handleCloseSettings } = useSettings();
+  const { t } = useTranslation();
 
   const handleChangeTheme = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const seletedTheme: Themes = event.target.selectedOptions[0].value as Themes;
@@ -80,7 +83,7 @@ export const Settings: FC<PropsType> = () => {
         <form className={styles.form}>
           <div>
             <label htmlFor="themeSelect" className={styles.label}>
-              Theme:
+              {t('settings.theme')}
               <select id="themeSelect" className={styles.select} onChange={handleChangeTheme} defaultValue={theme}>
                 <option value={Themes.Planet}>{Themes.Planet}</option>
                 <option value={Themes.Dynamic}>{Themes.Dynamic}</option>
@@ -94,10 +97,10 @@ export const Settings: FC<PropsType> = () => {
           </div>
           <div>
             <label htmlFor="localeSelect" className={styles.label}>
-              Locale:
+              {t('settings.locale')}
               <select id="localeSelect" className={styles.select} onChange={handleLocaleTheme} defaultValue={locale}>
-                <option value={Locales.Britain}>{Locales.Britain}</option>
-                <option value={Locales.Russian}>{Locales.Russian}</option>
+                <option value={Locales.Britain}>{t('settings.locales.english')}</option>
+                <option value={Locales.Russian}>{t('settings.locales.russian')}</option>
               </select>
             </label>
           </div>
@@ -110,7 +113,7 @@ export const Settings: FC<PropsType> = () => {
                 window.location.reload();
               }}
             >
-              Reset
+              {t('settings.reset')}
             </button>
           </div>
         </form>

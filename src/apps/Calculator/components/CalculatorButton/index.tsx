@@ -7,6 +7,8 @@ import {
   deleteLastCalculatorInput,
   getCalculatorResult,
 } from 'src/redux/slices/appsSlicesBus/calculatorSlice';
+import { useTranslation } from 'react-i18next';
+import 'src/i18n/i18next';
 
 // Styles
 import styles from './calculatorButton.module.css';
@@ -18,6 +20,7 @@ type PropsType = {
 
 const CalculatorButton: FC<PropsType> = ({ value }: PropsType) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const handleClick = () => {
     if (value === 'Enter') {
@@ -33,7 +36,7 @@ const CalculatorButton: FC<PropsType> = ({ value }: PropsType) => {
 
   return (
     <button type="button" className={styles.button} onClick={handleClick}>
-      {value}
+      {value === 'Enter' ? t('calculator.enter') : value}
     </button>
   );
 };

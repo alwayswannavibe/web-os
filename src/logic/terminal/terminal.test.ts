@@ -12,7 +12,7 @@ describe('main terminal module', () => {
     jest.clearAllMocks();
   });
 
-  it('dispatch unknown command if input empty', () => {
+  it('should dispatch unknown command if input empty', () => {
     processTerminalInput('');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
@@ -20,12 +20,12 @@ describe('main terminal module', () => {
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Type "help" to view commands',
+      payload: '> Type "help" to view available commands',
       type: 'terminal/addTerminalHistory',
     });
   });
 
-  it('dispatch unknown command if input uncorrect', () => {
+  it('should dispatch unknown command if input uncorrect', () => {
     processTerminalInput('dasdas');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
@@ -33,12 +33,12 @@ describe('main terminal module', () => {
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Type "help" to view commands',
+      payload: '> Type "help" to view available commands',
       type: 'terminal/addTerminalHistory',
     });
   });
 
-  it('clear terminal history when input = clear', () => {
+  it('should clear terminal history when input = clear', () => {
     processTerminalInput('clear');
     expect(store.dispatch).toBeCalledTimes(1);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
@@ -47,7 +47,7 @@ describe('main terminal module', () => {
     });
   });
 
-  it('dispatch help string when input = help', () => {
+  it('should dispatch help string when input = help', () => {
     processTerminalInput('help');
     expect(store.dispatch).toBeCalledTimes(1);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
@@ -56,21 +56,21 @@ describe('main terminal module', () => {
     });
   });
 
-  it('calls terminalProcessOpenCommand when input = open', () => {
+  it('should calls terminalProcessOpenCommand when input = open', () => {
     processTerminalInput('open');
     expect(store.dispatch).toBeCalledTimes(0);
     expect(terminalProcessOpenCommandMock).toBeCalledTimes(1);
     expect(terminalProcessOpenCommandMock).toHaveBeenNthCalledWith(1, '');
   });
 
-  it('calls terminalProcessOpenCommand with correct args when input = open calculator', () => {
+  it('should calls terminalProcessOpenCommand with correct args when input = open calculator', () => {
     processTerminalInput('open calculator');
     expect(store.dispatch).toBeCalledTimes(0);
     expect(terminalProcessOpenCommandMock).toBeCalledTimes(1);
     expect(terminalProcessOpenCommandMock).toHaveBeenNthCalledWith(1, 'calculator');
   });
 
-  it('calls terminalProcessChangeCommand when input = change', () => {
+  it('should calls terminalProcessChangeCommand when input = change', () => {
     processTerminalInput('change');
     expect(store.dispatch).toBeCalledTimes(0);
     expect(terminalProcessChangeCommandMock).toBeCalledTimes(1);

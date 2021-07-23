@@ -1,5 +1,6 @@
 import { addTerminalHistory, clearTerminalHistory } from 'src/redux/slices/appsSlicesBus/terminalSlice';
 import store from 'src/redux/store';
+import i18n from 'src/i18n/i18next';
 import { terminalProcessOpenCommand } from './open';
 import { terminalProcessChangeCommand } from './change';
 
@@ -16,7 +17,7 @@ const processTerminalInput = (input: string) => {
       break;
     }
     case 'help': {
-      dispatch(addTerminalHistory('> Available commands: open, clear, change'));
+      dispatch(addTerminalHistory(`> ${i18n.t('terminal.availableCommands')}: open, clear, change`));
       break;
     }
     case 'change': {
@@ -24,8 +25,8 @@ const processTerminalInput = (input: string) => {
       break;
     }
     default: {
-      dispatch(addTerminalHistory('> Unknown command'));
-      dispatch(addTerminalHistory('> Type "help" to view commands'));
+      dispatch(addTerminalHistory(`> ${i18n.t('terminal.unknownCommand')}`));
+      dispatch(addTerminalHistory(`> ${i18n.t('terminal.typeHelp')}`));
     }
   }
 };

@@ -16,7 +16,7 @@ describe('change locale terminal module', () => {
     terminalProcessChangeLocale('ru');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Locale was change',
+      payload: '> Locale is change',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -26,10 +26,10 @@ describe('change locale terminal module', () => {
   });
 
   it('dispatch change locale then input = br', () => {
-    terminalProcessChangeLocale('br');
+    terminalProcessChangeLocale('en');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Locale was change',
+      payload: '> Locale is change',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -46,7 +46,7 @@ describe('change locale terminal module', () => {
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available locales: ru, br',
+      payload: '> Available locales: ru, en',
       type: 'terminal/addTerminalHistory',
     });
   });
@@ -59,7 +59,7 @@ describe('change locale terminal module', () => {
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available locales: ru, br',
+      payload: '> Available locales: ru, en',
       type: 'terminal/addTerminalHistory',
     });
   });
@@ -68,7 +68,7 @@ describe('change locale terminal module', () => {
     terminalProcessChangeLocale('');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Unknown syntax, please try again',
+      payload: '> Wrong command, please try again',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -85,7 +85,7 @@ describe('change locale terminal module', () => {
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available locales: ru, br',
+      payload: '> Available locales: ru, en',
       type: 'terminal/addTerminalHistory',
     });
   });

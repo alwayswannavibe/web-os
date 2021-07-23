@@ -3,6 +3,8 @@ import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
 import { changeDifficulty, changeSimonCoord, changeSimonIconCoord } from 'src/redux/slices/appsSlicesBus/simonSlice';
+import { useTranslation } from 'react-i18next';
+import 'src/i18n/i18next';
 
 // Assets
 import imgSource from 'src/assets/images/icons/saymon.svg';
@@ -39,6 +41,7 @@ export const Simon: FC<PropsType> = () => {
   const apps = useSelector((state: RootState) => state.apps.apps);
   const difficulty = useSelector((state: RootState) => state.simon.difficulty);
   const { handleSimonCollapseToggle, handleOpenSimon, handleCloseSimon } = useSimon();
+  const { t } = useTranslation();
 
   const chooseDifficulty = (choosedDifficulty: Difficulties) => {
     dispatch(changeDifficulty({ difficulty: choosedDifficulty }));
@@ -67,19 +70,22 @@ export const Simon: FC<PropsType> = () => {
       >
         {difficulty === Difficulties.None && (
           <div className={styles.difficulties}>
-            <h2>Choose difficulty:</h2>
+            <h2>
+              {t('simon.chooseDifficulty')}
+              :
+            </h2>
             <ul className={styles.difficultiesList}>
               <li>
-                <button onClick={() => chooseDifficulty(Difficulties.Easy)} type="button">{Difficulties.Easy}</button>
+                <button onClick={() => chooseDifficulty(Difficulties.Easy)} type="button">{t(`simon.difficulties.${Difficulties.Easy}`)}</button>
               </li>
               <li>
-                <button onClick={() => chooseDifficulty(Difficulties.Normal)} type="button">{Difficulties.Normal}</button>
+                <button onClick={() => chooseDifficulty(Difficulties.Normal)} type="button">{t(`simon.difficulties.${Difficulties.Normal}`)}</button>
               </li>
               <li>
-                <button onClick={() => chooseDifficulty(Difficulties.Hard)} type="button">{Difficulties.Hard}</button>
+                <button onClick={() => chooseDifficulty(Difficulties.Hard)} type="button">{t(`simon.difficulties.${Difficulties.Hard}`)}</button>
               </li>
               <li>
-                <button onClick={() => chooseDifficulty(Difficulties.Extreme)} type="button">{Difficulties.Extreme}</button>
+                <button onClick={() => chooseDifficulty(Difficulties.Extreme)} type="button">{t(`simon.difficulties.${Difficulties.Extreme}`)}</button>
               </li>
             </ul>
           </div>

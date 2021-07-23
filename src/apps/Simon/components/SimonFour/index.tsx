@@ -45,7 +45,9 @@ export const SimonFour: FC<PropsType> = () => {
         const buttons = [btn1, btn2, btn3, btn4];
         const sounds = [sound1, sound2, sound3, sound4];
         pattern.forEach((el, index) => {
-          setTimeout(() => new Audio(sounds[el]).play(), 900 * index + 900);
+          setTimeout(() => {
+            new Audio(sounds[el]).play();
+          }, 900 * index + 900);
           setTimeout(() => buttons[el]?.current?.classList!.add(styles.btnActive), 900 * index + 900);
           setTimeout(() => buttons[el]?.current?.classList!.remove(styles.btnActive), 900 * index + 1400);
         });
@@ -68,11 +70,38 @@ export const SimonFour: FC<PropsType> = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.buttons}>
-        {/* eslint-disable jsx-a11y/control-has-associated-label */}
-        <button type="button" className={styles.btnRed} disabled={status !== SimonStatus.Playing} ref={btn1} onClick={() => handleClick(0)} />
-        <button type="button" className={styles.btnGreen} disabled={status !== SimonStatus.Playing} ref={btn2} onClick={() => handleClick(1)} />
-        <button type="button" className={styles.btnBlue} disabled={status !== SimonStatus.Playing} ref={btn3} onClick={() => handleClick(2)} />
-        <button type="button" className={styles.btnYellow} disabled={status !== SimonStatus.Playing} ref={btn4} onClick={() => handleClick(3)} />
+        <button
+          type="button"
+          className={styles.btnRed}
+          disabled={status !== SimonStatus.Playing}
+          ref={btn1}
+          onClick={() => handleClick(0)}
+          aria-label="simon-button-red"
+        />
+        <button
+          type="button"
+          className={styles.btnGreen}
+          disabled={status !== SimonStatus.Playing}
+          ref={btn2}
+          onClick={() => handleClick(1)}
+          aria-label="simon-button-green"
+        />
+        <button
+          type="button"
+          className={styles.btnBlue}
+          disabled={status !== SimonStatus.Playing}
+          ref={btn3}
+          onClick={() => handleClick(2)}
+          aria-label="simon-button-blue"
+        />
+        <button
+          type="button"
+          className={styles.btnYellow}
+          disabled={status !== SimonStatus.Playing}
+          ref={btn4}
+          onClick={() => handleClick(3)}
+          aria-label="simon-button-yellow"
+        />
       </div>
       <SimonBar difficulty={difficulty} />
     </div>

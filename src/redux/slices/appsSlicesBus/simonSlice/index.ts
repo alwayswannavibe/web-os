@@ -88,7 +88,9 @@ const simonSlice = createSlice({
       } else {
         state.move++;
         if (state.move === state.pattern.length + 1) {
-          new Audio(simonSuccessSound).play();
+          const audio = new Audio(simonSuccessSound);
+          audio.volume = 0.4;
+          audio.play();
           state.move = 1;
           state.level++;
           state.simonStatus = SimonStatus.Showing;

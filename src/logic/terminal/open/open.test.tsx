@@ -8,11 +8,11 @@ describe('open terminal module', () => {
     jest.clearAllMocks();
   });
 
-  it('dispatch open settings when input = settings', () => {
+  it('should dispatch open settings when input = settings', () => {
     terminalProcessOpenCommand('settings');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Settings opened',
+      payload: '> Settings are open',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -21,11 +21,11 @@ describe('open terminal module', () => {
     });
   });
 
-  it('dispatch open settings when input = calculator', () => {
+  it('should dispatch open settings when input = calculator', () => {
     terminalProcessOpenCommand('calculator');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Calculator opened',
+      payload: '> Calculator is open',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -34,11 +34,11 @@ describe('open terminal module', () => {
     });
   });
 
-  it('dispatch open settings when input = todo', () => {
+  it('should dispatch open settings when input = todo', () => {
     terminalProcessOpenCommand('todo');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> To do opened',
+      payload: '> To do is open',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -47,7 +47,7 @@ describe('open terminal module', () => {
     });
   });
 
-  it('dispatch help string when input = help', () => {
+  it('should dispatch help string when input = help', () => {
     terminalProcessOpenCommand('help');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
@@ -55,12 +55,12 @@ describe('open terminal module', () => {
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available apps: calculator, todo, settings',
+      payload: '> Available apps: calculator, todo, settings, chat, simon',
       type: 'terminal/addTerminalHistory',
     });
   });
 
-  it('dispatch help string when input = -h', () => {
+  it('should dispatch help string when input = -h', () => {
     terminalProcessOpenCommand('-h');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
@@ -68,16 +68,16 @@ describe('open terminal module', () => {
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available apps: calculator, todo, settings',
+      payload: '> Available apps: calculator, todo, settings, chat, simon',
       type: 'terminal/addTerminalHistory',
     });
   });
 
-  it('dispatch syntax help when input empty', () => {
+  it('should dispatch syntax help when input empty', () => {
     terminalProcessOpenCommand('');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Unknown syntax, please try again (open "name of app")',
+      payload: '> Wrong command, please try again',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -86,7 +86,7 @@ describe('open terminal module', () => {
     });
   });
 
-  it('dispatch unknown string when input uncorrect', () => {
+  it('should dispatch unknown string when input uncorrect', () => {
     terminalProcessOpenCommand('dsadasda');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
@@ -94,7 +94,7 @@ describe('open terminal module', () => {
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available apps: calculator, todo, settings',
+      payload: '> Available apps: calculator, todo, settings, chat, simon',
       type: 'terminal/addTerminalHistory',
     });
   });

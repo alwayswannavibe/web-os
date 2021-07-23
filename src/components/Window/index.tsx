@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { setWindowActive } from 'src/redux/slices/appsSlice';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import 'src/i18n/i18next';
 
 // Types
 import { CoordsType } from 'src/types/coord';
@@ -45,6 +47,7 @@ export const Window: FC<PropsType> = ({
   const { startDrag, topCoordLocal, leftCoordLocal } = useDragNDrop(changeCoord, windowTop, topCoord, leftCoord);
 
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const handleSetActive = () => {
     dispatch(setWindowActive(appType));
@@ -66,7 +69,7 @@ export const Window: FC<PropsType> = ({
         >
           <div className={styles.windowTop} onMouseDown={startDrag} ref={windowTop}>
             <div onClick={handleSetActive} className={styles.title}>
-              {title}
+              {t(`apps.${title}`)}
             </div>
             <div className={styles.buttonsContainer}>
               <button type="button" className={`${styles.collapseBtn} ${styles.btn}`} onClick={handleCollapse}>

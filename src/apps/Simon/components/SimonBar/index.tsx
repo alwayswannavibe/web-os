@@ -3,6 +3,8 @@ import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
 import { updateStatus, restartGame } from 'src/redux/slices/appsSlicesBus/simonSlice';
+import { useTranslation } from 'react-i18next';
+import 'src/i18n/i18next';
 
 // Types
 import { Difficulties } from 'src/types/difficulties';
@@ -18,6 +20,7 @@ type PropsType = {
 
 export const SimonBar: FC<PropsType> = ({ difficulty }: PropsType) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const status = useSelector((store: RootState) => store.simon.simonStatus);
   const level = useSelector((store: RootState) => store.simon.level);
@@ -33,18 +36,20 @@ export const SimonBar: FC<PropsType> = ({ difficulty }: PropsType) => {
   return (
     <div className={styles.wrapper}>
       <p>
-        Difficulty:
-        {difficulty}
+        {t('simon.difficulty')}
+        {': '}
+        {t(`simon.difficulties.${difficulty}`)}
       </p>
       <p className={styles.level}>
-        Level:
+        {t('simon.level')}
+        {': '}
         {level}
       </p>
       {status === SimonStatus.Waiting && (
-        <button type="button" className={styles.startBtn} onClick={startGame}>Start</button>
+        <button type="button" className={styles.startBtn} onClick={startGame}>{t('simon.start')}</button>
       )}
       {status === SimonStatus.Losed && (
-        <button type="button" className={styles.startBtn} onClick={handleRestartGame}>Restart</button>
+        <button type="button" className={styles.startBtn} onClick={handleRestartGame}>{t('simon.restart')}</button>
       )}
     </div>
   );

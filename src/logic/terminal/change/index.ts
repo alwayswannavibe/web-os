@@ -1,4 +1,5 @@
 // React, redux
+import i18n from 'src/i18n/i18next';
 import { addTerminalHistory } from 'src/redux/slices/appsSlicesBus/terminalSlice';
 import store from 'src/redux/store';
 import { terminalProcessChangeLocale } from './locale';
@@ -20,18 +21,18 @@ const terminalProcessChangeCommand = (input: string) => {
     }
     case 'help':
     case '-h': {
-      dispatch(addTerminalHistory('> This command changes value of category'));
-      dispatch(addTerminalHistory('> Available categories: locale (alias -l), theme (alias -t)'));
+      dispatch(addTerminalHistory(`> ${i18n.t('terminal.changeHelpInfo')}`));
+      dispatch(addTerminalHistory(`> ${i18n.t('terminal.availableCategories')}: locale (-l), theme (-t)`));
       break;
     }
     case '': {
-      dispatch(addTerminalHistory('> Unknown syntax, please try again (change "category to change" "new value")'));
-      dispatch(addTerminalHistory('> Syntax: change "category to change" "new value"'));
+      dispatch(addTerminalHistory(`> ${i18n.t('terminal.wrongCommand')}`));
+      dispatch(addTerminalHistory(`> ${i18n.t('terminal.changeExample')}`));
       break;
     }
     default: {
-      dispatch(addTerminalHistory('> Unknown category'));
-      dispatch(addTerminalHistory('> Available categories: locale (alias -l), theme (alias -t)'));
+      dispatch(addTerminalHistory(`> ${i18n.t('terminal.unknownCategory')}`));
+      dispatch(addTerminalHistory(`> ${i18n.t('terminal.availableCategories')}: locale (-l), theme (-t)`));
     }
   }
 };

@@ -2,20 +2,12 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
-import {
-  addTerminalHistory,
-  changeTerminalCoord,
-  changeTerminalIconCoord,
-  TerminalMessage,
-} from 'src/redux/slices/appsSlicesBus/terminalSlice';
+import { addTerminalHistory, TerminalMessage } from 'src/redux/slices/appsSlicesBus/terminalSlice';
 import { Apps } from 'src/types/apps';
 import { processTerminalInput } from 'src/logic/terminal';
 
 // Assets
 import imgSource from 'src/assets/images/icons/terminal.svg';
-
-// Hooks
-import { useTerminal } from 'src/hooks/useTerminal';
 
 // Components
 import { Window } from 'src/components/Window';
@@ -29,20 +21,12 @@ type PropsType = {
 };
 
 export const Terminal: FC<PropsType> = () => {
-  const isTerminalOpen = useSelector((state: RootState) => state.terminal.isTerminalOpen);
-  const isTerminalCollapsed = useSelector((state: RootState) => state.terminal.isTerminalCollapsed);
   const terminalHistory = useSelector((state: RootState) => state.terminal.terminalHistory);
   const inputHistory = useSelector((state: RootState) => state.terminal.terminalInputHistory);
-  const terminalIconTopCoord = useSelector((state: RootState) => state.terminal.terminalIconTopCoord);
-  const terminalIconLeftCoord = useSelector((state: RootState) => state.terminal.terminalIconLeftCoord);
-  const terminalTopCoord = useSelector((state: RootState) => state.terminal.terminalTopCoord);
-  const terminalLeftCoord = useSelector((state: RootState) => state.terminal.terminalLeftCoord);
-  const apps = useSelector((state: RootState) => state.apps.apps);
 
   const dispatch = useDispatch();
   const [text, setText] = useState('');
   const [inputHistoryNumber, setInputHistoryNumber] = useState(inputHistory.length);
-  const { handleTerminalCollapseToggle, handleOpenTerminal, handleCloseTerminal } = useTerminal();
   const inputEl = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -85,25 +69,8 @@ export const Terminal: FC<PropsType> = () => {
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
     <>
-      <Icon
-        title={Apps.Terminal}
-        topCoord={terminalIconTopCoord}
-        leftCoord={terminalIconLeftCoord}
-        handleClick={handleOpenTerminal}
-        imgSource={imgSource}
-        changeCoord={changeTerminalIconCoord}
-      />
-      <Window
-        handleClose={handleCloseTerminal}
-        handleCollapse={handleTerminalCollapseToggle}
-        title={Apps.Terminal}
-        topCoord={terminalTopCoord}
-        leftCoord={terminalLeftCoord}
-        changeCoord={changeTerminalCoord}
-        zIndexProp={100 - apps.indexOf(Apps.Terminal)}
-        appType={Apps.Terminal}
-        isOpen={isTerminalOpen && !isTerminalCollapsed}
-      >
+      <Icon imgSource={imgSource} type={Apps.Terminal} />
+      <Window type={Apps.Terminal}>
         <div className={styles.terminalText} id="terminalHistory">
           {terminalHistory.map((terminalMessage: TerminalMessage) => (
             <p key={terminalMessage.id} className="historyItem">

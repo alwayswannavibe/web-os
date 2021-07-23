@@ -6,6 +6,7 @@ import { simonClick, startShowing, updateStatus } from 'src/redux/slices/appsSli
 
 // Types
 import { SimonStatus } from 'src/types/simonStatus';
+import { Apps } from 'src/types/apps';
 
 // Assets
 import sound1 from 'src/assets/sounds/simon/simon1.wav';
@@ -29,7 +30,7 @@ export const SimonFour: FC<PropsType> = () => {
   const status = useSelector((store: RootState) => store.simon.simonStatus);
   const pattern = useSelector((store: RootState) => store.simon.pattern);
   const level = useSelector((store: RootState) => store.simon.level);
-  const isSimonOpen = useSelector((store: RootState) => store.simon.isSimonOpen);
+  const isSimonOpen = useSelector((store: RootState) => store.appsState.apps[Apps.Simon].isOpened);
   const difficulty = useSelector((store: RootState) => store.simon.difficulty);
 
   const btn1 = useRef<HTMLButtonElement>(null);

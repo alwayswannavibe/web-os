@@ -1,78 +1,67 @@
 // React, redux
 import { FC, ReactNode, useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
+import { useDispatch, useSelector } from 'react-redux';
 import { setWindowActive } from 'src/redux/slices/appsSlice';
 import { AnimatePresence, motion } from 'framer-motion';
+import { changeWindowPos } from 'src/redux/slices/appsSlicesBus/appsStateSlice';
+import { RootState } from 'src/redux/store';
+
+// I18n
 import { useTranslation } from 'react-i18next';
 import 'src/i18n/i18next';
 
 // Types
-import { CoordsType } from 'src/types/coord';
 import { Apps } from 'src/types/apps';
 
 // Hooks
 import { useDragNDrop } from 'src/hooks/useDragNDrop';
+import { useApp } from 'src/hooks/useApp';
 
 // Styles
 import styles from './style.module.css';
 
 type PropsType = {
-  title: string;
-  handleClose: () => void;
-  handleCollapse: () => void;
-  appType: Apps;
-  topCoord: string;
-  leftCoord: string;
-  zIndexProp: number;
-  isOpen: boolean;
-  changeCoord: ActionCreatorWithPayload<CoordsType, string>;
+  type: Apps;
   children?: ReactNode;
 };
 
-export const Window: FC<PropsType> = ({
-  handleClose,
-  handleCollapse,
-  title,
-  children,
-  topCoord,
-  leftCoord,
-  changeCoord,
-  zIndexProp,
-  appType,
-  isOpen,
-}: PropsType) => {
+export const Window: FC<PropsType> = ({ children, type }: PropsType) => {
+  const isOpen = useSelector((state: RootState) => state.appsState.apps[type].isOpened);
+  const isCollapsed = useSelector((state: RootState) => state.appsState.apps[type].isCollapsed);
+  const windowCoords = useSelector((state: RootState) => state.appsState.apps[type].windowPos);
+
   const windowTop = useRef<HTMLDivElement>(null);
 
-  const { startDrag, topCoordLocal, leftCoordLocal } = useDragNDrop(changeCoord, windowTop, topCoord, leftCoord);
+  const { startDrag, newCoords } = useDragNDrop(changeWindowPos, windowTop, windowCoords, type);
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const { getAppIndex, handleClose, handleToggleCollapse } = useApp(type);
 
   const handleSetActive = () => {
-    dispatch(setWindowActive(appType));
+    dispatch(setWindowActive(type));
   };
 
   return (
     <AnimatePresence>
-      {isOpen && (
+      {isOpen && !isCollapsed && (
         <motion.div
           className={styles.window}
-          style={{ top: topCoordLocal, left: leftCoordLocal, zIndex: zIndexProp }}
+          style={{ top: newCoords?.top, left: newCoords?.left, zIndex: 100 - getAppIndex() }}
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           exit={{ scale: 0 }}
           transition={{
             duration: 0.3,
           }}
-          data-cy={`window-${title}`}
+          data-cy={`window-${type}`}
         >
           <div className={styles.windowTop} onMouseDown={startDrag} ref={windowTop}>
             <div onClick={handleSetActive} className={styles.title}>
-              {t(`apps.${title}`)}
+              {t(`apps.${type}`)}
             </div>
             <div className={styles.buttonsContainer}>
-              <button type="button" className={`${styles.collapseBtn} ${styles.btn}`} onClick={handleCollapse}>
+              <button type="button" className={`${styles.collapseBtn} ${styles.btn}`} onClick={handleToggleCollapse}>
                 <i className="fas fa-window-minimize" />
               </button>
               <button type="button" className={`${styles.closeBtn} ${styles.btn}`} onClick={handleClose}>

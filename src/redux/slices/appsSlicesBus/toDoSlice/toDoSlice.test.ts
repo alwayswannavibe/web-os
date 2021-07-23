@@ -1,72 +1,7 @@
 import store from 'src/redux/store';
-import {
-  addToDoItem,
-  changeToDoCoord,
-  changeToDoIconCoord,
-  clearToDo,
-  closeToDo,
-  deleteToDoItem,
-  openToDo,
-  toggleCollapseToDo,
-  toggleCompleteToDoItem,
-} from '.';
+import { addToDoItem, clearToDo, deleteToDoItem, toggleCompleteToDoItem } from '.';
 
 describe('to do slice', () => {
-  it('opens then calls openToDo', () => {
-    store.dispatch(openToDo());
-    expect(store.getState().toDo.isToDoOpen).toEqual(true);
-    store.dispatch(closeToDo());
-  });
-
-  it('closes then calls closeToDo', () => {
-    store.dispatch(openToDo());
-    store.dispatch(closeToDo());
-    expect(store.getState().toDo.isToDoOpen).toEqual(false);
-  });
-
-  it('toggles collapse then calls toggleCollapseToDo', () => {
-    store.dispatch(openToDo());
-    store.dispatch(toggleCollapseToDo());
-    expect(store.getState().toDo.isToDoCollapsed).toEqual(true);
-    store.dispatch(toggleCollapseToDo());
-    expect(store.getState().toDo.isToDoCollapsed).toEqual(false);
-    store.dispatch(closeToDo());
-  });
-
-  it('changes coordinates then calls changeToDoCoord', () => {
-    store.dispatch(
-      changeToDoCoord({
-        top: '23px',
-        left: '250px',
-      }),
-    );
-    expect(store.getState().toDo.toDoLeftCoord).toEqual('250px');
-    expect(store.getState().toDo.toDoTopCoord).toEqual('23px');
-    store.dispatch(
-      changeToDoCoord({
-        top: '10rem',
-        left: '35rem',
-      }),
-    );
-  });
-
-  it('changes icon coordinates then calls changeToDoIconCoord', () => {
-    store.dispatch(
-      changeToDoIconCoord({
-        top: '210px',
-        left: '750px',
-      }),
-    );
-    expect(store.getState().toDo.toDoIconLeftCoord).toEqual('750px');
-    expect(store.getState().toDo.toDoIconTopCoord).toEqual('210px');
-    store.dispatch(
-      changeToDoIconCoord({
-        top: '18rem',
-        left: '3rem',
-      }),
-    );
-  });
-
   it('add to do item then calls addToDoItem', () => {
     store.dispatch(addToDoItem('get one'));
     expect(store.getState().toDo.toDoList).toHaveLength(1);

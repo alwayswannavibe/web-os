@@ -5,36 +5,34 @@ import { FC } from 'react';
 import { Apps } from 'src/types/apps';
 
 // Hooks
-import { useApps } from 'src/hooks/useApps';
+import { useApp } from 'src/hooks/useApp';
 
 // Styles
 import styles from './style.module.css';
 
 type PropsType = {
-  handleOpen: () => void;
-  handleCollapse: () => void;
   type: Apps;
   iconName: string;
   children?: never;
 };
 
-const BottomTab: FC<PropsType> = ({ handleOpen, handleCollapse, type, iconName }: PropsType) => {
-  const { isIncludeApp, getAppIndex } = useApps();
+const BottomTab: FC<PropsType> = ({ type, iconName }: PropsType) => {
+  const { isIncludeApp, getAppIndex, handleToggleCollapse, handleOpen } = useApp(type);
 
   return (
     <div data-cy="bottom-tab">
-      {!isIncludeApp(type) && (
+      {!isIncludeApp() && (
         <button type="button" className={`${styles.close} ${styles.tab}`} onClick={handleOpen} aria-label={`${type} bottom icon`}>
           <i className={`fas fa-${iconName}`} />
         </button>
       )}
-      {isIncludeApp(type) && (
+      {isIncludeApp() && (
         <button
           type="button"
           className={
-            getAppIndex(type) === 0 ? `${styles.isActive} ${styles.tab} ${styles.open}` : `${styles.tab} ${styles.open}`
+            getAppIndex() === 0 ? `${styles.isActive} ${styles.tab} ${styles.open}` : `${styles.tab} ${styles.open}`
           }
-          onClick={handleCollapse}
+          onClick={handleToggleCollapse}
         >
           <i className={`fas fa-${iconName}`} />
         </button>

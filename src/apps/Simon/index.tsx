@@ -2,7 +2,7 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
-import { changeDifficulty, changeSimonCoord, changeSimonIconCoord } from 'src/redux/slices/appsSlicesBus/simonSlice';
+import { changeDifficulty } from 'src/redux/slices/appsSlicesBus/simonSlice';
 import { useTranslation } from 'react-i18next';
 import 'src/i18n/i18next';
 
@@ -12,9 +12,6 @@ import imgSource from 'src/assets/images/icons/saymon.svg';
 // Types
 import { Apps } from 'src/types/apps';
 import { Difficulties } from 'src/types/difficulties';
-
-// Hooks
-import { useSimon } from 'src/hooks/useSimon';
 
 // Components
 import { Icon } from 'src/components/Icon';
@@ -32,15 +29,7 @@ type PropsType = {
 export const Simon: FC<PropsType> = () => {
   const dispatch = useDispatch();
 
-  const isSimonOpen = useSelector((state: RootState) => state.simon.isSimonOpen);
-  const isSimonCollapsed = useSelector((state: RootState) => state.simon.isSimonCollapsed);
-  const simonIconTopCoord = useSelector((state: RootState) => state.simon.simonIconTopCoord);
-  const simonIconLeftCoord = useSelector((state: RootState) => state.simon.simonIconLeftCoord);
-  const simonTopCoord = useSelector((state: RootState) => state.simon.simonTopCoord);
-  const simonLeftCoord = useSelector((state: RootState) => state.simon.simonLeftCoord);
-  const apps = useSelector((state: RootState) => state.apps.apps);
   const difficulty = useSelector((state: RootState) => state.simon.difficulty);
-  const { handleSimonCollapseToggle, handleOpenSimon, handleCloseSimon } = useSimon();
   const { t } = useTranslation();
 
   const chooseDifficulty = (choosedDifficulty: Difficulties) => {
@@ -49,25 +38,8 @@ export const Simon: FC<PropsType> = () => {
 
   return (
     <>
-      <Icon
-        imgSource={imgSource}
-        title={Apps.Simon}
-        topCoord={simonIconTopCoord}
-        leftCoord={simonIconLeftCoord}
-        handleClick={handleOpenSimon}
-        changeCoord={changeSimonIconCoord}
-      />
-      <Window
-        handleClose={handleCloseSimon}
-        title={Apps.Simon}
-        topCoord={simonTopCoord}
-        leftCoord={simonLeftCoord}
-        isOpen={isSimonOpen && !isSimonCollapsed}
-        zIndexProp={100 - apps.indexOf(Apps.Simon)}
-        handleCollapse={handleSimonCollapseToggle}
-        changeCoord={changeSimonCoord}
-        appType={Apps.Simon}
-      >
+      <Icon imgSource={imgSource} type={Apps.Simon} />
+      <Window type={Apps.Simon}>
         {difficulty === Difficulties.None && (
           <div className={styles.difficulties}>
             <h2>

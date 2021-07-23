@@ -7,14 +7,6 @@ import firebase from 'firebase';
 // eslint-disable-next-line import/no-cycle
 import { auth } from 'src/firebase-state/firebase';
 
-// Hooks
-import { useTerminal } from 'src/hooks/useTerminal';
-import { useSettings } from 'src/hooks/useSettings';
-import { useCalculator } from 'src/hooks/useCalculator';
-import { useChat } from 'src/hooks/useChat';
-import { useToDo } from 'src/hooks/useToDo';
-import { useSimon } from 'src/hooks/useSimon';
-
 // Types
 import { Apps } from 'src/types/apps';
 
@@ -29,13 +21,6 @@ type PropsType = {
 };
 
 export const BottomPanel: FC<PropsType> = () => {
-  const { handleTerminalCollapseToggle, handleOpenTerminal } = useTerminal();
-  const { handleSettingsCollapseToggle, handleOpenSettings } = useSettings();
-  const { handleCalculatorCollapseToggle, handleOpenCalculator } = useCalculator();
-  const { handleToDoCollapseToggle, handleOpenToDo } = useToDo();
-  const { handleChatCollapseToggle, handleOpenChat } = useChat();
-  const { handleSimonCollapseToggle, handleOpenSimon } = useSimon();
-
   const username = useSelector((state: RootState) => state.user.username);
   const loading = useSelector((state: RootState) => state.user.loading);
 
@@ -54,38 +39,26 @@ export const BottomPanel: FC<PropsType> = () => {
   return (
     <div className={styles.container}>
       <BottomTab
-        handleOpen={handleOpenTerminal}
-        handleCollapse={handleTerminalCollapseToggle}
         type={Apps.Terminal}
         iconName="terminal"
       />
       <BottomTab
-        handleOpen={handleOpenSettings}
-        handleCollapse={handleSettingsCollapseToggle}
         type={Apps.Settings}
         iconName="cogs"
       />
       <BottomTab
-        handleOpen={handleOpenCalculator}
-        handleCollapse={handleCalculatorCollapseToggle}
         type={Apps.Calculator}
         iconName="calculator"
       />
       <BottomTab
-        handleOpen={handleOpenToDo}
-        handleCollapse={handleToDoCollapseToggle}
         type={Apps.ToDo}
         iconName="clipboard-list"
       />
       <BottomTab
-        handleOpen={handleOpenChat}
-        handleCollapse={handleChatCollapseToggle}
         type={Apps.Chat}
         iconName="comment-dots"
       />
       <BottomTab
-        handleOpen={handleOpenSimon}
-        handleCollapse={handleSimonCollapseToggle}
         type={Apps.Simon}
         iconName="th-large"
       />

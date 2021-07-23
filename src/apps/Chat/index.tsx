@@ -2,11 +2,7 @@
 import { FC, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
-import { changeChatCoord, changeChatIconCoord } from 'src/redux/slices/appsSlicesBus/chatSlice';
 import { firestore } from 'src/firebase-state/firebase';
-
-// Hooks
-import { useChat } from 'src/hooks/useChat';
 
 // Assets
 import imgSource from 'src/assets/images/icons/chat.svg';
@@ -27,17 +23,9 @@ type PropsType = {
 };
 
 export const Chat: FC<PropsType> = () => {
-  const isChatOpen = useSelector((state: RootState) => state.chat.isChatOpen);
-  const isChatCollapsed = useSelector((state: RootState) => state.chat.isChatCollapsed);
-  const chatIconTopCoord = useSelector((state: RootState) => state.chat.chatIconTopCoord);
-  const chatIconLeftCoord = useSelector((state: RootState) => state.chat.chatIconLeftCoord);
-  const chatTopCoord = useSelector((state: RootState) => state.chat.chatTopCoord);
-  const chatLeftCoord = useSelector((state: RootState) => state.chat.chatLeftCoord);
-  const apps = useSelector((state: RootState) => state.apps.apps);
   const username = useSelector((state: RootState) => state.user.username);
 
   const [text, setText] = useState('');
-  const { handleChatCollapseToggle, handleOpenChat, handleCloseChat } = useChat();
   const inputEl = useRef<HTMLInputElement>(null);
   const photoURL = useSelector((state: RootState) => state.user.photo);
 
@@ -61,25 +49,8 @@ export const Chat: FC<PropsType> = () => {
 
   return (
     <>
-      <Icon
-        title={Apps.Chat}
-        topCoord={chatIconTopCoord}
-        leftCoord={chatIconLeftCoord}
-        handleClick={handleOpenChat}
-        imgSource={imgSource}
-        changeCoord={changeChatIconCoord}
-      />
-      <Window
-        handleClose={handleCloseChat}
-        handleCollapse={handleChatCollapseToggle}
-        title={Apps.Chat}
-        topCoord={chatTopCoord}
-        leftCoord={chatLeftCoord}
-        changeCoord={changeChatCoord}
-        zIndexProp={100 - apps.indexOf(Apps.Chat)}
-        appType={Apps.Chat}
-        isOpen={isChatOpen && !isChatCollapsed}
-      >
+      <Icon imgSource={imgSource} type={Apps.Chat} />
+      <Window type={Apps.Chat}>
         <MessagesList />
         <form onSubmit={handleSubmit} className={styles.form}>
           <input type="text" ref={inputEl} className={styles.input} onChange={handleChange} value={text} />

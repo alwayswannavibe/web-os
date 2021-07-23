@@ -9,15 +9,17 @@ import { Apps } from 'src/types/apps';
 
 const useApp = (type: Apps) => {
   const apps = useSelector((state: RootState) => state.apps.apps);
-  const isCollapsed = useSelector((state: RootState) => state.appsState.apps[type].isOpened);
-  const isOpened = useSelector((state: RootState) => state.appsState.apps[type].isCollapsed);
+  const isCollapsed = useSelector((state: RootState) => state.appsState.apps[type].isCollapsed);
+  const isOpened = useSelector((state: RootState) => state.appsState.apps[type].isOpened);
 
   const dispatch = useDispatch();
+
+  const getAppIndex = () => apps.indexOf(type);
 
   const handleToggleCollapse = () => {
     if (isCollapsed) {
       dispatch(setWindowActive(type));
-    } else if (apps.indexOf(type) === 0) {
+    } else if (getAppIndex() === 0) {
       dispatch(setWindowActive(apps[1]));
     }
     dispatch(toggleCollapseApp({ type }));
@@ -38,13 +40,17 @@ const useApp = (type: Apps) => {
       return;
     }
     dispatch(closeApp({ type }));
-    dispatch(deleteWindow(Apps.Chat));
+    dispatch(deleteWindow(type));
   };
+
+  const isIncludeApp = () => apps.includes(type);
 
   return {
     handleClose,
     handleOpen,
     handleToggleCollapse,
+    isIncludeApp,
+    getAppIndex,
   };
 };
 

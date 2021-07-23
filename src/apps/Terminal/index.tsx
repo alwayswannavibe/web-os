@@ -5,13 +5,9 @@ import { RootState } from 'src/redux/store';
 import { addTerminalHistory, TerminalMessage } from 'src/redux/slices/appsSlicesBus/terminalSlice';
 import { Apps } from 'src/types/apps';
 import { processTerminalInput } from 'src/logic/terminal';
-import { changeIconPos, changeWindowPos } from 'src/redux/slices/appsSlicesBus/appsStateSlice';
 
 // Assets
 import imgSource from 'src/assets/images/icons/terminal.svg';
-
-// Hooks
-import { useApp } from 'src/hooks/useApp';
 
 // Components
 import { Window } from 'src/components/Window';
@@ -25,20 +21,12 @@ type PropsType = {
 };
 
 export const Terminal: FC<PropsType> = () => {
-  const isTerminalOpen = useSelector((state: RootState) => state.appsState.apps[Apps.Terminal].isOpened);
-  const isTerminalCollapsed = useSelector((state: RootState) => state.appsState.apps[Apps.Terminal].isCollapsed);
   const terminalHistory = useSelector((state: RootState) => state.terminal.terminalHistory);
   const inputHistory = useSelector((state: RootState) => state.terminal.terminalInputHistory);
-  const terminalIconTopCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Terminal].iconPos.top);
-  const terminalIconLeftCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Terminal].iconPos.left);
-  const terminalTopCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Terminal].windowPos.top);
-  const terminalLeftCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Terminal].windowPos.left);
-  const apps = useSelector((state: RootState) => state.apps.apps);
 
   const dispatch = useDispatch();
   const [text, setText] = useState('');
   const [inputHistoryNumber, setInputHistoryNumber] = useState(inputHistory.length);
-  const { handleToggleCollapse, handleOpen, handleClose } = useApp(Apps.Terminal);
   const inputEl = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -81,26 +69,8 @@ export const Terminal: FC<PropsType> = () => {
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
     <>
-      <Icon
-        title={Apps.Terminal}
-        topCoord={terminalIconTopCoord}
-        leftCoord={terminalIconLeftCoord}
-        handleClick={handleOpen}
-        imgSource={imgSource}
-        changeCoord={changeIconPos}
-        type={Apps.Terminal}
-      />
-      <Window
-        handleClose={handleClose}
-        handleCollapse={handleToggleCollapse}
-        title={Apps.Terminal}
-        topCoord={terminalTopCoord}
-        leftCoord={terminalLeftCoord}
-        changeCoord={changeWindowPos}
-        zIndexProp={100 - apps.indexOf(Apps.Terminal)}
-        type={Apps.Terminal}
-        isOpen={isTerminalOpen && !isTerminalCollapsed}
-      >
+      <Icon imgSource={imgSource} type={Apps.Terminal} />
+      <Window type={Apps.Terminal}>
         <div className={styles.terminalText} id="terminalHistory">
           {terminalHistory.map((terminalMessage: TerminalMessage) => (
             <p key={terminalMessage.id} className="historyItem">

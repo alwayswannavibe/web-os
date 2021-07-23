@@ -6,10 +6,6 @@ import { setTheme } from 'src/redux/slices/themeSlice';
 import { setLocale } from 'src/redux/slices/localeSlice';
 import { useTranslation } from 'react-i18next';
 import 'src/i18n/i18next';
-import { changeIconPos, changeWindowPos } from 'src/redux/slices/appsSlicesBus/appsStateSlice';
-
-// Hooks
-import { useApp } from 'src/hooks/useApp';
 
 // Types
 import { Apps } from 'src/types/apps';
@@ -33,16 +29,8 @@ type PropsType = {
 export const Settings: FC<PropsType> = () => {
   const dispatch = useDispatch();
 
-  const isSettingsOpen = useSelector((state: RootState) => state.appsState.apps[Apps.Settings].isOpened);
-  const isSettingsCollapsed = useSelector((state: RootState) => state.appsState.apps[Apps.Settings].isCollapsed);
-  const settingsIconTopCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Settings].iconPos.top);
-  const settingsIconLeftCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Settings].iconPos.left);
-  const settingsTopCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Settings].windowPos.top);
-  const settingsLeftCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Settings].windowPos.left);
   const theme = useSelector((state: RootState) => state.theme.theme);
   const locale = useSelector((state: RootState) => state.locale.locale);
-  const apps = useSelector((state: RootState) => state.apps.apps);
-  const { handleClose, handleOpen, handleToggleCollapse } = useApp(Apps.Settings);
   const { t } = useTranslation();
 
   const handleChangeTheme = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -61,26 +49,8 @@ export const Settings: FC<PropsType> = () => {
 
   return (
     <>
-      <Icon
-        title={Apps.Settings}
-        topCoord={settingsIconTopCoord}
-        leftCoord={settingsIconLeftCoord}
-        handleClick={handleOpen}
-        imgSource={imgSource}
-        changeCoord={changeIconPos}
-        type={Apps.Settings}
-      />
-      <Window
-        handleClose={handleClose}
-        handleCollapse={handleToggleCollapse}
-        title={Apps.Settings}
-        topCoord={settingsTopCoord}
-        leftCoord={settingsLeftCoord}
-        changeCoord={changeWindowPos}
-        zIndexProp={100 - apps.indexOf(Apps.Settings)}
-        type={Apps.Settings}
-        isOpen={isSettingsOpen && !isSettingsCollapsed}
-      >
+      <Icon imgSource={imgSource} type={Apps.Settings} />
+      <Window type={Apps.Settings}>
         <form className={styles.form}>
           <div>
             <label htmlFor="themeSelect" className={styles.label}>

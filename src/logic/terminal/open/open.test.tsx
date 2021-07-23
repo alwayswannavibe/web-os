@@ -1,4 +1,5 @@
 import store from 'src/redux/store';
+import { Apps } from 'src/types/apps';
 import { terminalProcessOpenCommand } from '.';
 
 describe('open terminal module', () => {
@@ -12,12 +13,12 @@ describe('open terminal module', () => {
     terminalProcessOpenCommand('settings');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Settings are open',
+      payload: '> App is open',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: undefined,
-      type: 'settings/openSettings',
+      payload: { type: Apps.Settings },
+      type: 'appsState/openApp',
     });
   });
 
@@ -25,25 +26,51 @@ describe('open terminal module', () => {
     terminalProcessOpenCommand('calculator');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Calculator is open',
+      payload: '> App is open',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: undefined,
-      type: 'calculator/openCalculator',
+      payload: { type: Apps.Calculator },
+      type: 'appsState/openApp',
     });
   });
 
-  it('should dispatch open settings when input = todo', () => {
-    terminalProcessOpenCommand('todo');
+  it('should dispatch open settings when input = toDo', () => {
+    terminalProcessOpenCommand('toDo');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> To do is open',
+      payload: '> App is open',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: undefined,
-      type: 'toDo/openToDo',
+      payload: { type: Apps.ToDo },
+      type: 'appsState/openApp',
+    });
+  });
+
+  it('should dispatch open settings when input = chat', () => {
+    terminalProcessOpenCommand('chat');
+    expect(store.dispatch).toBeCalledTimes(2);
+    expect(store.dispatch).toHaveBeenNthCalledWith(1, {
+      payload: '> App is open',
+      type: 'terminal/addTerminalHistory',
+    });
+    expect(store.dispatch).toHaveBeenNthCalledWith(2, {
+      payload: { type: Apps.Chat },
+      type: 'appsState/openApp',
+    });
+  });
+
+  it('should dispatch open settings when input = simon', () => {
+    terminalProcessOpenCommand('simon');
+    expect(store.dispatch).toBeCalledTimes(2);
+    expect(store.dispatch).toHaveBeenNthCalledWith(1, {
+      payload: '> App is open',
+      type: 'terminal/addTerminalHistory',
+    });
+    expect(store.dispatch).toHaveBeenNthCalledWith(2, {
+      payload: { type: Apps.Simon },
+      type: 'appsState/openApp',
     });
   });
 
@@ -55,7 +82,7 @@ describe('open terminal module', () => {
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available apps: calculator, todo, settings, chat, simon',
+      payload: '> Available apps: calculator, toDo, settings, chat, simon',
       type: 'terminal/addTerminalHistory',
     });
   });
@@ -68,7 +95,7 @@ describe('open terminal module', () => {
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available apps: calculator, todo, settings, chat, simon',
+      payload: '> Available apps: calculator, toDo, settings, chat, simon',
       type: 'terminal/addTerminalHistory',
     });
   });
@@ -94,7 +121,7 @@ describe('open terminal module', () => {
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available apps: calculator, todo, settings, chat, simon',
+      payload: '> Available apps: calculator, toDo, settings, chat, simon',
       type: 'terminal/addTerminalHistory',
     });
   });

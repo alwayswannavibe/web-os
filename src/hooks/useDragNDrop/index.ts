@@ -1,13 +1,15 @@
 /* eslint-disable no-param-reassign */
 
 // React, redux
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { RefObject, useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Apps } from 'src/types/apps';
+import { CoordsType } from 'src/types/coord';
 
-const useDragNDrop = (changeCoord: any, element: RefObject<HTMLDivElement>, topCoord: string, leftCoord: string, type: Apps) => {
-  const [topCoordLocal, setTopCoordLocal] = useState(topCoord);
-  const [leftCoordLocal, setLeftCoordLocal] = useState(leftCoord);
+const useDragNDrop = (changeCoord: ActionCreatorWithPayload<{ type: Apps, coords: CoordsType }>, element: RefObject<HTMLDivElement>, coords: CoordsType, type: Apps) => {
+  const [topCoordLocal, setTopCoordLocal] = useState(coords.top);
+  const [leftCoordLocal, setLeftCoordLocal] = useState(coords.left);
   const [shiftLeft, setShiftLeft] = useState(0);
   const [shiftTop, setShiftTop] = useState(0);
   const [IsDrag, setIsDrag] = useState(false);
@@ -79,7 +81,12 @@ const useDragNDrop = (changeCoord: any, element: RefObject<HTMLDivElement>, topC
     };
   }, [IsDrag, drag, stopDrag]);
 
-  return { startDrag, topCoordLocal, leftCoordLocal };
+  const newCoords: CoordsType = {
+    top: topCoordLocal,
+    left: leftCoordLocal,
+  };
+
+  return { startDrag, newCoords };
 };
 
 export { useDragNDrop };

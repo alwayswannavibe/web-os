@@ -2,19 +2,13 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 import { Apps } from 'src/types/apps';
-import { CoordsType } from '../../../../types/coord';
+import { CoordsType } from 'src/types/coord';
 
 type AppCommonType = {
   isOpened: boolean,
   isCollapsed: boolean,
-  iconPos: {
-    top: string,
-    left: string,
-  },
-  windowPos: {
-    top: string,
-    left: string,
-  },
+  iconPos: CoordsType,
+  windowPos: CoordsType,
 };
 
 const initialState: {

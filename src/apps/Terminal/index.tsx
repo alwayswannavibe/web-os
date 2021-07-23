@@ -2,20 +2,16 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
-import {
-  addTerminalHistory,
-  changeTerminalCoord,
-  changeTerminalIconCoord,
-  TerminalMessage,
-} from 'src/redux/slices/appsSlicesBus/terminalSlice';
+import { addTerminalHistory, TerminalMessage } from 'src/redux/slices/appsSlicesBus/terminalSlice';
 import { Apps } from 'src/types/apps';
 import { processTerminalInput } from 'src/logic/terminal';
+import { changeIconPos, changeWindowPos } from 'src/redux/slices/appsSlicesBus/appsStateSlice';
 
 // Assets
 import imgSource from 'src/assets/images/icons/terminal.svg';
 
 // Hooks
-import { useTerminal } from 'src/hooks/useTerminal';
+import { useApp } from 'src/hooks/useApp';
 
 // Components
 import { Window } from 'src/components/Window';
@@ -29,20 +25,20 @@ type PropsType = {
 };
 
 export const Terminal: FC<PropsType> = () => {
-  const isTerminalOpen = useSelector((state: RootState) => state.terminal.isTerminalOpen);
-  const isTerminalCollapsed = useSelector((state: RootState) => state.terminal.isTerminalCollapsed);
+  const isTerminalOpen = useSelector((state: RootState) => state.appsState.apps[Apps.Terminal].isOpened);
+  const isTerminalCollapsed = useSelector((state: RootState) => state.appsState.apps[Apps.Terminal].isCollapsed);
   const terminalHistory = useSelector((state: RootState) => state.terminal.terminalHistory);
   const inputHistory = useSelector((state: RootState) => state.terminal.terminalInputHistory);
-  const terminalIconTopCoord = useSelector((state: RootState) => state.terminal.terminalIconTopCoord);
-  const terminalIconLeftCoord = useSelector((state: RootState) => state.terminal.terminalIconLeftCoord);
-  const terminalTopCoord = useSelector((state: RootState) => state.terminal.terminalTopCoord);
-  const terminalLeftCoord = useSelector((state: RootState) => state.terminal.terminalLeftCoord);
+  const terminalIconTopCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Terminal].iconPos.top);
+  const terminalIconLeftCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Terminal].iconPos.left);
+  const terminalTopCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Terminal].windowPos.top);
+  const terminalLeftCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Terminal].windowPos.left);
   const apps = useSelector((state: RootState) => state.apps.apps);
 
   const dispatch = useDispatch();
   const [text, setText] = useState('');
   const [inputHistoryNumber, setInputHistoryNumber] = useState(inputHistory.length);
-  const { handleTerminalCollapseToggle, handleOpenTerminal, handleCloseTerminal } = useTerminal();
+  const { handleToggleCollapse, handleOpen, handleClose } = useApp(Apps.Terminal);
   const inputEl = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -89,19 +85,20 @@ export const Terminal: FC<PropsType> = () => {
         title={Apps.Terminal}
         topCoord={terminalIconTopCoord}
         leftCoord={terminalIconLeftCoord}
-        handleClick={handleOpenTerminal}
+        handleClick={handleOpen}
         imgSource={imgSource}
-        changeCoord={changeTerminalIconCoord}
+        changeCoord={changeIconPos}
+        type={Apps.Terminal}
       />
       <Window
-        handleClose={handleCloseTerminal}
-        handleCollapse={handleTerminalCollapseToggle}
+        handleClose={handleClose}
+        handleCollapse={handleToggleCollapse}
         title={Apps.Terminal}
         topCoord={terminalTopCoord}
         leftCoord={terminalLeftCoord}
-        changeCoord={changeTerminalCoord}
+        changeCoord={changeWindowPos}
         zIndexProp={100 - apps.indexOf(Apps.Terminal)}
-        appType={Apps.Terminal}
+        type={Apps.Terminal}
         isOpen={isTerminalOpen && !isTerminalCollapsed}
       >
         <div className={styles.terminalText} id="terminalHistory">

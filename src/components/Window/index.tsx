@@ -1,14 +1,12 @@
 // React, redux
 import { FC, ReactNode, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { setWindowActive } from 'src/redux/slices/appsSlice';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import 'src/i18n/i18next';
 
 // Types
-import { CoordsType } from 'src/types/coord';
 import { Apps } from 'src/types/apps';
 
 // Hooks
@@ -19,14 +17,14 @@ import styles from './style.module.css';
 
 type PropsType = {
   title: string;
-  handleClose: () => void;
-  handleCollapse: () => void;
-  appType: Apps;
+  handleClose: ({ type }: { type: Apps }) => void;
+  handleCollapse: ({ type }: { type: Apps }) => void;
+  type: Apps;
   topCoord: string;
   leftCoord: string;
   zIndexProp: number;
   isOpen: boolean;
-  changeCoord: ActionCreatorWithPayload<CoordsType, string>;
+  changeCoord: any;
   children?: ReactNode;
 };
 
@@ -39,18 +37,18 @@ export const Window: FC<PropsType> = ({
   leftCoord,
   changeCoord,
   zIndexProp,
-  appType,
+  type,
   isOpen,
 }: PropsType) => {
   const windowTop = useRef<HTMLDivElement>(null);
 
-  const { startDrag, topCoordLocal, leftCoordLocal } = useDragNDrop(changeCoord, windowTop, topCoord, leftCoord);
+  const { startDrag, topCoordLocal, leftCoordLocal } = useDragNDrop(changeCoord, windowTop, topCoord, leftCoord, type);
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const handleSetActive = () => {
-    dispatch(setWindowActive(appType));
+    dispatch(setWindowActive(type));
   };
 
   return (
@@ -72,10 +70,10 @@ export const Window: FC<PropsType> = ({
               {t(`apps.${title}`)}
             </div>
             <div className={styles.buttonsContainer}>
-              <button type="button" className={`${styles.collapseBtn} ${styles.btn}`} onClick={handleCollapse}>
+              <button type="button" className={`${styles.collapseBtn} ${styles.btn}`} onClick={() => handleCollapse({ type })}>
                 <i className="fas fa-window-minimize" />
               </button>
-              <button type="button" className={`${styles.closeBtn} ${styles.btn}`} onClick={handleClose}>
+              <button type="button" className={`${styles.closeBtn} ${styles.btn}`} onClick={() => handleClose({ type })}>
                 <i className="fas fa-times" />
               </button>
             </div>

@@ -1,8 +1,8 @@
 // React, redux
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { changeCalculatorCoord, changeCalculatorIconCoord } from 'src/redux/slices/appsSlicesBus/calculatorSlice';
 import { RootState } from 'src/redux/store';
+import { changeIconPos, changeWindowPos } from 'src/redux/slices/appsSlicesBus/appsStateSlice';
 
 // Components
 import { Window } from 'src/components/Window';
@@ -11,7 +11,7 @@ import { CalculatorButtons } from 'src/apps/Calculator/components/CalculatorButt
 import { CalculatorInput } from 'src/apps/Calculator/components/CalculatorInput';
 
 // Hooks
-import { useCalculator } from 'src/hooks/useCalculator';
+import { useApp } from 'src/hooks/useApp';
 import { useApps } from 'src/hooks/useApps';
 import { Apps } from 'src/types/apps';
 
@@ -26,15 +26,15 @@ type PropsType = {
 };
 
 const Calculator: FC<PropsType> = () => {
-  const isCalculatorOpen = useSelector((state: RootState) => state.calculator.isCalculatorOpen);
-  const isCalculatorCollapsed = useSelector((state: RootState) => state.calculator.isCalculatorCollapsed);
-  const calculatorIconTopCoord = useSelector((state: RootState) => state.calculator.calculatorIconTopCoord);
-  const calculatorIconLeftCoord = useSelector((state: RootState) => state.calculator.calculatorIconLeftCoord);
-  const calculatorTopCoord = useSelector((state: RootState) => state.calculator.calculatorTopCoord);
-  const calculatorLeftCoord = useSelector((state: RootState) => state.calculator.calculatorLeftCoord);
+  const isCalculatorOpen = useSelector((state: RootState) => state.appsState.apps[Apps.Calculator].isOpened);
+  const isCalculatorCollapsed = useSelector((state: RootState) => state.appsState.apps[Apps.Calculator].isCollapsed);
+  const calculatorIconTopCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Calculator].iconPos.top);
+  const calculatorIconLeftCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Calculator].iconPos.left);
+  const calculatorTopCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Calculator].windowPos.top);
+  const calculatorLeftCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Calculator].windowPos.left);
 
   const { getAppIndex } = useApps();
-  const { handleOpenCalculator, handleCloseCalculator, handleCalculatorCollapseToggle } = useCalculator();
+  const { handleOpen, handleClose, handleToggleCollapse } = useApp(Apps.Calculator);
 
   return (
     <>
@@ -43,20 +43,21 @@ const Calculator: FC<PropsType> = () => {
           title={Apps.Calculator}
           topCoord={calculatorIconTopCoord}
           leftCoord={calculatorIconLeftCoord}
-          handleClick={handleOpenCalculator}
+          handleClick={handleOpen}
           imgSource={imgSource}
-          changeCoord={changeCalculatorIconCoord}
+          changeCoord={changeIconPos}
+          type={Apps.Calculator}
         />
       </div>
       <Window
-        handleClose={handleCloseCalculator}
-        handleCollapse={handleCalculatorCollapseToggle}
+        handleClose={handleClose}
+        handleCollapse={handleToggleCollapse}
         title={Apps.Calculator}
         topCoord={calculatorTopCoord}
         leftCoord={calculatorLeftCoord}
-        changeCoord={changeCalculatorCoord}
+        changeCoord={changeWindowPos}
         zIndexProp={100 - getAppIndex(Apps.Calculator)}
-        appType={Apps.Calculator}
+        type={Apps.Calculator}
         isOpen={isCalculatorOpen && !isCalculatorCollapsed}
       >
         <div className={styles.container}>

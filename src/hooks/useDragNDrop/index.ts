@@ -1,8 +1,11 @@
+/* eslint-disable no-param-reassign */
+
 // React, redux
 import { RefObject, useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Apps } from 'src/types/apps';
 
-const useDragNDrop = (changeCoord: any, element: RefObject<HTMLDivElement>, topCoord: string, leftCoord: string) => {
+const useDragNDrop = (changeCoord: any, element: RefObject<HTMLDivElement>, topCoord: string, leftCoord: string, type: Apps) => {
   const [topCoordLocal, setTopCoordLocal] = useState(topCoord);
   const [leftCoordLocal, setLeftCoordLocal] = useState(leftCoord);
   const [shiftLeft, setShiftLeft] = useState(0);
@@ -42,24 +45,25 @@ const useDragNDrop = (changeCoord: any, element: RefObject<HTMLDivElement>, topC
   );
 
   const stopDrag = useCallback(() => {
-    // eslint-disable-next-line no-param-reassign
     element.current!.style.cursor = 'pointer';
     dispatch(
       changeCoord({
-        top: topCoordLocal,
-        left: leftCoordLocal,
+        type,
+        coords: {
+          top: topCoordLocal,
+          left: leftCoordLocal,
+        },
       }),
     );
     document.removeEventListener('mousemove', drag);
     document.removeEventListener('mouseup', stopDrag);
     setIsDrag(false);
-  }, [changeCoord, dispatch, drag, element, leftCoordLocal, topCoordLocal]);
+  }, [changeCoord, dispatch, drag, element, leftCoordLocal, topCoordLocal, type]);
 
   const startDrag = (event: React.MouseEvent) => {
     event.preventDefault();
     setShiftLeft(event.clientX - element.current!.getBoundingClientRect().x);
     setShiftTop(event.clientY - element.current!.getBoundingClientRect().y);
-    // eslint-disable-next-line no-param-reassign
     element.current!.style.cursor = 'grabbing';
     setIsDrag(true);
   };

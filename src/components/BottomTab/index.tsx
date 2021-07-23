@@ -9,17 +9,17 @@ import { useApps } from 'src/hooks/useApps';
 
 // Styles
 import styles from './style.module.css';
+import { useApp } from '../../hooks/useApp';
 
 type PropsType = {
-  handleOpen: () => void;
-  handleCollapse: () => void;
   type: Apps;
   iconName: string;
   children?: never;
 };
 
-const BottomTab: FC<PropsType> = ({ handleOpen, handleCollapse, type, iconName }: PropsType) => {
+const BottomTab: FC<PropsType> = ({ type, iconName }: PropsType) => {
   const { isIncludeApp, getAppIndex } = useApps();
+  const { handleToggleCollapse, handleOpen } = useApp(type);
 
   return (
     <div data-cy="bottom-tab">
@@ -34,7 +34,7 @@ const BottomTab: FC<PropsType> = ({ handleOpen, handleCollapse, type, iconName }
           className={
             getAppIndex(type) === 0 ? `${styles.isActive} ${styles.tab} ${styles.open}` : `${styles.tab} ${styles.open}`
           }
-          onClick={handleCollapse}
+          onClick={handleToggleCollapse}
         >
           <i className={`fas fa-${iconName}`} />
         </button>

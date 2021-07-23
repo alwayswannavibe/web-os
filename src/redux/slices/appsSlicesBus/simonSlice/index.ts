@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 
 import { createSlice } from '@reduxjs/toolkit';
-import { CoordsType } from 'src/types/coord';
 import { Difficulties } from 'src/types/difficulties';
 import { SimonStatus } from 'src/types/simonStatus';
 import { generatePattern, regeneratePattern, updatePattern } from 'src/logic/simon';
@@ -15,12 +14,6 @@ const pattern: number[] = [];
 const simonSlice = createSlice({
   name: 'simon',
   initialState: {
-    isSimonOpen: localStorage.getItem('isSimonOpen') === 'true' || false,
-    isSimonCollapsed: localStorage.getItem('isSimonCollapsed') === 'true' || false,
-    simonIconTopCoord: localStorage.getItem('simonIconTopCoord') || '13rem',
-    simonIconLeftCoord: localStorage.getItem('simonIconLeftCoord') || '1rem',
-    simonTopCoord: localStorage.getItem('simonTopCoord') || '7rem',
-    simonLeftCoord: localStorage.getItem('simonLeftCoord') || '20rem',
     difficulty: Difficulties.None,
     simonStatus: SimonStatus.Waiting,
     level: 1,
@@ -28,32 +21,6 @@ const simonSlice = createSlice({
     pattern,
   },
   reducers: {
-    openSimon(state) {
-      state.isSimonOpen = true;
-      state.isSimonCollapsed = false;
-      localStorage.setItem('isSimonOpen', 'true');
-    },
-    closeSimon(state) {
-      state.isSimonOpen = false;
-      state.difficulty = Difficulties.None;
-      localStorage.setItem('isSimonOpen', 'false');
-    },
-    toggleCollapseSimon(state) {
-      state.isSimonCollapsed = !state.isSimonCollapsed;
-      localStorage.setItem('isSimonCollapsed', state.isSimonCollapsed.toString());
-    },
-    changeSimonCoord(state, { payload }: { payload: CoordsType }) {
-      state.simonTopCoord = payload.top;
-      state.simonLeftCoord = payload.left;
-      localStorage.setItem('simonTopCoord', payload.top);
-      localStorage.setItem('simonLeftCoord', payload.left);
-    },
-    changeSimonIconCoord(state, { payload }: { payload: CoordsType }) {
-      state.simonIconTopCoord = payload.top;
-      state.simonIconLeftCoord = payload.left;
-      localStorage.setItem('simonIconTopCoord', payload.top);
-      localStorage.setItem('simonIconLeftCoord', payload.left);
-    },
     changeDifficulty(state, { payload }: { payload: { difficulty: Difficulties } }) {
       state.difficulty = payload.difficulty;
       state.level = 1;
@@ -108,11 +75,6 @@ const simonSlice = createSlice({
 
 export default simonSlice.reducer;
 export const {
-  openSimon,
-  closeSimon,
-  toggleCollapseSimon,
-  changeSimonCoord,
-  changeSimonIconCoord,
   changeDifficulty,
   updateStatus,
   startShowing,

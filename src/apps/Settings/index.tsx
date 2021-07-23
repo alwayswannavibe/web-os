@@ -2,14 +2,14 @@
 import React, { FC } from 'react';
 import { RootState } from 'src/redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeSettingsCoord, changeSettingsIconCoord } from 'src/redux/slices/appsSlicesBus/settingsSlice';
 import { setTheme } from 'src/redux/slices/themeSlice';
 import { setLocale } from 'src/redux/slices/localeSlice';
 import { useTranslation } from 'react-i18next';
 import 'src/i18n/i18next';
+import { changeIconPos, changeWindowPos } from 'src/redux/slices/appsSlicesBus/appsStateSlice';
 
 // Hooks
-import { useSettings } from 'src/hooks/useSettings';
+import { useApp } from 'src/hooks/useApp';
 
 // Types
 import { Apps } from 'src/types/apps';
@@ -33,16 +33,16 @@ type PropsType = {
 export const Settings: FC<PropsType> = () => {
   const dispatch = useDispatch();
 
-  const isSettingsOpen = useSelector((state: RootState) => state.settings.isSettingsOpen);
-  const isSettingsCollapsed = useSelector((state: RootState) => state.settings.isSettingsCollapsed);
-  const settingsIconTopCoord = useSelector((state: RootState) => state.settings.settingsIconTopCoord);
-  const settingsIconLeftCoord = useSelector((state: RootState) => state.settings.settingsIconLeftCoord);
-  const settingsTopCoord = useSelector((state: RootState) => state.settings.settingsTopCoord);
-  const settingsLeftCoord = useSelector((state: RootState) => state.settings.settingsLeftCoord);
+  const isSettingsOpen = useSelector((state: RootState) => state.appsState.apps[Apps.Settings].isOpened);
+  const isSettingsCollapsed = useSelector((state: RootState) => state.appsState.apps[Apps.Settings].isCollapsed);
+  const settingsIconTopCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Settings].iconPos.top);
+  const settingsIconLeftCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Settings].iconPos.left);
+  const settingsTopCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Settings].windowPos.top);
+  const settingsLeftCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Settings].windowPos.left);
   const theme = useSelector((state: RootState) => state.theme.theme);
   const locale = useSelector((state: RootState) => state.locale.locale);
   const apps = useSelector((state: RootState) => state.apps.apps);
-  const { handleSettingsCollapseToggle, handleOpenSettings, handleCloseSettings } = useSettings();
+  const { handleClose, handleOpen, handleToggleCollapse } = useApp(Apps.Settings);
   const { t } = useTranslation();
 
   const handleChangeTheme = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -65,19 +65,20 @@ export const Settings: FC<PropsType> = () => {
         title={Apps.Settings}
         topCoord={settingsIconTopCoord}
         leftCoord={settingsIconLeftCoord}
-        handleClick={handleOpenSettings}
+        handleClick={handleOpen}
         imgSource={imgSource}
-        changeCoord={changeSettingsIconCoord}
+        changeCoord={changeIconPos}
+        type={Apps.Settings}
       />
       <Window
-        handleClose={handleCloseSettings}
-        handleCollapse={handleSettingsCollapseToggle}
+        handleClose={handleClose}
+        handleCollapse={handleToggleCollapse}
         title={Apps.Settings}
         topCoord={settingsTopCoord}
         leftCoord={settingsLeftCoord}
-        changeCoord={changeSettingsCoord}
+        changeCoord={changeWindowPos}
         zIndexProp={100 - apps.indexOf(Apps.Settings)}
-        appType={Apps.Settings}
+        type={Apps.Settings}
         isOpen={isSettingsOpen && !isSettingsCollapsed}
       >
         <form className={styles.form}>

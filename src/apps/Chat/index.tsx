@@ -2,11 +2,11 @@
 import { FC, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
-import { changeChatCoord, changeChatIconCoord } from 'src/redux/slices/appsSlicesBus/chatSlice';
 import { firestore } from 'src/firebase-state/firebase';
+import { changeIconPos, changeWindowPos } from 'src/redux/slices/appsSlicesBus/appsStateSlice';
 
 // Hooks
-import { useChat } from 'src/hooks/useChat';
+import { useApp } from 'src/hooks/useApp';
 
 // Assets
 import imgSource from 'src/assets/images/icons/chat.svg';
@@ -27,17 +27,17 @@ type PropsType = {
 };
 
 export const Chat: FC<PropsType> = () => {
-  const isChatOpen = useSelector((state: RootState) => state.chat.isChatOpen);
-  const isChatCollapsed = useSelector((state: RootState) => state.chat.isChatCollapsed);
-  const chatIconTopCoord = useSelector((state: RootState) => state.chat.chatIconTopCoord);
-  const chatIconLeftCoord = useSelector((state: RootState) => state.chat.chatIconLeftCoord);
-  const chatTopCoord = useSelector((state: RootState) => state.chat.chatTopCoord);
-  const chatLeftCoord = useSelector((state: RootState) => state.chat.chatLeftCoord);
+  const isChatOpen = useSelector((state: RootState) => state.appsState.apps[Apps.Chat].isOpened);
+  const isChatCollapsed = useSelector((state: RootState) => state.appsState.apps[Apps.Chat].isCollapsed);
+  const chatIconTopCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Chat].iconPos.top);
+  const chatIconLeftCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Chat].iconPos.left);
+  const chatTopCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Chat].windowPos.top);
+  const chatLeftCoord = useSelector((state: RootState) => state.appsState.apps[Apps.Chat].windowPos.left);
   const apps = useSelector((state: RootState) => state.apps.apps);
   const username = useSelector((state: RootState) => state.user.username);
 
   const [text, setText] = useState('');
-  const { handleChatCollapseToggle, handleOpenChat, handleCloseChat } = useChat();
+  const { handleToggleCollapse, handleOpen, handleClose } = useApp(Apps.Chat);
   const inputEl = useRef<HTMLInputElement>(null);
   const photoURL = useSelector((state: RootState) => state.user.photo);
 
@@ -65,19 +65,20 @@ export const Chat: FC<PropsType> = () => {
         title={Apps.Chat}
         topCoord={chatIconTopCoord}
         leftCoord={chatIconLeftCoord}
-        handleClick={handleOpenChat}
+        handleClick={handleOpen}
         imgSource={imgSource}
-        changeCoord={changeChatIconCoord}
+        changeCoord={changeIconPos}
+        type={Apps.Chat}
       />
       <Window
-        handleClose={handleCloseChat}
-        handleCollapse={handleChatCollapseToggle}
+        handleClose={handleClose}
+        handleCollapse={handleToggleCollapse}
         title={Apps.Chat}
         topCoord={chatTopCoord}
         leftCoord={chatLeftCoord}
-        changeCoord={changeChatCoord}
+        changeCoord={changeWindowPos}
         zIndexProp={100 - apps.indexOf(Apps.Chat)}
-        appType={Apps.Chat}
+        type={Apps.Chat}
         isOpen={isChatOpen && !isChatCollapsed}
       >
         <MessagesList />

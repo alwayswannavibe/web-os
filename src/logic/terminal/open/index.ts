@@ -1,11 +1,8 @@
 import { addTerminalHistory } from 'src/redux/slices/appsSlicesBus/terminalSlice';
-import { openSettings } from 'src/redux/slices/appsSlicesBus/settingsSlice';
-import { openCalculator } from 'src/redux/slices/appsSlicesBus/calculatorSlice';
-import { openToDo } from 'src/redux/slices/appsSlicesBus/toDoSlice';
 import store from 'src/redux/store';
-import { openSimon } from 'src/redux/slices/appsSlicesBus/simonSlice';
-import { openChat } from 'src/redux/slices/appsSlicesBus/chatSlice';
 import i18n from 'src/i18n/i18next';
+import { Apps } from 'src/types/apps';
+import { openApp } from 'src/redux/slices/appsSlicesBus/appsStateSlice';
 
 const terminalProcessOpenCommand = (input: string) => {
   const { dispatch } = store;
@@ -13,27 +10,27 @@ const terminalProcessOpenCommand = (input: string) => {
   switch (input.split(' ')[0]) {
     case 'settings': {
       dispatch(addTerminalHistory(`> ${i18n.t('terminal.settingsOpen')}`));
-      dispatch(openSettings());
+      dispatch(openApp({ type: Apps.Settings }));
       break;
     }
     case 'calculator': {
       dispatch(addTerminalHistory(`> ${i18n.t('terminal.calculatorOpen')}`));
-      dispatch(openCalculator());
+      dispatch(openApp({ type: Apps.Calculator }));
       break;
     }
     case 'todo': {
       dispatch(addTerminalHistory(`> ${i18n.t('terminal.toDoOpen')}`));
-      dispatch(openToDo());
+      dispatch(openApp({ type: Apps.ToDo }));
       break;
     }
     case 'simon': {
       dispatch(addTerminalHistory(`> ${i18n.t('terminal.simonOpen')}`));
-      dispatch(openSimon());
+      dispatch(openApp({ type: Apps.Simon }));
       break;
     }
     case 'chat': {
       dispatch(addTerminalHistory(`> ${i18n.t('terminal.chatOpen')}`));
-      dispatch(openChat());
+      dispatch(openApp({ type: Apps.Chat }));
       break;
     }
     case 'help':

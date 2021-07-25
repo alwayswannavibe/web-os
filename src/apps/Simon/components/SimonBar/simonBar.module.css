@@ -1,13 +1,14 @@
 .wrapper {
   margin-top: 2rem;
   text-align: center;
-  width: 24rem;
+  width: 30%;
+  max-width: 24rem;
   user-select: none;
 }
 
 .startBtn {
   padding: 1rem 4rem;
-  margin-top: 13rem;
+  margin-top: 90%;
   cursor: pointer;
 }
 

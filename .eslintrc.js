@@ -25,5 +25,6 @@ module.exports = {
     "operator-linebreak": 0,
     "react/react-in-jsx-scope": 0,
     "no-plusplus": 0,
+    "jsx-a11y/no-autofocus": 0,
   }
 };

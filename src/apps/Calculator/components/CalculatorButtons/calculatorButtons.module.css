@@ -1,6 +1,16 @@
 .buttons {
   display: flex;
   margin-top: 2rem;
+  width: 100%;
+  height: 100%;
+  height: 15rem;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .numberButtons {
@@ -19,17 +29,17 @@
 
 .numberButton,
 .operationButton {
-  width: 7rem;
-  height: 4rem;
+  width: 33.3%;
+  height: 20%;
 }
 
 .enterButton,
 .zeroButton {
-  height: 5rem;
-  width: 21rem;
+  height: 40%;
+  width: 100%;
 }
 
 .clearOneButton {
-  height: 4rem;
-  width: 14rem;
+  height: 20%;
+  width: 66.6%;
 }

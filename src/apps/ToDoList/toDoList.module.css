@@ -1,5 +1,5 @@
 .input {
-  width: 44rem;
+  width: 100%;
   font-size: 1.5rem;
   background-color: transparent;
   border: 3px solid #4e4441;
@@ -19,18 +19,23 @@
   border-collapse: collapse;
 }
 
+.addContainer form {
+  width: 100%;
+}
+
 .container {
   height: 100%;
 }
 
 .toDoItemsContainer {
-  height: 21.5rem;
+  height: calc(100% - 3.5rem);
   overflow-y: scroll;
   width: 100%;
 }
 
 .addItemButton {
   padding: 0.55rem;
+  margin-right: 0.5rem;
   width: 4rem;
   font-size: 1.5rem;
   color: #178517;

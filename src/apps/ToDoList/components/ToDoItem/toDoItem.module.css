@@ -1,6 +1,7 @@
 .toDoItem {
   display: flex;
   align-items: center;
+  padding: 0.02rem 0.2rem;
 }
 
 .completed {
@@ -9,7 +10,7 @@
 }
 
 .text {
-  width: 44rem;
+  width: 100%;
   border: 2px solid #4e4441;
   padding: 0.5rem;
   margin-top: 0.2rem;

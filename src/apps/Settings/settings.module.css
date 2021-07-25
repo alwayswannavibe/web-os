@@ -16,7 +16,7 @@
   border: 2px solid #2d2d37;
   padding: 0.5rem;
   color: var(--font-color);
-  width: 15rem;
+  min-width: 15rem;
   border-radius: 0.2rem;
 }
 

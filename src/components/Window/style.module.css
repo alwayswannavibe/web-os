@@ -1,6 +1,4 @@
 .window {
-  width: 48rem;
-  height: calc(27rem + 6px);
   border: 3px solid #343030;
   position: absolute;
   z-index: 10;
@@ -8,7 +6,7 @@
 }
 
 .windowTop {
-  height: 1.5rem;
+  height: 5%;
   background-color: rgba(23, 23, 24, 0.9);
   display: flex;
   justify-content: space-between;
@@ -17,14 +15,13 @@
 
 .windowBody {
   background-color: #1e1e22;
-  height: 25.5rem;
-  padding: 5px;
+  height: 95%;
   position: relative;
 }
 
 .btn {
   font-size: 1rem;
-  height: 1.5rem;
+  height: 100%;
   width: 2.5rem;
   display: flex;
   justify-content: center;

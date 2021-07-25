@@ -18,6 +18,7 @@ import { useDragNDrop } from 'src/hooks/useDragNDrop';
 import { useApp } from 'src/hooks/useApp';
 
 // Styles
+import { Resizable } from 're-resizable';
 import styles from './style.module.css';
 
 type PropsType = {
@@ -56,22 +57,33 @@ export const Window: FC<PropsType> = ({ children, type }: PropsType) => {
           }}
           data-cy={`window-${type}`}
         >
-          <div className={styles.windowTop} onMouseDown={startDrag} ref={windowTop}>
-            <div onClick={handleSetActive} className={styles.title}>
-              {t(`apps.${type}`)}
+          <Resizable
+            defaultSize={{
+              width: window.innerHeight * 0.02 * 48,
+              height: window.innerHeight * 0.02 * 30,
+            }}
+            minHeight={window.innerHeight * 0.02 * 24}
+            minWidth={window.innerHeight * 0.02 * 36}
+            bounds="window"
+            lockAspectRatio
+          >
+            <div className={styles.windowTop} onMouseDown={startDrag} ref={windowTop}>
+              <div onClick={handleSetActive} className={styles.title}>
+                {t(`apps.${type}`)}
+              </div>
+              <div className={styles.buttonsContainer}>
+                <button type="button" className={`${styles.collapseBtn} ${styles.btn}`} onClick={handleToggleCollapse}>
+                  <i className="fas fa-window-minimize" />
+                </button>
+                <button type="button" className={`${styles.closeBtn} ${styles.btn}`} onClick={handleClose}>
+                  <i className="fas fa-times" />
+                </button>
+              </div>
             </div>
-            <div className={styles.buttonsContainer}>
-              <button type="button" className={`${styles.collapseBtn} ${styles.btn}`} onClick={handleToggleCollapse}>
-                <i className="fas fa-window-minimize" />
-              </button>
-              <button type="button" className={`${styles.closeBtn} ${styles.btn}`} onClick={handleClose}>
-                <i className="fas fa-times" />
-              </button>
+            <div className={styles.windowBody} onClick={handleSetActive}>
+              {children}
             </div>
-          </div>
-          <div className={styles.windowBody} onClick={handleSetActive}>
-            {children}
-          </div>
+          </Resizable>
         </motion.div>
       )}
     </AnimatePresence>

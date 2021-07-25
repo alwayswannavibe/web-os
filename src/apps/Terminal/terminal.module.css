@@ -1,5 +1,5 @@
 .input {
-  width: 40rem;
+  width: 100%;
   background: transparent;
   outline: none;
   border: none;
@@ -13,10 +13,16 @@
   display: flex;
   margin-top: 10px;
   user-select: none;
+  width: 100%;
+}
+
+.pre form {
+  width: calc(100% - 5rem);
 }
 
 .terminalText {
   max-height: calc(100% - 50px);
+  word-wrap: break-word;
   overflow-y: scroll;
   overflow-x: hidden;
 }

@@ -53,7 +53,7 @@ export const Chat: FC<PropsType> = () => {
       <Window type={Apps.Chat}>
         <MessagesList />
         <form onSubmit={handleSubmit} className={styles.form}>
-          <input type="text" ref={inputEl} className={styles.input} onChange={handleChange} value={text} />
+          <input type="text" ref={inputEl} className={styles.input} onChange={handleChange} value={text} autoFocus />
           <button className={styles.sendBtn} type="submit">
             <i className="fas fa-paper-plane" />
           </button>

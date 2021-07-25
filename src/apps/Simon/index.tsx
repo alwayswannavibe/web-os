@@ -16,8 +16,7 @@ import { Difficulties } from 'src/types/difficulties';
 // Components
 import { Icon } from 'src/components/Icon';
 import { Window } from 'src/components/Window';
-import { SimonFour } from './components/SimonFour';
-import { SimonNine } from './components/SimonNine';
+import { SimonMain } from './components/SimonMain';
 
 // Styles
 import styles from './simon.module.css';
@@ -63,10 +62,10 @@ export const Simon: FC<PropsType> = () => {
           </div>
         )}
         {(difficulty === Difficulties.Easy || difficulty === Difficulties.Normal) && (
-          <SimonFour />
+          <SimonMain numberOfButtons={4} />
         )}
         {(difficulty === Difficulties.Hard || difficulty === Difficulties.Extreme) && (
-          <SimonNine />
+          <SimonMain numberOfButtons={9} />
         )}
       </Window>
     </>

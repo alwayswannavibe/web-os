@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  height: 100%;
+  padding: 0.2rem 1rem;
+}
+
+.buttons {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem 1.4rem;
+}
+
+.btn4 {
+  border-radius: 0.6rem;
+  border: none;
+  transition: filter 0.1s linear;
+  cursor: pointer;
+  margin-right: 1rem;
+  width: calc(50% - 1rem);
+  height: calc(50% - 1rem);
+}
+
+.buttons button:disabled {
+  cursor: default;
+}
+
+.buttons button:nth-child(1) {
+  background-color: #e51414;
+}
+
+.buttons button:nth-child(2) {
+  background-color: #02a202;
+}
+
+.buttons button:nth-child(3) {
+  background-color: #f6f623;
+}
+
+.buttons button:nth-child(4) {
+  background-color: #1c1cdd;
+}
+
+.btnActive {
+  filter: opacity(30%);
+}

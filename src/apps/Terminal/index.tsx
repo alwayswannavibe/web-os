@@ -1,5 +1,5 @@
 // React, redux
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
 import { addTerminalHistory, TerminalMessage } from 'src/redux/slices/appsSlicesBus/terminalSlice';
@@ -27,11 +27,6 @@ export const Terminal: FC<PropsType> = () => {
   const dispatch = useDispatch();
   const [text, setText] = useState('');
   const [inputHistoryNumber, setInputHistoryNumber] = useState(inputHistory.length);
-  const inputEl = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    inputEl.current?.scrollIntoView();
-  }, [text]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
@@ -82,8 +77,8 @@ export const Terminal: FC<PropsType> = () => {
           {'root < '}
           <form onSubmit={handleSubmit}>
             <input
+              autoFocus
               type="text"
-              ref={inputEl}
               className={styles.input}
               onChange={handleChange}
               value={text}

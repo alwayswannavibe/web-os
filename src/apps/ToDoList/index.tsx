@@ -55,7 +55,7 @@ const ToDoList: FC<PropsType> = () => {
           </div>
           <div className={styles.addContainer}>
             <form onSubmit={handleSubmit}>
-              <input type="text" className={styles.input} ref={input} />
+              <input type="text" className={styles.input} ref={input} autoFocus />
             </form>
             <div className={styles.addItemButton}>
               <i className="fas fa-plus" onClick={handleClick} />

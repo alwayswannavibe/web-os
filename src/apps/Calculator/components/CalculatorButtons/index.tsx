@@ -16,32 +16,34 @@ const CalculatorButtons: FC<PropsType> = () => {
   const operationButtons = ['+', '-', '*', '/', '^', '.', 'C'];
 
   return (
-    <div className={styles.buttons}>
-      <div className={styles.numberButtons}>
-        {numberButtons.map(
-          (value): ReactNode => (
-            <div className={styles.numberButton} key={value}>
-              <CalculatorButton value={value} />
-            </div>
-          ),
-        )}
-        <div className={styles.zeroButton}>
-          <CalculatorButton value="0" />
+    <div className={styles.wrapper}>
+      <div className={styles.buttons}>
+        <div className={styles.numberButtons}>
+          {numberButtons.map(
+            (value): ReactNode => (
+              <div className={styles.numberButton} key={value}>
+                <CalculatorButton value={value} />
+              </div>
+            ),
+          )}
+          <div className={styles.zeroButton}>
+            <CalculatorButton value="0" />
+          </div>
         </div>
-      </div>
-      <div className={styles.operationButtons}>
-        {operationButtons.map(
-          (value): ReactNode => (
-            <div className={styles.operationButton} key={value}>
-              <CalculatorButton value={value} />
-            </div>
-          ),
-        )}
-        <div className={styles.clearOneButton}>
-          <CalculatorButton value="←" />
-        </div>
-        <div className={styles.enterButton}>
-          <CalculatorButton value="Enter" />
+        <div className={styles.operationButtons}>
+          {operationButtons.map(
+            (value): ReactNode => (
+              <div className={styles.operationButton} key={value}>
+                <CalculatorButton value={value} />
+              </div>
+            ),
+          )}
+          <div className={styles.clearOneButton}>
+            <CalculatorButton value="←" />
+          </div>
+          <div className={styles.enterButton}>
+            <CalculatorButton value="Enter" />
+          </div>
         </div>
       </div>
     </div>

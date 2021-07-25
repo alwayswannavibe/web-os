@@ -31,6 +31,7 @@ const CalculatorInput: FC<PropsType> = () => {
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <input
+        autoFocus
         type="text"
         className={styles.input}
         value={inputValue !== 'Error' && inputValue !== 'Infinity' ? inputValue : ''}

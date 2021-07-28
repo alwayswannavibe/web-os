@@ -1,7 +1,14 @@
-import { SimonStatus } from 'src/types/simonStatus';
+// Libraries
 import { FC, RefObject } from 'react';
 import { useSelector } from 'react-redux';
+
+// Redux
 import { RootState } from 'src/redux/store';
+
+// Types
+import { SimonStatus } from 'src/types/simonStatus';
+
+// Styles
 import styles from '../SimonMain/simonMain.module.css';
 
 type PropsType = {

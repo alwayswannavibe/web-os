@@ -1,7 +1,11 @@
-// React, redux
+// Libraries
 import { FC, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
+
+// Redux
 import { RootState } from 'src/redux/store';
+
+// Firebase
 import { firestore } from 'src/firebase-state/firebase';
 
 // Assets

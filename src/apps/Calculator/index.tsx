@@ -1,4 +1,4 @@
-// React, redux
+// Libraries
 import { FC } from 'react';
 
 // Components

@@ -35,8 +35,7 @@ describe('todo e2e', () => {
       .should('have.css', 'text-decoration')
       .and('match', /line-through/);
     cy.get('[data-cy=window-ToDo] .fa-check').eq(2).click();
-    cy.get('[data-cy=todo-item]').eq(2).find('p')
-      .not().should('have.css', 'text-decoration');
+    cy.get('[data-cy=todo-item]').eq(2).find('p').not.should('have.css', 'text-decoration');
   });
 
   it('saved items when close or minimize window', () => {

@@ -1,10 +1,14 @@
-// React, redux
+// Libraries
 import React, { FC } from 'react';
-import { RootState } from 'src/redux/store';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+
+// Redux
 import { setTheme } from 'src/redux/slices/themeSlice';
 import { setLocale } from 'src/redux/slices/localeSlice';
-import { useTranslation } from 'react-i18next';
+import { RootState } from 'src/redux/store';
+
+// I18n
 import 'src/i18n/i18next';
 
 // Types

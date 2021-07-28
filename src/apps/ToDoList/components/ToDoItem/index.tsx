@@ -21,7 +21,7 @@ const ToDoItem: FC<PropsType> = ({ text, id }: PropsType) => {
   );
 
   return (
-    <div className={styles.toDoItem} data-cy="todo-item">
+    <li className={styles.toDoItem} data-cy="todo-item">
       <motion.p
         className={`${styles.text} ${completed ? styles.completed : ''}`}
         initial={{ y: 50, opacity: 0.2 }}
@@ -35,7 +35,7 @@ const ToDoItem: FC<PropsType> = ({ text, id }: PropsType) => {
       <div className={`${styles.button} ${styles.deleteButton}`}>
         <i className="fas fa-trash-alt" onClick={() => dispatch(deleteToDoItem(id))} />
       </div>
-    </div>
+    </li>
   );
 };
 

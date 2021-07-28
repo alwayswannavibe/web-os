@@ -1,5 +1,5 @@
 // React, redux
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
 import { addTerminalHistory, TerminalMessage } from 'src/redux/slices/appsSlicesBus/terminalSlice';
@@ -27,6 +27,8 @@ export const Terminal: FC<PropsType> = () => {
   const dispatch = useDispatch();
   const [text, setText] = useState('');
   const [inputHistoryNumber, setInputHistoryNumber] = useState(inputHistory.length);
+
+  const listRef = useRef<HTMLUListElement>(null);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
@@ -57,8 +59,8 @@ export const Terminal: FC<PropsType> = () => {
   };
 
   useEffect(() => {
-    const historyItems = document.getElementsByClassName('historyItem');
-    historyItems[historyItems.length - 1]?.scrollIntoView();
+    if (!listRef.current) return;
+    listRef.current!.scrollTop = listRef.current!.scrollHeight;
   }, [terminalHistory]);
 
   return (
@@ -66,13 +68,13 @@ export const Terminal: FC<PropsType> = () => {
     <>
       <Icon imgSource={imgSource} type={Apps.Terminal} />
       <Window type={Apps.Terminal}>
-        <div className={styles.terminalText} id="terminalHistory">
+        <ul className={styles.terminalText} id="terminalHistory" ref={listRef}>
           {terminalHistory.map((terminalMessage: TerminalMessage) => (
-            <p key={terminalMessage.id} className="historyItem">
+            <li key={terminalMessage.id}>
               {terminalMessage.message}
-            </p>
+            </li>
           ))}
-        </div>
+        </ul>
         <pre className={styles.pre}>
           {'root < '}
           <form onSubmit={handleSubmit}>

@@ -1,6 +1,8 @@
-// React, redux
-import { FC } from 'react';
+// Libraries
+import { FC, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
+
+// Redux
 import { RootState } from 'src/redux/store';
 
 // Types
@@ -17,8 +19,15 @@ type PropsType = {
 export const MessagesList: FC<PropsType> = () => {
   const messages = useSelector((state: RootState) => state.chat.messages);
 
+  const listRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!listRef.current) return;
+    listRef.current!.scrollTop = listRef.current!.scrollHeight;
+  }, [messages]);
+
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} ref={listRef}>
       <ul className={styles.messagesList}>
         {messages.map((message: Message) => (
           <MessageItem message={message} key={message.id} />

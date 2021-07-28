@@ -1,11 +1,11 @@
-// React, redux
+// Libraries
 import React, { FC, ReactNode } from 'react';
 
 // Components
-import { CalculatorButton } from 'src/apps/Calculator/components/CalculatorButton';
+import { CalculatorButton } from '../CalculatorButton';
 
 // Styles
-import styles from 'src/apps/Calculator/components/CalculatorButtons/calculatorButtons.module.css';
+import styles from './calculatorButtons.module.css';
 
 type PropsType = {
   children?: never;

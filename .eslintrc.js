@@ -1,18 +1,19 @@
 module.exports = {
   root: true,
-  parser: '@typescript-eslint/parser',
+  parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: ['./tsconfig.json'],
+    project: ["./tsconfig.json"],
   },
   plugins: [
-    '@typescript-eslint',
-    'prettier'
+    "@typescript-eslint",
+    "prettier"
   ],
   extends: [
     "prettier",
     "react-app",
     "react-app/jest",
-    'airbnb-typescript',
+    "airbnb-typescript",
+    "plugin:cypress/recommended"
   ],
   rules: {
     "object-curly-newline": 0,

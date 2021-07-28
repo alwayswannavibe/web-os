@@ -3,13 +3,13 @@
   height: 100%;
   font-size: 1rem;
   transition: all 0.25s linear;
-  background-color: rgba(65, 65, 74, 0.99);
-  background-image: linear-gradient(30deg, rgba(65, 65, 74, 0.99), rgba(69, 69, 78, 0.84));
-  border: 1px solid #292926;
+  background-color: var(--calculatorBackgroundFallback);
+  background-image: var(--calculatorBackground);
+  border: 1px solid var(--calculatorBorder);
   color: var(--font-color);
   transition: all 0.25s linear;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 0.2rem;
 }
 
 .button:hover {

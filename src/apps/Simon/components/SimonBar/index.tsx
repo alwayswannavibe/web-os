@@ -1,9 +1,13 @@
-// React, redux
+// Libraries
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+
+// Redux
 import { RootState } from 'src/redux/store';
 import { updateStatus, restartGame } from 'src/redux/slices/appsSlicesBus/simonSlice';
-import { useTranslation } from 'react-i18next';
+
+// I18n
 import 'src/i18n/i18next';
 
 // Types

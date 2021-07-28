@@ -36,10 +36,10 @@ const MessageItem: FC<PropsType> = ({ message }: PropsType) => {
       />
       <div className={styles.nameAndMsgContainer}>
         <div className={styles.ownerAndDateContainer}>
-          <p className={styles.msgOwner}>{message.username || 'anonymous'}</p>
-          <p className={styles.msgDate}>{message.date || ''}</p>
+          <p className={styles.msgOwner}>{message.username}</p>
+          <p className={styles.msgDate}>{message.date}</p>
         </div>
-        <p className={styles.otherMsg}>{message.text}</p>
+        <p className={styles.msgText}>{message.text}</p>
       </div>
     </motion.li>
   );

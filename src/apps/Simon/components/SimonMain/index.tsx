@@ -67,8 +67,8 @@ export const SimonMain: FC<PropsType> = ({ numberOfButtons }: PropsType) => {
           setTimeout(() => {
             new Audio(sounds[el]).play();
           }, 900 * index + 900);
-          setTimeout(() => buttonsRefs[el]?.current?.classList!.add(styles.btnActive), 900 * index + 900);
-          setTimeout(() => buttonsRefs[el]?.current?.classList!.remove(styles.btnActive), 900 * index + 1400);
+          setTimeout(() => buttonsRefs[el]?.current?.classList.add(styles.btnActive), 900 * index + 900);
+          setTimeout(() => buttonsRefs[el]?.current?.classList.remove(styles.btnActive), 900 * index + 1400);
         });
         setTimeout(() => {
           dispatch(updateStatus({ status: SimonStatus.Playing }));
@@ -81,7 +81,8 @@ export const SimonMain: FC<PropsType> = ({ numberOfButtons }: PropsType) => {
     <div className={styles.wrapper}>
       <div className={styles.buttons}>
         {buttonsRefsWithLimit.map((ref, index) => (
-          <SimonButton btnRef={ref} handleClick={handleClick} btnNumber={index} numberOfButtons={numberOfButtons} />
+          // eslint-disable-next-line react/no-array-index-key
+          <SimonButton btnRef={ref} handleClick={handleClick} btnNumber={index} numberOfButtons={numberOfButtons} key={index} />
         ))}
       </div>
       <SimonBar difficulty={difficulty} />

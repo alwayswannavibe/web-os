@@ -74,11 +74,6 @@ const useDragNDrop = (changeCoord: ActionCreatorWithPayload<{ type: Apps, coords
     if (!IsDrag) return;
     document.addEventListener('mousemove', drag);
     document.addEventListener('mouseup', stopDrag);
-    // eslint-disable-next-line consistent-return
-    return () => {
-      document.removeEventListener('mousemove', drag);
-      document.removeEventListener('mouseup', stopDrag);
-    };
   }, [IsDrag, drag, stopDrag]);
 
   const newCoords: CoordsType = {

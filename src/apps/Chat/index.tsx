@@ -1,4 +1,4 @@
-// React, redux
+// Libraries
 import { FC, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';

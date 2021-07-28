@@ -1,10 +1,11 @@
-// React, redux
-import { FC, ReactNode, useRef } from 'react';
+// Libraries
+import { FC, ReactNode, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setWindowActive } from 'src/redux/slices/appsSlice';
 import { AnimatePresence, motion } from 'framer-motion';
+
+// Redux
+import { setWindowActive } from 'src/redux/slices/appsSlice';
 import { changeWindowPos } from 'src/redux/slices/appsSlicesBus/appsStateSlice';
-import { RootState } from 'src/redux/store';
 
 // I18n
 import { useTranslation } from 'react-i18next';
@@ -12,6 +13,7 @@ import 'src/i18n/i18next';
 
 // Types
 import { Apps } from 'src/types/apps';
+import { RootState } from 'src/redux/store';
 
 // Hooks
 import { useDragNDrop } from 'src/hooks/useDragNDrop';
@@ -43,6 +45,36 @@ export const Window: FC<PropsType> = ({ children, type }: PropsType) => {
     dispatch(setWindowActive(type));
   };
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  const [windowWidth, setWindowWidth] = useState(window.innerHeight * 0.02 * 48);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight * 0.02 * 27);
+
+  const handleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      ref.current!.requestFullscreen();
+      setTimeout(() => {
+        setWindowWidth(window.innerWidth);
+        setWindowHeight(window.innerHeight * 1.1);
+      }, 200);
+    } else if (document.fullscreenElement.className.split('_')[1] === 'window') {
+      // if this window has fullscreen
+      document.exitFullscreen();
+      setWindowWidth(window.innerHeight * 0.02 * 48);
+      setWindowHeight(window.innerHeight * 0.02 * 27);
+    } else {
+      // if document has fullscreen
+      document.exitFullscreen();
+      setTimeout(() => {
+        ref.current!.requestFullscreen();
+        setTimeout(() => {
+          setWindowWidth(window.innerWidth);
+          setWindowHeight(window.innerHeight * 1.1);
+        }, 200);
+      }, 200);
+    }
+  };
+
   return (
     <AnimatePresence>
       {isOpen && !isCollapsed && (
@@ -56,13 +88,17 @@ export const Window: FC<PropsType> = ({ children, type }: PropsType) => {
             duration: 0.3,
           }}
           data-cy={`window-${type}`}
+          ref={ref}
         >
           <Resizable
-            defaultSize={{
-              width: window.innerHeight * 0.02 * 48,
-              height: window.innerHeight * 0.02 * 30,
+            size={{
+              width: windowWidth || window.innerHeight * 0.02 * 48,
+              height: windowHeight || window.innerHeight * 0.02 * 27,
             }}
-            minHeight={window.innerHeight * 0.02 * 24}
+            onResizeStop={(e, direction, _ref, d) => {
+              setWindowWidth(windowWidth + d.width);
+              setWindowHeight(windowHeight + d.height);
+            }}
             minWidth={window.innerHeight * 0.02 * 36}
             bounds="window"
             lockAspectRatio
@@ -74,6 +110,14 @@ export const Window: FC<PropsType> = ({ children, type }: PropsType) => {
               <div className={styles.buttonsContainer}>
                 <button type="button" className={`${styles.collapseBtn} ${styles.btn}`} onClick={handleToggleCollapse}>
                   <i className="fas fa-window-minimize" />
+                </button>
+                <button
+                  type="button"
+                  onClick={handleFullscreen}
+                  aria-label="toggle fullscreen"
+                  className={`${styles.collapseBtn} ${styles.btn}`}
+                >
+                  <i className={`fas fa-window-restore ${styles.fullscreenButton}`} />
                 </button>
                 <button type="button" className={`${styles.closeBtn} ${styles.btn}`} onClick={handleClose}>
                   <i className="fas fa-times" />

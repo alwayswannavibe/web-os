@@ -2,13 +2,16 @@
   width: 100%;
   height: 3rem;
   font-size: 2.4rem;
-  background-image: linear-gradient(30deg, rgba(65, 65, 74, 0.99), rgba(69, 69, 78, 0.84));
-  border: 1px solid #292926;
+  background-color: var(--calculatorBackgroundFallback);
+  background-image: var(--calculatorBackground);
+  border: 1px solid var(--calculatorBorder);
   color: var(--font-color);
-  border: 1px solid #28323b;
-  padding: 5px 10px;
-  border-radius: 5px;
-  outline: none;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.3rem;
+}
+
+.input:active {
+  outline: 0.15rem solid #4d50f8;
 }
 
 .form {

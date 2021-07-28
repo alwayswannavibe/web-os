@@ -1,7 +1,9 @@
-// React, redux
+// Libraries
 import { motion } from 'framer-motion';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
+
+// Redux
 import { RootState } from 'src/redux/store';
 
 // Types

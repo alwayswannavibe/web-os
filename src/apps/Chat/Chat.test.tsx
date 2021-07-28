@@ -2,10 +2,12 @@
 import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
 import React from 'react';
 import configureStore from 'redux-mock-store';
-import { firestore } from 'src/firebase-state/firebase';
 import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+// Firebase
+import { firestore } from 'src/firebase-state/firebase';
 
 // Components
 import * as Icon from 'src/components/Icon';

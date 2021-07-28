@@ -1,8 +1,10 @@
-// React, Redux
+// Libraries
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'src/redux/store';
+
+// Redux
 import { getCalculatorResult, setCalculatorInput } from 'src/redux/slices/appsSlicesBus/calculatorSlice';
+import { RootState } from 'src/redux/store';
 
 // Styles
 import styles from './calculatorInput.module.css';

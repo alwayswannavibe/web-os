@@ -1,13 +1,17 @@
-// React, Redux
+// Libraries
 import { FC } from 'react';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+
+// Redux
 import {
   addToCalculatorInput,
   clearCalculatorInput,
   deleteLastCalculatorInput,
   getCalculatorResult,
 } from 'src/redux/slices/appsSlicesBus/calculatorSlice';
-import { useTranslation } from 'react-i18next';
+
+// I18n
 import 'src/i18n/i18next';
 
 // Styles

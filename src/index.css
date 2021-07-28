@@ -9,6 +9,9 @@
   --layout-background-color: #1d2329;
   --topBarHeight: 4vh;
   --bottomPartHeight: 4vh;
+  --calculatorBackgroundFallback: rgb(65, 65, 74);
+  --calculatorBackground: linear-gradient(30deg, rgb(65, 65, 74), rgba(69, 69, 78, 0.84));
+  --calculatorBorder: #292926;
   font-size: 2vh;
 }
 

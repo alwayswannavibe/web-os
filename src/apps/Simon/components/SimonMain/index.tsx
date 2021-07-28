@@ -1,9 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-// React, redux
+// Libraries
 import { FC, useEffect, useRef } from 'react';
-import { RootState } from 'src/redux/store';
 import { useDispatch, useSelector } from 'react-redux';
+
+// Redux
+import { RootState } from 'src/redux/store';
 import { simonClick, startShowing, updateStatus } from 'src/redux/slices/appsSlicesBus/simonSlice';
 
 // Types

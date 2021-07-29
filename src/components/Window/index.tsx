@@ -47,16 +47,49 @@ export const Window: FC<PropsType> = ({ children, type }: PropsType) => {
 
   const ref = useRef<HTMLDivElement>(null);
 
-  const [windowWidth, setWindowWidth] = useState(window.innerHeight * 0.02 * 48);
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight * 0.02 * 27);
+  const [windowWidth, setWindowWidth] = useState(() => {
+    let width = window.innerHeight * 0.02 * 48;
+    const localStorageWidth = localStorage.getItem(`window${type}Width`);
+    if (localStorageWidth) {
+      width = +(localStorageWidth) * 50;
+    }
+    return width;
+  });
+  const [windowHeight, setWindowHeight] = useState(() => {
+    let width = window.innerHeight * 0.02 * 27;
+    const localStorageHeight = localStorage.getItem(`window${type}Height`);
+    if (localStorageHeight) {
+      width = +(localStorageHeight) * 50;
+    }
+    return width;
+  });
+
+  const handleCloseWithProcessFullscreen = () => {
+    if (document.fullscreenElement?.className.split('_')[1] === 'window') {
+      document.exitFullscreen();
+      setWindowWidth(window.innerHeight * 0.02 * 48);
+      setWindowHeight(window.innerHeight * 0.02 * 27);
+    }
+    handleClose();
+  };
+
+  const handleToggleCollapseWithProcessFullscreen = () => {
+    // if this window has fullscreen
+    if (document.fullscreenElement?.className.split('_')[1] === 'window') {
+      document.exitFullscreen();
+      setWindowWidth(window.innerHeight * 0.02 * 48);
+      setWindowHeight(window.innerHeight * 0.02 * 27);
+    }
+    handleToggleCollapse();
+  };
 
   const handleFullscreen = () => {
     if (!document.fullscreenElement) {
       ref.current!.requestFullscreen();
       setTimeout(() => {
         setWindowWidth(window.innerWidth);
-        setWindowHeight(window.innerHeight * 1.1);
-      }, 200);
+        setWindowHeight(window.innerHeight);
+      }, 500);
     } else if (document.fullscreenElement.className.split('_')[1] === 'window') {
       // if this window has fullscreen
       document.exitFullscreen();
@@ -69,9 +102,9 @@ export const Window: FC<PropsType> = ({ children, type }: PropsType) => {
         ref.current!.requestFullscreen();
         setTimeout(() => {
           setWindowWidth(window.innerWidth);
-          setWindowHeight(window.innerHeight * 1.1);
-        }, 200);
-      }, 200);
+          setWindowHeight(window.innerHeight);
+        }, 500);
+      }, 300);
     }
   };
 
@@ -96,8 +129,12 @@ export const Window: FC<PropsType> = ({ children, type }: PropsType) => {
               height: windowHeight || window.innerHeight * 0.02 * 27,
             }}
             onResizeStop={(e, direction, _ref, d) => {
-              setWindowWidth(windowWidth + d.width);
-              setWindowHeight(windowHeight + d.height);
+              const newWidth = windowWidth + d.width;
+              const newHeight = windowHeight + d.height;
+              setWindowWidth(newWidth);
+              setWindowHeight(newHeight);
+              localStorage.setItem(`window${type}Width`, (newWidth / 50).toString());
+              localStorage.setItem(`window${type}Height`, (newHeight / 50).toString());
             }}
             minWidth={window.innerHeight * 0.02 * 36}
             bounds="window"
@@ -108,7 +145,11 @@ export const Window: FC<PropsType> = ({ children, type }: PropsType) => {
                 {t(`apps.${type}`)}
               </div>
               <div className={styles.buttonsContainer}>
-                <button type="button" className={`${styles.collapseBtn} ${styles.btn}`} onClick={handleToggleCollapse}>
+                <button
+                  type="button"
+                  className={`${styles.collapseBtn} ${styles.btn}`}
+                  onClick={handleToggleCollapseWithProcessFullscreen}
+                >
                   <i className="fas fa-window-minimize" />
                 </button>
                 <button
@@ -119,7 +160,11 @@ export const Window: FC<PropsType> = ({ children, type }: PropsType) => {
                 >
                   <i className={`fas fa-window-restore ${styles.fullscreenButton}`} />
                 </button>
-                <button type="button" className={`${styles.closeBtn} ${styles.btn}`} onClick={handleClose}>
+                <button
+                  type="button"
+                  className={`${styles.closeBtn} ${styles.btn}`}
+                  onClick={handleCloseWithProcessFullscreen}
+                >
                   <i className="fas fa-times" />
                 </button>
               </div>

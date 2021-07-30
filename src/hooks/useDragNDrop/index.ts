@@ -19,10 +19,11 @@ const useDragNDrop = (changeCoord: ActionCreatorWithPayload<{ type: Apps, coords
   const drag = useCallback(
     (event: MouseEvent) => {
       const heigthOfWindow = element!.current?.getBoundingClientRect().height || 0;
-      const topLimit = heigthOfWindow + 7;
+      const widthOfWindow = element!.current?.getBoundingClientRect().width || 0;
+      const topLimit = window.innerHeight * 0.02 * 2.2;
       const leftLimit = 0;
-      const bottomLimit = window.screen.availHeight - heigthOfWindow;
-      const rightLimit = window.screen.availWidth - (element!.current?.getBoundingClientRect().width || 0);
+      const bottomLimit = window.innerHeight - heigthOfWindow - topLimit;
+      const rightLimit = window.innerWidth - widthOfWindow;
 
       let left = event.pageX - shiftLeft;
       let top = event.pageY - shiftTop;

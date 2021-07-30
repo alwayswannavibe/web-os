@@ -9,7 +9,7 @@ import { RootState } from 'src/redux/store';
 import { SimonStatus } from 'src/types/simonStatus';
 
 // Styles
-import styles from '../SimonMain/simonMain.module.css';
+import styles from './simonButton.module.css';
 
 type PropsType = {
   children?: never;

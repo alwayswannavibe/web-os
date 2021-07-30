@@ -11,16 +11,6 @@
   margin: 1rem 1.4rem;
 }
 
-.btn4 {
-  border-radius: 0.6rem;
-  border: none;
-  transition: filter 0.1s linear;
-  cursor: pointer;
-  margin-right: 1rem;
-  width: calc(50% - 1rem);
-  height: calc(50% - 1rem);
-}
-
 .buttons button:disabled {
   cursor: default;
 }
@@ -39,6 +29,26 @@
 
 .buttons button:nth-child(4) {
   background-color: #1c1cdd;
+}
+
+.buttons button:nth-child(5) {
+  background-color: #931cdd;
+}
+
+.buttons button:nth-child(6) {
+  background-color: #dd1c69;
+}
+
+.buttons button:nth-child(7) {
+  background-color: #aceaa6;
+}
+
+.buttons button:nth-child(8) {
+  background-color: #d99c21;
+}
+
+.buttons button:nth-child(9) {
+  background-color: #2fefe7;
 }
 
 .btnActive {

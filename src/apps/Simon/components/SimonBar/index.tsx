@@ -39,16 +39,18 @@ export const SimonBar: FC<PropsType> = ({ difficulty }: PropsType) => {
 
   return (
     <div className={styles.wrapper}>
-      <p>
-        {t('simon.difficulty')}
-        {': '}
-        {t(`simon.difficulties.${difficulty}`)}
-      </p>
-      <p className={styles.level}>
-        {t('simon.level')}
-        {': '}
-        {level}
-      </p>
+      <div>
+        <p>
+          {t('simon.difficulty')}
+          {': '}
+          {t(`simon.difficulties.${difficulty}`)}
+        </p>
+        <p className={styles.level}>
+          {t('simon.level')}
+          {': '}
+          {level}
+        </p>
+      </div>
       {status === SimonStatus.Waiting && (
         <button type="button" className={styles.startBtn} onClick={startGame}>{t('simon.start')}</button>
       )}

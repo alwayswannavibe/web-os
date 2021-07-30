@@ -1,0 +1,19 @@
+.btn4 {
+  border-radius: 0.6rem;
+  border: none;
+  transition: filter 0.1s linear;
+  cursor: pointer;
+  margin-right: 1rem;
+  width: calc(50% - 1rem);
+  height: calc(50% - 1rem);
+}
+
+.btn9 {
+  border-radius: 0.6rem;
+  border: none;
+  transition: filter 0.1s linear;
+  cursor: pointer;
+  margin-right: 1rem;
+  width: calc(33% - 1rem);
+  height: calc(33% - 1rem);
+}

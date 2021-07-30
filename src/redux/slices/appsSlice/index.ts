@@ -13,6 +13,7 @@ const appsSlice = createSlice({
   reducers: {
     setWindowActive(state, { payload }: { payload: Apps }) {
       const index = state.apps.indexOf(payload);
+      if (index === 0) return;
       const firstPart: Apps[] = state.apps.slice(0, index);
       const secondPart: Apps[] = state.apps.slice(index + 1);
       state.apps = [payload, ...firstPart, ...secondPart];

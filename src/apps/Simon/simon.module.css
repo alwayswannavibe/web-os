@@ -1,7 +1,8 @@
 .difficulties {
   padding-top: 3rem;
-  text-align: center;
+
   user-select: none;
+  text-align: center;
 }
 
 .difficultiesList {
@@ -15,22 +16,24 @@
 .difficultiesList button {
   width: 9rem;
   height: 2rem;
+
   cursor: pointer;
-  background-color: #f5eeee;
-  border-radius: 0.5rem;
-  box-shadow: #f5eeee 0px 1px 3px;
-  border-color: #f5eeee;
   transition: 0.25s all ease-in;
+
+  border-color: #f5eeee;
+  border-radius: 0.5rem;
+  background-color: #f5eeee;
+  box-shadow: #f5eeee 0 1px 3px;
 }
 
 .difficultiesList button:hover {
-  background-color: #b5b3b3;
-  box-shadow: #b5b3b3 0px 1px 3px;
   border-color: #b5b3b3;
+  background-color: #b5b3b3;
+  box-shadow: #b5b3b3 0 1px 3px;
 }
 
 .difficultiesList button:active {
-  background-color: #7a7a7a;
-  box-shadow: #7a7a7a 0px 1px 3px;
   border-color: #7a7a7a;
+  background-color: #7a7a7a;
+  box-shadow: #7a7a7a 0 1px 3px;
 }

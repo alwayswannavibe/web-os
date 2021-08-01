@@ -1,25 +1,27 @@
 .button {
   width: 100%;
   height: 100%;
-  font-size: 1rem;
+
+  cursor: pointer;
   transition: all 0.25s linear;
+
+  color: var(--font-color);
+  border: 1px solid var(--calculatorBorder);
+  border-radius: 0.2rem;
   background-color: var(--calculatorBackgroundFallback);
   background-image: var(--calculatorBackground);
-  border: 1px solid var(--calculatorBorder);
-  color: var(--font-color);
-  transition: all 0.25s linear;
-  cursor: pointer;
-  border-radius: 0.2rem;
+
+  font-size: 1rem;
 }
 
 .button:hover {
-  box-shadow: rgba(44, 46, 55, 0.72) 0 0 10px 5px;
   background-color: #292c32;
   background-image: linear-gradient(30deg, #292c32, #2c2e37);
+  box-shadow: rgba(44, 46, 55, 0.72) 0 0 10px 5px;
 }
 
 .button:active {
-  box-shadow: rgba(5, 5, 5, 0.71) 0 0 10px 5px;
   background-color: #1d1d1d;
   background-image: linear-gradient(30deg, #1d1d1d, #050505);
+  box-shadow: rgba(5, 5, 5, 0.71) 0 0 10px 5px;
 }

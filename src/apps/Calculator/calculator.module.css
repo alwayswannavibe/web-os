@@ -1,9 +1,10 @@
 .container {
   display: flex;
   align-items: center;
-  height: 100%;
-  width: 90%;
-  margin: auto;
   flex-direction: column;
+
+  width: 90%;
+  height: 100%;
+  margin: auto;
   padding: 3% 3%;
 }

@@ -1,10 +1,12 @@
 .img {
-  padding: 0.1rem;
-  background: #fff;
   position: relative;
+
   width: 2rem;
   height: 2rem;
+  padding: 0.1rem;
+
   border-radius: 0.2rem;
+  background: #fff;
 }
 
 .img:hover {
@@ -12,25 +14,33 @@
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  user-select: none;
   position: absolute;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
   width: 4rem;
+
+  user-select: none;
+
+  font-size: 14px;
 }
 
 .title {
   position: relative;
-  font-size: 0.75rem;
+
   text-align: center;
+
+  font-size: 0.75rem;
 }
 
 .imgContainer {
   position: relative;
+
   width: 2rem;
+
   border: none;
   border-radius: 0.3rem;
   background: transparent;

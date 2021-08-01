@@ -1,32 +1,39 @@
 .input {
-  width: calc(100% - 2rem);
-  background: transparent;
-  outline: none;
-  border: none;
   overflow: hidden;
-  caret-color: aliceblue;
-  color: aliceblue;
-  font-size: 1rem;
-  border: 2px solid #374160;
-  border-radius: 0.2rem;
+
+  width: calc(100% - 2rem);
   margin-top: 0.2rem;
   padding: 0.2rem;
+
+  color: aliceblue;
+  border: none;
+  border: 2px solid #374160;
+  border-radius: 0.2rem;
+  outline: none;
+  background: transparent;
+
+  font-size: 1rem;
+  caret-color: aliceblue;
 }
 
 .form {
+  display: flex;
+
   width: 100%;
   height: 2rem;
-  display: flex;
 }
 
 .sendBtn {
-  font-size: 1rem;
-  color: var(--font-color);
-  background-color: transparent;
-  border: none;
   margin-left: 0.5rem;
+
   cursor: pointer;
   transition: color 0.2s linear;
+
+  color: var(--font-color);
+  border: none;
+  background-color: transparent;
+
+  font-size: 1rem;
 }
 
 .sendBtn:hover {

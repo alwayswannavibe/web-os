@@ -1,41 +1,47 @@
 .form {
   display: flex;
   flex-direction: column;
+
   padding-top: 0.5rem;
 }
 
 .label {
   margin: 1rem 0 0 2rem;
+
   user-select: none;
 }
 
 .select {
-  margin: 0.5rem;
-  background-color: #3b3b40;
-  outline: none;
-  border: 2px solid #2d2d37;
-  padding: 0.5rem;
-  color: var(--font-color);
   min-width: 15rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
+
+  color: var(--font-color);
+  border: 2px solid #2d2d37;
   border-radius: 0.2rem;
+  outline: none;
+  background-color: #3b3b40;
 }
 
 .resetBtn {
   padding: 0.2rem 1rem;
-  background-color: #882323;
-  border: 2px solid #2d2d37;
-  color: #ffffff;
-  outline: none;
-  font-size: 0.75rem;
+
   cursor: pointer;
-  border-radius: 0.2rem;
   transition: background-color 0.25s linear;
   transition: border-radius 0.25s linear;
+
+  color: #fff;
+  border: 2px solid #2d2d37;
+  border-radius: 0.2rem;
+  outline: none;
+  background-color: #882323;
+
+  font-size: 0.75rem;
 }
 
 .resetBtn:hover {
-  background-color: #6b1b1b;
   border-radius: 0.5rem;
+  background-color: #6b1b1b;
 }
 
 .resetBtn:active {

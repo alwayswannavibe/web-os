@@ -1,13 +1,15 @@
 .wrapper {
   display: flex;
+
   height: 100%;
   padding: 0.2rem 1rem;
 }
 
 .buttons {
-  width: 70%;
   display: flex;
   flex-wrap: wrap;
+
+  width: 70%;
   margin: 1rem 1.4rem;
 }
 

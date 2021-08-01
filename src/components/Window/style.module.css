@@ -1,50 +1,62 @@
 .window {
-  border: 3px solid #343030;
   position: absolute;
   z-index: 10;
+
+  border: 3px solid #343030;
   border-radius: 0.4rem;
 }
 
 .windowTop {
-  height: 5%;
-  background-color: rgba(23, 23, 24, 0.9);
   display: flex;
   justify-content: space-between;
+
+  height: 5%;
+
   border-bottom: 2px solid #353535;
+  background-color: rgba(23, 23, 24, 0.9);
 }
 
 .windowBody {
-  background-color: #1e1e22;
-  height: 95%;
   position: relative;
+
+  height: 95%;
+
+  background-color: #1e1e22;
 }
 
 .btn {
-  font-size: 1rem;
-  height: 100%;
-  width: 2.5rem;
   display: flex;
-  justify-content: center;
   align-items: center;
-  transition: background-color 0.25s linear;
+  justify-content: center;
+
+  width: 2.5rem;
+  height: 100%;
+
   cursor: pointer;
-  background-color: transparent;
+  transition: background-color 0.25s linear;
+
   color: inherit;
   border: none;
+  background-color: transparent;
+
+  font-size: 1rem;
 }
 
 .title {
   display: flex;
   align-items: center;
-  justify-content: center;
-  user-select: none;
-  font-size: 1rem;
   flex-grow: 1;
+  justify-content: center;
+
   padding-left: 5rem;
+
+  user-select: none;
+
+  font-size: 1rem;
 }
 
 .closeBtn:hover {
-  background-color: #ff0000;
+  background-color: #f00;
 }
 
 .closeBtn:active {

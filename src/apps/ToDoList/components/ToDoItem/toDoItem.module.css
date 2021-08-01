@@ -1,39 +1,47 @@
 .toDoItem {
   display: flex;
   align-items: center;
+
   padding: 0.02rem 0.2rem;
 }
 
 .completed {
   text-decoration: line-through;
+
   color: green;
 }
 
 .text {
   width: 100%;
-  border: 2px solid #4e4441;
-  padding: 0.5rem;
   margin-top: 0.2rem;
-  background-color: transparent;
+  padding: 0.5rem;
+
+  border: 2px solid #4e4441;
   border-radius: 0.3rem;
+  background-color: transparent;
 }
 
 .button {
-  width: 2rem;
-  margin-top: 0.2rem;
-  height: 2.5rem;
-  background: transparent;
-  font-size: 1.2rem;
-  margin-left: 0.2rem;
-  cursor: pointer;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
+  width: 2rem;
+  height: 2.5rem;
+  margin-top: 0.2rem;
+  margin-left: 0.2rem;
+
+  cursor: pointer;
+
+  background: transparent;
+
+  font-size: 1.2rem;
 }
 
 .deleteButton {
-  color: #ae2727;
   transition: color 0.25s linear;
+
+  color: #ae2727;
 }
 
 .deleteButton:active {
@@ -41,8 +49,9 @@
 }
 
 .checkButton {
-  color: #178517;
   transition: color 0.25s linear;
+
+  color: #178517;
 }
 
 .checkButton:active {

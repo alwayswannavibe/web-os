@@ -1,6 +1,9 @@
 /* eslint-disable no-param-reassign */
 
+// Librarries
 import { createSlice } from '@reduxjs/toolkit';
+
+// Logic
 import { getCalcResult } from 'src/logic/calculator';
 
 const calculatorSlice = createSlice({

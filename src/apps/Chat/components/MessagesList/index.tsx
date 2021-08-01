@@ -12,11 +12,11 @@ import { Message } from 'src/types/message';
 import styles from './messagesList.module.css';
 import { MessageItem } from '../MessageItem';
 
-type PropsType = {
+interface Props {
   children?: never;
-};
+}
 
-export const MessagesList: FC<PropsType> = () => {
+export const MessagesList: FC<Props> = () => {
   const messages = useSelector((state: RootState) => state.chat.messages);
 
   const listRef = useRef<HTMLDivElement>(null);

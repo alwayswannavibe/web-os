@@ -1,16 +1,18 @@
-// React, redux
+// Libraries
 import { FC, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+
+// Types
 import { RootState } from 'src/redux/store';
 
 // Styles
 import styles from './style.module.css';
 
-type PropsType = {
+interface Props {
   children?: never;
-};
+}
 
-export const TopDate: FC<PropsType> = () => {
+export const TopDate: FC<Props> = () => {
   const locale = useSelector((state: RootState) => state.locale.locale);
   const [date, setDate] = useState(new Date());
 

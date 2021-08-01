@@ -1,24 +1,27 @@
 /* eslint-disable no-param-reassign */
 
+// Libraries
 import { createSlice } from '@reduxjs/toolkit';
+
+// Types
 import { Apps } from 'src/types/apps';
 import { CoordsType } from 'src/types/coord';
 
-type AppCommonType = {
+interface AppCommon {
   isOpened: boolean,
   isCollapsed: boolean,
   iconPos: CoordsType,
   windowPos: CoordsType,
-};
+}
 
 const initialState: {
   apps: {
-    [Apps.Calculator]: AppCommonType,
-    [Apps.Settings]: AppCommonType,
-    [Apps.Terminal]: AppCommonType,
-    [Apps.Chat]: AppCommonType,
-    [Apps.ToDo]: AppCommonType,
-    [Apps.Simon]: AppCommonType
+    [Apps.Calculator]: AppCommon,
+    [Apps.Settings]: AppCommon,
+    [Apps.Terminal]: AppCommon,
+    [Apps.Chat]: AppCommon,
+    [Apps.ToDo]: AppCommon,
+    [Apps.Simon]: AppCommon
   },
 } = {
   apps: {

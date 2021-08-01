@@ -1,7 +1,6 @@
-// React, redux
+// Libraries
 import React, { FC, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from 'src/redux/store';
 
 // Assets
 import planet from 'src/assets/images/backgrounds/darkPlanet.jpg';
@@ -23,15 +22,16 @@ import { MessageAlert } from 'src/components/MessageAlert';
 
 // Types
 import { Themes } from 'src/types/themes';
+import { RootState } from 'src/redux/store';
 
 // Styles
 import styles from './style.module.css';
 
-type PropsType = {
+interface Props {
   children?: never;
-};
+}
 
-const Main: FC<PropsType> = () => {
+const Main: FC<Props> = () => {
   const theme = useSelector((state: RootState) => state.theme.theme);
   const [themeBackground, setThemeBackground] = useState('');
 

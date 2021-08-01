@@ -1,6 +1,9 @@
 /* eslint-disable no-param-reassign */
 
+// Libraries
 import { createSlice } from '@reduxjs/toolkit';
+
+// Types
 import { Themes } from 'src/types/themes';
 
 type ThemeType = {

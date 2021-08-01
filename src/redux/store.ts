@@ -1,4 +1,7 @@
+// Libraries
 import { configureStore } from '@reduxjs/toolkit';
+
+// Redux
 import themeSlice from 'src/redux/slices/themeSlice';
 import localeSlice from 'src/redux/slices/localeSlice';
 import appsSlice from 'src/redux/slices/appsSlice';

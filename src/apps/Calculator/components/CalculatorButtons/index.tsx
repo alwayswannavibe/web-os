@@ -7,11 +7,11 @@ import { CalculatorButton } from '../CalculatorButton';
 // Styles
 import styles from './calculatorButtons.module.css';
 
-type PropsType = {
+interface Props {
   children?: never;
-};
+}
 
-const CalculatorButtons: FC<PropsType> = () => {
+const CalculatorButtons: FC<Props> = () => {
   const numberButtons = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
   const operationButtons = ['+', '-', '*', '/', '^', '.', 'C'];
 

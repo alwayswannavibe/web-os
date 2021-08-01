@@ -1,9 +1,15 @@
-// React, redux
+// Libraries
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'src/redux/store';
+
+// Redux
 import { addTerminalHistory, TerminalMessage } from 'src/redux/slices/appsSlicesBus/terminalSlice';
+
+// Types
 import { Apps } from 'src/types/apps';
+import { RootState } from 'src/redux/store';
+
+// Logic
 import { processTerminalInput } from 'src/logic/terminal';
 
 // Assets
@@ -16,11 +22,11 @@ import { Icon } from 'src/components/Icon';
 // Styles
 import styles from './terminal.module.css';
 
-type PropsType = {
+interface Props {
   children?: never;
-};
+}
 
-export const Terminal: FC<PropsType> = () => {
+export const Terminal: FC<Props> = () => {
   const terminalHistory = useSelector((state: RootState) => state.terminal.terminalHistory);
   const inputHistory = useSelector((state: RootState) => state.terminal.terminalInputHistory);
 

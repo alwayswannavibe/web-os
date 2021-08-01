@@ -22,11 +22,11 @@ import { MessagesList } from './components/MessagesList';
 // Styles
 import styles from './chat.module.css';
 
-type PropsType = {
+interface Props {
   children?: never;
-};
+}
 
-export const Chat: FC<PropsType> = () => {
+export const Chat: FC<Props> = () => {
   const username = useSelector((state: RootState) => state.user.username);
 
   const [text, setText] = useState('');

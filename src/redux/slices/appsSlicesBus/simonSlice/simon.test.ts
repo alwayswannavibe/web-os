@@ -1,7 +1,12 @@
+// Types
 import { Difficulties } from 'src/types/difficulties';
 import { SimonStatus } from 'src/types/simonStatus';
-import store from 'src/redux/store';
+
+// Logic
 import * as simonLogic from 'src/logic/simon';
+
+// Redux
+import store from 'src/redux/store';
 import { changeDifficulty, restartGame, startShowing, updateStatus } from '.';
 
 describe('simon slice', () => {

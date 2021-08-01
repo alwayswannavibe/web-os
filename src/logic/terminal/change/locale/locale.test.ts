@@ -1,8 +1,10 @@
 // Types
 import { Locales } from 'src/types/locales';
 
-// React, redux
+// Redux
 import store from 'src/redux/store';
+
+// Logic
 import { terminalProcessChangeLocale } from '.';
 
 describe('change locale terminal module', () => {

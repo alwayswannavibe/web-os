@@ -1,9 +1,12 @@
-// React, redux
+// Libraries
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'src/redux/store';
-import { changeDifficulty } from 'src/redux/slices/appsSlicesBus/simonSlice';
 import { useTranslation } from 'react-i18next';
+
+// Redux
+import { changeDifficulty } from 'src/redux/slices/appsSlicesBus/simonSlice';
+
+// I18n
 import 'src/i18n/i18next';
 
 // Assets
@@ -12,6 +15,7 @@ import imgSource from 'src/assets/images/icons/saymon.svg';
 // Types
 import { Apps } from 'src/types/apps';
 import { Difficulties } from 'src/types/difficulties';
+import { RootState } from 'src/redux/store';
 
 // Components
 import { Icon } from 'src/components/Icon';

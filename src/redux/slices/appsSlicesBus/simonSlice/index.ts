@@ -1,8 +1,13 @@
 /* eslint-disable no-param-reassign */
 
+// Libraries
 import { createSlice } from '@reduxjs/toolkit';
+
+// Types
 import { Difficulties } from 'src/types/difficulties';
 import { SimonStatus } from 'src/types/simonStatus';
+
+// Logic
 import { generatePattern, regeneratePattern, updatePattern } from 'src/logic/simon';
 
 // Assets

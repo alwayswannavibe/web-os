@@ -1,6 +1,11 @@
+// Redux
 import { addTerminalHistory, clearTerminalHistory } from 'src/redux/slices/appsSlicesBus/terminalSlice';
 import store from 'src/redux/store';
+
+// I18n
 import i18n from 'src/i18n/i18next';
+
+// Logic
 import { terminalProcessOpenCommand } from './open';
 import { terminalProcessChangeCommand } from './change';
 

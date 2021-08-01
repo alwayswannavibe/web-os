@@ -1,14 +1,17 @@
-// React, redux
+// Libraries
 import { FC } from 'react';
-import { RootState } from 'src/redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from 'src/redux/slices/userSlice';
 import firebase from 'firebase';
-// eslint-disable-next-line import/no-cycle
+
+// Firebase
 import { auth } from 'src/firebase-state/firebase';
+
+// Redux
+import { logout } from 'src/redux/slices/userSlice';
 
 // Types
 import { Apps } from 'src/types/apps';
+import { RootState } from 'src/redux/store';
 
 // Components
 import { BottomTab } from 'src/components/BottomTab';
@@ -16,11 +19,11 @@ import { BottomTab } from 'src/components/BottomTab';
 // Styles
 import styles from './style.module.css';
 
-type PropsType = {
+interface Props {
   children?: never;
-};
+}
 
-export const BottomPanel: FC<PropsType> = () => {
+export const BottomPanel: FC<Props> = () => {
   const username = useSelector((state: RootState) => state.user.username);
   const loading = useSelector((state: RootState) => state.user.loading);
 

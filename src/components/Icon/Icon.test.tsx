@@ -1,10 +1,17 @@
+// Libraries
 import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
 import configureStore from 'redux-mock-store';
-import { Apps } from 'src/types/apps';
-import * as useApp from 'src/hooks/useApp';
-import * as useDragNDrop from 'src/hooks/useDragNDrop';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
+
+// Types
+import { Apps } from 'src/types/apps';
+
+// Hooks
+import * as useApp from 'src/hooks/useApp';
+import * as useDragNDrop from 'src/hooks/useDragNDrop';
+
+// Components
 import { Icon } from '.';
 
 describe('Icon', () => {

@@ -1,8 +1,9 @@
-// React, redux
+// Libraries
 import { FC, useRef } from 'react';
-import { changeIconPos } from 'src/redux/slices/appsSlicesBus/appsStateSlice';
 import { useSelector } from 'react-redux';
-import { RootState } from 'src/redux/store';
+
+// Redux
+import { changeIconPos } from 'src/redux/slices/appsSlicesBus/appsStateSlice';
 
 // I18n
 import { useTranslation } from 'react-i18next';
@@ -14,17 +15,18 @@ import { useApp } from 'src/hooks/useApp';
 
 // Types
 import { Apps } from 'src/types/apps';
+import { RootState } from 'src/redux/store';
 
 // Styles
 import styles from './style.module.css';
 
-type PropsType = {
+interface Props {
   imgSource: string;
   type: Apps;
   children?: never;
-};
+}
 
-export const Icon: FC<PropsType> = ({ imgSource, type }: PropsType) => {
+export const Icon: FC<Props> = ({ imgSource, type }: Props) => {
   const iconCoords = useSelector((state: RootState) => state.appsState.apps[type].iconPos);
 
   const icon = useRef<HTMLDivElement>(null);

@@ -12,12 +12,12 @@ import { Message } from 'src/types/message';
 // Styles
 import styles from './messageItem.module.css';
 
-type PropsType = {
+interface Props {
   children?: never;
   message: Message;
-};
+}
 
-const MessageItem: FC<PropsType> = ({ message }: PropsType) => {
+const MessageItem: FC<Props> = ({ message }: Props) => {
   const username = useSelector((state: RootState) => state.user.username);
 
   return (

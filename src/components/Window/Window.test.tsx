@@ -54,7 +54,7 @@ describe('Window', () => {
       </Provider>,
     );
 
-    expect(document.getElementsByTagName('button')).toHaveLength(2);
+    expect(document.getElementsByTagName('button')).toHaveLength(3);
     expect(screen.queryByText(Apps.Calculator)).toBeInTheDocument();
   });
 

@@ -1,6 +1,9 @@
-// React, redux
+// Libraries
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
+
+// TODO: mock store
+// Redux
 import store from 'src/redux/store';
 
 // Components

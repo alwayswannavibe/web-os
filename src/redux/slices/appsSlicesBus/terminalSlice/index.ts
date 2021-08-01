@@ -1,12 +1,13 @@
 /* eslint-disable no-param-reassign */
 
+// Libraries
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv } from 'uuid';
 
-export type TerminalMessage = {
+export interface TerminalMessage {
   message: string;
   id: string;
-};
+}
 
 const terminalHistory: TerminalMessage[] = [];
 const terminalInputHistory: string[] = [];

@@ -1,4 +1,4 @@
-// React, redux
+// Libraries
 import { render } from '@testing-library/react';
 import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';

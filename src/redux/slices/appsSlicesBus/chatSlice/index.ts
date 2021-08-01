@@ -1,6 +1,9 @@
 /* eslint-disable no-param-reassign */
 
+// Libraries
 import { createSlice } from '@reduxjs/toolkit';
+
+// Types
 import { Message } from 'src/types/message';
 
 const messages: Message[] = [];

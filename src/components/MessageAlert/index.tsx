@@ -1,11 +1,11 @@
-// React, redux
+// Libraries
 import { toast, ToastContainer } from 'react-toastify';
 import { useSelector } from 'react-redux';
-import React, { useEffect } from 'react';
-import { RootState } from 'src/redux/store';
+import { FC, useEffect } from 'react';
 
 // Types
 import { Apps } from 'src/types/apps';
+import { RootState } from 'src/redux/store';
 
 // Components
 import { MessageAlertItem } from 'src/components/MessageAlertItem';
@@ -15,7 +15,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 /* eslint-disable react-hooks/exhaustive-deps */
 
-export const MessageAlert = () => {
+interface Props {
+  children?: never;
+}
+
+export const MessageAlert: FC<Props> = () => {
   const messages = useSelector((state: RootState) => state.chat.messages);
   const username = useSelector((state: RootState) => state.user.username);
   const numberOfRender = useSelector((state: RootState) => state.chat.numberOfRender);

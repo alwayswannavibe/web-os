@@ -1,4 +1,4 @@
-// React, redux
+// Libraries
 import { FC } from 'react';
 
 // Types
@@ -10,13 +10,13 @@ import { useApp } from 'src/hooks/useApp';
 // Styles
 import styles from './style.module.css';
 
-type PropsType = {
+interface Props {
   type: Apps;
   iconName: string;
   children?: never;
-};
+}
 
-const BottomTab: FC<PropsType> = ({ type, iconName }: PropsType) => {
+const BottomTab: FC<Props> = ({ type, iconName }: Props) => {
   const { isIncludeApp, getAppIndex, handleToggleCollapse, handleOpen } = useApp(type);
 
   return (

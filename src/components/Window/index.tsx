@@ -23,12 +23,12 @@ import { useApp } from 'src/hooks/useApp';
 import { Resizable } from 're-resizable';
 import styles from './style.module.css';
 
-type PropsType = {
+interface Props {
   type: Apps;
   children?: ReactNode;
-};
+}
 
-export const Window: FC<PropsType> = ({ children, type }: PropsType) => {
+export const Window: FC<Props> = ({ children, type }: Props) => {
   const isOpen = useSelector((state: RootState) => state.appsState.apps[type].isOpened);
   const isCollapsed = useSelector((state: RootState) => state.appsState.apps[type].isCollapsed);
   const windowCoords = useSelector((state: RootState) => state.appsState.apps[type].windowPos);

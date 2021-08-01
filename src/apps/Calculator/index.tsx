@@ -16,11 +16,11 @@ import imgSource from 'src/assets/images/icons/calculator.svg';
 // Styles
 import styles from './calculator.module.css';
 
-type PropsType = {
+interface Props {
   children?: never;
-};
+}
 
-const Calculator: FC<PropsType> = () => (
+const Calculator: FC<Props> = () => (
   <>
     <Icon imgSource={imgSource} type={Apps.Calculator} />
     <Window type={Apps.Calculator}>

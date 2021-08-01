@@ -1,7 +1,9 @@
-// React, redux
+// Redux
 import store from 'src/redux/store';
 import { addTerminalHistory } from 'src/redux/slices/appsSlicesBus/terminalSlice';
 import { setTheme } from 'src/redux/slices/themeSlice';
+
+// I18n
 import i18n from 'src/i18n/i18next';
 
 // Types

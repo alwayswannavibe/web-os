@@ -17,12 +17,12 @@ import 'src/i18n/i18next';
 // Styles
 import styles from './calculatorButton.module.css';
 
-type PropsType = {
+interface Props {
   children?: never;
   value: string;
-};
+}
 
-const CalculatorButton: FC<PropsType> = ({ value }: PropsType) => {
+const CalculatorButton: FC<Props> = ({ value }: Props) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 

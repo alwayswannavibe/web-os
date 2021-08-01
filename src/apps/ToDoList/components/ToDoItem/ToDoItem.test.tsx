@@ -1,11 +1,15 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { AnyAction, Dispatch, Middleware } from 'redux';
+// Libraries
+import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
 import configureStore from 'redux-mock-store';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
+
+// Components
 import { ToDoItem } from 'src/apps/ToDoList/components/ToDoItem';
+
+// Styles
 import styles from 'src/apps/ToDoList/components/ToDoItem/toDoItem.module.css';
 
 describe('to do item component', () => {

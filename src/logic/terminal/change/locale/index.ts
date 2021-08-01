@@ -1,7 +1,9 @@
-// React, redux
-import store from 'src/redux/store';
+// Redux
 import { setLocale } from 'src/redux/slices/localeSlice';
 import { addTerminalHistory } from 'src/redux/slices/appsSlicesBus/terminalSlice';
+import store from 'src/redux/store';
+
+// I18n
 import i18n from 'src/i18n/i18next';
 
 // Types

@@ -12,6 +12,7 @@
   --calculatorBackgroundFallback: rgb(65, 65, 74);
   --calculatorBackground: linear-gradient(30deg, rgb(65, 65, 74), rgba(69, 69, 78, 0.84));
   --calculatorBorder: #292926;
+  --boxShadow6: 6px 3px 6px #000;
   font-size: 2vh;
 }
 

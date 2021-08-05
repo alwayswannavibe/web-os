@@ -1,45 +1,14 @@
-.input {
-  overflow: hidden;
-
-  width: calc(100% - 2rem);
-  margin-top: 0.2rem;
-  padding: 0.2rem;
-
-  color: aliceblue;
-  border: none;
-  border: 2px solid #374160;
-  border-radius: 0.2rem;
-  outline: none;
-  background: transparent;
-
-  font-size: 1rem;
-  caret-color: aliceblue;
-}
-
-.form {
+.wrapper {
   display: flex;
 
   width: 100%;
-  height: 2rem;
+  height: 100%;
+
+  padding: 10px;
+
+  background-color: #434343;
 }
 
-.sendBtn {
-  margin-left: 0.5rem;
-
-  cursor: pointer;
-  transition: color 0.2s linear;
-
-  color: var(--font-color);
-  border: none;
-  background-color: transparent;
-
-  font-size: 1rem;
-}
-
-.sendBtn:hover {
-  color: #586366;
-}
-
-.sendBtn:active {
-  color: #373737;
+.rightWrapper {
+  width: 100%;
 }

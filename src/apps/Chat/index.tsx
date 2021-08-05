@@ -1,12 +1,5 @@
 // Libraries
-import { FC, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
-
-// Redux
-import { RootState } from 'src/redux/store';
-
-// Firebase
-import { firestore } from 'src/firebase-state/firebase';
+import { FC } from 'react';
 
 // Assets
 import imgSource from 'src/assets/images/icons/chat.svg';
@@ -15,9 +8,11 @@ import imgSource from 'src/assets/images/icons/chat.svg';
 import { Apps } from 'src/types/apps';
 
 // Components
-import { Window } from 'src/components/Window';
 import { Icon } from 'src/components/Icon';
+import { Window } from 'src/components/Window';
 import { MessagesList } from './components/MessagesList';
+import { ChatSelection } from './components/ChatSelection';
+import { ChatInput } from './components/ChatInput';
 
 // Styles
 import styles from './chat.module.css';
@@ -26,43 +21,17 @@ interface Props {
   children?: never;
 }
 
-export const Chat: FC<Props> = () => {
-  const username = useSelector((state: RootState) => state.user.username);
-
-  const [text, setText] = useState('');
-  const inputEl = useRef<HTMLInputElement>(null);
-  const photoURL = useSelector((state: RootState) => state.user.photo);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value);
-  };
-
-  const handleSubmit = (event: React.SyntheticEvent) => {
-    event.preventDefault();
-    const textToReadable = text.trim().toLowerCase();
-    if (!textToReadable) return;
-    setText(textToReadable);
-    firestore.collection('chat').add({
-      username,
-      text,
-      photoURL,
-      date: new Date(),
-    });
-    setText('');
-  };
-
-  return (
-    <>
-      <Icon imgSource={imgSource} type={Apps.Chat} />
-      <Window type={Apps.Chat}>
-        <MessagesList />
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <input type="text" ref={inputEl} className={styles.input} onChange={handleChange} value={text} autoFocus />
-          <button className={styles.sendBtn} type="submit">
-            <i className="fas fa-paper-plane" />
-          </button>
-        </form>
-      </Window>
-    </>
-  );
-};
+export const Chat: FC<Props> = () => (
+  <>
+    <Icon imgSource={imgSource} type={Apps.Chat} />
+    <Window type={Apps.Chat}>
+      <div className={styles.wrapper}>
+        <ChatSelection />
+        <div className={styles.rightWrapper}>
+          <MessagesList />
+          <ChatInput />
+        </div>
+      </div>
+    </Window>
+  </>
+);

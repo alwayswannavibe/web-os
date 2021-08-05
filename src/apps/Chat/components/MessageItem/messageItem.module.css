@@ -1,45 +1,45 @@
 .msgContainer {
-  width: 45%;
-  background-color: #30303c;
-  border-radius: 0.6rem;
-  padding: 0.2rem;
-  margin: 0.2rem;
   display: flex;
-  max-width: 20rem;
-}
 
-.avatar {
-  border: 1px spolid black;
-  border-radius: 0.5rem;
-  margin: 0 0.5rem;
-  width: 2rem;
-  height: 2rem;
-}
-
-.nameAndMsgContainer {
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  padding-right: 0.2rem;
+  min-height: 80px;
 }
 
-.ownerAndDateContainer {
+.usernameAndDate {
   display: flex;
   justify-content: space-between;
+
+  margin-top: 0.3rem;
+
+  font-size: 0.7rem;
 }
 
-.msgOwner {
-  color: #bbdeee;
+.msgMain {
+  position: relative;
+  bottom: 20px;
+
+  width: 80%;
+  max-width: 20rem;
+  margin: 0 0.6rem;
+  margin-bottom: 1rem;
 }
 
-.msgText {
-  border-radius: 0.2rem;
-  margin-top: 0.2rem;
-  width: 100%;
+.msgContent {
+  min-height: 40px;
+  margin-bottom: 15px;
+  padding: 0.5rem;
+
+  word-wrap: break-word;
+
+  color: #242424;
+  border-radius: 20px 10px 30px 4px;
+  background-color: #cacaca;
 }
 
 .myMsg {
-  background-color: #292d47;
-  align-self: flex-end;
   flex-direction: row-reverse;
+}
+
+.wrapper {
+  width: 100%;
 }

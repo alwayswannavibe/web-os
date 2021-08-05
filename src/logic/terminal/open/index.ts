@@ -1,8 +1,13 @@
+// Redux
 import { addTerminalHistory } from 'src/redux/slices/appsSlicesBus/terminalSlice';
-import store from 'src/redux/store';
-import i18n from 'src/i18n/i18next';
-import { Apps } from 'src/types/apps';
 import { openApp } from 'src/redux/slices/appsSlicesBus/appsStateSlice';
+import store from 'src/redux/store';
+
+// I18n
+import i18n from 'src/i18n/i18next';
+
+// Types
+import { Apps } from 'src/types/apps';
 
 const terminalProcessOpenCommand = (input: string) => {
   const { dispatch } = store;

@@ -1,8 +1,10 @@
 // Types
 import { Themes } from 'src/types/themes';
 
-// React, redux
+// Redux
 import store from 'src/redux/store';
+
+// Logic
 import { terminalProcessChangeTheme } from '.';
 
 describe('change theme terminal module', () => {

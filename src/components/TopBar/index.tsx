@@ -1,4 +1,4 @@
-// React, redux
+// Libraries
 import { FC } from 'react';
 
 // Components
@@ -9,11 +9,11 @@ import { TopDate } from 'src/components/TopDate';
 // Styles
 import styles from './style.module.css';
 
-type PropsType = {
+interface Props {
   children?: never;
-};
+}
 
-export const TopBar: FC<PropsType> = () => (
+export const TopBar: FC<Props> = () => (
   <div className={styles.container} id="top-bar">
     <TopDate />
     <Username />

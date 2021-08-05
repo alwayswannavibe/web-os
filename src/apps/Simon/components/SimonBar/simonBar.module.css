@@ -1,17 +1,20 @@
 .wrapper {
-  margin: 1rem 0 2rem 0;
-  text-align: center;
-  width: 30%;
-  max-width: 24rem;
-  user-select: none;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  width: 30%;
+  max-width: 24rem;
+  margin: 1rem 0 2rem 0;
+
+  user-select: none;
+  text-align: center;
 }
 
 .startBtn {
-  padding: 1rem 4rem;
   margin-top: 90%;
+  padding: 1rem 4rem;
+
   cursor: pointer;
 }
 

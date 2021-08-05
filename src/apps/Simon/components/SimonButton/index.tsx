@@ -11,15 +11,15 @@ import { SimonStatus } from 'src/types/simonStatus';
 // Styles
 import styles from './simonButton.module.css';
 
-type PropsType = {
+interface Props {
   children?: never;
   btnRef: RefObject<HTMLButtonElement>;
   btnNumber: number;
   handleClick: (btnNumber: number) => void;
   numberOfButtons: number;
-};
+}
 
-const SimonButton: FC<PropsType> = ({ btnRef, btnNumber, handleClick, numberOfButtons }: PropsType) => {
+const SimonButton: FC<Props> = ({ btnRef, btnNumber, handleClick, numberOfButtons }: Props) => {
   const status = useSelector((store: RootState) => store.simon.simonStatus);
 
   return (

@@ -1,10 +1,13 @@
+// Libraries
 import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
 import configureStore from 'redux-mock-store';
-import * as Icon from 'src/components/Icon';
-import * as Window from 'src/components/Window';
 import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+// Components
+import * as Icon from 'src/components/Icon';
+import * as Window from 'src/components/Window';
 import * as ToDoItem from './components/ToDoItem';
 import { ToDoList } from '.';
 

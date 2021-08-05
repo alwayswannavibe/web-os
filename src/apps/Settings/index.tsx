@@ -26,11 +26,11 @@ import { Icon } from 'src/components/Icon';
 // Styles
 import styles from './settings.module.css';
 
-type PropsType = {
+interface Props {
   children?: never;
-};
+}
 
-export const Settings: FC<PropsType> = () => {
+export const Settings: FC<Props> = () => {
   const dispatch = useDispatch();
 
   const theme = useSelector((state: RootState) => state.theme.theme);

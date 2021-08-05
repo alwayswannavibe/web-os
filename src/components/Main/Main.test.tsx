@@ -1,9 +1,11 @@
-// React, redux
+// Libraries
 import React from 'react';
 import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
 import configureStore from 'redux-mock-store';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
+
+// Types
 import { Themes } from 'src/types/themes';
 
 // Components

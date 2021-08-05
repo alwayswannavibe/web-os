@@ -17,12 +17,12 @@ import { SimonStatus } from 'src/types/simonStatus';
 // Styles
 import styles from './simonBar.module.css';
 
-type PropsType = {
+interface Props {
   children?: never;
   difficulty: Difficulties;
-};
+}
 
-export const SimonBar: FC<PropsType> = ({ difficulty }: PropsType) => {
+export const SimonBar: FC<Props> = ({ difficulty }: Props) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 

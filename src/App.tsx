@@ -1,7 +1,9 @@
-// React, redux
+// Libraries
 import { Provider } from 'react-redux';
-import store from 'src/redux/store';
 import { Suspense } from 'react';
+
+// Redux
+import store from 'src/redux/store';
 
 // Components
 import { TopBar } from 'src/components/TopBar';

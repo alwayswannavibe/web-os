@@ -1,12 +1,13 @@
-// React, redux
+// Libraries
 import React, { FC, FormEvent, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+// Redux
 import { addToDoItem } from 'src/redux/slices/appsSlicesBus/toDoSlice';
-import { ToDoItem } from 'src/apps/ToDoList/components/ToDoItem';
-import { RootState } from 'src/redux/store';
 
 // Types
 import { Apps } from 'src/types/apps';
+import { RootState } from 'src/redux/store';
 
 // Assets
 import imgSource from 'src/assets/images/icons/toDo.svg';
@@ -14,15 +15,16 @@ import imgSource from 'src/assets/images/icons/toDo.svg';
 // Components
 import { Window } from 'src/components/Window';
 import { Icon } from 'src/components/Icon';
+import { ToDoItem } from 'src/apps/ToDoList/components/ToDoItem';
 
 // Styles
 import styles from './toDoList.module.css';
 
-type PropsType = {
+interface Props {
   children?: never;
-};
+}
 
-const ToDoList: FC<PropsType> = () => {
+const ToDoList: FC<Props> = () => {
   const toDoList = useSelector((state: RootState) => state.toDo.toDoList);
 
   const dispatch = useDispatch();

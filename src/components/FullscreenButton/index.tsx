@@ -1,14 +1,14 @@
-// React, redux
+// Libraries
 import { FC, useLayoutEffect, useState } from 'react';
 
 // Styles
 import styles from './style.module.css';
 
-type PropsType = {
+interface Props {
   children?: never;
-};
+}
 
-export const FullscreenButton: FC<PropsType> = () => {
+export const FullscreenButton: FC<Props> = () => {
   const [isFullscreen, setIsFullscreen] = useState<Boolean>(false);
 
   useLayoutEffect(() => {

@@ -1,14 +1,16 @@
-// React, redux
+// Libraries
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import { v4 as uuid } from 'uuid';
+
+// Redux
 import { setMessages } from 'src/redux/slices/appsSlicesBus/chatSlice';
-import store from 'src/redux/store';
 import { login } from 'src/redux/slices/userSlice';
 
 // Types
 import { Message } from 'src/types/message';
+import store from 'src/redux/store';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA42y_gIdsMEU3xrR_yLMQHzavK9xCEjfY',

@@ -1,9 +1,11 @@
 /* eslint-disable no-param-reassign */
 
-// React, redux
+// Libraries
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { RefObject, useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+
+// Types
 import { Apps } from 'src/types/apps';
 import { CoordsType } from 'src/types/coord';
 

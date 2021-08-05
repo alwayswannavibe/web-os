@@ -9,11 +9,11 @@ import { RootState } from 'src/redux/store';
 // Styles
 import styles from './calculatorInput.module.css';
 
-type PropsType = {
+interface Props {
   children?: never;
-};
+}
 
-const CalculatorInput: FC<PropsType> = () => {
+const CalculatorInput: FC<Props> = () => {
   const inputValue = useSelector((state: RootState) => state.calculator.inputValue);
   const dispatch = useDispatch();
 

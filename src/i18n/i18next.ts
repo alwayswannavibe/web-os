@@ -1,7 +1,12 @@
+// Libraries
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+
+// Locales
 import translationEN from 'src/locales/en/translation.json';
 import translationRU from 'src/locales/ru/translation.json';
+
+// Types
 import { Locales } from 'src/types/locales';
 
 i18n.use(initReactI18next).init({

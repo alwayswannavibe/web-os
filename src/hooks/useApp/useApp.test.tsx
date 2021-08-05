@@ -1,9 +1,14 @@
+// Libraries
 import configureStore from 'redux-mock-store';
 import { Middleware, Dispatch, AnyAction } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { act, renderHook } from '@testing-library/react-hooks';
-import { Apps } from 'src/types/apps';
 import { ReactNode } from 'react';
+
+// Types
+import { Apps } from 'src/types/apps';
+
+// Hooks
 import { useApp } from '.';
 
 describe('useApp', () => {

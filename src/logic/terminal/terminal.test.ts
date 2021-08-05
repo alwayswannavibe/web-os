@@ -1,4 +1,7 @@
+// Redux
 import store from 'src/redux/store';
+
+// Logic
 import * as terminalProcessOpenCommand from 'src/logic/terminal/open';
 import * as terminalProcessChangeCommand from 'src/logic/terminal/change';
 import { processTerminalInput } from '.';

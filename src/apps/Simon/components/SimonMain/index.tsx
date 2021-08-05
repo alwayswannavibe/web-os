@@ -25,12 +25,12 @@ import { SimonButton } from '../SimonButton';
 // Styles
 import styles from './simonMain.module.css';
 
-type PropsType = {
+interface Props {
   children?: never;
   numberOfButtons: number;
-};
+}
 
-export const SimonMain: FC<PropsType> = ({ numberOfButtons }: PropsType) => {
+export const SimonMain: FC<Props> = ({ numberOfButtons }: Props) => {
   const dispatch = useDispatch();
 
   const status = useSelector((store: RootState) => store.simon.simonStatus);

@@ -1,5 +1,5 @@
-// React, redux
-import React, { FC } from 'react';
+// Libraries
+import { FC } from 'react';
 
 // Types
 import { Message } from 'src/types/message';
@@ -7,12 +7,12 @@ import { Message } from 'src/types/message';
 // Styles
 import styles from './messageAlert.module.css';
 
-type PropsType = {
+interface Props {
   children?: never;
   message: Message;
-};
+}
 
-export const MessageAlertItem: FC<PropsType> = ({ message }: PropsType) => (
+export const MessageAlertItem: FC<Props> = ({ message }: Props) => (
   <div>
     <div className={styles.username}>
       <p>{message.username || 'anonymous'}</p>

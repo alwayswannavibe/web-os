@@ -1,18 +1,21 @@
 .tab {
-  padding: 0.3rem 0.6rem;
-  border: none;
-  background-color: transparent;
-  color: inherit;
-  border-bottom: 3px solid #61dafb;
-  user-select: none;
-  cursor: pointer;
-  transition: background-color 0.25s linear;
-  border-left: 1px solid rgba(14, 14, 14, 0.15);
-  border-right: 1px solid rgba(14, 14, 14, 0.15);
-  border-collapse: collapse;
   width: calc(var(--bottomPartHeight) * 1.4);
-  text-align: center;
   height: var(--bottomPartHeight);
+  padding: 0.3rem 0.6rem;
+
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.25s linear;
+  text-align: center;
+
+  color: inherit;
+  border: none;
+  border-collapse: collapse;
+  border-right: 1px solid rgba(14, 14, 14, 0.15);
+  border-bottom: 3px solid #61dafb;
+  border-left: 1px solid rgba(14, 14, 14, 0.15);
+  background-color: transparent;
+
   font-size: inherit;
 }
 

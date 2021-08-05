@@ -1,12 +1,19 @@
+// Libraries
 import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
 import configureStore from 'redux-mock-store';
-import * as Icon from 'src/components/Icon';
-import * as Window from 'src/components/Window';
-import { Terminal } from 'src/apps/Terminal';
 import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
-import * as processTerminalInput from 'src/logic/terminal';
 import userEvent from '@testing-library/user-event';
+
+// Types
+import { Terminal } from 'src/apps/Terminal';
+
+// Logic
+import * as processTerminalInput from 'src/logic/terminal';
+
+// Components
+import * as Icon from 'src/components/Icon';
+import * as Window from 'src/components/Window';
 
 describe('Terminal', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];

@@ -1,6 +1,9 @@
 /* eslint-disable no-param-reassign */
 
+// Redux
 import { createSlice } from '@reduxjs/toolkit';
+
+// Types
 import { Apps } from 'src/types/apps';
 
 const apps: Apps[] = JSON.parse(localStorage.getItem('apps') || '[]');

@@ -1,5 +1,10 @@
+// Redux
 import store from 'src/redux/store';
+
+// Types
 import { Apps } from 'src/types/apps';
+
+// Logic
 import { terminalProcessOpenCommand } from '.';
 
 describe('open terminal module', () => {

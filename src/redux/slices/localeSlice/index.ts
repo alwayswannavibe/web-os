@@ -1,7 +1,12 @@
 /* eslint-disable no-param-reassign */
 
+// Libraries
 import { createSlice } from '@reduxjs/toolkit';
+
+// Types
 import { Locales } from 'src/types/locales';
+
+// I18n
 import i18n from 'src/i18n/i18next';
 
 i18n.changeLanguage(localStorage.getItem('selectedLocale') || Locales.Britain);

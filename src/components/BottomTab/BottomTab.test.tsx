@@ -1,8 +1,7 @@
-// React, redux
+// Libraries
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { AnyAction, Dispatch, Middleware } from 'redux';
+import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
 import configureStore from 'redux-mock-store';
 
 // Types

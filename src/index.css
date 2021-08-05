@@ -1,7 +1,7 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 :root {
@@ -12,16 +12,20 @@
   --calculatorBackgroundFallback: rgb(65, 65, 74);
   --calculatorBackground: linear-gradient(30deg, rgb(65, 65, 74), rgba(69, 69, 78, 0.84));
   --calculatorBorder: #292926;
+  --boxShadow6: 6px 3px 6px #000;
   font-size: 2vh;
 }
 
 body {
+  overflow: hidden;
+
   margin: 0;
+
+  color: var(--font-color);
+
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--font-color);
-  overflow: hidden;
 }
 
 code {
@@ -29,7 +33,8 @@ code {
 }
 
 .Toastify__toast--dark {
-  background-color: var(--layout-background-color) !important;
-  border-radius: 0.5rem !important;
   bottom: 1rem !important;
+
+  border-radius: 0.5rem !important;
+  background-color: var(--layout-background-color) !important;
 }

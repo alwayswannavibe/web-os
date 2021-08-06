@@ -1,6 +1,6 @@
 // Libraries
 import React, { FC, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Assets
 import planet from 'src/assets/images/backgrounds/darkPlanet.jpg';
@@ -23,6 +23,10 @@ import { MessageAlert } from 'src/components/MessageAlert';
 // Types
 import { Themes } from 'src/types/themes';
 import { RootState } from 'src/redux/store';
+import { Apps } from 'src/types/apps';
+
+// Redux
+import { connect, disconnect } from 'src/redux/slices/websocketSlice';
 
 // Styles
 import styles from './style.module.css';
@@ -70,6 +74,18 @@ const Main: FC<Props> = () => {
       }
     }
   }, [theme]);
+
+  const isChatOpen = useSelector((state: RootState) => state.appsState.apps[Apps.Chat].isOpened);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isChatOpen) {
+      dispatch(connect());
+    } else {
+      dispatch(disconnect());
+    }
+  }, [dispatch, isChatOpen]);
 
   return (
     <>

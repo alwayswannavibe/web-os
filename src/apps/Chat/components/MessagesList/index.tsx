@@ -29,7 +29,7 @@ export const MessagesList: FC<Props> = () => {
   return (
     <div className={styles.wrapper} ref={listRef}>
       <ul className={styles.messagesList}>
-        {messages.map((message: Message) => (
+        {messages.length && messages.map((message: Message) => (
           <MessageItem message={message} key={message.id} />
         ))}
       </ul>

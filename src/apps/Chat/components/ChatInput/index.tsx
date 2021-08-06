@@ -19,6 +19,7 @@ interface Props {
 const ChatInput: FC<Props> = () => {
   const username = useSelector((state: RootState) => state.user.username);
   const photoURL = useSelector((state: RootState) => state.user.photo);
+  const socket = useSelector((state: RootState) => state.websocket.socket);
 
   const [isSmileOpen, setIsSmileOpen] = useState(false);
   const [text, setText] = useState('');
@@ -39,14 +40,22 @@ const ChatInput: FC<Props> = () => {
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    const textToReadable = text.trim().toLowerCase();
-    if (!textToReadable) return;
+    const textToReadable = text.trim();
+    if (!textToReadable) {
+      setText('');
+      return;
+    }
     setText(textToReadable);
     firestore.collection('chat').add({
       username,
       text,
       photoURL,
       date: new Date(),
+    });
+    socket.emit('chatMsg', {
+      username,
+      text,
+      photoUrl: photoURL,
     });
     setText('');
   };

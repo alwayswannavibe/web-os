@@ -5,11 +5,9 @@ import 'firebase/firestore';
 import { v4 as uuid } from 'uuid';
 
 // Redux
-import { setMessages } from 'src/redux/slices/appsSlicesBus/chatSlice';
 import { login } from 'src/redux/slices/userSlice';
 
 // Types
-import { Message } from 'src/types/message';
 import store from 'src/redux/store';
 
 const firebaseConfig = {
@@ -38,32 +36,6 @@ firebase.auth().onAuthStateChanged(() => {
       photo,
     }),
   );
-});
-
-firestore.collection('chat').onSnapshot(async () => {
-  const messages: Message[] = [];
-  await firestore
-    .collection('chat')
-    .orderBy('date')
-    .limit(100)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        messages.push({
-          username: doc.data().username,
-          text: doc.data().text,
-          photo: doc.data().photoURL,
-          id: doc.id,
-          date: (doc.data().date.toDate() || new Date()).toLocaleDateString(store.getState().locale.locale, {
-            month: 'long',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-          }),
-        });
-      });
-    });
-  store.dispatch(setMessages(messages));
 });
 
 export { firebase, auth, firestore };

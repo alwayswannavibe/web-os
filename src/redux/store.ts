@@ -12,6 +12,7 @@ import toDoSlice from 'src/redux/slices/appsSlicesBus/toDoSlice';
 import chatSlice from 'src/redux/slices/appsSlicesBus/chatSlice';
 import simonSlice from 'src/redux/slices/appsSlicesBus/simonSlice';
 import appsStateSlice from 'src/redux/slices/appsSlicesBus/appsStateSlice';
+import websocketSlice from 'src/redux/slices/websocketSlice';
 
 const store = configureStore({
   reducer: {
@@ -25,6 +26,7 @@ const store = configureStore({
     chat: chatSlice,
     simon: simonSlice,
     appsState: appsStateSlice,
+    websocket: websocketSlice,
   },
   middleware: ((getDefaultMiddleware) => getDefaultMiddleware({
     serializableCheck: false,

@@ -20,7 +20,7 @@ const terminalProcessOpenCommand = (input: string) => {
   const app = arr.join('');
 
   if (Object.values(Apps).includes(app as Apps)) {
-    dispatch(addTerminalHistory(`> ${i18n.t('terminal.appOpen')}`));
+    dispatch(addTerminalHistory(`${i18n.t('terminal.appOpen')}`));
     dispatch(openApp({ type: app as Apps }));
     return;
   }
@@ -28,18 +28,18 @@ const terminalProcessOpenCommand = (input: string) => {
   switch (firstWord) {
     case 'help':
     case '-h': {
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.openHelpInfo')}`));
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.availableApps')}: calculator, toDo, settings, chat, simon`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.openHelpInfo')}`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.availableApps')}: calculator, toDo, settings, chat, simon`));
       break;
     }
     case '': {
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.wrongCommand')}`));
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.openExample')}`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.wrongCommand')}`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.openExample')}`));
       break;
     }
     default: {
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.unknownApp')}`));
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.availableApps')}: calculator, toDo, settings, chat, simon`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.unknownApp')}`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.availableApps')}: calculator, toDo, settings, chat, simon`));
     }
   }
 };

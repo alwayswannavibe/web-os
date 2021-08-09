@@ -1,3 +1,15 @@
+.wrapper {
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  max-height: 100%;
+  padding: 0.4rem;
+
+  word-wrap: break-word;
+
+  font-family: 'Ubuntu Mono', monospace;
+}
+
 .input {
   overflow: hidden;
 
@@ -8,30 +20,30 @@
   outline: none;
   background: transparent;
 
+  font-family: inherit;
+
   font-size: 1rem;
   caret-color: aliceblue;
+}
+
+.user {
+  color: #1bdb1b;
 }
 
 .pre {
   display: flex;
 
-  width: 100%;
-  margin-top: 10px;
-
   user-select: none;
+
+  font-family: 'Ubuntu Mono', monospace;
 }
 
 .pre form {
   width: calc(100% - 5rem);
 }
 
-.terminalText {
-  overflow-x: hidden;
-  overflow-y: scroll;
-
-  max-height: calc(100% - 50px);
-
-  word-wrap: break-word;
+.tilda {
+  color: #47b7f1;
 }
 
 .terminalText::-webkit-scrollbar-track {

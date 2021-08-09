@@ -18,7 +18,7 @@ describe('open terminal module', () => {
     terminalProcessOpenCommand('settings');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> App is open',
+      payload: 'App is open',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -31,7 +31,7 @@ describe('open terminal module', () => {
     terminalProcessOpenCommand('calculator');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> App is open',
+      payload: 'App is open',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -44,7 +44,7 @@ describe('open terminal module', () => {
     terminalProcessOpenCommand('toDo');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> App is open',
+      payload: 'App is open',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -57,7 +57,7 @@ describe('open terminal module', () => {
     terminalProcessOpenCommand('chat');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> App is open',
+      payload: 'App is open',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -70,7 +70,7 @@ describe('open terminal module', () => {
     terminalProcessOpenCommand('simon');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> App is open',
+      payload: 'App is open',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -83,11 +83,11 @@ describe('open terminal module', () => {
     terminalProcessOpenCommand('help');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> This command opens app',
+      payload: 'This command opens app',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available apps: calculator, toDo, settings, chat, simon',
+      payload: 'Available apps: calculator, toDo, settings, chat, simon',
       type: 'terminal/addTerminalHistory',
     });
   });
@@ -96,11 +96,11 @@ describe('open terminal module', () => {
     terminalProcessOpenCommand('-h');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> This command opens app',
+      payload: 'This command opens app',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available apps: calculator, toDo, settings, chat, simon',
+      payload: 'Available apps: calculator, toDo, settings, chat, simon',
       type: 'terminal/addTerminalHistory',
     });
   });
@@ -109,11 +109,11 @@ describe('open terminal module', () => {
     terminalProcessOpenCommand('');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Wrong command, please try again',
+      payload: 'Wrong command, please try again',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Syntax: open "name of app"',
+      payload: 'Syntax: open "name of app"',
       type: 'terminal/addTerminalHistory',
     });
   });
@@ -122,11 +122,11 @@ describe('open terminal module', () => {
     terminalProcessOpenCommand('dsadasda');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Unknown app',
+      payload: 'Unknown app',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available apps: calculator, toDo, settings, chat, simon',
+      payload: 'Available apps: calculator, toDo, settings, chat, simon',
       type: 'terminal/addTerminalHistory',
     });
   });

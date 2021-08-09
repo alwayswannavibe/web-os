@@ -18,7 +18,7 @@ describe('change theme terminal module', () => {
     terminalProcessChangeTheme('planet');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Theme is change',
+      payload: 'Theme is change',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -31,7 +31,7 @@ describe('change theme terminal module', () => {
     terminalProcessChangeTheme('sea');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Theme is change',
+      payload: 'Theme is change',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -44,7 +44,7 @@ describe('change theme terminal module', () => {
     terminalProcessChangeTheme('road');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Theme is change',
+      payload: 'Theme is change',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -57,7 +57,7 @@ describe('change theme terminal module', () => {
     terminalProcessChangeTheme('car');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Theme is change',
+      payload: 'Theme is change',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -70,7 +70,7 @@ describe('change theme terminal module', () => {
     terminalProcessChangeTheme('tree');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Theme is change',
+      payload: 'Theme is change',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -83,7 +83,7 @@ describe('change theme terminal module', () => {
     terminalProcessChangeTheme('dynamic');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Theme is change',
+      payload: 'Theme is change',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -96,7 +96,7 @@ describe('change theme terminal module', () => {
     terminalProcessChangeTheme('dynamic2');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Theme is change',
+      payload: 'Theme is change',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
@@ -109,11 +109,11 @@ describe('change theme terminal module', () => {
     terminalProcessChangeTheme('help');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> This command changes theme',
+      payload: 'This command changes theme',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available themes: planet, sea, tree, road, car, dynamic, dynamic2',
+      payload: 'Available themes: planet, sea, tree, road, car, dynamic, dynamic2',
       type: 'terminal/addTerminalHistory',
     });
   });
@@ -122,11 +122,11 @@ describe('change theme terminal module', () => {
     terminalProcessChangeTheme('-h');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> This command changes theme',
+      payload: 'This command changes theme',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available themes: planet, sea, tree, road, car, dynamic, dynamic2',
+      payload: 'Available themes: planet, sea, tree, road, car, dynamic, dynamic2',
       type: 'terminal/addTerminalHistory',
     });
   });
@@ -135,11 +135,11 @@ describe('change theme terminal module', () => {
     terminalProcessChangeTheme('');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Wrong command, please try again',
+      payload: 'Wrong command, please try again',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Syntax: change "category to change" "new value"',
+      payload: 'Syntax: change "category to change" "new value"',
       type: 'terminal/addTerminalHistory',
     });
   });
@@ -148,11 +148,11 @@ describe('change theme terminal module', () => {
     terminalProcessChangeTheme('dasdasdas');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Unknown theme',
+      payload: 'Unknown theme',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available themes: planet, sea, tree, road, car, dynamic, dynamic2',
+      payload: 'Available themes: planet, sea, tree, road, car, dynamic, dynamic2',
       type: 'terminal/addTerminalHistory',
     });
   });

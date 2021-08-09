@@ -22,7 +22,7 @@ const processTerminalInput = (input: string) => {
       break;
     }
     case 'help': {
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.availableCommands')}: open, clear, change`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.availableCommands')}: open, clear, change`));
       break;
     }
     case 'change': {
@@ -30,8 +30,8 @@ const processTerminalInput = (input: string) => {
       break;
     }
     default: {
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.unknownCommand')}`));
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.typeHelp')}`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.unknownCommand')}`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.typeHelp')}`));
     }
   }
 };

@@ -25,18 +25,18 @@ const terminalProcessChangeCommand = (input: string) => {
     }
     case 'help':
     case '-h': {
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.changeHelpInfo')}`));
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.availableCategories')}: locale (-l), theme (-t)`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.changeHelpInfo')}`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.availableCategories')}: locale (-l), theme (-t)`));
       break;
     }
     case '': {
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.wrongCommand')}`));
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.changeExample')}`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.wrongCommand')}`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.changeExample')}`));
       break;
     }
     default: {
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.unknownCategory')}`));
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.availableCategories')}: locale (-l), theme (-t)`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.unknownCategory')}`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.availableCategories')}: locale (-l), theme (-t)`));
     }
   }
 };

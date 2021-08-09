@@ -19,11 +19,11 @@ describe('main terminal module', () => {
     processTerminalInput('');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Unknown command',
+      payload: 'Unknown command',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Type "help" to view available commands',
+      payload: 'Type "help" to view available commands',
       type: 'terminal/addTerminalHistory',
     });
   });
@@ -32,11 +32,11 @@ describe('main terminal module', () => {
     processTerminalInput('dasdas');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Unknown command',
+      payload: 'Unknown command',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Type "help" to view available commands',
+      payload: 'Type "help" to view available commands',
       type: 'terminal/addTerminalHistory',
     });
   });
@@ -54,7 +54,7 @@ describe('main terminal module', () => {
     processTerminalInput('help');
     expect(store.dispatch).toBeCalledTimes(1);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Available commands: open, clear, change',
+      payload: 'Available commands: open, clear, change',
       type: 'terminal/addTerminalHistory',
     });
   });

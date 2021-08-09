@@ -49,11 +49,11 @@ describe('should change terminal module', () => {
     terminalProcessChangeCommand('help');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> This command changes value of selected category',
+      payload: 'This command changes value of selected category',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available categories: locale (-l), theme (-t)',
+      payload: 'Available categories: locale (-l), theme (-t)',
       type: 'terminal/addTerminalHistory',
     });
   });
@@ -62,11 +62,11 @@ describe('should change terminal module', () => {
     terminalProcessChangeCommand('-h');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> This command changes value of selected category',
+      payload: 'This command changes value of selected category',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available categories: locale (-l), theme (-t)',
+      payload: 'Available categories: locale (-l), theme (-t)',
       type: 'terminal/addTerminalHistory',
     });
   });
@@ -75,11 +75,11 @@ describe('should change terminal module', () => {
     terminalProcessChangeCommand('');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Wrong command, please try again',
+      payload: 'Wrong command, please try again',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Syntax: change "category to change" "new value"',
+      payload: 'Syntax: change "category to change" "new value"',
       type: 'terminal/addTerminalHistory',
     });
   });
@@ -88,11 +88,11 @@ describe('should change terminal module', () => {
     terminalProcessChangeCommand('dasdasdas');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Unknown category',
+      payload: 'Unknown category',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available categories: locale (-l), theme (-t)',
+      payload: 'Available categories: locale (-l), theme (-t)',
       type: 'terminal/addTerminalHistory',
     });
   });

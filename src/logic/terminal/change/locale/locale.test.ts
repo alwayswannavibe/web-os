@@ -18,12 +18,12 @@ describe('change locale terminal module', () => {
     terminalProcessChangeLocale('ru');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Locale is change',
-      type: 'terminal/addTerminalHistory',
-    });
-    expect(store.dispatch).toHaveBeenNthCalledWith(2, {
       payload: Locales.Russian,
       type: 'locale/setLocale',
+    });
+    expect(store.dispatch).toHaveBeenNthCalledWith(2, {
+      payload: 'Locale is change',
+      type: 'terminal/addTerminalHistory',
     });
   });
 
@@ -31,12 +31,12 @@ describe('change locale terminal module', () => {
     terminalProcessChangeLocale('en');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Locale is change',
-      type: 'terminal/addTerminalHistory',
-    });
-    expect(store.dispatch).toHaveBeenNthCalledWith(2, {
       payload: Locales.Britain,
       type: 'locale/setLocale',
+    });
+    expect(store.dispatch).toHaveBeenNthCalledWith(2, {
+      payload: 'Locale is change',
+      type: 'terminal/addTerminalHistory',
     });
   });
 
@@ -44,11 +44,11 @@ describe('change locale terminal module', () => {
     terminalProcessChangeLocale('help');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> This command changes locale',
+      payload: 'This command changes locale',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available locales: ru, en',
+      payload: 'Available locales: ru, en',
       type: 'terminal/addTerminalHistory',
     });
   });
@@ -57,11 +57,11 @@ describe('change locale terminal module', () => {
     terminalProcessChangeLocale('-h');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> This command changes locale',
+      payload: 'This command changes locale',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available locales: ru, en',
+      payload: 'Available locales: ru, en',
       type: 'terminal/addTerminalHistory',
     });
   });
@@ -70,11 +70,11 @@ describe('change locale terminal module', () => {
     terminalProcessChangeLocale('');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Wrong command, please try again',
+      payload: 'Wrong command, please try again',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Syntax: change "category to change" "new value"',
+      payload: 'Syntax: change "category to change" "new value"',
       type: 'terminal/addTerminalHistory',
     });
   });
@@ -83,11 +83,11 @@ describe('change locale terminal module', () => {
     terminalProcessChangeLocale('dasdasdas');
     expect(store.dispatch).toBeCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, {
-      payload: '> Unknown locale',
+      payload: 'Unknown locale',
       type: 'terminal/addTerminalHistory',
     });
     expect(store.dispatch).toHaveBeenNthCalledWith(2, {
-      payload: '> Available locales: ru, en',
+      payload: 'Available locales: ru, en',
       type: 'terminal/addTerminalHistory',
     });
   });

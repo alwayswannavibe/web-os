@@ -14,29 +14,29 @@ const terminalProcessChangeLocale = (input: string) => {
 
   switch (input.split(' ')[0]) {
     case 'ru': {
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.localeChange')}`));
       dispatch(setLocale(Locales.Russian));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.localeChange')}`));
       break;
     }
     case 'en': {
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.localeChange')}`));
       dispatch(setLocale(Locales.Britain));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.localeChange')}`));
       break;
     }
     case 'help':
     case '-h': {
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.changeLocaleHelpInfo')}`));
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.availableLocales')}: ru, en`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.changeLocaleHelpInfo')}`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.availableLocales')}: ru, en`));
       break;
     }
     case '': {
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.wrongCommand')}`));
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.changeExample')}`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.wrongCommand')}`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.changeExample')}`));
       break;
     }
     default: {
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.unknownLocale')}`));
-      dispatch(addTerminalHistory(`> ${i18n.t('terminal.availableLocales')}: ru, en`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.unknownLocale')}`));
+      dispatch(addTerminalHistory(`${i18n.t('terminal.availableLocales')}: ru, en`));
     }
   }
 };

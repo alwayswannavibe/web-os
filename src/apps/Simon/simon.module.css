@@ -20,16 +20,13 @@
   cursor: pointer;
   transition: 0.25s all ease-in;
 
-  border-color: #f5eeee;
-  border-radius: 0.5rem;
+  border-color: #222121;
+  border-radius: 0.2rem;
   background-color: #f5eeee;
-  box-shadow: #f5eeee 0 1px 3px;
 }
 
 .difficultiesList button:hover {
-  border-color: #b5b3b3;
   background-color: #b5b3b3;
-  box-shadow: #b5b3b3 0 1px 3px;
 }
 
 .difficultiesList button:active {

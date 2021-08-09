@@ -13,9 +13,11 @@
 
 .startBtn {
   margin-top: 90%;
-  padding: 1rem 4rem;
+  padding: 1rem;
 
   cursor: pointer;
+
+  font-size: 1rem;
 }
 
 .startBtn:disabled {

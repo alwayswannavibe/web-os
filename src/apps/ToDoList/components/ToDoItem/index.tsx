@@ -33,11 +33,11 @@ const ToDoItem: FC<Props> = ({ text, id }: Props) => {
       >
         {text}
       </motion.p>
-      <div className={`${styles.button} ${styles.checkButton}`}>
-        <i className="fas fa-check" onClick={() => dispatch(toggleCompleteToDoItem(id))} />
+      <div className={`${styles.button} ${styles.checkButton}`} onClick={() => dispatch(toggleCompleteToDoItem(id))}>
+        <i className="fas fa-check" />
       </div>
-      <div className={`${styles.button} ${styles.deleteButton}`}>
-        <i className="fas fa-trash-alt" onClick={() => dispatch(deleteToDoItem(id))} />
+      <div className={`${styles.button} ${styles.deleteButton}`} onClick={() => dispatch(deleteToDoItem(id))}>
+        <i className="fas fa-trash-alt" />
       </div>
     </li>
   );

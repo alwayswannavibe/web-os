@@ -4,12 +4,16 @@
   padding: 0.05rem 0.5rem;
 
   color: var(--font-color);
-  border: 3px solid #4e4441;
+  border: 3px solid #585656;
   border-radius: 0.3rem;
   outline: none;
   background-color: transparent;
 
   font-size: 1.5rem;
+}
+
+.input:focus {
+  border: 3px solid #046eb5;
 }
 
 .addContainer {
@@ -19,7 +23,8 @@
   display: flex;
   align-items: center;
 
-  width: 100%;
+  width: calc(100% - 1rem);
+  margin-left: 1rem;
 
   border-collapse: collapse;
 }
@@ -45,16 +50,20 @@
   justify-content: center;
 
   width: 4rem;
-  margin-right: 0.5rem;
   padding: 0.55rem;
 
   cursor: pointer;
-  transition: background-color 0.25s linear;
+  transition: background-color 0.15s linear;
   transition: color 0.25s linear;
 
   color: #178517;
+  text-shadow: 2px 2px 8px black;
 
   font-size: 1.5rem;
+}
+
+.addItemButton:hover {
+  color: #0e5810;
 }
 
 .addItemButton:active {

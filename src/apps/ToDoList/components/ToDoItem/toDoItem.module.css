@@ -13,12 +13,16 @@
 
 .text {
   width: 100%;
-  margin-top: 0.2rem;
+  margin-top: 0.5rem;
+  margin-left: 1rem;
   padding: 0.5rem;
 
-  border: 2px solid #4e4441;
-  border-radius: 0.3rem;
-  background-color: transparent;
+  transition: color 0.2s linear;
+  word-break: break-word;
+
+  border: 1px solid #1d1d1d;
+  background-color: #333;
+  box-shadow: 3px 3px 5px black;
 }
 
 .button {
@@ -39,9 +43,14 @@
 }
 
 .deleteButton {
-  transition: color 0.25s linear;
+  transition: color 0.15s linear;
 
   color: #ae2727;
+  text-shadow: 2px 2px 8px black;
+}
+
+.deleteButton:hover {
+  color: #881818;
 }
 
 .deleteButton:active {
@@ -49,9 +58,14 @@
 }
 
 .checkButton {
-  transition: color 0.25s linear;
+  transition: color 0.15s linear;
 
   color: #178517;
+  text-shadow: 2px 2px 8px black;
+}
+
+.checkButton:hover {
+  color: #0d6910;
 }
 
 .checkButton:active {

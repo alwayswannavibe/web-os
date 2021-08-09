@@ -12,8 +12,12 @@ const socket: Socket<DefaultEventsMap, DefaultEventsMap> = io('http://localhost:
 socket.disconnect();
 
 socket!.on('chatUpdate', async () => {
-  const messages = await axios.get('http://localhost:3001/messages');
-  store.dispatch(setMessages(messages.data));
+  try {
+    const messages = await axios.get('http://localhost:3001/messages');
+    store.dispatch(setMessages(messages.data));
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 const websocketSlice = createSlice({
@@ -25,6 +29,9 @@ const websocketSlice = createSlice({
     connect(state) {
       if (!socket.connected) {
         state.socket.connect();
+        axios.get('http://localhost:3001/messages').then((messages) => {
+          store.dispatch(setMessages(messages.data));
+        }).catch(() => {});
       }
     },
     disconnect(state) {

@@ -13,11 +13,21 @@ const chatSlice = createSlice({
   initialState: {
     messages,
     numberOfRender: 0,
+    text: '',
   },
   reducers: {
     setMessages(state, { payload }: { payload: Message[] }) {
       state.messages = payload;
       state.numberOfRender++;
+    },
+    addMessageInputValue(state, { payload }: { payload: string }) {
+      state.text += payload;
+    },
+    changeMessageInputValue(state, { payload }: { payload: string }) {
+      state.text = payload;
+    },
+    clearMessageInputValue(state) {
+      state.text = '';
     },
   },
 });
@@ -25,4 +35,7 @@ const chatSlice = createSlice({
 export default chatSlice.reducer;
 export const {
   setMessages,
+  changeMessageInputValue,
+  clearMessageInputValue,
+  addMessageInputValue,
 } = chatSlice.actions;

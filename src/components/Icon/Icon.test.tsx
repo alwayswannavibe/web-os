@@ -18,8 +18,8 @@ describe('Icon', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
   const mockStore = configureStore(middlewares);
   const initialState = {
-    appsState: {
-      apps: {
+    apps: {
+      appsState: {
         [Apps.Calculator]: {
           iconPos: {
             top: '1rem',

@@ -1,0 +1,13 @@
+{
+  "language": "Язык",
+  "wallpapper": "Обои",
+  "reset": "Сбросить",
+  "languages": {
+    "English": "Английский",
+    "Russian": "Русский"
+  },
+  "themes": {
+    "Planet": "Планета",
+    "Fog": "Туман"
+  }
+}

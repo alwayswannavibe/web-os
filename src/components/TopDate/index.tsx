@@ -7,14 +7,17 @@ import { RootState } from 'src/redux/store';
 
 // Styles
 import styles from './style.module.css';
+import { Language } from '../../features/i18n/types/language';
 
 interface Props {
   children?: never;
 }
 
 export const TopDate: FC<Props> = () => {
-  const locale = useSelector((state: RootState) => state.locale.locale);
+  const language = useSelector((state: RootState) => state.language.language);
   const [date, setDate] = useState(new Date());
+
+  const locale = language === Language.Russian ? 'ru-RU' : 'en-GB';
 
   useEffect(() => {
     const id = setInterval(() => setDate(new Date()), 1000);

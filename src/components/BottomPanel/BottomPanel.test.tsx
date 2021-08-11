@@ -17,9 +17,7 @@ describe('bottom panel component', () => {
   const initialState = {
     apps: {
       apps: [],
-    },
-    appsState: {
-      apps: {
+      appsState: {
         [Apps.Terminal]: {
           isOpen: false,
           isCollapsed: false,

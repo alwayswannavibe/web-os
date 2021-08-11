@@ -13,36 +13,3 @@
   width: 100%;
   height: 100%;
 }
-
-.numberButtons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-
-  width: 50%;
-}
-
-.operationButtons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-
-  width: 50%;
-}
-
-.numberButton,
-.operationButton {
-  width: 33.3%;
-  height: 20%;
-}
-
-.enterButton,
-.zeroButton {
-  width: 100%;
-  height: 40%;
-}
-
-.clearOneButton {
-  width: 66.6%;
-  height: 20%;
-}

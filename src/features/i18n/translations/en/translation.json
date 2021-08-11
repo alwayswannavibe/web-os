@@ -1,0 +1,10 @@
+{
+  "apps": {
+    "Terminal": "Terminal",
+    "Settings": "Settings",
+    "Chat": "Chat",
+    "Simon": "Simon",
+    "ToDo": "ToDo",
+    "Calculator": "Calculator"
+  }
+}

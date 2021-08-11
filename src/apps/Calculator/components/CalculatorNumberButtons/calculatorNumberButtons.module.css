@@ -1,0 +1,17 @@
+.numberButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  width: 50%;
+}
+
+.zeroButton {
+  width: 100%;
+  height: 40%;
+}
+
+.numberButton {
+  width: 33.3%;
+  height: 20%;
+}

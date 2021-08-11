@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
-import { getCalculatorResult, setCalculatorInput } from 'src/redux/slices/appsSlicesBus/calculatorSlice';
+import { getCalculatorResult, setCalculatorInput } from 'src/apps/Calculator/redux';
 import { RootState } from 'src/redux/store';
 
 // Styles

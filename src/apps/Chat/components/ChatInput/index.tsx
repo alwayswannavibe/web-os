@@ -3,15 +3,12 @@ import { ChangeEvent, FC, useCallback, useEffect, useRef, useState } from 'react
 import Picker, { IEmojiData } from 'emoji-picker-react';
 import { useDispatch, useSelector } from 'react-redux';
 
-// Firebase
-import { firestore } from 'src/firebase-state/firebase';
-
 // Redux
 import {
   addMessageInputValue,
   changeMessageInputValue,
   clearMessageInputValue,
-} from 'src/redux/slices/appsSlicesBus/chatSlice';
+} from 'src/apps/Chat/redux';
 
 // Types
 import { RootState } from 'src/redux/store';
@@ -60,12 +57,6 @@ const ChatInput: FC<Props> = () => {
       return;
     }
     dispatch(changeMessageInputValue(textToReadable));
-    firestore.collection('chat').add({
-      username,
-      text,
-      photoURL,
-      date: new Date(),
-    });
     socket.emit('chatMsg', {
       username,
       text,

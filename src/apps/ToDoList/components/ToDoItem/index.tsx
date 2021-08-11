@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 
 // Redux
-import { toggleCompleteToDoItem, deleteToDoItem } from 'src/redux/slices/appsSlicesBus/toDoSlice';
+import { toggleCompleteToDoItem, deleteToDoItem } from 'src/apps/ToDoList/redux';
 
 // Types
 import { RootState } from 'src/redux/store';

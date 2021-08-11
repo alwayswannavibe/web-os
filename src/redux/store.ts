@@ -2,22 +2,23 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 // Redux
-import themeSlice from 'src/redux/slices/themeSlice';
-import localeSlice from 'src/redux/slices/localeSlice';
+import themeSlice from 'src/features/theme/redux';
+import languageSlice from 'src/features/i18n/redux';
 import appsSlice from 'src/redux/slices/appsSlice';
-import userSlice from 'src/redux/slices/userSlice';
-import terminalSlice from 'src/redux/slices/appsSlicesBus/terminalSlice';
-import calculatorSlice from 'src/redux/slices/appsSlicesBus/calculatorSlice';
-import toDoSlice from 'src/redux/slices/appsSlicesBus/toDoSlice';
-import chatSlice from 'src/redux/slices/appsSlicesBus/chatSlice';
-import simonSlice from 'src/redux/slices/appsSlicesBus/simonSlice';
-import appsStateSlice from 'src/redux/slices/appsSlicesBus/appsStateSlice';
-import websocketSlice from 'src/redux/slices/websocketSlice';
+import userSlice from 'src/features/user/redux';
+import websocketSlice from 'src/features/websocket/redux';
+
+// Apps/redux
+import chatSlice from 'src/apps/Chat/redux';
+import simonSlice from 'src/apps/Simon/redux';
+import calculatorSlice from 'src/apps/Calculator/redux';
+import toDoSlice from 'src/apps/ToDoList/redux';
+import terminalSlice from 'src/apps/Terminal/redux';
 
 const store = configureStore({
   reducer: {
     theme: themeSlice,
-    locale: localeSlice,
+    language: languageSlice,
     terminal: terminalSlice,
     apps: appsSlice,
     calculator: calculatorSlice,
@@ -25,7 +26,6 @@ const store = configureStore({
     user: userSlice,
     chat: chatSlice,
     simon: simonSlice,
-    appsState: appsStateSlice,
     websocket: websocketSlice,
   },
   middleware: ((getDefaultMiddleware) => getDefaultMiddleware({

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 
 // Redux
-import { addMessageInputValue } from 'src/redux/slices/appsSlicesBus/chatSlice';
+import { addMessageInputValue } from 'src/apps/Chat/redux';
 
 // Types
 import { Message } from 'src/types/message';

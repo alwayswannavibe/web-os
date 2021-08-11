@@ -1,13 +1,10 @@
 // Libraries
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import firebase from 'firebase';
-
-// Firebase
-import { auth } from 'src/firebase-state/firebase';
+import { useHistory } from 'react-router-dom';
 
 // Redux
-import { logout } from 'src/redux/slices/userSlice';
+import { logout } from 'src/features/user/redux';
 
 // Types
 import { Apps } from 'src/types/apps';
@@ -28,15 +25,14 @@ export const BottomPanel: FC<Props> = () => {
   const loading = useSelector((state: RootState) => state.user.loading);
 
   const dispatch = useDispatch();
-
-  const handleLogin = async () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    await auth.signInWithPopup(provider);
-  };
+  const history = useHistory();
 
   const handleLogout = async () => {
-    auth.signOut();
     dispatch(logout());
+  };
+
+  const handleLogin = () => {
+    history.push('/login');
   };
 
   return (
@@ -67,11 +63,11 @@ export const BottomPanel: FC<Props> = () => {
       />
       {!loading &&
         (!/^User-[\w]{8}$/.test(username) ? (
-          <button onClick={() => handleLogout()} type="button" className={styles.logBtn}>
+          <button onClick={handleLogout} type="button" className={styles.logBtn}>
             <i className="fa fa-sign-out" />
           </button>
         ) : (
-          <button onClick={() => handleLogin()} type="button" className={styles.logBtn}>
+          <button onClick={handleLogin} type="button" className={styles.logBtn}>
             <i className="fas fa-user" />
           </button>
         ))}

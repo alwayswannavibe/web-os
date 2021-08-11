@@ -7,15 +7,15 @@ import {
   addTerminalHistory,
   incrementAutocompleteNumber, resetAutocompleteNumber,
   TerminalMessage,
-} from 'src/redux/slices/appsSlicesBus/terminalSlice';
+} from 'src/apps/Terminal/redux';
 
 // Types
 import { Apps } from 'src/types/apps';
 import { RootState } from 'src/redux/store';
 
 // Logic
-import { processTerminalInput } from 'src/logic/terminal';
-import { getAvailableAutocomplete } from 'src/logic/terminal/autocomplete';
+import { processTerminalInput } from 'src/apps/Terminal/logic';
+import { getAvailableAutocomplete } from 'src/apps/Terminal/logic/autocomplete';
 
 // Assets
 import imgSource from 'src/assets/images/icons/terminal.svg';

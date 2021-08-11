@@ -5,12 +5,12 @@ import { FC, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
-import { RootState } from 'src/redux/store';
-import { simonClick, startShowing, updateStatus } from 'src/redux/slices/appsSlicesBus/simonSlice';
+import { simonClick, startShowing, updateStatus } from 'src/apps/Simon/redux';
 
 // Types
 import { SimonStatus } from 'src/types/simonStatus';
 import { Apps } from 'src/types/apps';
+import { RootState } from 'src/redux/store';
 
 // Assets
 import sound1 from 'src/assets/sounds/simon/simon1.wav';
@@ -36,7 +36,7 @@ export const SimonMain: FC<Props> = ({ numberOfButtons }: Props) => {
   const status = useSelector((store: RootState) => store.simon.simonStatus);
   const pattern = useSelector((store: RootState) => store.simon.pattern);
   const level = useSelector((store: RootState) => store.simon.level);
-  const isSimonOpen = useSelector((store: RootState) => store.appsState.apps[Apps.Simon].isOpened);
+  const isSimonOpen = useSelector((store: RootState) => store.apps.appsState[Apps.Simon].isOpened);
   const difficulty = useSelector((store: RootState) => store.simon.difficulty);
 
   const btnRef1 = useRef<HTMLButtonElement>(null);

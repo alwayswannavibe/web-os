@@ -1,0 +1,15 @@
+{
+  "simon": {
+    "chooseDifficulty": "Выберите сложность",
+    "start": "Старт",
+    "restart": "Заново",
+    "level": "Уровень",
+    "difficulty": "Сложность",
+    "difficulties": {
+      "Easy": "Легко",
+      "Normal": "Нормально",
+      "Hard": "Сложно",
+      "Extreme": "Экстрим"
+    }
+  }
+}

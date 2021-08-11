@@ -2,8 +2,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
-import { addWindow, deleteWindow, setWindowActive } from 'src/redux/slices/appsSlice';
-import { closeApp, openApp, toggleCollapseApp } from 'src/redux/slices/appsSlicesBus/appsStateSlice';
+import { addWindow, deleteWindow, setWindowActive, closeApp, openApp, toggleCollapseApp } from 'src/redux/slices/appsSlice';
 
 // Types
 import { Apps } from 'src/types/apps';
@@ -11,8 +10,8 @@ import { RootState } from 'src/redux/store';
 
 const useApp = (type: Apps) => {
   const apps = useSelector((state: RootState) => state.apps.apps);
-  const isCollapsed = useSelector((state: RootState) => state.appsState.apps[type].isCollapsed);
-  const isOpened = useSelector((state: RootState) => state.appsState.apps[type].isOpened);
+  const isCollapsed = useSelector((state: RootState) => state.apps.appsState[type].isCollapsed);
+  const isOpened = useSelector((state: RootState) => state.apps.appsState[type].isOpened);
 
   const dispatch = useDispatch();
 

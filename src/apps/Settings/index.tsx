@@ -4,17 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 // Redux
-import { setTheme } from 'src/redux/slices/themeSlice';
-import { setLocale } from 'src/redux/slices/localeSlice';
+import { setBackgroundImage } from 'src/features/theme/redux';
+import { setLanguage } from 'src/features/i18n/redux';
 import { RootState } from 'src/redux/store';
 
 // I18n
-import 'src/i18n/i18next';
+import 'src/features/i18n';
 
 // Types
 import { Apps } from 'src/types/apps';
-import { Themes } from 'src/types/themes';
-import { Locales } from 'src/types/locales';
+import { BackgroundImage } from 'src/features/theme/types/backgroundImage';
+import { Language } from 'src/features/i18n/types/language';
 
 // Assets
 import imgSource from 'src/assets/images/icons/settings.svg';
@@ -22,6 +22,8 @@ import imgSource from 'src/assets/images/icons/settings.svg';
 // Components
 import { Window } from 'src/components/Window';
 import { Icon } from 'src/components/Icon';
+import { LanguageOption } from './components/LanguageOption';
+import { BackgroundOption } from './components/BackgroundOption';
 
 // Styles
 import styles from './settings.module.css';
@@ -33,21 +35,23 @@ interface Props {
 export const Settings: FC<Props> = () => {
   const dispatch = useDispatch();
 
-  const theme = useSelector((state: RootState) => state.theme.theme);
-  const locale = useSelector((state: RootState) => state.locale.locale);
-  const { t } = useTranslation();
+  const backgroundImage = useSelector((state: RootState) => state.theme.backgroundImage);
+  const backgroundImages = useSelector((state: RootState) => state.theme.backgroundImages);
+  const language = useSelector((state: RootState) => state.language.language);
+  const languages = useSelector((state: RootState) => state.language.languages);
+  const { t } = useTranslation('settings');
 
   const handleChangeTheme = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const seletedTheme: Themes = event.target.selectedOptions[0].value as Themes;
-    if (Object.values(Themes).includes(seletedTheme)) {
-      dispatch(setTheme(seletedTheme));
+    const seletedBackgroundImage: BackgroundImage = event.target.selectedOptions[0].value as BackgroundImage;
+    if (Object.values(BackgroundImage).includes(seletedBackgroundImage)) {
+      dispatch(setBackgroundImage({ backgroundImage: seletedBackgroundImage }));
     }
   };
 
   const handleLocaleTheme = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const seletedLocale: Locales = event.target.selectedOptions[0].value as Locales;
-    if (Object.values(Locales).includes(seletedLocale)) {
-      dispatch(setLocale(seletedLocale));
+    const seletedLanguage: Language = event.target.selectedOptions[0].value as Language;
+    if (Object.values(Language).includes(seletedLanguage)) {
+      dispatch(setLanguage({ language: seletedLanguage }));
     }
   };
 
@@ -58,24 +62,22 @@ export const Settings: FC<Props> = () => {
         <form className={styles.form}>
           <div>
             <label htmlFor="themeSelect" className={styles.label}>
-              {t('settings.theme')}
-              <select id="themeSelect" className={styles.select} onChange={handleChangeTheme} defaultValue={theme}>
-                <option value={Themes.Planet}>{Themes.Planet}</option>
-                <option value={Themes.Dynamic}>{Themes.Dynamic}</option>
-                <option value={Themes.Dynamic2}>{Themes.Dynamic2}</option>
-                <option value={Themes.Sea}>{Themes.Sea}</option>
-                <option value={Themes.Car}>{Themes.Car}</option>
-                <option value={Themes.Road}>{Themes.Road}</option>
-                <option value={Themes.Tree}>{Themes.Tree}</option>
+              {t('wallpapper')}
+              <select id="themeSelect" className={styles.select} onChange={handleChangeTheme} defaultValue={backgroundImage}>
+                {backgroundImages.map((el, i) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <BackgroundOption value={el} key={i} />
+                ))}
               </select>
             </label>
           </div>
           <div>
             <label htmlFor="localeSelect" className={styles.label}>
-              {t('settings.locale')}
-              <select id="localeSelect" className={styles.select} onChange={handleLocaleTheme} defaultValue={locale}>
-                <option value={Locales.Britain}>{t('settings.locales.english')}</option>
-                <option value={Locales.Russian}>{t('settings.locales.russian')}</option>
+              {t('language')}
+              <select id="localeSelect" className={styles.select} onChange={handleLocaleTheme} defaultValue={language}>
+                {languages.map((el) => (
+                  <LanguageOption value={el} />
+                ))}
               </select>
             </label>
           </div>
@@ -88,7 +90,7 @@ export const Settings: FC<Props> = () => {
                 window.location.reload();
               }}
             >
-              {t('settings.reset')}
+              {t('reset')}
             </button>
           </div>
         </form>

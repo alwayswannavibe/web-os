@@ -23,8 +23,8 @@ export const MessageAlert: FC<Props> = () => {
   const messages = useSelector((state: RootState) => state.chat.messages);
   const username = useSelector((state: RootState) => state.user.username);
   const numberOfRender = useSelector((state: RootState) => state.chat.numberOfRender);
-  const isChatOpen = useSelector((state: RootState) => state.appsState.apps[Apps.Chat].isOpened);
-  const isChatCollapsed = useSelector((state: RootState) => state.appsState.apps[Apps.Chat].isCollapsed);
+  const isChatOpen = useSelector((state: RootState) => state.apps.appsState[Apps.Chat].isOpened);
+  const isChatCollapsed = useSelector((state: RootState) => state.apps.appsState[Apps.Chat].isCollapsed);
   const message = messages[messages.length - 1];
 
   useEffect(() => {

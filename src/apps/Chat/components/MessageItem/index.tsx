@@ -1,14 +1,15 @@
 // Libraries
 import { motion } from 'framer-motion';
 import { FC } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 
 // Redux
-import { RootState } from 'src/redux/store';
+import { addMessageInputValue } from 'src/apps/Chat/redux';
 
 // Types
 import { Message } from 'src/types/message';
+import { RootState } from 'src/redux/store';
 
 // Components
 import { Avatar } from 'src/components/Avatar';
@@ -23,6 +24,11 @@ interface Props {
 
 const MessageItem: FC<Props> = ({ message }: Props) => {
   const username = useSelector((state: RootState) => state.user.username);
+  const dispatch = useDispatch();
+
+  const handleClickUsername = () => {
+    dispatch(addMessageInputValue(`@${message.username}, `));
+  };
 
   return (
     <div className={classNames(styles.wrapper, {
@@ -38,15 +44,22 @@ const MessageItem: FC<Props> = ({ message }: Props) => {
       >
         <Avatar link={message.photo} />
         <div className={styles.msgMain}>
-          <div className={styles.msgContent}>
-            {message.text}
+          <div className={classNames(styles.msgContent, {
+            [styles.toYou]: message.text.includes(`@${username}`) || message.text.toLowerCase().includes('@all'),
+          })}
+          >
+            {message.text.slice(0, 4) === 'http' ? (
+              <a href={message.text} target="_blank" rel="noreferrer"><img src={message.text} alt={message.text} /></a>
+            ) : (
+              <span>{message.text}</span>
+            )}
           </div>
           <div className={classNames(styles.usernameAndDate, {
             [styles.myMsg]: username === message.username,
           })}
           >
             <div className={styles.username}>
-              {message.username}
+              <button type="button" onClick={handleClickUsername}>{message.username}</button>
             </div>
             <div className={styles.date}>
               {message.date}

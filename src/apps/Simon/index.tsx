@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 // Redux
-import { changeDifficulty } from 'src/redux/slices/appsSlicesBus/simonSlice';
+import { changeDifficulty } from 'src/apps/Simon/redux';
 
 // I18n
-import 'src/i18n/i18next';
+import 'src/features/i18n';
 
 // Assets
 import imgSource from 'src/assets/images/icons/saymon.svg';
@@ -33,7 +33,7 @@ export const Simon: FC<PropsType> = () => {
   const dispatch = useDispatch();
 
   const difficulty = useSelector((state: RootState) => state.simon.difficulty);
-  const { t } = useTranslation();
+  const { t } = useTranslation('simon');
 
   const chooseDifficulty = (choosedDifficulty: Difficulties) => {
     dispatch(changeDifficulty({ difficulty: choosedDifficulty }));

@@ -3,14 +3,19 @@ import React, { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
-import { addTerminalHistory, TerminalMessage } from 'src/redux/slices/appsSlicesBus/terminalSlice';
+import {
+  addTerminalHistory,
+  incrementAutocompleteNumber, resetAutocompleteNumber,
+  TerminalMessage,
+} from 'src/apps/Terminal/redux';
 
 // Types
 import { Apps } from 'src/types/apps';
 import { RootState } from 'src/redux/store';
 
 // Logic
-import { processTerminalInput } from 'src/logic/terminal';
+import { processTerminalInput } from 'src/apps/Terminal/logic';
+import { getAvailableAutocomplete } from 'src/apps/Terminal/logic/autocomplete';
 
 // Assets
 import imgSource from 'src/assets/images/icons/terminal.svg';
@@ -34,21 +39,31 @@ export const Terminal: FC<Props> = () => {
   const [text, setText] = useState('');
   const [inputHistoryNumber, setInputHistoryNumber] = useState(inputHistory.length);
 
-  const listRef = useRef<HTMLUListElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
+    dispatch(resetAutocompleteNumber());
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.keyCode === 38) {
       event.preventDefault();
-      setText(inputHistory[inputHistoryNumber]);
-      setInputHistoryNumber((prevState: number) => (prevState - 1 >= 0 ? prevState - 1 : prevState));
+      const updatedInputHistoryNumber = inputHistoryNumber > 0 ? inputHistoryNumber - 1 : inputHistoryNumber;
+      setInputHistoryNumber(updatedInputHistoryNumber);
+      setText(inputHistory[updatedInputHistoryNumber] || '');
     } else if (event.keyCode === 40) {
       event.preventDefault();
-      setText(inputHistory[inputHistoryNumber]);
-      setInputHistoryNumber((prevState: number) => (prevState + 1 < inputHistory.length ? prevState + 1 : prevState));
+      const updatedInputHistoryNumber = inputHistoryNumber < inputHistory.length - 1 ? inputHistoryNumber + 1 : inputHistoryNumber;
+      setInputHistoryNumber(updatedInputHistoryNumber);
+      setText(inputHistory[updatedInputHistoryNumber] || '');
+    } else if (event.keyCode === 9) {
+      event.preventDefault();
+      const textArr = text.split(' ');
+      const autocomplete = getAvailableAutocomplete(text);
+      textArr[textArr.length - 1] = autocomplete;
+      setText(textArr.join(' '));
+      dispatch(incrementAutocompleteNumber());
     } else {
       setInputHistoryNumber(inputHistory.length);
     }
@@ -59,9 +74,10 @@ export const Terminal: FC<Props> = () => {
     const textToReadable = text.trim().toLowerCase();
     if (!textToReadable) return;
     setText(textToReadable);
-    dispatch(addTerminalHistory(`< ${text}`));
+    dispatch(addTerminalHistory(`root:~$ ${text}`));
     processTerminalInput(text);
     setText('');
+    dispatch(resetAutocompleteNumber());
   };
 
   useEffect(() => {
@@ -74,26 +90,39 @@ export const Terminal: FC<Props> = () => {
     <>
       <Icon imgSource={imgSource} type={Apps.Terminal} />
       <Window type={Apps.Terminal}>
-        <ul className={styles.terminalText} id="terminalHistory" ref={listRef}>
-          {terminalHistory.map((terminalMessage: TerminalMessage) => (
-            <li key={terminalMessage.id}>
-              {terminalMessage.message}
-            </li>
-          ))}
-        </ul>
-        <pre className={styles.pre}>
-          {'root < '}
-          <form onSubmit={handleSubmit}>
-            <input
-              autoFocus
-              type="text"
-              className={styles.input}
-              onChange={handleChange}
-              value={text}
-              onKeyDown={handleKeyDown}
-            />
-          </form>
-        </pre>
+        <div className={styles.wrapper} ref={listRef}>
+          <ul className={styles.terminalText} id="terminalHistory">
+            {terminalHistory.map((terminalMessage: TerminalMessage) => (
+              <li key={terminalMessage.id}>
+                {terminalMessage.message.startsWith('root:~$ ') ? (
+                  <>
+                    <span className={styles.user}>root</span>
+                    :
+                    <span className={styles.tilda}>~</span>
+                    {'$ '}
+                    {terminalMessage.message.slice(8)}
+                  </>
+                ) : terminalMessage.message}
+              </li>
+            ))}
+          </ul>
+          <pre className={styles.pre}>
+            <span className={styles.user}>root</span>
+            :
+            <span className={styles.tilda}>~</span>
+            {'$ '}
+            <form onSubmit={handleSubmit}>
+              <input
+                autoFocus
+                type="text"
+                className={styles.input}
+                onChange={handleChange}
+                value={text}
+                onKeyDown={handleKeyDown}
+              />
+            </form>
+          </pre>
+        </div>
       </Window>
     </>
   );

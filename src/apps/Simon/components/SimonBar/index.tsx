@@ -5,10 +5,10 @@ import { useTranslation } from 'react-i18next';
 
 // Redux
 import { RootState } from 'src/redux/store';
-import { updateStatus, restartGame } from 'src/redux/slices/appsSlicesBus/simonSlice';
+import { updateStatus, restartGame } from 'src/apps/Simon/redux';
 
 // I18n
-import 'src/i18n/i18next';
+import 'src/features/i18n';
 
 // Types
 import { Difficulties } from 'src/types/difficulties';
@@ -24,7 +24,7 @@ interface Props {
 
 export const SimonBar: FC<Props> = ({ difficulty }: Props) => {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
+  const { t } = useTranslation('simon');
 
   const status = useSelector((store: RootState) => store.simon.simonStatus);
   const level = useSelector((store: RootState) => store.simon.level);

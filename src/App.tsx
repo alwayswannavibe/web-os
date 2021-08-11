@@ -1,6 +1,7 @@
 // Libraries
 import { Provider } from 'react-redux';
 import { Suspense } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 // Redux
 import store from 'src/redux/store';
@@ -9,13 +10,44 @@ import store from 'src/redux/store';
 import { TopBar } from 'src/components/TopBar';
 import { Main } from 'src/components/Main';
 import { BottomPanel } from 'src/components/BottomPanel';
+import { LoginForm } from './components/LoginForm';
+import { RegistrationForm } from './components/RegistrationForm';
 
 const App = () => (
   <Suspense fallback="">
     <Provider store={store}>
-      <TopBar />
-      <Main />
-      <BottomPanel />
+      <BrowserRouter>
+        <Switch>
+          <Route
+            exact
+            path="/login"
+            render={() => (
+              <>
+                <LoginForm />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/registration"
+            render={() => (
+              <>
+                <RegistrationForm />
+              </>
+            )}
+          />
+          <Route
+            path="/"
+            render={() => (
+              <>
+                <TopBar />
+                <Main />
+                <BottomPanel />
+              </>
+            )}
+          />
+        </Switch>
+      </BrowserRouter>
     </Provider>
   </Suspense>
 );

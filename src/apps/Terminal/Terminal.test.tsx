@@ -9,7 +9,7 @@ import userEvent from '@testing-library/user-event';
 import { Terminal } from 'src/apps/Terminal';
 
 // Logic
-import * as processTerminalInput from 'src/logic/terminal';
+import * as processTerminalInput from 'src/apps/Terminal/logic';
 
 // Components
 import * as Icon from 'src/components/Icon';
@@ -77,9 +77,9 @@ describe('Terminal', () => {
 
     userEvent.type(input, 'open{enter}');
 
-    expect(mockDispatch).toBeCalledTimes(1);
-    expect(mockDispatch).toHaveBeenCalledWith({
-      payload: '< open',
+    expect(mockDispatch).toBeCalledTimes(6);
+    expect(mockDispatch).toHaveBeenNthCalledWith(5, {
+      payload: 'root:~$ open',
       type: 'terminal/addTerminalHistory',
     });
     expect(processTerminalInput.processTerminalInput).toBeCalledTimes(1);
@@ -112,7 +112,7 @@ describe('Terminal', () => {
 
     userEvent.type(input, '{arrowup}{arrowup}');
 
-    expect(input.value).toEqual('test4');
+    expect(input.value).toEqual('test3');
   });
 
   it('should processed arrowdown', () => {
@@ -126,7 +126,7 @@ describe('Terminal', () => {
 
     userEvent.type(input, '{arrowup}{arrowup}{arrowup}{arrowdown}{arrowdown}');
 
-    expect(input.value).toEqual('test3');
+    expect(input.value).toEqual('test4');
   });
 
   it('should processed arrowup if length > max length', () => {

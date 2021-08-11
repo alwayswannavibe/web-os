@@ -20,9 +20,7 @@ describe('useApp', () => {
       const initialState = {
         apps: {
           apps: [Apps.Terminal, Apps.Calculator],
-        },
-        appsState: {
-          apps: {
+          appsState: {
             [Apps.Calculator]: {
               isOpened: true,
               isCollapsed: true,
@@ -48,7 +46,7 @@ describe('useApp', () => {
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
         payload: { type: Apps.Calculator },
-        type: 'appsState/toggleCollapseApp',
+        type: 'apps/toggleCollapseApp',
       });
     });
 
@@ -56,9 +54,7 @@ describe('useApp', () => {
       const initialState = {
         apps: {
           apps: [Apps.Terminal, Apps.Calculator],
-        },
-        appsState: {
-          apps: {
+          appsState: {
             [Apps.Calculator]: {
               isOpened: true,
               isCollapsed: false,
@@ -80,7 +76,7 @@ describe('useApp', () => {
       expect(mockDispatch).toBeCalledTimes(1);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
         payload: { type: Apps.Calculator },
-        type: 'appsState/toggleCollapseApp',
+        type: 'apps/toggleCollapseApp',
       });
     });
 
@@ -88,9 +84,7 @@ describe('useApp', () => {
       const initialState = {
         apps: {
           apps: [Apps.Calculator, Apps.Terminal],
-        },
-        appsState: {
-          apps: {
+          appsState: {
             [Apps.Calculator]: {
               isOpened: true,
               isCollapsed: false,
@@ -116,7 +110,7 @@ describe('useApp', () => {
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
         payload: { type: Apps.Calculator },
-        type: 'appsState/toggleCollapseApp',
+        type: 'apps/toggleCollapseApp',
       });
     });
   });
@@ -126,9 +120,7 @@ describe('useApp', () => {
       const initialState = {
         apps: {
           apps: [],
-        },
-        appsState: {
-          apps: {
+          appsState: {
             [Apps.Calculator]: {
               isOpened: false,
               isCollapsed: false,
@@ -151,7 +143,7 @@ describe('useApp', () => {
       expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
         payload: { type: Apps.Calculator },
-        type: 'appsState/openApp',
+        type: 'apps/openApp',
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
         payload: Apps.Calculator,
@@ -163,9 +155,7 @@ describe('useApp', () => {
       const initialState = {
         apps: {
           apps: [Apps.Calculator],
-        },
-        appsState: {
-          apps: {
+          appsState: {
             [Apps.Calculator]: {
               isOpened: true,
               isCollapsed: true,
@@ -188,7 +178,7 @@ describe('useApp', () => {
       expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
         payload: { type: Apps.Calculator },
-        type: 'appsState/toggleCollapseApp',
+        type: 'apps/toggleCollapseApp',
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
         payload: Apps.Calculator,
@@ -200,9 +190,7 @@ describe('useApp', () => {
       const initialState = {
         apps: {
           apps: [Apps.Calculator],
-        },
-        appsState: {
-          apps: {
+          appsState: {
             [Apps.Calculator]: {
               isOpened: true,
               isCollapsed: false,
@@ -231,9 +219,7 @@ describe('useApp', () => {
       const initialState = {
         apps: {
           apps: [Apps.Calculator],
-        },
-        appsState: {
-          apps: {
+          appsState: {
             [Apps.Calculator]: {
               isOpened: true,
               isCollapsed: false,
@@ -256,7 +242,7 @@ describe('useApp', () => {
       expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
         payload: { type: Apps.Calculator },
-        type: 'appsState/closeApp',
+        type: 'apps/closeApp',
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
         payload: Apps.Calculator,
@@ -268,9 +254,7 @@ describe('useApp', () => {
       const initialState = {
         apps: {
           apps: [Apps.Calculator],
-        },
-        appsState: {
-          apps: {
+          appsState: {
             [Apps.Calculator]: {
               isOpened: false,
               isCollapsed: false,

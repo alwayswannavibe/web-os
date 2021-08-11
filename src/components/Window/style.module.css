@@ -3,7 +3,6 @@
   z-index: 10;
 
   border: 3px solid #343030;
-  border-radius: 0.4rem;
 }
 
 .windowTop {
@@ -13,7 +12,7 @@
   height: 5%;
 
   border-bottom: 2px solid #353535;
-  background-color: rgba(23, 23, 24, 0.9);
+  background-color: rgba(23, 23, 24, 0.6);
 }
 
 .windowBody {
@@ -21,7 +20,7 @@
 
   height: 95%;
 
-  background-color: #1e1e22;
+  background-color: rgba(23, 23, 24, 0.96);
 }
 
 .btn {

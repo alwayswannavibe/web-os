@@ -4,12 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
 
 // Redux
-import { setWindowActive } from 'src/redux/slices/appsSlice';
-import { changeWindowPos } from 'src/redux/slices/appsSlicesBus/appsStateSlice';
+import { setWindowActive, changeWindowPos } from 'src/redux/slices/appsSlice';
 
 // I18n
 import { useTranslation } from 'react-i18next';
-import 'src/i18n/i18next';
+import 'src/features/i18n';
 
 // Types
 import { Apps } from 'src/types/apps';
@@ -29,9 +28,9 @@ interface Props {
 }
 
 export const Window: FC<Props> = ({ children, type }: Props) => {
-  const isOpen = useSelector((state: RootState) => state.appsState.apps[type].isOpened);
-  const isCollapsed = useSelector((state: RootState) => state.appsState.apps[type].isCollapsed);
-  const windowCoords = useSelector((state: RootState) => state.appsState.apps[type].windowPos);
+  const isOpen = useSelector((state: RootState) => state.apps.appsState[type].isOpened);
+  const isCollapsed = useSelector((state: RootState) => state.apps.appsState[type].isCollapsed);
+  const windowCoords = useSelector((state: RootState) => state.apps.appsState[type].windowPos);
 
   const windowTop = useRef<HTMLDivElement>(null);
 
@@ -55,6 +54,7 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
     }
     return width;
   });
+
   const [windowHeight, setWindowHeight] = useState(() => {
     let width = window.innerHeight * 0.02 * 27;
     const localStorageHeight = localStorage.getItem(`window${type}Height`);

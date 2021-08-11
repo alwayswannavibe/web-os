@@ -12,8 +12,9 @@ describe('Window', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
   const mockStore = configureStore(middlewares);
   const initialState = {
-    appsState: {
-      apps: {
+    apps: {
+      apps: [Apps.Calculator],
+      appsState: {
         [Apps.Calculator]: {
           isOpened: true,
           isCollapsed: false,
@@ -23,9 +24,6 @@ describe('Window', () => {
           },
         },
       },
-    },
-    apps: {
-      apps: [Apps.Calculator],
     },
   };
   const mockStoreWithState = mockStore(initialState);

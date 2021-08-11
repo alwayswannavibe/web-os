@@ -3,11 +3,11 @@ import { FC, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 // Redux
-import { changeIconPos } from 'src/redux/slices/appsSlicesBus/appsStateSlice';
+import { changeIconPos } from 'src/redux/slices/appsSlice';
 
 // I18n
 import { useTranslation } from 'react-i18next';
-import 'src/i18n/i18next';
+import 'src/features/i18n';
 
 // Hooks
 import { useDragNDrop } from 'src/hooks/useDragNDrop';
@@ -27,7 +27,7 @@ interface Props {
 }
 
 export const Icon: FC<Props> = ({ imgSource, type }: Props) => {
-  const iconCoords = useSelector((state: RootState) => state.appsState.apps[type].iconPos);
+  const iconCoords = useSelector((state: RootState) => state.apps.appsState[type].iconPos);
 
   const icon = useRef<HTMLDivElement>(null);
 

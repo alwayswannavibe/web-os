@@ -23,9 +23,7 @@ describe('bottom tab component', () => {
       const initialState = {
         apps: {
           apps: [],
-        },
-        appsState: {
-          apps: {
+          appsState: {
             [Apps.Terminal]: {
               isCollapsed: false,
               isOpened: false,
@@ -49,9 +47,7 @@ describe('bottom tab component', () => {
       const initialState = {
         apps: {
           apps: [Apps.Terminal],
-        },
-        appsState: {
-          apps: {
+          appsState: {
             [Apps.Terminal]: {
               isCollapsed: false,
               isOpened: true,
@@ -77,9 +73,7 @@ describe('bottom tab component', () => {
       const initialState = {
         apps: {
           apps: [],
-        },
-        appsState: {
-          apps: {
+          appsState: {
             [Apps.Terminal]: {
               isCollapsed: false,
               isOpened: false,
@@ -103,9 +97,7 @@ describe('bottom tab component', () => {
       const initialState = {
         apps: {
           apps: [Apps.Terminal],
-        },
-        appsState: {
-          apps: {
+          appsState: {
             [Apps.Terminal]: {
               isCollapsed: false,
               isOpened: true,
@@ -129,9 +121,7 @@ describe('bottom tab component', () => {
       const initialState = {
         apps: {
           apps: [Apps.ToDo, Apps.Terminal],
-        },
-        appsState: {
-          apps: {
+          appsState: {
             [Apps.Terminal]: {
               isCollapsed: false,
               isOpened: true,

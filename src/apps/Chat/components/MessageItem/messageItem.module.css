@@ -36,8 +36,26 @@
   background-color: #cacaca;
 }
 
+.msgContent img {
+  max-width: 100%;
+
+  border-radius: 10px;
+}
+
+.usernameAndDate button {
+  cursor: pointer;
+
+  color: var(--font-color);
+  border: none;
+  background-color: transparent;
+}
+
 .myMsg {
   flex-direction: row-reverse;
+}
+
+.toYou {
+  background-color: #fcdd6c;
 }
 
 .wrapper {

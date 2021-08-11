@@ -6,7 +6,8 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
 // Types
-import { Themes } from 'src/types/themes';
+import { BackgroundImage } from 'src/features/theme/types/backgroundImage';
+import { Apps } from 'src/types/apps';
 
 // Components
 import * as Terminal from 'src/apps/Terminal';
@@ -42,7 +43,14 @@ describe('main component', () => {
     const mockStore = configureStore(middlewares);
     const initialState = {
       theme: {
-        theme: Themes.Planet,
+        theme: BackgroundImage.Planet,
+      },
+      apps: {
+        appsState: {
+          [Apps.Chat]: {
+            isOpened: true,
+          },
+        },
       },
     };
     const mockStoreWithState = mockStore(initialState);
@@ -75,10 +83,14 @@ describe('main component', () => {
       const mockStore = configureStore(middlewares);
       const initialState = {
         theme: {
-          theme: Themes.Planet,
+          backgroundImage: BackgroundImage.Planet,
         },
-        chat: {
-          isChatOpen: true,
+        apps: {
+          appsState: {
+            [Apps.Chat]: {
+              isOpened: true,
+            },
+          },
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -97,10 +109,14 @@ describe('main component', () => {
       const mockStore = configureStore(middlewares);
       const initialState = {
         theme: {
-          theme: Themes.Sea,
+          backgroundImage: BackgroundImage.Sea,
         },
-        chat: {
-          isChatOpen: true,
+        apps: {
+          appsState: {
+            [Apps.Chat]: {
+              isOpened: true,
+            },
+          },
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -119,10 +135,14 @@ describe('main component', () => {
       const mockStore = configureStore(middlewares);
       const initialState = {
         theme: {
-          theme: Themes.Tree,
+          backgroundImage: BackgroundImage.Tree,
         },
-        chat: {
-          isChatOpen: true,
+        apps: {
+          appsState: {
+            [Apps.Chat]: {
+              isOpened: true,
+            },
+          },
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -137,14 +157,18 @@ describe('main component', () => {
       expect(el!.style.backgroundImage).toBe('url(tree.jpg)');
     });
 
-    it('should correct render road theme', () => {
+    it('should correct render fog theme', () => {
       const mockStore = configureStore(middlewares);
       const initialState = {
         theme: {
-          theme: Themes.Road,
+          backgroundImage: BackgroundImage.Fog,
         },
-        chat: {
-          isChatOpen: true,
+        apps: {
+          appsState: {
+            [Apps.Chat]: {
+              isOpened: true,
+            },
+          },
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -156,17 +180,21 @@ describe('main component', () => {
       );
 
       const el = document.getElementById('main-container');
-      expect(el!.style.backgroundImage).toBe('url(road.jpg)');
+      expect(el!.style.backgroundImage).toBe('url(fog.jpg)');
     });
 
     it('should correct render car theme', () => {
       const mockStore = configureStore(middlewares);
       const initialState = {
         theme: {
-          theme: Themes.Car,
+          backgroundImage: BackgroundImage.Car,
         },
-        chat: {
-          isChatOpen: true,
+        apps: {
+          appsState: {
+            [Apps.Chat]: {
+              isOpened: true,
+            },
+          },
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -185,10 +213,14 @@ describe('main component', () => {
       const mockStore = configureStore(middlewares);
       const initialState = {
         theme: {
-          theme: Themes.Dynamic,
+          backgroundImage: BackgroundImage.Dynamic,
         },
-        chat: {
-          isChatOpen: true,
+        apps: {
+          appsState: {
+            [Apps.Chat]: {
+              isOpened: true,
+            },
+          },
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -207,10 +239,14 @@ describe('main component', () => {
       const mockStore = configureStore(middlewares);
       const initialState = {
         theme: {
-          theme: Themes.Dynamic2,
+          backgroundImage: BackgroundImage.Dynamic2,
         },
-        chat: {
-          isChatOpen: true,
+        apps: {
+          appsState: {
+            [Apps.Chat]: {
+              isOpened: true,
+            },
+          },
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -223,32 +259,6 @@ describe('main component', () => {
 
       const el = document.getElementById('main-container');
       expect(el!.style.backgroundImage).toBe('url(dynamic2.gif)');
-    });
-
-    it('should render default theme', () => {
-      const mockStore = configureStore(middlewares);
-      const initialState = {
-        theme: {
-          theme: '',
-        },
-        chat: {
-          messages: [],
-          isChatOpen: true,
-        },
-        user: {
-          username: '',
-        },
-      };
-      const mockStoreWithState = mockStore(initialState);
-
-      render(
-        <Provider store={mockStoreWithState}>
-          <Main />
-        </Provider>,
-      );
-
-      const el = document.getElementById('main-container');
-      expect(el!.style.backgroundImage).toBe('url(darkPlanet.jpg)');
     });
   });
 });

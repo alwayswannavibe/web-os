@@ -9,10 +9,10 @@ import {
   clearCalculatorInput,
   deleteLastCalculatorInput,
   getCalculatorResult,
-} from 'src/redux/slices/appsSlicesBus/calculatorSlice';
+} from 'src/apps/Calculator/redux';
 
 // I18n
-import 'src/i18n/i18next';
+import 'src/features/i18n';
 
 // Styles
 import styles from './calculatorButton.module.css';
@@ -24,7 +24,7 @@ interface Props {
 
 const CalculatorButton: FC<Props> = ({ value }: Props) => {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
+  const { t } = useTranslation('calculator');
 
   const handleClick = () => {
     if (value === 'Enter') {

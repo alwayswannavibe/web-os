@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 
 // Redux
-import { toggleCompleteToDoItem, deleteToDoItem } from 'src/redux/slices/appsSlicesBus/toDoSlice';
+import { toggleCompleteToDoItem, deleteToDoItem } from 'src/apps/ToDoList/redux';
 
 // Types
 import { RootState } from 'src/redux/store';
@@ -33,11 +33,11 @@ const ToDoItem: FC<Props> = ({ text, id }: Props) => {
       >
         {text}
       </motion.p>
-      <div className={`${styles.button} ${styles.checkButton}`}>
-        <i className="fas fa-check" onClick={() => dispatch(toggleCompleteToDoItem(id))} />
+      <div className={`${styles.button} ${styles.checkButton}`} onClick={() => dispatch(toggleCompleteToDoItem(id))}>
+        <i className="fas fa-check" />
       </div>
-      <div className={`${styles.button} ${styles.deleteButton}`}>
-        <i className="fas fa-trash-alt" onClick={() => dispatch(deleteToDoItem(id))} />
+      <div className={`${styles.button} ${styles.deleteButton}`} onClick={() => dispatch(deleteToDoItem(id))}>
+        <i className="fas fa-trash-alt" />
       </div>
     </li>
   );

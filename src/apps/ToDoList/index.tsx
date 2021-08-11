@@ -3,7 +3,7 @@ import React, { FC, FormEvent, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
-import { addToDoItem } from 'src/redux/slices/appsSlicesBus/toDoSlice';
+import { addToDoItem } from 'src/apps/ToDoList/redux';
 
 // Types
 import { Apps } from 'src/types/apps';

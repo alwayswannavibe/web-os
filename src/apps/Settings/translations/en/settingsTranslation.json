@@ -1,0 +1,13 @@
+{
+  "language": "Language",
+  "wallpapper": "Wallpapper",
+  "reset": "Reset",
+  "languages": {
+    "English": "English",
+    "Russian": "Russian"
+  },
+  "theme": {
+    "Planet": "Planet",
+    "Fog": "Fog"
+  }
+}

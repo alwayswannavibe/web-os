@@ -31,8 +31,8 @@ describe('SimonMain', () => {
         level: 1,
         difficulty: Difficulties.Easy,
       },
-      appsState: {
-        apps: {
+      apps: {
+        appsState: {
           [Apps.Simon]: {
             isOpened: true,
           },
@@ -59,8 +59,8 @@ describe('SimonMain', () => {
         level: 2,
         difficulty: Difficulties.Easy,
       },
-      appsState: {
-        apps: {
+      apps: {
+        appsState: {
           [Apps.Simon]: {
             isOpened: true,
           },
@@ -91,8 +91,8 @@ describe('SimonMain', () => {
         level: 1,
         difficulty: Difficulties.Easy,
       },
-      appsState: {
-        apps: {
+      apps: {
+        appsState: {
           [Apps.Simon]: {
             isOpened: true,
           },

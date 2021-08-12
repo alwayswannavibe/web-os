@@ -11,6 +11,7 @@ const userSlice = createSlice({
     name: '',
     photo: '',
     loading: false,
+    currentPage: 1,
   },
   reducers: {
     logout(state) {

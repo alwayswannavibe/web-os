@@ -5,7 +5,7 @@ import React, { FC, ReactNode } from 'react';
 import { CalculatorButton } from '../CalculatorButton';
 
 // Styles
-import styles from '../CalculatorButtons/calculatorButtons.module.css';
+import styles from './calculatorOperationButtons.module.css';
 
 interface Props {
   children?: never;

@@ -17,6 +17,8 @@ const CalculatorInput: FC<Props> = () => {
   const inputValue = useSelector((state: RootState) => state.calculator.inputValue);
   const dispatch = useDispatch();
 
+  console.log('Rerender');
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const numbersAndOperatorsRegExp = new RegExp(/^[\d+\-*^/.]*$/);
     const notSpaceRegExp = new RegExp(/^\S*$/);

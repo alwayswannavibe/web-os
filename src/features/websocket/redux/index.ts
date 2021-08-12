@@ -8,12 +8,14 @@ import axios from 'axios';
 import store from 'src/redux/store';
 import { setMessages } from 'src/apps/Chat/redux';
 
-const socket: Socket<DefaultEventsMap, DefaultEventsMap> = io('https://web-os-back.herokuapp.com');
+const socket: Socket<DefaultEventsMap, DefaultEventsMap> = io(process.env.REACT_APP_API_URL as string);
 socket.disconnect();
 
 socket!.on('chatUpdate', async () => {
   try {
-    const messages = await axios.get('https://web-os-back.herokuapp.com/messages');
+    const messages = await axios.get(`${process.env.REACT_APP_API_URL}/messages`, {
+      timeout: 5000,
+    });
     store.dispatch(setMessages(messages.data));
   } catch (error) {
     console.log(error);
@@ -29,7 +31,9 @@ const websocketSlice = createSlice({
     connect(state) {
       if (!socket.connected) {
         state.socket.connect();
-        axios.get('https://web-os-back.herokuapp.com/messages').then((messages) => {
+        axios.get(`${process.env.REACT_APP_API_URL}/messages`, {
+          timeout: 5000,
+        }).then((messages) => {
           store.dispatch(setMessages(messages.data));
         }).catch(() => {});
       }

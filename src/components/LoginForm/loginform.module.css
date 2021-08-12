@@ -9,6 +9,7 @@
 
 .wrapper {
   position: relative;
+
   width: 100vw;
   height: 100vh;
 
@@ -17,16 +18,20 @@
 
 .closeBtn {
   position: absolute;
-  right: 0;
-  top: 0;
   z-index: 10;
-  background-color: #4285f8;
-  border: none;
-  cursor: pointer;
-  color: white;
-  transition: background-color 0.15s;
-  font-size: 1.6rem;
+  top: 0;
+  right: 0;
+
   padding: 0.2rem 2rem;
+
+  cursor: pointer;
+  transition: background-color 0.15s;
+
+  color: white;
+  border: none;
+  background-color: #4285f8;
+
+  font-size: 1.6rem;
 }
 
 .closeBtn:hover {
@@ -43,13 +48,13 @@
   padding: 0.4rem;
 
   cursor: pointer;
+  transition: background-color 0.15s;
 
   border: none;
   border-radius: 3px;
   background-color: #d3d3d6;
 
   font-size: 1rem;
-  transition: background-color 0.15s;
 }
 
 .submit:hover {
@@ -123,11 +128,13 @@
 
 .registration a:hover {
   transition: color 0.15s;
+
   color: #a4a4a4;
 }
 
 .registration a:active {
   transition: color 0.15s;
+
   color: #606060;
 }
 

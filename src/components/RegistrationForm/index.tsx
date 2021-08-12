@@ -60,6 +60,7 @@ const RegistrationForm: FC<Props> = () => {
 
   return (
     <div className={styles.wrapper}>
+      <button type="button" onClick={() => history.push('/')} className={styles.closeBtn}>←</button>
       <form className={styles.loginForm} onSubmit={handleSubmit(handleRegistration)}>
         <span
           className={`${styles.formErrorDefault} ${formError ? styles.formError : ''}`}

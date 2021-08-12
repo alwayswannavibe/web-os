@@ -29,9 +29,11 @@ const LoginForm: FC<Props> = () => {
     setFormError('');
 
     try {
-      const res = await axios.post('https://web-os-back.herokuapp.com/auth/login', {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
         username: getValues('username'),
         password: getValues('password'),
+      }, {
+        timeout: 5000,
       });
 
       if (res.data.error) {

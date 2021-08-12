@@ -10,7 +10,7 @@ const userSlice = createSlice({
     username: localStorage.getItem('username') || `User-${uuidv4().slice(0, 8)}`,
     name: '',
     photo: '',
-    loading: true,
+    loading: false,
   },
   reducers: {
     logout(state) {

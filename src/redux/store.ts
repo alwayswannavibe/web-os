@@ -14,6 +14,7 @@ import simonSlice from 'src/apps/Simon/redux';
 import calculatorSlice from 'src/apps/Calculator/redux';
 import toDoSlice from 'src/apps/ToDoList/redux';
 import terminalSlice from 'src/apps/Terminal/redux';
+import minesweeperSlice from 'src/apps/Minesweeper/redux';
 
 const store = configureStore({
   reducer: {
@@ -26,6 +27,7 @@ const store = configureStore({
     user: userSlice,
     chat: chatSlice,
     simon: simonSlice,
+    minesweeper: minesweeperSlice,
     websocket: websocketSlice,
   },
   middleware: ((getDefaultMiddleware) => getDefaultMiddleware({

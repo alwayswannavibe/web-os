@@ -61,6 +61,10 @@ export const BottomPanel: FC<Props> = () => {
         type={Apps.Simon}
         iconName="th-large"
       />
+      <BottomTab
+        type={Apps.Minesweeper}
+        iconName="bomb"
+      />
       {!loading &&
         (!/^User-[\w]{8}$/.test(username) ? (
           <button onClick={handleLogout} type="button" className={styles.logBtn}>

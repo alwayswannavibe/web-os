@@ -18,6 +18,7 @@ import { Calculator } from 'src/apps/Calculator';
 import { ToDoList } from 'src/apps/ToDoList';
 import { Chat } from 'src/apps/Chat';
 import { Simon } from 'src/apps/Simon';
+import { Minesweeper } from 'src/apps/Minesweeper';
 import { MessageAlert } from 'src/components/MessageAlert';
 
 // Types
@@ -75,6 +76,7 @@ const Main: FC<Props> = () => {
           <ToDoList />
           <Chat />
           <Simon />
+          <Minesweeper />
           <MessageAlert />
         </div>
       </div>

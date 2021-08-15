@@ -5,6 +5,7 @@ enum Apps {
   ToDo = 'ToDo',
   Chat = 'Chat',
   Simon = 'Simon',
+  Minesweeper = 'Minesweeper',
 }
 
 export { Apps };

@@ -136,7 +136,7 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
               localStorage.setItem(`window${type}Width`, (newWidth / 50).toString());
               localStorage.setItem(`window${type}Height`, (newHeight / 50).toString());
             }}
-            minWidth={window.innerHeight * 0.02 * 36}
+            minWidth={window.innerHeight * 0.02 * 48}
             bounds="window"
             lockAspectRatio
           >

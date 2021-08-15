@@ -75,8 +75,9 @@ export const Settings: FC<Props> = () => {
             <label htmlFor="localeSelect" className={styles.label}>
               {t('language')}
               <select id="localeSelect" className={styles.select} onChange={handleLocaleTheme} defaultValue={language}>
-                {languages.map((el) => (
-                  <LanguageOption value={el} />
+                {languages.map((el, i) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <LanguageOption value={el} key={i} />
                 ))}
               </select>
             </label>

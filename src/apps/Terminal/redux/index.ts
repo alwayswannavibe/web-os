@@ -18,7 +18,7 @@ const availableAutocomplete: string[] = [];
 
 const commands = {
   firstLevelCommands: ['open', 'change', 'help', 'clear'],
-  openCommands: ['calculator', 'chat', 'settings', 'simon', 'terminal', 'toDo', 'help'],
+  openCommands: ['calculator', 'chat', 'settings', 'simon', 'terminal', 'toDo', 'minesweeper', 'help'],
   changeCommands: ['language', 'theme'],
   changeLanguageCommands: ['ru', 'en'],
   changeBackgroundImageCommands: Object.values(BackgroundImage).map((el) => el.toLowerCase()),

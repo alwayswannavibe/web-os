@@ -11,6 +11,13 @@
   font-size: 60%;
 }
 
+.node i {
+  display: flex;
+  justify-content: center;
+
+  font-size: 60%;
+}
+
 .node:hover {
   filter: opacity(60%);
 }

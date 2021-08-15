@@ -43,7 +43,7 @@ const MinesweeperNode: FC<Props> = ({ value, arrIndex, index }: Props) => {
   };
 
   const handleClick = () => {
-    if (isFlag || isLose || isWin) {
+    if (isFlag || isLose || isWin || isVisble) {
       return;
     }
 

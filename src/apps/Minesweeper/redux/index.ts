@@ -2,6 +2,7 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 import { BOMB_NUMBER } from '../constants/bombNumber';
+import { Difficulties } from '../../../types/difficulties';
 
 const pattern: number[][] = [];
 const visibilityList: boolean[][] = [];
@@ -11,14 +12,15 @@ const minesweeperSlice = createSlice({
   initialState: {
     pattern,
     visibilityList,
-    size: 10,
-    bombCount: 30,
+    size: 0,
+    bombCount: 0,
     isLose: false,
     isWin: false,
     numberOfFlags: 0,
-    availableFlags: 15,
+    availableFlags: 0,
     isFlagAvailable: true,
     displayCount: 0,
+    difficulty: Difficulties.None,
   },
   reducers: {
     generateMinesweeperPattern(state) {
@@ -144,6 +146,25 @@ const minesweeperSlice = createSlice({
       state.numberOfFlags--;
       state.availableFlags++;
     },
+    setMinesweeperDifficulty(state, { payload }: { payload: { difficulty: Difficulties } }) {
+      if (payload.difficulty === Difficulties.Easy) {
+        minesweeperSlice.caseReducers.setSettings(state, { payload: { size: 7, bombCount: 10 } });
+      }
+
+      if (payload.difficulty === Difficulties.Normal) {
+        minesweeperSlice.caseReducers.setSettings(state, { payload: { size: 12, bombCount: 25 } });
+      }
+
+      if (payload.difficulty === Difficulties.Hard) {
+        minesweeperSlice.caseReducers.setSettings(state, { payload: { size: 15, bombCount: 45 } });
+      }
+
+      if (payload.difficulty === Difficulties.Extreme) {
+        minesweeperSlice.caseReducers.setSettings(state, { payload: { size: 20, bombCount: 80 } });
+      }
+
+      state.difficulty = payload.difficulty;
+    },
   },
 });
 
@@ -156,4 +177,5 @@ export const {
   setSettings,
   addFlag,
   removeFlag,
+  setMinesweeperDifficulty,
 } = minesweeperSlice.actions;

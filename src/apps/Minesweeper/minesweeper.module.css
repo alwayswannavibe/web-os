@@ -28,8 +28,9 @@
   padding: 1rem;
 }
 
-.restart {
+.failButtons button {
   width: 50%;
+  margin-top: 1rem;
   padding: 0.5rem;
 
   cursor: pointer;
@@ -42,10 +43,18 @@
   font-size: 1rem;
 }
 
-.restart:hover {
+.failButtons {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  width: 100%;
+}
+
+.failButtons button:hover {
   background-color: #c1c1c1;
 }
 
-.restart:active {
+.failButtons button:active {
   background-color: #c1c1c1;
 }

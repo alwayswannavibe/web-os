@@ -1,7 +1,30 @@
+// Libraries
 import { FC } from 'react';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+
+// I18n
+import 'src/features/i18n';
+
+// Types
 import { Difficulties } from 'src/types/difficulties';
+
+// Redux
 import { setMinesweeperDifficulty } from 'src/apps/Minesweeper/redux';
+
+// Constants
+import {
+  EASY_MINES_COUNT,
+  EASY_SIZE,
+  EXTREME_MINES_COUNT,
+  EXTREME_SIZE,
+  HARD_MINES_COUNT,
+  HARD_SIZE,
+  NORMAL_MINES_COUNT,
+  NORMAL_SIZE,
+} from 'src/apps/Minesweeper/constants/sizesAndMines';
+
+// Styles
 import styles from './difficultiesScreen.module.css';
 
 interface Props {
@@ -10,6 +33,7 @@ interface Props {
 
 const DifficultiesScreen: FC<Props> = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation('minesweeper');
 
   const handleChoose = (difficulty: Difficulties) => {
     dispatch(setMinesweeperDifficulty({ difficulty }));
@@ -18,20 +42,20 @@ const DifficultiesScreen: FC<Props> = () => {
   return (
     <div className={styles.difficulties}>
       <button type="button" onClick={() => handleChoose(Difficulties.Easy)}>
-        <span>{Difficulties.Easy}</span>
-        <span>7 x 7 (10 mines)</span>
+        <span>{t(`difficulties.${Difficulties.Easy}`)}</span>
+        <span>{`${EASY_SIZE} X ${EASY_SIZE} (${EASY_MINES_COUNT} ${t('mines')})`}</span>
       </button>
       <button type="button" onClick={() => handleChoose(Difficulties.Normal)}>
-        <span>{Difficulties.Normal}</span>
-        <span>12 x 12 (25 mines)</span>
+        <span>{t(`difficulties.${Difficulties.Normal}`)}</span>
+        <span>{`${NORMAL_SIZE} X ${NORMAL_SIZE} (${NORMAL_MINES_COUNT} ${t('mines')})`}</span>
       </button>
       <button type="button" onClick={() => handleChoose(Difficulties.Hard)}>
-        <span>{Difficulties.Hard}</span>
-        <span>15 x 15 (45 mines)</span>
+        <span>{t(`difficulties.${Difficulties.Hard}`)}</span>
+        <span>{`${HARD_SIZE} X ${HARD_SIZE} (${HARD_MINES_COUNT} ${t('mines')})`}</span>
       </button>
       <button type="button" onClick={() => handleChoose(Difficulties.Extreme)}>
-        <span>{Difficulties.Extreme}</span>
-        <span>20 x 20 (75 mines)</span>
+        <span>{t(`difficulties.${Difficulties.Extreme}`)}</span>
+        <span>{`${EXTREME_SIZE} X ${EXTREME_SIZE} (${EXTREME_MINES_COUNT} ${t('mines')})`}</span>
       </button>
     </div>
   );

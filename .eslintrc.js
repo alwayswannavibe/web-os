@@ -28,5 +28,6 @@ module.exports = {
     "no-plusplus": 0,
     "jsx-a11y/no-autofocus": 0,
     "react/jsx-props-no-spreading": 0,
+    "no-continue": 0,
   }
 };

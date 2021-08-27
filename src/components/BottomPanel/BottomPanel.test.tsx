@@ -42,6 +42,10 @@ describe('bottom panel component', () => {
           isOpen: false,
           isCollapsed: false,
         },
+        [Apps.Minesweeper]: {
+          isOpen: false,
+          isCollapsed: false,
+        },
       },
     },
     user: {
@@ -59,7 +63,7 @@ describe('bottom panel component', () => {
 
   it('correct render icons', () => {
     const icons = document.getElementsByClassName(styles.container)[0].children;
-    expect(icons).toHaveLength(7);
+    expect(icons).toHaveLength(8);
   });
 });
 

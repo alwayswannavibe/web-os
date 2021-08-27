@@ -1,8 +1,23 @@
 /* eslint-disable no-param-reassign */
 
+// Libraries
 import { createSlice } from '@reduxjs/toolkit';
+
+// Types
+import { Difficulties } from 'src/types/difficulties';
+
+// Constants
 import { BOMB_NUMBER } from '../constants/bombNumber';
-import { Difficulties } from '../../../types/difficulties';
+import {
+  EASY_MINES_COUNT,
+  EASY_SIZE,
+  EXTREME_MINES_COUNT,
+  EXTREME_SIZE,
+  HARD_MINES_COUNT,
+  HARD_SIZE,
+  NORMAL_MINES_COUNT,
+  NORMAL_SIZE,
+} from '../constants/sizesAndMines';
 
 const pattern: number[][] = [];
 const visibilityList: boolean[][] = [];
@@ -56,16 +71,16 @@ const minesweeperSlice = createSlice({
     },
     calculateMinesweeper(state) {
       state.pattern = state.pattern.map((arr, arrIndex) => (
-        arr.map((el, i) => {
+        arr.map((el, elIndex) => {
           if (el === BOMB_NUMBER) {
             return el;
           }
 
           let count = 0;
 
-          for (let i1 = arrIndex - 1; i1 <= arrIndex + 1; i1++) {
-            for (let j1 = i - 1; j1 <= i + 1; j1++) {
-              if (state.pattern[i1] && state.pattern[i1][j1] && state.pattern[i1][j1] === BOMB_NUMBER) {
+          for (let i = arrIndex - 1; i <= arrIndex + 1; i++) {
+            for (let j = elIndex - 1; j <= elIndex + 1; j++) {
+              if (state.pattern[i] && state.pattern[i][j] && state.pattern[i][j] === BOMB_NUMBER) {
                 count++;
               }
             }
@@ -93,6 +108,11 @@ const minesweeperSlice = createSlice({
 
       if (state.displayCount === state.size * state.size - state.bombCount) {
         state.isWin = true;
+        for (let i = 0; i < state.size; i++) {
+          for (let j = 0; j < state.size; j++) {
+            state.visibilityList[i][j] = true;
+          }
+        }
         return;
       }
 
@@ -111,25 +131,27 @@ const minesweeperSlice = createSlice({
 
       for (let i1 = arrIndex - 1; i1 <= arrIndex + 1; i1++) {
         for (let j1 = index - 1; j1 <= index + 1; j1++) {
-          if (i1 >= 0 && i1 < state.size && j1 >= 0 && j1 < state.size && state.pattern[i1][j1] !== BOMB_NUMBER) {
-            if (state.visibilityList[i1][j1] === false) {
-              state.displayCount++;
-              if (state.displayCount === state.size * state.size - state.bombCount) {
-                state.isWin = true;
-                for (let i = 0; i < state.size; i++) {
-                  for (let j = 0; j < state.size; j++) {
-                    state.visibilityList[i][j] = true;
-                  }
-                }
-                return;
+          if (!(i1 >= 0 && i1 < state.size && j1 >= 0 && j1 < state.size && state.pattern[i1][j1] !== BOMB_NUMBER)) {
+            continue;
+          }
+          if (state.visibilityList[i1][j1] === true) {
+            continue;
+          }
+          state.displayCount++;
+          if (state.displayCount === state.size * state.size - state.bombCount) {
+            state.isWin = true;
+            for (let i = 0; i < state.size; i++) {
+              for (let j = 0; j < state.size; j++) {
+                state.visibilityList[i][j] = true;
               }
             }
-            state.visibilityList[i1][j1] = true;
+            return;
           }
+          state.visibilityList[i1][j1] = true;
         }
       }
     },
-    setSettings(state, { payload } : { payload: { size: number, bombCount: number } }) {
+    setSettings(state, { payload }: { payload: { size: number, bombCount: number } }) {
       state.bombCount = payload.bombCount;
       state.availableFlags = payload.bombCount;
       state.size = payload.size;
@@ -148,19 +170,29 @@ const minesweeperSlice = createSlice({
     },
     setMinesweeperDifficulty(state, { payload }: { payload: { difficulty: Difficulties } }) {
       if (payload.difficulty === Difficulties.Easy) {
-        minesweeperSlice.caseReducers.setSettings(state, { payload: { size: 7, bombCount: 10 } });
+        minesweeperSlice.caseReducers.setSettings(state, { payload: { size: EASY_SIZE, bombCount: EASY_MINES_COUNT } });
       }
 
       if (payload.difficulty === Difficulties.Normal) {
-        minesweeperSlice.caseReducers.setSettings(state, { payload: { size: 12, bombCount: 25 } });
+        minesweeperSlice.caseReducers.setSettings(state, {
+          payload: {
+            size: NORMAL_SIZE,
+            bombCount: NORMAL_MINES_COUNT,
+          },
+        });
       }
 
       if (payload.difficulty === Difficulties.Hard) {
-        minesweeperSlice.caseReducers.setSettings(state, { payload: { size: 15, bombCount: 45 } });
+        minesweeperSlice.caseReducers.setSettings(state, { payload: { size: HARD_SIZE, bombCount: HARD_MINES_COUNT } });
       }
 
       if (payload.difficulty === Difficulties.Extreme) {
-        minesweeperSlice.caseReducers.setSettings(state, { payload: { size: 20, bombCount: 80 } });
+        minesweeperSlice.caseReducers.setSettings(state, {
+          payload: {
+            size: EXTREME_SIZE,
+            bombCount: EXTREME_MINES_COUNT,
+          },
+        });
       }
 
       state.difficulty = payload.difficulty;

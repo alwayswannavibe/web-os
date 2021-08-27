@@ -25,7 +25,8 @@ const MinesweeperNode: FC<Props> = ({ value, arrIndex, index }: Props) => {
 
   const handleRightClick = (event: React.MouseEvent) => {
     event.preventDefault();
-    if (isVisble || isLose || isWin) {
+
+    if (isVisble) {
       return;
     }
 
@@ -43,7 +44,7 @@ const MinesweeperNode: FC<Props> = ({ value, arrIndex, index }: Props) => {
   };
 
   const handleClick = () => {
-    if (isFlag || isLose || isWin || isVisble) {
+    if (isFlag || isVisble) {
       return;
     }
 

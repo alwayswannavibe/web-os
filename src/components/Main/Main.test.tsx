@@ -16,6 +16,7 @@ import * as Calculator from 'src/apps/Calculator';
 import * as ToDoList from 'src/apps/ToDoList';
 import * as Chat from 'src/apps/Chat';
 import * as Simon from 'src/apps/Simon';
+import * as Minesweeper from 'src/apps/Minesweeper';
 import * as MessageAlert from 'src/components/MessageAlert';
 import { Main } from '.';
 
@@ -32,6 +33,7 @@ describe('main component', () => {
     jest.spyOn(ToDoList, 'ToDoList').mockReturnValue(<div data-testid="ToDoList" />);
     jest.spyOn(Chat, 'Chat').mockReturnValue(<div data-testid="Chat" />);
     jest.spyOn(Simon, 'Simon').mockReturnValue(<div data-testid="Simon" />);
+    jest.spyOn(Minesweeper, 'Minesweeper').mockReturnValue(<div data-testid="Minesweeper" />);
     jest.spyOn(MessageAlert, 'MessageAlert').mockReturnValue(<div data-testid="MessageAlert" />);
   });
 

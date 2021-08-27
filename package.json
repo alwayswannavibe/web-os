@@ -34,6 +34,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "profiling": "npm run build -- --profile",
+    "serve": "serve -s build",
     "test": "react-scripts test",
     "test:coverage": "npm test -- --env=jsdom --coverage --watchAll",
     "eject": "react-scripts eject",

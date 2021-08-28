@@ -10,8 +10,8 @@ import store from 'src/redux/store';
 import { TopBar } from 'src/components/TopBar';
 import { Main } from 'src/components/Main';
 import { BottomPanel } from 'src/components/BottomPanel';
-import { LoginForm } from './components/LoginForm';
-import { RegistrationForm } from './components/RegistrationForm';
+import { LoginForm } from 'src/components/LoginForm';
+import { RegistrationForm } from 'src/components/RegistrationForm';
 
 const App = () => (
   <Suspense fallback="">

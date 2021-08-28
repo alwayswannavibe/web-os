@@ -1,53 +1,79 @@
+// Libraries
+import { configureStore } from '@reduxjs/toolkit';
+
 // Redux
-import store from 'src/redux/store';
-import {
-  addToCalculatorInput,
-  clearCalculatorInput,
-  deleteLastCalculatorInput,
-  getCalculatorResult,
-  setCalculatorInput,
-} from '.';
+import calculatorSlice, { addToCalculatorInput, clearCalculatorInput, deleteLastCalculatorInput, getCalculatorResult, setCalculatorInput } from '.';
 
-describe('calculator slice', () => {
-  it('add input value to calculator input', () => {
-    store.dispatch(addToCalculatorInput('7'));
-    expect(store.getState().calculator.inputValue).toEqual('7');
-    store.dispatch(clearCalculatorInput());
+// Logic
+import * as logic from '../logic';
+
+describe('calculatorSlice', () => {
+  it('addToCalculatorInput should add value to the inputValue', () => {
+    const testStore = configureStore({
+      reducer: {
+        calculator: calculatorSlice,
+      },
+    });
+
+    testStore.dispatch(addToCalculatorInput('1'));
+    testStore.dispatch(addToCalculatorInput('+'));
+    testStore.dispatch(addToCalculatorInput('2'));
+
+    expect(testStore.getState().calculator.inputValue).toEqual('1+2');
   });
 
-  it('add input value to calculator input then addToCalculatorInput calls 2+ times', () => {
-    store.dispatch(addToCalculatorInput('7'));
-    store.dispatch(addToCalculatorInput('+'));
-    store.dispatch(addToCalculatorInput('3'));
-    expect(store.getState().calculator.inputValue).toEqual('7+3');
-    store.dispatch(clearCalculatorInput());
+  it('setCalculatorInput should replace the inputValue', () => {
+    const testStore = configureStore({
+      reducer: {
+        calculator: calculatorSlice,
+      },
+    });
+
+    testStore.dispatch(setCalculatorInput('1+2'));
+
+    expect(testStore.getState().calculator.inputValue).toEqual('1+2');
   });
 
-  it('clear calculator input then calls clearCalculatorInput', () => {
-    store.dispatch(setCalculatorInput('7+5-2'));
-    store.dispatch(clearCalculatorInput());
-    expect(store.getState().calculator.inputValue).toEqual('');
+  it('getCalculatorResult should calls the getCalcResult from logic', () => {
+    const testStore = configureStore({
+      reducer: {
+        calculator: calculatorSlice,
+      },
+    });
+    const getCalcResultMock = jest.spyOn(logic, 'getCalcResult');
+
+    testStore.dispatch(setCalculatorInput('1+2'));
+    testStore.dispatch(getCalculatorResult());
+
+    expect(getCalcResultMock).toHaveBeenCalledTimes(1);
+    expect(getCalcResultMock).toHaveBeenCalledWith('1+2');
   });
 
-  it('set calculator input then calls setCalculatorInput', () => {
-    store.dispatch(setCalculatorInput('7+5-2'));
-    expect(store.getState().calculator.inputValue).toEqual('7+5-2');
-    store.dispatch(clearCalculatorInput());
+  it('deleteLastCalculatorInput should delete the last charachter of inputValue', () => {
+    const testStore = configureStore({
+      reducer: {
+        calculator: calculatorSlice,
+      },
+    });
+
+    testStore.dispatch(setCalculatorInput('1+2'));
+    testStore.dispatch(deleteLastCalculatorInput());
+
+    expect(testStore.getState().calculator.inputValue).toEqual('1+');
   });
 
-  it('delete last calculator input character then calls deleteLastCalculatorInput', () => {
-    store.dispatch(setCalculatorInput('7+5-2'));
-    store.dispatch(deleteLastCalculatorInput());
-    expect(store.getState().calculator.inputValue).toEqual('7+5-');
-    store.dispatch(clearCalculatorInput());
-  });
+  it('clearCalculatorInput should clear the inputValue', () => {
+    const testStore = configureStore({
+      reducer: {
+        calculator: calculatorSlice,
+      },
+    });
 
-  it('get calculator input result then calls getCalculatorResult', () => {
-    store.dispatch(setCalculatorInput('2*5-2^2+6/2'));
-    store.dispatch(getCalculatorResult());
-    expect(store.getState().calculator.inputValue).toEqual('9');
-    store.dispatch(clearCalculatorInput());
+    testStore.dispatch(addToCalculatorInput('1'));
+    testStore.dispatch(addToCalculatorInput('+'));
+    testStore.dispatch(addToCalculatorInput('2'));
+    testStore.dispatch(clearCalculatorInput());
+
+    expect(testStore.getState().calculator.inputValue).toEqual('');
   });
 });
-
-export {};

@@ -36,9 +36,31 @@ const processMultiplyAndDivision = (numbers: number[], operators: string[]): [nu
 
   let index = compare('*', '/', operators);
 
+  let decimalLength = 0;
   while (index !== -1) {
+    decimalLength = 0;
+    if (numbersCopy[index - 1] % 1 || numbersCopy[index] % 1) {
+      decimalLength = Math.max(
+        numbersCopy[index - 1].toString().split('.')[1]?.length || 0,
+        numbersCopy[index].toString().split('.')[1]?.length || 0,
+      );
+    }
     if (operatorsCopy.indexOf('*') === index) {
-      numbersCopy[index - 1] = numbersCopy[index - 1] * numbersCopy[index];
+      if (decimalLength) {
+        numbersCopy[index - 1] =
+          (
+            Math.floor(numbersCopy[index - 1] * 10 ** decimalLength)
+            * Math.floor(numbersCopy[index] * 10 ** decimalLength)
+          ) / 100 ** decimalLength;
+      } else {
+        numbersCopy[index - 1] = numbersCopy[index - 1] * numbersCopy[index];
+      }
+    } else if (decimalLength) {
+      numbersCopy[index - 1] =
+        (
+          Math.floor(numbersCopy[index - 1] * 10 ** decimalLength)
+          / Math.floor(numbersCopy[index] * 10 ** decimalLength)
+        );
     } else {
       numbersCopy[index - 1] = numbersCopy[index - 1] / numbersCopy[index];
     }
@@ -61,21 +83,26 @@ const processAddAndSubtract = (numbers: number[], operators: string[]): [number[
     decimalLength = 0;
     if (numbersCopy[index - 1] % 1 || numbersCopy[index] % 1) {
       decimalLength = Math.max(
-        numbersCopy[index - 1].toString().split('.')[1]?.length,
-        numbersCopy[index].toString().split('.')[1]?.length,
+        numbersCopy[index - 1].toString().split('.')[1]?.length || 0,
+        numbersCopy[index].toString().split('.')[1]?.length || 0,
       );
     }
     if (operatorsCopy.indexOf('+') === index) {
       if (decimalLength) {
         numbersCopy[index - 1] =
-          (numbersCopy[index - 1] * 10 ** decimalLength + numbersCopy[index] * 10 ** decimalLength) /
-          10 ** decimalLength;
+          (
+            Math.floor(numbersCopy[index - 1] * 10 ** decimalLength)
+            + Math.floor(numbersCopy[index] * 10 ** decimalLength)
+          ) / 10 ** decimalLength;
       } else {
         numbersCopy[index - 1] = numbersCopy[index - 1] + numbersCopy[index];
       }
     } else if (decimalLength) {
       numbersCopy[index - 1] =
-        (numbersCopy[index - 1] * 10 ** decimalLength - numbersCopy[index] * 10 ** decimalLength) / 10 ** decimalLength;
+        (
+          Math.floor(numbersCopy[index - 1] * 10 ** decimalLength)
+          - Math.floor(numbersCopy[index] * 10 ** decimalLength)
+        ) / 10 ** decimalLength;
     } else {
       numbersCopy[index - 1] = numbersCopy[index - 1] - numbersCopy[index];
     }
@@ -87,7 +114,7 @@ const processAddAndSubtract = (numbers: number[], operators: string[]): [number[
 };
 
 const getCalcResult = (inputValue: string): string => {
-  if (!checkInputValueCorrect(inputValue)) return '';
+  if (!checkInputValueCorrect(inputValue)) return 'Error';
 
   let numbers = inputValue.split(/[*+\-/^]/).map(Number);
   let operators = inputValue.split(/[0-9, .]+/);

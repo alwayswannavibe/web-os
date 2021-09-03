@@ -4,10 +4,6 @@
   height: calc(100% - 4rem);
   margin: 0 1rem 0 1.5rem;
   padding: 0.5rem;
-
-  border-radius: 3px;
-  background-color: #363636;
-  box-shadow: var(--boxShadow6);
 }
 
 .messagesList {

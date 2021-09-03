@@ -56,7 +56,6 @@ const ChatInput: FC<Props> = () => {
       dispatch(clearMessageInputValue());
       return;
     }
-    dispatch(changeMessageInputValue(textToReadable));
     socket.emit('chatMsg', {
       username,
       text,

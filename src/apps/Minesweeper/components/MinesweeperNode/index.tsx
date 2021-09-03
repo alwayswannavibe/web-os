@@ -13,7 +13,6 @@ interface Props {
   index: number;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MinesweeperNode: FC<Props> = ({ value, arrIndex, index }: Props) => {
   const [isFlag, setIsFlag] = useState(false);
   const [isBombClick, setIsBombClick] = useState(false);

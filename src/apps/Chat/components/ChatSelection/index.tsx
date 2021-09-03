@@ -43,48 +43,6 @@ const ChatSelection: FC<Props> = () => {
                 avatarLink=""
                 countOfNewMessages={0}
               />
-              <ChatSelectionElement
-                name="Name Lastname"
-                lastVisitDate="Online"
-                hasNewMessage={false}
-                avatarLink=""
-                countOfNewMessages={0}
-              />
-              <ChatSelectionElement
-                name="Name Lastname"
-                lastVisitDate="Online"
-                hasNewMessage={false}
-                avatarLink=""
-                countOfNewMessages={0}
-              />
-              <ChatSelectionElement
-                name="Name Lastname"
-                lastVisitDate="Online"
-                hasNewMessage={false}
-                avatarLink=""
-                countOfNewMessages={0}
-              />
-              <ChatSelectionElement
-                name="Name Lastname"
-                lastVisitDate="Online"
-                hasNewMessage={false}
-                avatarLink=""
-                countOfNewMessages={0}
-              />
-              <ChatSelectionElement
-                name="Name Lastname"
-                lastVisitDate="Online"
-                hasNewMessage={false}
-                avatarLink=""
-                countOfNewMessages={0}
-              />
-              <ChatSelectionElement
-                name="Name Lastname"
-                lastVisitDate="Online"
-                hasNewMessage={false}
-                avatarLink=""
-                countOfNewMessages={0}
-              />
             </motion.div>
           )}
         </AnimatePresence>

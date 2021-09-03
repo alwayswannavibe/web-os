@@ -22,7 +22,6 @@ export const MessagesList: FC<Props> = () => {
   const listRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!listRef.current) return;
     listRef.current!.scrollTop = listRef.current!.scrollHeight;
   }, [messages]);
 

@@ -25,7 +25,8 @@
 
   user-select: none;
 
-  font-size: 14px;
+  color: #fff;
+  text-shadow: 1px 1px #000;
 }
 
 .title {

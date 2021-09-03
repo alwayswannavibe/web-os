@@ -1,30 +1,21 @@
 .tab {
   width: calc(var(--bottomPartHeight) * 1.4);
   height: var(--bottomPartHeight);
+  margin-right: 2px;
   padding: 0.3rem 0.6rem;
 
   cursor: pointer;
   user-select: none;
-  transition: background-color 0.25s linear;
+  transition: background-color 0.12s linear;
   text-align: center;
 
   color: inherit;
   border: none;
   border-collapse: collapse;
-  border-right: 1px solid rgba(14, 14, 14, 0.15);
-  border-bottom: 3px solid #61dafb;
-  border-left: 1px solid rgba(14, 14, 14, 0.15);
+  border-bottom: 3px solid #fff;
   background-color: transparent;
 
   font-size: inherit;
-}
-
-.tab:hover {
-  background-color: #145967;
-}
-
-.tab:active {
-  background-color: #092d34;
 }
 
 .isActive {
@@ -33,4 +24,12 @@
 
 .close {
   border-bottom-color: #686868;
+}
+
+.tab:hover {
+  background-color: #2f2f2f;
+}
+
+.tab:active {
+  background-color: #949494;
 }

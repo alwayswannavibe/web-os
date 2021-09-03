@@ -1,4 +1,4 @@
 .avatar {
+  border: 1px solid #c3c3c3;
   border-radius: 50%;
-  box-shadow: var(--boxShadow6);
 }

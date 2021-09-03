@@ -20,7 +20,7 @@
   border: 2px solid #2d2d37;
   border-radius: 0.2rem;
   outline: none;
-  background-color: #3b3b40;
+  background-color: var(--settingsSelectItemBackground);
 }
 
 .resetBtn {

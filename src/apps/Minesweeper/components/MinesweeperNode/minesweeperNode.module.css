@@ -7,6 +7,10 @@
   color: white;
   border: none;
   background-color: #292929;
+
+  font-size: 80%;
+
+  font-weight: bold;
 }
 
 .node i {

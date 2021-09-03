@@ -22,11 +22,11 @@
 }
 
 .smileBtn {
-  color: #fff4b9;
+  color: #efe551;
 }
 
 .smileBtn:hover {
-  color: #efe551;
+  color: #e9db2b;
 }
 
 .smileBtn:active {
@@ -41,7 +41,7 @@
 }
 
 .sendBtn {
-  color: #fff;
+  color: #fffafa;
 }
 
 .sendBtn:hover {

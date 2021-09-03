@@ -5,15 +5,40 @@
 }
 
 :root {
-  --font-color: #ececec;
-  --layout-background-color: #1d2329;
+  font-size: 2vh;
+
   --topBarHeight: 4vh;
   --bottomPartHeight: 4vh;
-  --calculatorBackgroundFallback: rgb(65, 65, 74);
-  --calculatorBackground: linear-gradient(30deg, rgb(65, 65, 74), rgba(69, 69, 78, 0.84));
-  --calculatorBorder: #292926;
+}
+
+.darkTheme {
+  color: #ececec;
+
+  --layout-background-color: #131313;
+  --calculatorBackground: rgb(31, 31, 31);
+  --calculatorBorder: #181818;
+  --calculatorInputBorder: #515151;
   --boxShadow6: 6px 3px 6px #000;
-  font-size: 2vh;
+  --windowTopBackground: rgba(23, 23, 24, 0.6);
+  --windowBodyBackground: rgb(23, 23, 24);
+  --toDoItemBackground: #333;
+  --settingsSelectItemBackground: #3b3b40;
+  --chatBackgroundColor: #2f2f2f;
+}
+
+.lightTheme {
+  color: #373737;
+
+  --layout-background-color: #ececec;
+  --calculatorBackground: rgb(193, 193, 193);
+  --calculatorBorder: #676767;
+  --calculatorInputBorder: #000;
+  --boxShadow6: 6px 3px 6px #000;
+  --windowTopBackground: rgba(255, 255, 255, 0.6);
+  --windowBodyBackground: rgb(210, 210, 210);
+  --toDoItemBackground: #cac9c9;
+  --settingsSelectItemBackground: #d7d7d7;
+  --chatBackgroundColor: #c4c4c4;
 }
 
 body {

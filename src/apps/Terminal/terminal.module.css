@@ -15,7 +15,7 @@
 
   width: 100%;
 
-  color: aliceblue;
+  color: inherit;
   border: none;
   outline: none;
   background: transparent;
@@ -23,11 +23,10 @@
   font-family: inherit;
 
   font-size: 1rem;
-  caret-color: aliceblue;
 }
 
 .user {
-  color: #1bdb1b;
+  color: #03a703;
 }
 
 .pre {

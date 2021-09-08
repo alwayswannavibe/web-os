@@ -18,6 +18,9 @@ import { RootState } from 'src/redux/store';
 import { useDragNDrop } from 'src/hooks/useDragNDrop';
 import { useApp } from 'src/hooks/useApp';
 
+// Utils
+import { getPxFromRem } from 'src/utils/getPxFromRem';
+
 // Styles
 import { Resizable } from 're-resizable';
 import styles from './style.module.css';
@@ -47,7 +50,7 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const [windowWidth, setWindowWidth] = useState(() => {
-    let width = window.innerHeight * 0.02 * 48;
+    let width = getPxFromRem(48);
     const localStorageWidth = localStorage.getItem(`window${type}Width`);
     if (localStorageWidth) {
       width = +(localStorageWidth) * 50;
@@ -56,29 +59,42 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
   });
 
   const [windowHeight, setWindowHeight] = useState(() => {
-    let width = window.innerHeight * 0.02 * 27;
+    let height = getPxFromRem(27);
     const localStorageHeight = localStorage.getItem(`window${type}Height`);
     if (localStorageHeight) {
-      width = +(localStorageHeight) * 50;
+      height = +(localStorageHeight) * 50;
     }
-    return width;
+    return height;
   });
 
+  const returnToDefaultSize = () => {
+    setTimeout(() => {
+      setWindowWidth(getPxFromRem(48));
+      setWindowHeight(getPxFromRem(27));
+    }, 500);
+  };
+
+  const windowToFullscreenSize = () => {
+    setTimeout(() => {
+      setWindowWidth(window.innerWidth);
+      setWindowHeight(window.innerHeight);
+    }, 500);
+  };
+
+  const isDocumentFullscreen = (): boolean => document.fullscreenElement?.className.split('_')[1] === 'window';
+
   const handleCloseWithProcessFullscreen = () => {
-    if (document.fullscreenElement?.className.split('_')[1] === 'window') {
+    if (isDocumentFullscreen()) {
       document.exitFullscreen();
-      setWindowWidth(window.innerHeight * 0.02 * 48);
-      setWindowHeight(window.innerHeight * 0.02 * 27);
+      returnToDefaultSize();
     }
     handleClose();
   };
 
   const handleToggleCollapseWithProcessFullscreen = () => {
-    // if this window has fullscreen
-    if (document.fullscreenElement?.className.split('_')[1] === 'window') {
+    if (isDocumentFullscreen()) {
       document.exitFullscreen();
-      setWindowWidth(window.innerHeight * 0.02 * 48);
-      setWindowHeight(window.innerHeight * 0.02 * 27);
+      returnToDefaultSize();
     }
     handleToggleCollapse();
   };
@@ -86,24 +102,15 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
   const handleFullscreen = () => {
     if (!document.fullscreenElement) {
       ref.current!.requestFullscreen();
-      setTimeout(() => {
-        setWindowWidth(window.innerWidth);
-        setWindowHeight(window.innerHeight);
-      }, 500);
-    } else if (document.fullscreenElement.className.split('_')[1] === 'window') {
-      // if this window has fullscreen
+      windowToFullscreenSize();
+    } else if (isDocumentFullscreen()) {
       document.exitFullscreen();
-      setWindowWidth(window.innerHeight * 0.02 * 48);
-      setWindowHeight(window.innerHeight * 0.02 * 27);
+      returnToDefaultSize();
     } else {
-      // if document has fullscreen
       document.exitFullscreen();
       setTimeout(() => {
         ref.current!.requestFullscreen();
-        setTimeout(() => {
-          setWindowWidth(window.innerWidth);
-          setWindowHeight(window.innerHeight);
-        }, 500);
+        returnToDefaultSize();
       }, 300);
     }
   };
@@ -118,15 +125,15 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
           animate={{ scale: 1 }}
           exit={{ scale: 0 }}
           transition={{
-            duration: 0.3,
+            duration: 0.2,
           }}
           data-cy={`window-${type}`}
           ref={ref}
         >
           <Resizable
             size={{
-              width: windowWidth || window.innerHeight * 0.02 * 48,
-              height: windowHeight || window.innerHeight * 0.02 * 27,
+              width: windowWidth || getPxFromRem(48),
+              height: windowHeight || getPxFromRem(27),
             }}
             onResizeStop={(e, direction, _ref, d) => {
               const newWidth = windowWidth + d.width;
@@ -136,11 +143,11 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
               localStorage.setItem(`window${type}Width`, (newWidth / 50).toString());
               localStorage.setItem(`window${type}Height`, (newHeight / 50).toString());
             }}
-            minWidth={window.innerHeight * 0.02 * 48}
+            minWidth={getPxFromRem(48)}
             bounds="window"
             lockAspectRatio
           >
-            <div className={styles.windowTop} onMouseDown={startDrag} ref={windowTop}>
+            <div className={`${styles.windowTop} ${getAppIndex() === 0 ? '' : styles.notActiveWindow}`} onMouseDown={startDrag} ref={windowTop}>
               <div onClick={handleSetActive} className={styles.title}>
                 {t(`apps.${type}`)}
               </div>

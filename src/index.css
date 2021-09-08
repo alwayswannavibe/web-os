@@ -17,7 +17,7 @@
   --calculatorBorder: #181818;
   --calculatorInputBorder: #515151;
   --boxShadow6: 6px 3px 6px #000;
-  --windowTopBackground: rgba(23, 23, 24, 0.6);
+  --windowTopBackground: rgba(23, 23, 24, 0.9);
   --windowBodyBackground: rgb(23, 23, 24);
   --toDoItemBackground: #333;
   --settingsSelectItemBackground: #3b3b40;
@@ -32,7 +32,7 @@
   --calculatorBorder: #676767;
   --calculatorInputBorder: #000;
   --boxShadow6: 6px 3px 6px #000;
-  --windowTopBackground: rgba(255, 255, 255, 0.6);
+  --windowTopBackground: rgba(255, 255, 255, 0.9);
   --windowBodyBackground: rgb(210, 210, 210);
   --toDoItemBackground: #cac9c9;
   --settingsSelectItemBackground: #d7d7d7;

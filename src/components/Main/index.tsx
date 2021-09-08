@@ -8,6 +8,9 @@ import sea from 'src/assets/images/backgrounds/sea.jpg';
 import tree from 'src/assets/images/backgrounds/tree.jpg';
 import fog from 'src/assets/images/backgrounds/fog.jpg';
 import car from 'src/assets/images/backgrounds/car.jpg';
+import cat from 'src/assets/images/backgrounds/cat.jpg';
+import house from 'src/assets/images/backgrounds/house.gif';
+import waterfall from 'src/assets/images/backgrounds/waterfall.gif';
 import dynamic from 'src/assets/images/backgrounds/dynamic.gif';
 import dynamic2 from 'src/assets/images/backgrounds/dynamic2.gif';
 
@@ -48,6 +51,9 @@ const Main: FC<Props> = () => {
     [BackgroundImage.Dynamic2]: dynamic2,
     [BackgroundImage.Planet]: planet,
     [BackgroundImage.Tree]: tree,
+    [BackgroundImage.Cat]: cat,
+    [BackgroundImage.House]: house,
+    [BackgroundImage.Waterfall]: waterfall,
   }), []);
 
   useEffect(() => {

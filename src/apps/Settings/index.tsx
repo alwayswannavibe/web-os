@@ -72,7 +72,12 @@ export const Settings: FC<Props> = () => {
           <div>
             <label htmlFor="themeSelect" className={styles.label}>
               {t('wallpapper')}
-              <select id="themeSelect" className={styles.select} onChange={handleChangeBackground} defaultValue={backgroundImage}>
+              <select
+                id="themeSelect"
+                className={styles.select}
+                onChange={handleChangeBackground}
+                defaultValue={backgroundImage}
+              >
                 {backgroundImages.map((el, i) => (
                   // eslint-disable-next-line react/no-array-index-key
                   <SettingsOption value={el} category="backgrounds" key={i} />

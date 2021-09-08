@@ -14,21 +14,6 @@
   position: relative;
 }
 
-::-webkit-scrollbar {
-  display: none;
-
-  width: 0;
-
-  background-color: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  display: none;
-
-  border-radius: 5px;
-  background-color: #cacaca;
-}
-
 .togglevisiblityBtn {
   position: absolute;
   top: calc(50% - 3rem);
@@ -43,7 +28,7 @@
   color: #fff;
   border: none;
   border-radius: 0 10px 10px 0;
-  background-color: #363636;
+  background-color: var(--chatBackgroundColor);
 }
 
 .closeBtn {

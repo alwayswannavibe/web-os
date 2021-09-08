@@ -1,13 +1,28 @@
 {
   "language": "Language",
   "wallpapper": "Wallpapper",
+  "theme": "Theme",
   "reset": "Reset",
   "languages": {
     "English": "English",
     "Russian": "Russian"
   },
-  "theme": {
+  "backgrounds": {
     "Planet": "Planet",
-    "Fog": "Fog"
+    "Fog": "Fog",
+    "Sea": "Sea",
+    "Car": "Car",
+    "Tree": "Tree",
+    "Cat": "Cat",
+    "Dynamic": "Rain (dynamic)",
+    "Dynamic2": "Rain 2 (dynamic)",
+    "House": "House (dynamic)",
+    "Waterfall": "Waterfall (dynamic)"
+  },
+  "themes": {
+    "Dark": "Dark",
+    "Light": "Light",
+    "Blue": "Blue",
+    "Green": "Green"
   }
 }

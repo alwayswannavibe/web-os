@@ -13,7 +13,7 @@
   width: 100vw;
   height: 100vh;
 
-  background-color: #111;
+  background-color: var(--layout-background-color);
 }
 
 .closeBtn {
@@ -123,13 +123,13 @@
 }
 
 .registration a {
-  color: white;
+  color: inherit;
 }
 
 .registration a:hover {
   transition: color 0.15s;
 
-  color: #a4a4a4;
+  color: #d9d8d8;
 }
 
 .registration a:active {

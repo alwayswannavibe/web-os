@@ -4,8 +4,11 @@ enum BackgroundImage {
   Car = 'Car',
   Tree = 'Tree',
   Fog = 'Fog',
+  Cat = 'Cat',
   Dynamic = 'Dynamic',
   Dynamic2 = 'Dynamic2',
+  House = 'House',
+  Waterfall = 'Waterfall',
 }
 
 export { BackgroundImage };

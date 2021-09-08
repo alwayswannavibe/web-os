@@ -67,11 +67,11 @@ export const BottomPanel: FC<Props> = () => {
       />
       {!loading &&
         (!/^User-[\w]{8}$/.test(username) ? (
-          <button onClick={handleLogout} type="button" className={styles.logBtn}>
+          <button onClick={handleLogout} type="button" className={styles.logBtn} aria-label="logout">
             <i className="fa fa-sign-out" />
           </button>
         ) : (
-          <button onClick={handleLogin} type="button" className={styles.logBtn}>
+          <button onClick={handleLogin} type="button" className={styles.logBtn} aria-label="login">
             <i className="fas fa-user" />
           </button>
         ))}

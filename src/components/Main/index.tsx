@@ -3,12 +3,12 @@ import React, { FC, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Assets
-import planet from 'src/assets/images/backgrounds/darkPlanet.jpg';
-import sea from 'src/assets/images/backgrounds/sea.jpg';
-import tree from 'src/assets/images/backgrounds/tree.jpg';
-import fog from 'src/assets/images/backgrounds/fog.jpg';
-import car from 'src/assets/images/backgrounds/car.jpg';
-import cat from 'src/assets/images/backgrounds/cat.jpg';
+import planet from 'src/assets/images/backgrounds/darkPlanet.webp';
+import sea from 'src/assets/images/backgrounds/sea.webp';
+import tree from 'src/assets/images/backgrounds/tree.webp';
+import fog from 'src/assets/images/backgrounds/fog.webp';
+import car from 'src/assets/images/backgrounds/car.webp';
+import cat from 'src/assets/images/backgrounds/cat.webp';
 import house from 'src/assets/images/backgrounds/house.gif';
 import waterfall from 'src/assets/images/backgrounds/waterfall.gif';
 import dynamic from 'src/assets/images/backgrounds/dynamic.gif';

@@ -5,6 +5,9 @@ import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { RefObject, useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+// Utils
+import { getPxFromRem } from 'src/utils/getPxFromRem';
+
 // Types
 import { Apps } from 'src/types/apps';
 import { CoordsType } from 'src/types/coord';
@@ -22,7 +25,7 @@ const useDragNDrop = (changeCoord: ActionCreatorWithPayload<{ type: Apps, coords
     (event: MouseEvent) => {
       const heigthOfWindow = element!.current?.getBoundingClientRect().height || 0;
       const widthOfWindow = element!.current?.getBoundingClientRect().width || 0;
-      const topLimit = window.innerHeight * 0.02 * 2.2;
+      const topLimit = getPxFromRem(2.2);
       const leftLimit = 0;
       const bottomLimit = window.innerHeight - heigthOfWindow - topLimit;
       const rightLimit = window.innerWidth - widthOfWindow;
@@ -43,8 +46,8 @@ const useDragNDrop = (changeCoord: ActionCreatorWithPayload<{ type: Apps, coords
         left = rightLimit;
       }
 
-      setTopCoordLocal(`${top / (window.innerHeight * 0.02)}rem`);
-      setLeftCoordLocal(`${left / (window.innerHeight * 0.02)}rem`);
+      setTopCoordLocal(`${top / getPxFromRem(1)}rem`);
+      setLeftCoordLocal(`${left / getPxFromRem(1)}rem`);
     },
     [element, shiftLeft, shiftTop],
   );

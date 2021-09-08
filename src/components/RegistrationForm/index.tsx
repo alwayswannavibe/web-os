@@ -112,9 +112,9 @@ const RegistrationForm: FC<Props> = () => {
         </label>
         <label htmlFor="loginPassword" className={styles.label}>
           <span
-            className={`${styles.inputErrorDefault} ${errors.passwordConformition ? styles.inputError : ''}`}
+            className={`${styles.inputErrorDefault} ${errors.passwordConfirmation ? styles.inputError : ''}`}
           >
-            {errors.passwordConformition?.message || 'Error'}
+            {errors.passwordConfirmation?.message || 'Error'}
           </span>
           <input
             type="password"

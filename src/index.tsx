@@ -1,6 +1,10 @@
 // Libraries
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+
+// Redux
+import store from 'src/redux/store';
 
 // Styles
 import './index.css';
@@ -10,7 +14,11 @@ import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Suspense fallback="">
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </Suspense>
   </React.StrictMode>,
   document.getElementById('root'),
 );

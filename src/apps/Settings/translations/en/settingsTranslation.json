@@ -1,13 +1,23 @@
 {
   "language": "Language",
   "wallpapper": "Wallpapper",
+  "theme": "Theme",
   "reset": "Reset",
   "languages": {
     "English": "English",
     "Russian": "Russian"
   },
-  "theme": {
+  "backgrounds": {
     "Planet": "Planet",
-    "Fog": "Fog"
+    "Fog": "Fog",
+    "Sea": "Sea",
+    "Car": "Car",
+    "Tree": "Tree",
+    "Dynamic": "Rain (dynamic)",
+    "Dynamic2": "Rain 2 (dynamic)"
+  },
+  "themes": {
+    "Dark": "Dark",
+    "Light": "Light"
   }
 }

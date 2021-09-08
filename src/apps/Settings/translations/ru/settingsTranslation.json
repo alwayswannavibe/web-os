@@ -1,13 +1,23 @@
 {
   "language": "Язык",
   "wallpapper": "Обои",
+  "theme": "Тема",
   "reset": "Сбросить",
   "languages": {
     "English": "Английский",
     "Russian": "Русский"
   },
-  "themes": {
+  "backgrounds": {
     "Planet": "Планета",
-    "Fog": "Туман"
+    "Fog": "Туман",
+    "Sea": "Море",
+    "Car": "Автомобиль",
+    "Tree": "Дерево",
+    "Dynamic": "Дождь (динамические)",
+    "Dynamic2": "Дождь 2 (динамические)"
+  },
+  "themes": {
+    "Dark": "Тёмная",
+    "Light": "Светлая"
   }
 }

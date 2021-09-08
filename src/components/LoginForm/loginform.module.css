@@ -13,7 +13,7 @@
   width: 100vw;
   height: 100vh;
 
-  background-color: var(--calculatorBackground);
+  background-color: var(--layout-background-color);
 }
 
 .closeBtn {

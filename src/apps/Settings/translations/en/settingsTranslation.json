@@ -21,6 +21,8 @@
   },
   "themes": {
     "Dark": "Dark",
-    "Light": "Light"
+    "Light": "Light",
+    "Blue": "Blue",
+    "Green": "Green"
   }
 }

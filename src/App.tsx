@@ -19,7 +19,8 @@ const App = () => {
   const theme = useSelector((state: RootState) => state.theme.theme);
 
   return (
-    <div className={theme === Theme.Dark ? 'darkTheme' : 'lightTheme'}>
+    // eslint-disable-next-line no-nested-ternary
+    <div className={theme === Theme.Dark ? 'darkTheme' : theme === Theme.Light ? 'lightTheme' : theme === Theme.Blue ? 'blueTheme' : 'greenTheme'}>
       <BrowserRouter>
         <Switch>
           <Route

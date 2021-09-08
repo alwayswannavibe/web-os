@@ -110,7 +110,7 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
       document.exitFullscreen();
       setTimeout(() => {
         ref.current!.requestFullscreen();
-        returnToDefaultSize();
+        windowToFullscreenSize();
       }, 300);
     }
   };

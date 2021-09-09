@@ -12,24 +12,24 @@
   color: inherit;
   border: none;
   border-collapse: collapse;
-  border-bottom: 3px solid #fff;
-  background-color: transparent;
+  border-bottom: 4px solid var(--bottomTabBorder);
+  background-color: var(--bottomTabBackground);
 
   font-size: inherit;
 }
 
 .isActive {
-  background-color: #777575;
+  background-color: var(--activeBottomTab);
 }
 
 .close {
-  border-bottom-color: #686868;
+  border-bottom-color: var(--closedBottomTab);
 }
 
 .tab:hover {
-  background-color: #2f2f2f;
+  background-color: var(--onHoverBottomTab);
 }
 
 .tab:active {
-  background-color: #949494;
+  background-color: var(--onActiveBottomTab);
 }

@@ -6,7 +6,7 @@
 
   color: white;
   border: none;
-  background-color: #292929;
+  background-color: var(--minesweeeperNodeDefaultBackground);
 
   font-size: 80%;
 
@@ -73,7 +73,8 @@
 }
 
 .bombAround0 {
-  background-color: #4a4545;
+  opacity: 0.7;
+  background-color: #5d5d5d;
 }
 
 .bombAround404 {

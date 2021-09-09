@@ -34,6 +34,7 @@ import { connect, disconnect } from 'src/features/websocket/redux';
 
 // Styles
 import styles from './style.module.css';
+import { fetchMessages } from '../../apps/Chat/redux';
 
 interface Props {
   children?: never;
@@ -67,6 +68,7 @@ const Main: FC<Props> = () => {
   useEffect(() => {
     if (isChatOpen) {
       dispatch(connect());
+      dispatch(fetchMessages());
     } else {
       dispatch(disconnect());
     }

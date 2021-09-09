@@ -23,6 +23,9 @@
 
 .smileBtn {
   color: #efe551;
+  border: 3px solid var(--windowBodyBackground);
+  border-radius: 50%;
+  background-color: #4a4a4a;
 }
 
 .smileBtn:hover {

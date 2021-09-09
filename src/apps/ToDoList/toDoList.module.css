@@ -57,7 +57,7 @@
   transition: color 0.25s linear;
 
   color: #178517;
-  text-shadow: 2px 2px 8px black;
+  text-shadow: 2px 2px 4px #3a6740;
 
   font-size: 1.5rem;
 }

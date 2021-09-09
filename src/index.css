@@ -7,66 +7,156 @@
 :root {
   --topBarHeight: 4vh;
   --bottomPartHeight: 4vh;
+  --boxShadow6: 6px 3px 6px #000;
 
   font-size: 2vh;
 }
 
 .darkTheme {
+  /* Global */
   --layout-background-color: #131313;
+  --fontColor: #ececec;
+
+  /* Window */
+  --windowTopBackground: rgba(23, 23, 24, 0.9);
+  --windowBodyBackground: rgb(23, 23, 24);
+
+  /* Calculator */
   --calculatorBackground: rgb(31, 31, 31);
   --calculatorBorder: #181818;
   --calculatorInputBorder: #515151;
-  --boxShadow6: 6px 3px 6px #000;
-  --windowTopBackground: rgba(23, 23, 24, 0.9);
-  --windowBodyBackground: rgb(23, 23, 24);
+
+  /* ToDoVars */
   --toDoItemBackground: #333;
+
+  /* Settings */
   --settingsSelectItemBackground: #3b3b40;
+
+  /* Chat */
   --chatBackgroundColor: #2f2f2f;
+
+  /* Minesweeper */
+  --minesweeeperNodeDefaultBackground: #292929;
+
+  /* BottomTab */
+  --bottomTabBorder: #c1c3c1;
+  --activeBottomTab: #272827;
+  --closedBottomTab: #2d2d2d;
+  --onHoverBottomTab: #717272;
+  --onActiveBottomTab: #272827;
+  --bottomTabBackground: transparent;
 
   color: #ececec;
 }
 
 .lightTheme {
+  /* Global */
   --layout-background-color: #ececec;
+  --fontColor: #373737;
+
+  /* Window */
+  --windowTopBackground: rgba(255, 255, 255, 0.9);
+  --windowBodyBackground: rgb(210, 210, 210);
+
+  /* Calculator */
   --calculatorBackground: rgb(193, 193, 193);
   --calculatorBorder: #676767;
   --calculatorInputBorder: #000;
-  --boxShadow6: 6px 3px 6px #000;
-  --windowTopBackground: rgba(255, 255, 255, 0.9);
-  --windowBodyBackground: rgb(210, 210, 210);
+
+  /* ToDoVars */
   --toDoItemBackground: #cac9c9;
+
+  /* Settings */
   --settingsSelectItemBackground: #d7d7d7;
+  --settingsOnHoverItemBackground: #51d5e9;
+
+  /* Chat */
   --chatBackgroundColor: #c4c4c4;
+
+  /* Minesweeper */
+  --minesweeeperNodeDefaultBackground: #b5b5b5;
+
+  /* BottomTab */
+  --bottomTabBorder: #1e6cc1;
+  --activeBottomTab: #a1a6d9;
+  --closedBottomTab: #353535;
+  --onHoverBottomTab: #9d9d9d;
+  --onActiveBottomTab: #c6c6c6;
 
   color: #373737;
 }
 
 .blueTheme {
+  /* Global */
   --layout-background-color: #446acf;
+  --fontColor: #efefef;
+
+  /* Window */
+  --windowTopBackground: rgba(83, 176, 241, 0.9);
+  --windowBodyBackground: rgb(108, 186, 246);
+
+  /* Calculator */
   --calculatorBackground: rgb(45, 155, 214);
   --calculatorBorder: #5552d7;
   --calculatorInputBorder: #021251;
-  --boxShadow6: 6px 3px 6px #000;
-  --windowTopBackground: rgba(83, 176, 241, 0.9);
-  --windowBodyBackground: rgb(108, 186, 246);
+
+  /* ToDoVars */
   --toDoItemBackground: #4684ee;
-  --settingsSelectItemBackground: #4082e3;
+
+  /* Settings */
+  --settingsSelectItemBackground: #5297f5;
+  --settingsOnHoverItemBackground: #51d5e9;
+
+  /* Chat */
   --chatBackgroundColor: #308ac6;
+
+  /* Minesweeper */
+  --minesweeeperNodeDefaultBackground: #2c41a9;
+
+  /* BottomTab */
+  --bottomTabBorder: #b8b8b8;
+  --activeBottomTab: #041c5f;
+  --closedBottomTab: #353535;
+  --onHoverBottomTab: #072b9b;
+  --onActiveBottomTab: #041c5f;
+  --bottomTabBackground: transparent;
 
   color: #efefef;
 }
 
 .greenTheme {
+  /* Global */
   --layout-background-color: #43ae58;
+  --fontColor: #efefef;
+
+  /* Window */
+  --windowTopBackground: rgba(8, 164, 31, 0.9);
+  --windowBodyBackground: #43ae58;
+
+  /* Calculator */
   --calculatorBackground: rgb(24, 110, 20);
   --calculatorBorder: #07831b;
   --calculatorInputBorder: #024e04;
-  --boxShadow6: 6px 3px 6px #000;
-  --windowTopBackground: rgba(8, 164, 31, 0.9);
-  --windowBodyBackground: #43ae58;
+
+  /* ToDoVars */
   --toDoItemBackground: #299227;
+
+  /* Settings */
   --settingsSelectItemBackground: #429f40;
+
+  /* Chat */
   --chatBackgroundColor: #439440;
+
+  /* BottomTab */
+  --bottomTabBorder: #c1c3c1;
+  --activeBottomTab: #045416;
+  --closedBottomTab: #5b5b5b;
+  --onHoverBottomTab: #27be6e;
+  --onActiveBottomTab: #c6c6c6;
+  --bottomTabBackground: #0c8a18;
+
+  /* Minesweeper */
+  --minesweeeperNodeDefaultBackground: #024e11;
 
   color: #efefef;
 }

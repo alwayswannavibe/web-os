@@ -22,7 +22,7 @@
 
   border: 1px solid #1d1d1d;
   background-color: var(--toDoItemBackground);
-  box-shadow: 3px 3px 5px black;
+  box-shadow: 2px 1px 5px black;
 }
 
 .button {
@@ -46,7 +46,7 @@
   transition: color 0.15s linear;
 
   color: #ae2727;
-  text-shadow: 2px 2px 8px black;
+  text-shadow: 2px 2px 4px #866363;
 }
 
 .deleteButton:hover {
@@ -61,7 +61,7 @@
   transition: color 0.15s linear;
 
   color: #178517;
-  text-shadow: 2px 2px 8px black;
+  text-shadow: 2px 2px 4px #4c7344;
 }
 
 .checkButton:hover {

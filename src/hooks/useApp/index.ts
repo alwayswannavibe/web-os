@@ -18,6 +18,11 @@ const useApp = (type: Apps) => {
   const getAppIndex = () => apps.indexOf(type);
 
   const handleToggleCollapse = () => {
+    if (isOpened && getAppIndex() !== 0) {
+      dispatch(setWindowActive(type));
+      return;
+    }
+
     if (isCollapsed) {
       dispatch(setWindowActive(type));
     } else if (getAppIndex() === 0) {

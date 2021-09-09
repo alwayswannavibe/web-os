@@ -17,9 +17,8 @@ socket!.on('chatUpdate', async () => {
       timeout: 5000,
     });
     store.dispatch(setMessages(messages.data));
-  } catch (error) {
-    console.log(error);
-  }
+    // eslint-disable-next-line no-empty
+  } catch (error) {}
 });
 
 const websocketSlice = createSlice({
@@ -31,11 +30,6 @@ const websocketSlice = createSlice({
     connect(state) {
       if (!socket.connected) {
         state.socket.connect();
-        axios.get(`${process.env.REACT_APP_API_URL}/messages`, {
-          timeout: 5000,
-        }).then((messages) => {
-          store.dispatch(setMessages(messages.data));
-        }).catch(() => {});
       }
     },
     disconnect(state) {

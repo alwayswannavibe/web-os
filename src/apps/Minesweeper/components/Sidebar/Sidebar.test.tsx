@@ -5,11 +5,11 @@ import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import userEvent from '@testing-library/user-event';
 
-// Types
-import { Difficulties } from 'src/types/difficulties';
+// Enums
+import { Difficulty } from '@Enums/difficulty.enum';
 
 // Components
-import { Sidebar } from '.';
+import { Sidebar } from './Sidebar';
 
 describe('Minesweeper Sidebar', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
@@ -156,7 +156,7 @@ describe('Minesweeper Sidebar', () => {
     expect(mockDispatch).toHaveBeenCalledTimes(1);
     expect(mockDispatch).toHaveBeenNthCalledWith(1, {
       type: 'minesweeper/setMinesweeperDifficulty',
-      payload: { difficulty: Difficulties.None },
+      payload: { difficulty: Difficulty.None },
     });
   });
 });

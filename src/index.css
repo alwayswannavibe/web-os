@@ -1,7 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+
+  color: inherit;
+
+  font-family: inherit;
 }
 
 :root {
@@ -18,7 +24,7 @@
   --fontColor: #ececec;
 
   /* Window */
-  --windowTopBackground: rgba(23, 23, 24, 0.9);
+  --windowTopBackground: rgba(23, 23, 24, 0.97);
   --windowBodyBackground: rgb(23, 23, 24);
 
   /* Calculator */
@@ -46,6 +52,9 @@
   --onActiveBottomTab: #272827;
   --bottomTabBackground: transparent;
 
+  /* Avatar */
+  --avatarBackgroundColor: #696969;
+
   color: #ececec;
 }
 
@@ -55,7 +64,7 @@
   --fontColor: #373737;
 
   /* Window */
-  --windowTopBackground: rgba(255, 255, 255, 0.9);
+  --windowTopBackground: rgba(255, 255, 255, 0.97);
   --windowBodyBackground: rgb(210, 210, 210);
 
   /* Calculator */
@@ -83,6 +92,9 @@
   --onHoverBottomTab: #9d9d9d;
   --onActiveBottomTab: #c6c6c6;
 
+  /* Avatar */
+  --avatarBackgroundColor: #cdacac;
+
   color: #373737;
 }
 
@@ -92,7 +104,7 @@
   --fontColor: #efefef;
 
   /* Window */
-  --windowTopBackground: rgba(83, 176, 241, 0.9);
+  --windowTopBackground: rgba(83, 176, 241, 0.97);
   --windowBodyBackground: rgb(108, 186, 246);
 
   /* Calculator */
@@ -121,6 +133,9 @@
   --onActiveBottomTab: #041c5f;
   --bottomTabBackground: transparent;
 
+  /* Avatar */
+  --avatarBackgroundColor: #305aa7;
+
   color: #efefef;
 }
 
@@ -130,7 +145,7 @@
   --fontColor: #efefef;
 
   /* Window */
-  --windowTopBackground: rgba(8, 164, 31, 0.9);
+  --windowTopBackground: rgba(8, 164, 31, 0.97);
   --windowBodyBackground: #43ae58;
 
   /* Calculator */
@@ -155,6 +170,9 @@
   --onActiveBottomTab: #c6c6c6;
   --bottomTabBackground: #0c8a18;
 
+  /* Avatar */
+  --avatarBackgroundColor: #257230;
+
   /* Minesweeper */
   --minesweeeperNodeDefaultBackground: #024e11;
 
@@ -168,7 +186,7 @@ body {
 
   color: var(--font-color);
 
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: 'Nunito', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

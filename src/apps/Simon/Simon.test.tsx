@@ -5,14 +5,14 @@ import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-// Types
-import { Difficulties } from 'src/types/difficulties';
+// Enums
+import { Difficulty } from '@Enums/difficulty.enum';
 
 // Components
-import * as Icon from 'src/components/Icon';
-import * as Window from 'src/components/Window';
-import * as SimonMain from './components/SimonMain';
-import { Simon } from '.';
+import * as Icon from '@Components/Icon/Icon';
+import * as Window from '@Components/Window/Window';
+import * as SimonMain from '@Simon/components/SimonMain/SimonMain';
+import { Simon } from './Simon';
 
 describe('Simon', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
@@ -27,7 +27,7 @@ describe('Simon', () => {
   it('should render if difficulty equals None', () => {
     const initialState = {
       simon: {
-        difficulty: Difficulties.None,
+        difficulty: Difficulty.None,
       },
     };
     const mockStoreWithState = mockStore(initialState);
@@ -44,7 +44,7 @@ describe('Simon', () => {
   it('should render if difficulty equals Easy', () => {
     const initialState = {
       simon: {
-        difficulty: Difficulties.Easy,
+        difficulty: Difficulty.Easy,
       },
     };
     const mockStoreWithState = mockStore(initialState);
@@ -62,7 +62,7 @@ describe('Simon', () => {
   it('should render if difficulty equals Nomal', () => {
     const initialState = {
       simon: {
-        difficulty: Difficulties.Normal,
+        difficulty: Difficulty.Normal,
       },
     };
     const mockStoreWithState = mockStore(initialState);
@@ -80,7 +80,7 @@ describe('Simon', () => {
   it('should render if difficulty equals Hard', () => {
     const initialState = {
       simon: {
-        difficulty: Difficulties.Hard,
+        difficulty: Difficulty.Hard,
       },
     };
     const mockStoreWithState = mockStore(initialState);
@@ -98,7 +98,7 @@ describe('Simon', () => {
   it('should render if difficulty equals Extreme', () => {
     const initialState = {
       simon: {
-        difficulty: Difficulties.Extreme,
+        difficulty: Difficulty.Extreme,
       },
     };
     const mockStoreWithState = mockStore(initialState);
@@ -116,7 +116,7 @@ describe('Simon', () => {
   it('should dispatch changeDifficulty if click button Easy', () => {
     const initialState = {
       simon: {
-        difficulty: Difficulties.None,
+        difficulty: Difficulty.None,
       },
     };
     const mockStoreWithState = mockStore(initialState);
@@ -128,13 +128,13 @@ describe('Simon', () => {
       </Provider>,
     );
 
-    const buttonEasy = screen.queryByText(Difficulties.Easy);
+    const buttonEasy = screen.queryByText(Difficulty.Easy);
 
     userEvent.click(buttonEasy!);
 
     expect(mockDispatch).toBeCalledTimes(1);
     expect(mockDispatch).toBeCalledWith({
-      payload: { difficulty: Difficulties.Easy },
+      payload: { difficulty: Difficulty.Easy },
       type: 'simon/changeDifficulty',
     });
   });
@@ -142,7 +142,7 @@ describe('Simon', () => {
   it('should dispatch changeDifficulty if click button Normal', () => {
     const initialState = {
       simon: {
-        difficulty: Difficulties.None,
+        difficulty: Difficulty.None,
       },
     };
     const mockStoreWithState = mockStore(initialState);
@@ -154,13 +154,13 @@ describe('Simon', () => {
       </Provider>,
     );
 
-    const buttonNormal = screen.queryByText(Difficulties.Normal);
+    const buttonNormal = screen.queryByText(Difficulty.Normal);
 
     userEvent.click(buttonNormal!);
 
     expect(mockDispatch).toBeCalledTimes(1);
     expect(mockDispatch).toBeCalledWith({
-      payload: { difficulty: Difficulties.Normal },
+      payload: { difficulty: Difficulty.Normal },
       type: 'simon/changeDifficulty',
     });
   });
@@ -168,7 +168,7 @@ describe('Simon', () => {
   it('should dispatch changeDifficulty if click button Hard', () => {
     const initialState = {
       simon: {
-        difficulty: Difficulties.None,
+        difficulty: Difficulty.None,
       },
     };
     const mockStoreWithState = mockStore(initialState);
@@ -180,13 +180,13 @@ describe('Simon', () => {
       </Provider>,
     );
 
-    const buttonHard = screen.queryByText(Difficulties.Hard);
+    const buttonHard = screen.queryByText(Difficulty.Hard);
 
     userEvent.click(buttonHard!);
 
     expect(mockDispatch).toBeCalledTimes(1);
     expect(mockDispatch).toBeCalledWith({
-      payload: { difficulty: Difficulties.Hard },
+      payload: { difficulty: Difficulty.Hard },
       type: 'simon/changeDifficulty',
     });
   });
@@ -194,7 +194,7 @@ describe('Simon', () => {
   it('should dispatch changeDifficulty if click buttoExtreme', () => {
     const initialState = {
       simon: {
-        difficulty: Difficulties.None,
+        difficulty: Difficulty.None,
       },
     };
     const mockStoreWithState = mockStore(initialState);
@@ -206,13 +206,13 @@ describe('Simon', () => {
       </Provider>,
     );
 
-    const buttonExtreme = screen.queryByText(Difficulties.Extreme);
+    const buttonExtreme = screen.queryByText(Difficulty.Extreme);
 
     userEvent.click(buttonExtreme!);
 
     expect(mockDispatch).toBeCalledTimes(1);
     expect(mockDispatch).toBeCalledWith({
-      payload: { difficulty: Difficulties.Extreme },
+      payload: { difficulty: Difficulty.Extreme },
       type: 'simon/changeDifficulty',
     });
   });

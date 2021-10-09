@@ -1,9 +1,12 @@
+// Libraries
 import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
 import configureStore from 'redux-mock-store';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import userEvent from '@testing-library/user-event';
-import { ChatInput } from '.';
+
+// Components
+import { ChatInput } from './ChatInput';
 
 describe('ChatInput', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];

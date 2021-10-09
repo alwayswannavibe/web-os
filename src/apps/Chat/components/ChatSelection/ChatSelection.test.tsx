@@ -1,12 +1,15 @@
-import { render, screen } from '@testing-library/react';
+// Libraries
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ChatSelection } from '.';
-import * as ChatSelectionElement from '../ChatSelectionElement';
+
+// Components
+import * as SelectionCategory from '@Chat/components/ChatSelection/components/SelectionCategory/SelectionCategory';
+import { ChatSelection } from './ChatSelection';
 
 describe('ChatSelection', () => {
   beforeEach(() => {
-    jest.spyOn(ChatSelectionElement, 'ChatSelectionElement').mockReturnValue(<div
-      data-testid="ChatSelectionElement"
+    jest.spyOn(SelectionCategory, 'SelectionCategory').mockReturnValue(<div
+      className="SelectionCategory"
     />);
   });
 
@@ -15,10 +18,10 @@ describe('ChatSelection', () => {
       <ChatSelection />,
     );
 
-    const chatSelectionElement = screen.queryByTestId('ChatSelectionElement');
-    const btn = document.querySelector('.togglevisiblityBtn');
+    const chatSelectionElement = document.getElementsByClassName('SelectionCategory');
+    const btn = document.querySelector('.toggleVisibilityBtn');
 
-    expect(chatSelectionElement).toBeInTheDocument();
+    expect(chatSelectionElement).toHaveLength(2);
     expect(btn).toBeInTheDocument();
     expect(btn!.textContent).toEqual('←');
   });
@@ -28,7 +31,7 @@ describe('ChatSelection', () => {
       <ChatSelection />,
     );
 
-    const btn = document.querySelector('.togglevisiblityBtn');
+    const btn = document.querySelector('.toggleVisibilityBtn');
 
     userEvent.click(btn!);
 
@@ -41,14 +44,14 @@ describe('ChatSelection', () => {
       <ChatSelection />,
     );
 
-    const btn = document.querySelector('.togglevisiblityBtn');
+    const btn = document.querySelector('.toggleVisibilityBtn');
 
     userEvent.click(btn!);
     userEvent.click(btn!);
 
-    const chatSelectionElement = screen.queryByTestId('ChatSelectionElement');
+    const chatSelectionElement = document.getElementsByClassName('ChatSelectionElement');
 
-    expect(chatSelectionElement).toBeInTheDocument();
+    expect(chatSelectionElement).toHaveLength(2);
     expect(btn).toBeInTheDocument();
     expect(btn!.textContent).toEqual('←');
   });

@@ -7,10 +7,10 @@ import configureStore from 'redux-mock-store';
 import userEvent from '@testing-library/user-event';
 
 // Constants
-import { BOMB_NUMBER } from 'src/apps/Minesweeper/constants/bombNumber';
+import { BOMB_NUMBER } from '@Minesweeper/constants/bombNumber';
 
 // Components
-import { MinesweeperNode } from '.';
+import { MinesweeperNode } from './MinesweeperNode';
 
 describe('MinesweeperNode', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
@@ -95,7 +95,7 @@ describe('MinesweeperNode', () => {
       const button = buttons[0];
 
       expect(buttons).toHaveLength(1);
-      expect(button.textContent).toEqual('1');
+      expect(button.textContent).toEqual('');
       expect(button.classList).toHaveLength(2);
       expect(button.classList[0]).toEqual('node');
       expect(button.classList[1]).toEqual('bombAround1');
@@ -125,7 +125,7 @@ describe('MinesweeperNode', () => {
       expect(button.textContent).toEqual('');
       expect(button.children).toHaveLength(1);
       expect(button.children[0].classList).toHaveLength(2);
-      expect(button.children[0].classList[0]).toEqual('fa');
+      expect(button.children[0].classList[0]).toEqual('svg-inline--fa');
       expect(button.children[0].classList[1]).toEqual('fa-bomb');
       expect(button.classList).toHaveLength(3);
       expect(button.classList[0]).toEqual('node');
@@ -157,7 +157,7 @@ describe('MinesweeperNode', () => {
       expect(button.textContent).toEqual('');
       expect(button.children).toHaveLength(1);
       expect(button.children[0].classList).toHaveLength(2);
-      expect(button.children[0].classList[0]).toEqual('fa');
+      expect(button.children[0].classList[0]).toEqual('svg-inline--fa');
       expect(button.children[0].classList[1]).toEqual('fa-bomb');
       expect(button.classList).toHaveLength(3);
       expect(button.classList[0]).toEqual('node');

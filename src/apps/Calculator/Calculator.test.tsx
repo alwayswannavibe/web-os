@@ -2,11 +2,11 @@
 import { render, screen } from '@testing-library/react';
 
 // Components
-import * as Icon from 'src/components/Icon';
-import * as Window from 'src/components/Window';
-import * as CalculatorInput from './components/CalculatorInput';
-import * as CalculatorButtons from './components/CalculatorButtons';
-import { Calculator } from '.';
+import * as Icon from '@Components/Icon/Icon';
+import * as Window from '@Components/Window/Window';
+import * as CalculatorInput from '@Calculator/components/CalculatorInput/CalculatorInput';
+import * as CalculatorButtons from '@Calculator/components/CalculatorButtons/CalculatorButtons';
+import { Calculator } from './Calculator';
 
 describe('calculator component', () => {
   beforeAll(() => {

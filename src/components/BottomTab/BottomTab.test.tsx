@@ -4,11 +4,11 @@ import { Provider } from 'react-redux';
 import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
 import configureStore from 'redux-mock-store';
 
-// Types
-import { Apps } from 'src/types/apps';
+// Enums
+import { App } from '@Enums/app.enum';
 
 // Components
-import { BottomTab } from '.';
+import { BottomTab } from './BottomTab';
 
 // Styles
 import styles from './style.module.css';
@@ -18,13 +18,13 @@ describe('bottom tab component', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
   const mockStore = configureStore(middlewares);
 
-  describe('should renders components', () => {
+  describe('should render components', () => {
     it('should renders close icon for closed app', () => {
       const initialState = {
         apps: {
           apps: [],
           appsState: {
-            [Apps.Terminal]: {
+            [App.Terminal]: {
               isCollapsed: false,
               isOpened: false,
             },
@@ -34,7 +34,7 @@ describe('bottom tab component', () => {
       const mockStoreWithState = mockStore(initialState);
       render(
         <Provider store={mockStoreWithState}>
-          <BottomTab type={Apps.Terminal} iconName={iconName} />
+          <BottomTab type={App.Terminal} iconName={iconName} />
         </Provider>,
       );
       const closedIcon = document.getElementsByClassName(styles.close);
@@ -46,9 +46,9 @@ describe('bottom tab component', () => {
     it('should renders open icon for opened app', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Terminal],
+          apps: [App.Terminal],
           appsState: {
-            [Apps.Terminal]: {
+            [App.Terminal]: {
               isCollapsed: false,
               isOpened: true,
             },
@@ -58,7 +58,7 @@ describe('bottom tab component', () => {
       const mockStoreWithState = mockStore(initialState);
       render(
         <Provider store={mockStoreWithState}>
-          <BottomTab type={Apps.Terminal} iconName={iconName} />
+          <BottomTab type={App.Terminal} iconName={iconName} />
         </Provider>,
       );
       const closedIcon = document.getElementsByClassName(styles.close);
@@ -69,12 +69,12 @@ describe('bottom tab component', () => {
   });
 
   describe('should have correct visual', () => {
-    it('should renders icon', () => {
+    it('should render icon', () => {
       const initialState = {
         apps: {
           apps: [],
           appsState: {
-            [Apps.Terminal]: {
+            [App.Terminal]: {
               isCollapsed: false,
               isOpened: false,
             },
@@ -84,7 +84,7 @@ describe('bottom tab component', () => {
       const mockStoreWithState = mockStore(initialState);
       render(
         <Provider store={mockStoreWithState}>
-          <BottomTab type={Apps.Terminal} iconName={iconName} />
+          <BottomTab type={App.Terminal} icon={{}} />
         </Provider>,
       );
       const icon = document.getElementsByClassName(`fa-${iconName}`);
@@ -93,12 +93,12 @@ describe('bottom tab component', () => {
       expect(icons).toHaveLength(1);
     });
 
-    it('should rednders active icon if window active', () => {
+    it('should render active icon if window active', () => {
       const initialState = {
         apps: {
-          apps: [Apps.Terminal],
+          apps: [App.Terminal],
           appsState: {
-            [Apps.Terminal]: {
+            [App.Terminal]: {
               isCollapsed: false,
               isOpened: true,
             },
@@ -108,7 +108,7 @@ describe('bottom tab component', () => {
       const mockStoreWithState = mockStore(initialState);
       render(
         <Provider store={mockStoreWithState}>
-          <BottomTab type={Apps.Terminal} iconName={iconName} />
+          <BottomTab type={App.Terminal} iconName={iconName} />
         </Provider>,
       );
       const activeIcon = document.getElementsByClassName(styles.isActive);
@@ -120,9 +120,9 @@ describe('bottom tab component', () => {
     it('should rednders not active icon if window not active', () => {
       const initialState = {
         apps: {
-          apps: [Apps.ToDo, Apps.Terminal],
+          apps: [App.ToDo, App.Terminal],
           appsState: {
-            [Apps.Terminal]: {
+            [App.Terminal]: {
               isCollapsed: false,
               isOpened: true,
             },
@@ -132,7 +132,7 @@ describe('bottom tab component', () => {
       const mockStoreWithState = mockStore(initialState);
       render(
         <Provider store={mockStoreWithState}>
-          <BottomTab type={Apps.Terminal} iconName={iconName} />
+          <BottomTab type={App.Terminal} iconName={iconName} />
         </Provider>,
       );
       const activeIcon = document.getElementsByClassName(styles.isActive);

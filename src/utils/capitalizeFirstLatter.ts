@@ -1,4 +1,4 @@
-const capitalizeFirstLatter = (input: string): string => {
+function capitalizeFirstLatter(input: string): string {
   if (!input) {
     return '';
   }
@@ -6,6 +6,6 @@ const capitalizeFirstLatter = (input: string): string => {
   const inputArr = input.split('');
   inputArr[0] = inputArr[0].toUpperCase();
   return inputArr.join('');
-};
+}
 
 export { capitalizeFirstLatter };

@@ -3,12 +3,12 @@ import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
-import { SimonStatus } from 'src/types/simonStatus';
-import { Apps } from 'src/types/apps';
-import { Difficulties } from 'src/types/difficulties';
-import * as SimonBar from '../SimonBar';
-import * as SimonButton from '../SimonButton';
-import { SimonMain } from '.';
+import { SimonStatus } from '@Simon/enums/simonStatus.enum';
+import { App } from '@Enums/app.enum';
+import { Difficulty } from '@Enums/difficulty.enum';
+import * as SimonBar from '../SimonBar/SimonBar';
+import * as SimonButton from '../SimonButton/SimonButton';
+import { SimonMain } from './SimonMain';
 
 describe('SimonMain', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
@@ -29,11 +29,11 @@ describe('SimonMain', () => {
         simonStatus: SimonStatus.Waiting,
         pattern: [1, 2, 3],
         level: 1,
-        difficulty: Difficulties.Easy,
+        difficulty: Difficulty.Easy,
       },
       apps: {
         appsState: {
-          [Apps.Simon]: {
+          [App.Simon]: {
             isOpened: true,
           },
         },
@@ -51,17 +51,17 @@ describe('SimonMain', () => {
     expect(document.getElementsByClassName('SimonButton')).toHaveLength(4);
   });
 
-  it('should showing if status showing', () => {
+  it('should show if status showing', () => {
     const initialState = {
       simon: {
         simonStatus: SimonStatus.Showing,
         pattern: [1, 2, 3],
         level: 2,
-        difficulty: Difficulties.Easy,
+        difficulty: Difficulty.Easy,
       },
       apps: {
         appsState: {
-          [Apps.Simon]: {
+          [App.Simon]: {
             isOpened: true,
           },
         },
@@ -89,11 +89,11 @@ describe('SimonMain', () => {
         simonStatus: SimonStatus.Showing,
         pattern: [1, 2, 3],
         level: 1,
-        difficulty: Difficulties.Easy,
+        difficulty: Difficulty.Easy,
       },
       apps: {
         appsState: {
-          [Apps.Simon]: {
+          [App.Simon]: {
             isOpened: true,
           },
         },

@@ -6,7 +6,7 @@
   width: calc(100% / 16 * 9);
   grid-gap: 2px;
 
-  height: 100%;
+  height: calc(100% - 2rem);
   margin: 0 auto;
   padding: 1rem;
 }

@@ -5,8 +5,8 @@ import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
 import configureStore from 'redux-mock-store';
 import userEvent from '@testing-library/user-event';
 
-// Types
-import { Difficulties } from 'src/types/difficulties';
+// Enums
+import { Difficulty } from '@Enums/difficulty.enum';
 
 // Constants
 import { EASY_MINES_COUNT, EASY_SIZE,
@@ -14,7 +14,7 @@ import { EASY_MINES_COUNT, EASY_SIZE,
   EXTREME_SIZE, HARD_MINES_COUNT, HARD_SIZE, NORMAL_MINES_COUNT, NORMAL_SIZE } from 'src/apps/Minesweeper/constants/sizesAndMines';
 
 // Components
-import { DifficultiesScreen } from '.';
+import { DifficultiesScreen } from './DifficultiesScreen';
 
 describe('Minesweeper DifficultiesScreen', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
@@ -36,13 +36,13 @@ describe('Minesweeper DifficultiesScreen', () => {
 
     const buttons = document.querySelectorAll('button');
     expect(buttons?.length).toBe(4);
-    expect(buttons[0].children[0].textContent).toEqual(Difficulties.Easy);
+    expect(buttons[0].children[0].textContent).toEqual(Difficulty.Easy);
     expect(buttons[0].children[1].textContent).toEqual(`${EASY_SIZE} X ${EASY_SIZE} (${EASY_MINES_COUNT} mines)`);
-    expect(buttons[1].children[0].textContent).toEqual(Difficulties.Normal);
+    expect(buttons[1].children[0].textContent).toEqual(Difficulty.Normal);
     expect(buttons[1].children[1].textContent).toEqual(`${NORMAL_SIZE} X ${NORMAL_SIZE} (${NORMAL_MINES_COUNT} mines)`);
-    expect(buttons[2].children[0].textContent).toEqual(Difficulties.Hard);
+    expect(buttons[2].children[0].textContent).toEqual(Difficulty.Hard);
     expect(buttons[2].children[1].textContent).toEqual(`${HARD_SIZE} X ${HARD_SIZE} (${HARD_MINES_COUNT} mines)`);
-    expect(buttons[3].children[0].textContent).toEqual(Difficulties.Extreme);
+    expect(buttons[3].children[0].textContent).toEqual(Difficulty.Extreme);
     expect(buttons[3].children[1].textContent).toEqual(`${EXTREME_SIZE} X ${EXTREME_SIZE} (${EXTREME_MINES_COUNT} mines)`);
   });
 
@@ -61,7 +61,7 @@ describe('Minesweeper DifficultiesScreen', () => {
       expect(mockDispatch).toBeCalledTimes(1);
       expect(mockDispatch).toBeCalledWith({
         type: 'minesweeper/setMinesweeperDifficulty',
-        payload: { difficulty: Difficulties.Easy },
+        payload: { difficulty: Difficulty.Easy },
       });
     });
 
@@ -79,7 +79,7 @@ describe('Minesweeper DifficultiesScreen', () => {
       expect(mockDispatch).toBeCalledTimes(1);
       expect(mockDispatch).toBeCalledWith({
         type: 'minesweeper/setMinesweeperDifficulty',
-        payload: { difficulty: Difficulties.Normal },
+        payload: { difficulty: Difficulty.Normal },
       });
     });
 
@@ -97,7 +97,7 @@ describe('Minesweeper DifficultiesScreen', () => {
       expect(mockDispatch).toBeCalledTimes(1);
       expect(mockDispatch).toBeCalledWith({
         type: 'minesweeper/setMinesweeperDifficulty',
-        payload: { difficulty: Difficulties.Hard },
+        payload: { difficulty: Difficulty.Hard },
       });
     });
 
@@ -115,7 +115,7 @@ describe('Minesweeper DifficultiesScreen', () => {
       expect(mockDispatch).toBeCalledTimes(1);
       expect(mockDispatch).toBeCalledWith({
         type: 'minesweeper/setMinesweeperDifficulty',
-        payload: { difficulty: Difficulties.Extreme },
+        payload: { difficulty: Difficulty.Extreme },
       });
     });
   });

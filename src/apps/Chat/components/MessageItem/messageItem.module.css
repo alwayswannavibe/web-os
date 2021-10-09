@@ -54,9 +54,17 @@
 }
 
 .toYou {
-  background-color: #fcdd6c;
+  filter: brightness(0.75);
 }
 
 .wrapper {
   width: 100%;
+}
+
+.notReadedMessage {
+  font-size: 0.4rem;
+}
+
+.readedMessage {
+  display: none;
 }

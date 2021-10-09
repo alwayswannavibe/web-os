@@ -6,8 +6,8 @@ import { Provider } from 'react-redux';
 import userEvent from '@testing-library/user-event';
 
 // Components
-import * as Avatar from 'src/components/Avatar';
-import { MessageItem } from '.';
+import * as Avatar from '@Components/Avatar/Avatar';
+import { MessageItem } from './MessageItem';
 
 describe('Chat MessageItem', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];

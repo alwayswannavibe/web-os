@@ -3,7 +3,7 @@ import { act, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 // Components
-import { FullscreenButton } from '.';
+import { FullscreenButton } from './FullscreenButton';
 
 describe('fullscreen button', () => {
   document.documentElement.requestFullscreen = jest.fn();

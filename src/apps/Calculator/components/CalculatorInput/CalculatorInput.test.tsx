@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import userEvent from '@testing-library/user-event';
 
 // Components
-import { CalculatorInput } from '.';
+import { CalculatorInput } from './CalculatorInput';
 
 describe('calculator input component', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];

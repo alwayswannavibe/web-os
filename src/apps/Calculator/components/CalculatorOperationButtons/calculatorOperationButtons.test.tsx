@@ -2,8 +2,8 @@
 import { render } from '@testing-library/react';
 
 // Comnponents
-import * as CalculatorButton from '../CalculatorButton';
-import { CalculatorOperationButtons } from '.';
+import * as CalculatorButton from '@Calculator/components/CalculatorButton/CalculatorButton';
+import { CalculatorOperationButtons } from './CalculatorOperationButtons';
 
 // Styles
 import styles from './calculatorOperationButtons.module.css';

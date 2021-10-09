@@ -28,10 +28,6 @@
   filter: opacity(30%);
 }
 
-.flag {
-  color: white;
-}
-
 .lose {
   background-color: #a70404;
 }
@@ -79,4 +75,8 @@
 
 .bombAround404 {
   font-size: 1rem;
+}
+
+.node svg {
+  min-height: 50% !important;
 }

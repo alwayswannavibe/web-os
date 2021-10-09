@@ -1,20 +1,24 @@
 // Libraries
 import { configureStore } from '@reduxjs/toolkit';
 
+// Feature/redux
+import themeSlice from '@Features/theme/redux';
+import languageSlice from '@Features/i18n/redux';
+import userSlice from '@Features/user/redux';
+import websocketSlice from '@Features/websocket/redux';
+
 // Redux
-import themeSlice from 'src/features/theme/redux';
-import languageSlice from 'src/features/i18n/redux';
-import appsSlice from 'src/redux/slices/appsSlice';
-import userSlice from 'src/features/user/redux';
-import websocketSlice from 'src/features/websocket/redux';
+import appsSlice from 'src/redux/slices/appsSlice/appsSlice';
 
 // Apps/redux
-import chatSlice from 'src/apps/Chat/redux';
-import simonSlice from 'src/apps/Simon/redux';
-import calculatorSlice from 'src/apps/Calculator/redux';
-import toDoSlice from 'src/apps/ToDoList/redux';
-import terminalSlice from 'src/apps/Terminal/redux';
-import minesweeperSlice from 'src/apps/Minesweeper/redux';
+import chatSlice from '@Chat/redux/chatSlice/chatSlice';
+import chatRoomsSlice from '@Chat/redux/chatRoomsSlice/chatRooms';
+import chatUsersSlice from '@Chat/redux/chatUsersSlice/chatUsersSlice';
+import simonSlice from '@Simon/redux/simonSlice/simonSlice';
+import calculatorSlice from '@Calculator/redux/calculatorSlice/calculatorSlice';
+import toDoSlice from '@ToDo/redux/toDoSlice/toDoSlice';
+import terminalSlice from '@Terminal/redux/terminalSlice/terminalSlice';
+import minesweeperSlice from '@Minesweeper/redux/minesweeperSlice/minesweeperSlice';
 
 const store = configureStore({
   reducer: {
@@ -26,6 +30,8 @@ const store = configureStore({
     toDo: toDoSlice,
     user: userSlice,
     chat: chatSlice,
+    chatRooms: chatRoomsSlice,
+    chatUsers: chatUsersSlice,
     simon: simonSlice,
     minesweeper: minesweeperSlice,
     websocket: websocketSlice,
@@ -35,7 +41,5 @@ const store = configureStore({
   })),
   devTools: process.env.NODE_ENV !== 'production',
 });
-
-export type RootState = ReturnType<typeof store.getState>;
 
 export default store;

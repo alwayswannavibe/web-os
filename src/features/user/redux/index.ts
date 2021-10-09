@@ -1,11 +1,13 @@
 /* eslint-disable no-param-reassign */
 
 // Libraries
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 // Logic
 // eslint-disable-next-line import/no-cycle
 import { fetchUser } from '@Features/user/fetchUser';
+import { fetchUsers } from '@Chat/redux/chatUsersSlice/chatUsersSlice';
 
 interface InitialState {
   username: string,
@@ -25,18 +27,17 @@ const initialState: InitialState = {
   id: -1,
 };
 
+const logout = createAsyncThunk('user/logout', async () => {
+  await axios.post(`${process.env.REACT_APP_API_URL}/user/logout`, {
+    timeout: 30000,
+    withCredentials: true,
+  });
+});
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    logout(state) {
-      state.username = '';
-      state.photo = '';
-      state.name = '';
-      document.cookie = 'jwt= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
-      localStorage.clear();
-      window.location.reload();
-    },
     login(state, { payload }: {
       payload: {
         username: string;
@@ -52,9 +53,19 @@ const userSlice = createSlice({
       state.username = payload;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(fetchUsers.fulfilled, (state) => {
+      state.username = '';
+      state.photo = '';
+      state.name = '';
+      localStorage.clear();
+      window.location.reload();
+    });
+  },
 });
 
 fetchUser();
 
 export default userSlice.reducer;
-export const { logout, login, setUser } = userSlice.actions;
+export const { login, setUser } = userSlice.actions;
+export { logout };

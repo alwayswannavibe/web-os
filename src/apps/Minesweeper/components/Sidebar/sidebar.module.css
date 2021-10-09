@@ -16,6 +16,8 @@
   cursor: pointer;
   transition: background-color 0.15s;
 
+  color: black;
+
   border: none;
   border-radius: 3px;
   background-color: white;

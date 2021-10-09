@@ -11,6 +11,10 @@
   text-align: center;
 }
 
+.wrapper button {
+  color: black;
+}
+
 .startBtn {
   margin-top: 90%;
   padding: 1rem;

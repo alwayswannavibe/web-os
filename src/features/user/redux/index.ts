@@ -7,7 +7,6 @@ import axios from 'axios';
 // Logic
 // eslint-disable-next-line import/no-cycle
 import { fetchUser } from '@Features/user/fetchUser';
-import { fetchUsers } from '@Chat/redux/chatUsersSlice/chatUsersSlice';
 
 interface InitialState {
   username: string,
@@ -28,7 +27,7 @@ const initialState: InitialState = {
 };
 
 const logout = createAsyncThunk('user/logout', async () => {
-  await axios.post(`${process.env.REACT_APP_API_URL}/auth/logout`, {
+  await axios.post(`${process.env.REACT_APP_API_URL}/auth/logout`, {}, {
     timeout: 30000,
     withCredentials: true,
   });
@@ -54,12 +53,12 @@ const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchUsers.fulfilled, (state) => {
+    builder.addCase(logout.fulfilled, (state) => {
       state.username = '';
       state.photo = '';
       state.name = '';
       localStorage.clear();
-      window.location.reload();
+      document.location.reload();
     });
   },
 });

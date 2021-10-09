@@ -61,7 +61,7 @@
 
   transition: opacity 0.3s ease-in;
 
-  opacity: 80%;
+  opacity: 0.8;
   border-radius: 50%;
   background-color: #000;
 }

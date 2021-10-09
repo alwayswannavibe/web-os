@@ -19,6 +19,8 @@
   cursor: pointer;
   transition: filter 0.15s;
 
+  color: black;
+
   border: none;
   border-radius: 3px;
 }

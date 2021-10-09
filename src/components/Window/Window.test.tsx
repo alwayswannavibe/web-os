@@ -1,21 +1,28 @@
+// Libraries
 import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
 import configureStore from 'redux-mock-store';
-import { Apps } from 'src/types/apps';
 import { Provider } from 'react-redux';
-import { render, screen } from '@testing-library/react';
-import * as useApp from 'src/hooks/useApp';
-import * as useDragNDrop from 'src/hooks/useDragNDrop';
 import userEvent from '@testing-library/user-event';
-import { Window } from '.';
+import { render, screen } from '@testing-library/react';
+
+// Enums
+import { App } from '@Enums/app.enum';
+
+// Hooks
+import * as useApp from '@Hooks/useApp/useApp';
+import * as useDragNDrop from '@Hooks/useDragNDrop/useDragNDrop';
+
+// Components
+import { Window } from './Window';
 
 describe('Window', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
   const mockStore = configureStore(middlewares);
   const initialState = {
     apps: {
-      apps: [Apps.Calculator],
+      apps: [App.Calculator],
       appsState: {
-        [Apps.Calculator]: {
+        [App.Calculator]: {
           isOpened: true,
           isCollapsed: false,
           windowPos: {
@@ -48,29 +55,29 @@ describe('Window', () => {
   it('should render', () => {
     render(
       <Provider store={mockStoreWithState}>
-        <Window type={Apps.Calculator} />
+        <Window type={App.Calculator} />
       </Provider>,
     );
 
     expect(document.getElementsByTagName('button')).toHaveLength(3);
-    expect(screen.queryByText(Apps.Calculator)).toBeInTheDocument();
+    expect(screen.queryByText(App.Calculator)).toBeInTheDocument();
   });
 
   it('should set window active on click', () => {
     const mockDispatch = jest.spyOn(mockStoreWithState, 'dispatch');
     render(
       <Provider store={mockStoreWithState}>
-        <Window type={Apps.Calculator} />
+        <Window type={App.Calculator} />
       </Provider>,
     );
 
-    const title = screen.queryByText(Apps.Calculator);
+    const title = screen.queryByText(App.Calculator);
 
     userEvent.click(title!);
 
     expect(mockDispatch).toBeCalledTimes(1);
     expect(mockDispatch).toBeCalledWith({
-      payload: Apps.Calculator,
+      payload: App.Calculator,
       type: 'apps/setWindowActive',
     });
   });

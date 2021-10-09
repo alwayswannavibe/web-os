@@ -6,11 +6,11 @@ import { render } from '@testing-library/react';
 import { RefObject } from 'react';
 import userEvent from '@testing-library/user-event';
 
-// Types
-import { SimonStatus } from 'src/types/simonStatus';
+// Enums
+import { SimonStatus } from '@Simon/enums/simonStatus.enum';
 
 // Components
-import { SimonButton } from '.';
+import { SimonButton } from './SimonButton';
 
 describe('SimonButton', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];

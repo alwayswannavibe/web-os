@@ -1,38 +1,38 @@
-// Types
-import { Apps } from 'src/types/apps';
+// Enums
+import { App } from '@Enums/app.enum';
 
 // Redux
 import store from 'src/redux/store';
-import { addWindow, deleteWindow, setWindowActive } from '.';
+import { addWindow, deleteWindow, setWindowActive } from './appsSlice';
 
 describe('app slice', () => {
   afterEach(() => {
-    store.dispatch(deleteWindow(Apps.Settings));
-    store.dispatch(deleteWindow(Apps.Calculator));
-    store.dispatch(deleteWindow(Apps.Terminal));
+    store.dispatch(deleteWindow(App.Settings));
+    store.dispatch(deleteWindow(App.Calculator));
+    store.dispatch(deleteWindow(App.Terminal));
   });
 
   it('has correct order when calls setWindowActive', () => {
-    store.dispatch(addWindow(Apps.Terminal));
-    store.dispatch(addWindow(Apps.Settings));
-    store.dispatch(addWindow(Apps.Calculator));
-    store.dispatch(setWindowActive(Apps.Calculator));
-    expect(store.getState().apps.apps[0]).toEqual(Apps.Calculator);
+    store.dispatch(addWindow(App.Terminal));
+    store.dispatch(addWindow(App.Settings));
+    store.dispatch(addWindow(App.Calculator));
+    store.dispatch(setWindowActive(App.Calculator));
+    expect(store.getState().apps.apps[0]).toEqual(App.Calculator);
   });
 
   it('has correct list when delete one app', () => {
-    store.dispatch(addWindow(Apps.Terminal));
-    store.dispatch(addWindow(Apps.Settings));
-    store.dispatch(addWindow(Apps.Calculator));
-    store.dispatch(deleteWindow(Apps.Settings));
-    expect(store.getState().apps.apps).toEqual([Apps.Calculator, Apps.Terminal]);
+    store.dispatch(addWindow(App.Terminal));
+    store.dispatch(addWindow(App.Settings));
+    store.dispatch(addWindow(App.Calculator));
+    store.dispatch(deleteWindow(App.Settings));
+    expect(store.getState().apps.apps).toEqual([App.Calculator, App.Terminal]);
   });
 
   it('has correct order when adds app', () => {
-    store.dispatch(addWindow(Apps.Terminal));
-    store.dispatch(addWindow(Apps.Settings));
-    store.dispatch(addWindow(Apps.Calculator));
-    expect(store.getState().apps.apps).toEqual([Apps.Calculator, Apps.Settings, Apps.Terminal]);
+    store.dispatch(addWindow(App.Terminal));
+    store.dispatch(addWindow(App.Settings));
+    store.dispatch(addWindow(App.Calculator));
+    expect(store.getState().apps.apps).toEqual([App.Calculator, App.Settings, App.Terminal]);
   });
 });
 

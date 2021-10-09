@@ -4,45 +4,45 @@ import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 
-// Types
-import { Apps } from 'src/types/apps';
+// Enums
+import { App } from '@Enums/app.enum';
 
 // Components
-import { BottomPanel } from '.';
+import { BottomPanel } from './BottomPanel';
 
 // Styles
-import styles from './style.module.css';
+import styles from './bottomPanel.module.css';
 
 describe('bottom panel component', () => {
   const initialState = {
     apps: {
       apps: [],
       appsState: {
-        [Apps.Terminal]: {
+        [App.Terminal]: {
           isOpen: false,
           isCollapsed: false,
         },
-        [Apps.Simon]: {
+        [App.Simon]: {
           isOpen: false,
           isCollapsed: false,
         },
-        [Apps.Settings]: {
+        [App.Settings]: {
           isOpen: false,
           isCollapsed: false,
         },
-        [Apps.Chat]: {
+        [App.Chat]: {
           isOpen: false,
           isCollapsed: false,
         },
-        [Apps.ToDo]: {
+        [App.ToDo]: {
           isOpen: false,
           isCollapsed: false,
         },
-        [Apps.Calculator]: {
+        [App.Calculator]: {
           isOpen: false,
           isCollapsed: false,
         },
-        [Apps.Minesweeper]: {
+        [App.Minesweeper]: {
           isOpen: false,
           isCollapsed: false,
         },

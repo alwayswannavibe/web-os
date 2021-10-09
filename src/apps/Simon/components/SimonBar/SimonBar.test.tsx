@@ -5,12 +5,12 @@ import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-// Types
-import { Difficulties } from 'src/types/difficulties';
+// Enums
+import { Difficulty } from '@Enums/difficulty.enum';
+import { SimonStatus } from '@Simon/enums/simonStatus.enum';
 
 // Components
-import { SimonStatus } from 'src/types/simonStatus';
-import { SimonBar } from '.';
+import { SimonBar } from './SimonBar';
 
 describe('SimonBar', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
@@ -27,7 +27,7 @@ describe('SimonBar', () => {
 
     render(
       <Provider store={mockStoreWithState}>
-        <SimonBar difficulty={Difficulties.Hard} />
+        <SimonBar difficulty={Difficulty.Hard} />
       </Provider>,
     );
 
@@ -46,7 +46,7 @@ describe('SimonBar', () => {
 
     render(
       <Provider store={mockStoreWithState}>
-        <SimonBar difficulty={Difficulties.Hard} />
+        <SimonBar difficulty={Difficulty.Hard} />
       </Provider>,
     );
 
@@ -65,7 +65,7 @@ describe('SimonBar', () => {
 
     render(
       <Provider store={mockStoreWithState}>
-        <SimonBar difficulty={Difficulties.Hard} />
+        <SimonBar difficulty={Difficulty.Hard} />
       </Provider>,
     );
 
@@ -85,7 +85,7 @@ describe('SimonBar', () => {
 
     render(
       <Provider store={mockStoreWithState}>
-        <SimonBar difficulty={Difficulties.Hard} />
+        <SimonBar difficulty={Difficulty.Hard} />
       </Provider>,
     );
 
@@ -112,7 +112,7 @@ describe('SimonBar', () => {
 
     render(
       <Provider store={mockStoreWithState}>
-        <SimonBar difficulty={Difficulties.Hard} />
+        <SimonBar difficulty={Difficulty.Hard} />
       </Provider>,
     );
 

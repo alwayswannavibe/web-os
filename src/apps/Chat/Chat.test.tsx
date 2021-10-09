@@ -2,12 +2,12 @@
 import { render, screen } from '@testing-library/react';
 
 // Components
-import * as Window from 'src/components/Window';
-import * as Icon from 'src/components/Icon';
-import * as ChatSelection from './components/ChatSelection';
-import * as MessagesList from './components/MessagesList';
-import * as ChatInput from './components/ChatInput';
-import { Chat } from '.';
+import * as Window from '@Components/Window/Window';
+import * as Icon from '@Components/Icon/Icon';
+import * as ChatSelection from '@Chat/components/ChatSelection/ChatSelection';
+import * as MessagesList from '@Chat/components/MessagesList/MessagesList';
+import * as ChatInput from '@Chat/components/ChatInput/ChatInput';
+import { Chat } from './Chat';
 
 describe('Chat', () => {
   beforeEach(() => {

@@ -4,15 +4,15 @@ import configureStore from 'redux-mock-store';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
-// Types
-import { Apps } from 'src/types/apps';
+// Enums
+import { App } from '@Enums/app.enum';
 
 // Hooks
-import * as useApp from 'src/hooks/useApp';
-import * as useDragNDrop from 'src/hooks/useDragNDrop';
+import * as useApp from '@Hooks/useApp/useApp';
+import * as useDragNDrop from '@Hooks/useDragNDrop/useDragNDrop';
 
 // Components
-import { Icon } from '.';
+import { Icon } from './Icon';
 
 describe('Icon', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
@@ -20,7 +20,7 @@ describe('Icon', () => {
   const initialState = {
     apps: {
       appsState: {
-        [Apps.Calculator]: {
+        [App.Calculator]: {
           iconPos: {
             top: '1rem',
             left: '1rem',
@@ -51,12 +51,12 @@ describe('Icon', () => {
   it('should render', () => {
     render(
       <Provider store={mockStoreWithState}>
-        <Icon type={Apps.Calculator} imgSource="" />
+        <Icon type={App.Calculator} imgSource="" />
       </Provider>,
     );
 
     expect(document.getElementsByTagName('img')).toHaveLength(1);
     expect(document.getElementsByTagName('button')).toHaveLength(1);
-    expect(screen.queryByText(Apps.Calculator)).toBeInTheDocument();
+    expect(screen.queryByText(App.Calculator)).toBeInTheDocument();
   });
 });

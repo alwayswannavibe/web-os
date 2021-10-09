@@ -7,7 +7,7 @@ import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 
 // Components
-import { CalculatorButton } from '.';
+import { CalculatorButton } from './CalculatorButton';
 
 // Styles
 import styles from './calculatorButton.module.css';

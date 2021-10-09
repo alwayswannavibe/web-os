@@ -4,17 +4,17 @@ import configureStore from 'redux-mock-store';
 import { screen, render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
-// Types
-import { Difficulties } from 'src/types/difficulties';
-import { Apps } from 'src/types/apps';
+// Enums
+import { Difficulty } from '@Enums/difficulty.enum';
+import { App } from '@Enums/app.enum';
 
 // Components
-import * as Icon from 'src/components/Icon';
-import * as Window from 'src/components/Window';
-import * as MinesweeperNode from './components/MinesweeperNode';
-import * as Sidebar from './components/Sidebar';
-import * as DifficultiesScreen from './components/DifficultiesScreen';
-import { Minesweeper } from '.';
+import * as Icon from '@Components/Icon/Icon';
+import * as Window from '@Components/Window/Window';
+import * as MinesweeperNode from '@Minesweeper/components/MinesweeperNode/MinesweeperNode';
+import * as Sidebar from '@Minesweeper/components/Sidebar/Sidebar';
+import * as DifficultiesScreen from '@Minesweeper/components/DifficultiesScreen/DifficultiesScreen';
+import { Minesweeper } from './Minesweeper';
 
 describe('Minesweeper', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
@@ -38,11 +38,11 @@ describe('Minesweeper', () => {
         minesweeper: {
           pattern: [[1, 2, 1, 2], [1, 2, 1, 1], [0, 0, 4, 5], [5, 6, 4, 2]],
           size: 4,
-          difficulty: Difficulties.None,
+          difficulty: Difficulty.None,
         },
         apps: {
           appsState: {
-            [Apps.Minesweeper]: {
+            [App.Minesweeper]: {
               isOpen: true,
               isCollapsed: false,
             },
@@ -77,11 +77,11 @@ describe('Minesweeper', () => {
         minesweeper: {
           pattern: [[1, 2, 1, 2], [1, 2, 1, 1], [0, 0, 4, 5], [5, 6, 4, 2]],
           size: 4,
-          difficulty: Difficulties.Easy,
+          difficulty: Difficulty.Easy,
         },
         apps: {
           appsState: {
-            [Apps.Minesweeper]: {
+            [App.Minesweeper]: {
               isOpen: true,
               isCollapsed: false,
             },

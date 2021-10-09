@@ -2,23 +2,40 @@
 
 // Libraries
 import { createSlice } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
+
+// Logic
+// eslint-disable-next-line import/no-cycle
+import { fetchUser } from '@Features/user/fetchUser';
+
+interface InitialState {
+  username: string,
+  name: string,
+  photo: string,
+  loading: boolean,
+  currentPage: number,
+  id: number,
+}
+
+const initialState: InitialState = {
+  username: '',
+  name: '',
+  photo: '',
+  loading: false,
+  currentPage: 1,
+  id: -1,
+};
 
 const userSlice = createSlice({
   name: 'user',
-  initialState: {
-    username: localStorage.getItem('username') || `User-${uuidv4().slice(0, 8)}`,
-    name: '',
-    photo: '',
-    loading: false,
-    currentPage: 1,
-  },
+  initialState,
   reducers: {
     logout(state) {
-      state.username = `User-${uuidv4().slice(0, 8)}`;
+      state.username = '';
       state.photo = '';
       state.name = '';
-      localStorage.setItem('username', state.username);
+      document.cookie = 'jwt= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
+      localStorage.clear();
+      window.location.reload();
     },
     login(state, { payload }: {
       payload: {
@@ -29,9 +46,15 @@ const userSlice = createSlice({
       state.username = payload.username;
       state.photo = payload.photo || '';
       state.loading = false;
+      localStorage.clear();
+    },
+    setUser(state, { payload }: { payload: string }) {
+      state.username = payload;
     },
   },
 });
 
+fetchUser();
+
 export default userSlice.reducer;
-export const { logout, login } = userSlice.actions;
+export const { logout, login, setUser } = userSlice.actions;

@@ -1,0 +1,88 @@
+.input {
+  width: 100%;
+  margin: 0 0.2rem;
+  padding: 0.05rem 0.5rem;
+
+  color: var(--font-color);
+  border: 3px solid #585656;
+  border-radius: 0.3rem;
+  outline: none;
+  background-color: transparent;
+
+  font-size: 1.5rem;
+}
+
+.input:focus {
+  border: 3px solid #046eb5;
+}
+
+.addContainer {
+  position: absolute;
+  bottom: 0.5rem;
+
+  display: flex;
+  align-items: center;
+
+  width: calc(100% - 1rem);
+  margin-left: 1rem;
+
+  border-collapse: collapse;
+}
+
+.addContainer form {
+  width: 100%;
+}
+
+.container {
+  height: 100%;
+}
+
+.toDoItemsContainer {
+  overflow-y: scroll;
+
+  width: 100%;
+  height: calc(100% - 3.5rem);
+}
+
+.addItemButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 4rem;
+  padding: 0.55rem;
+
+  cursor: pointer;
+  transition: background-color 0.15s linear;
+  transition: color 0.25s linear;
+
+  color: #178517;
+
+  font-size: 1.5rem;
+}
+
+.addItemButton:hover {
+  color: #0e5810;
+}
+
+.addItemButton:active {
+  color: #043c06;
+}
+
+.toDoItemsContainer::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: transparent;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.toDoItemsContainer::-webkit-scrollbar {
+  width: 12px;
+
+  background-color: transparent;
+}
+
+.toDoItemsContainer::-webkit-scrollbar-thumb {
+  border-radius: 0.2rem;
+  background-color: #3b3b3b;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}

@@ -5,8 +5,8 @@ import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
 
 // Components
-import { MessagesList } from '.';
-import * as MessageItem from '../MessageItem';
+import * as MessageItem from '@Chat/components/MessageItem/MessageItem';
+import { MessagesList } from './MessagesList';
 
 describe('MessagesList', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];

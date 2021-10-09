@@ -1,11 +1,9 @@
 .wrapper {
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: hidden;
 
   height: 100%;
   padding-right: 0.4rem;
-
-  cursor: pointer;
 
   background-color: transparent;
 }
@@ -14,13 +12,14 @@
   position: relative;
 }
 
-.togglevisiblityBtn {
+.toggleVisibilityBtn {
   position: absolute;
   top: calc(50% - 3rem);
-  right: -19px;
+  right: -12px;
 
   height: 6rem;
   padding: 3px;
+  padding: 0.2rem;
 
   cursor: pointer;
   transition: right 1s;
@@ -29,6 +28,8 @@
   border: none;
   border-radius: 0 10px 10px 0;
   background-color: var(--chatBackgroundColor);
+
+  font-size: 1rem;
 }
 
 .closeBtn {

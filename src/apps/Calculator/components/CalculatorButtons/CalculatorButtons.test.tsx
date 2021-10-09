@@ -3,9 +3,9 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 
 // Components
-import * as CalculatorNumberButtons from '../CalculatorNumberButtons';
-import * as CalculatorOperationButtons from '../CalculatorOperationButtons';
-import { CalculatorButtons } from '.';
+import * as CalculatorNumberButtons from '@Calculator/components/CalculatorNumberButtons/CalculatorNumberButtons';
+import * as CalculatorOperationButtons from '@Calculator/components/CalculatorOperationButtons/CalculatorOperationButtons';
+import { CalculatorButtons } from './CalculatorButtons';
 
 describe('calculator buttons component', () => {
   beforeEach(() => {

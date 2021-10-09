@@ -6,7 +6,7 @@
 
   color: white;
   border: none;
-  background-color: #292929;
+  background-color: var(--minesweeeperNodeDefaultBackground);
 
   font-size: 80%;
 
@@ -26,10 +26,6 @@
 
 .node:active {
   filter: opacity(30%);
-}
-
-.flag {
-  color: white;
 }
 
 .lose {
@@ -73,9 +69,14 @@
 }
 
 .bombAround0 {
-  background-color: #4a4545;
+  opacity: 0.7;
+  background-color: #5d5d5d;
 }
 
 .bombAround404 {
   font-size: 1rem;
+}
+
+.node svg {
+  min-height: 50% !important;
 }

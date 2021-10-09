@@ -1,0 +1,35 @@
+.tab {
+  width: calc(var(--bottomPartHeight) * 1.4);
+  height: var(--bottomPartHeight);
+  margin-right: 2px;
+  padding: 0.3rem 0.6rem;
+
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.12s linear;
+  text-align: center;
+
+  color: inherit;
+  border: none;
+  border-collapse: collapse;
+  border-bottom: 4px solid var(--bottomTabBorder);
+  background-color: var(--bottomTabBackground);
+
+  font-size: inherit;
+}
+
+.isActive {
+  background-color: var(--activeBottomTab);
+}
+
+.close {
+  border-bottom-color: var(--closedBottomTab);
+}
+
+.tab:hover {
+  background-color: var(--onHoverBottomTab);
+}
+
+.tab:active {
+  background-color: var(--onActiveBottomTab);
+}

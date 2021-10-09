@@ -5,15 +5,13 @@ import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-// Types
-import { Terminal } from 'src/apps/Terminal';
-
 // Logic
-import * as processTerminalInput from 'src/apps/Terminal/logic';
+import * as processTerminalInput from 'src/apps/Terminal/logic/processTerminalInput';
 
 // Components
-import * as Icon from 'src/components/Icon';
-import * as Window from 'src/components/Window';
+import * as Icon from '@Components/Icon/Icon';
+import * as Window from '@Components/Window/Window';
+import { Terminal } from './Terminal';
 
 describe('Terminal', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];

@@ -2,18 +2,18 @@
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-// Redux
-import { RootState } from 'src/redux/store';
-
 // Types
-import { Theme } from 'src/features/theme/types/theme';
+import { Theme } from '@Features/theme/types/theme';
+import { RootState } from '@Types/rootState.type';
 
 // Components
-import { TopBar } from 'src/components/TopBar';
-import { Main } from 'src/components/Main';
-import { BottomPanel } from 'src/components/BottomPanel';
-import { LoginForm } from 'src/components/LoginForm';
-import { RegistrationForm } from 'src/components/RegistrationForm';
+import { TopBar } from '@Components/TopBar/TopBar';
+import { BottomPanel } from '@Components/BottomPanel/BottomPanel';
+
+// Pages
+import { Login } from '@Pages/Login/Login';
+import { Registration } from '@Pages/Registration/Registration';
+import { Main } from '@Pages/Main/Main';
 
 const App = () => {
   const theme = useSelector((state: RootState) => state.theme.theme);
@@ -28,7 +28,7 @@ const App = () => {
             path="/login"
             render={() => (
               <>
-                <LoginForm />
+                <Login />
               </>
             )}
           />
@@ -37,7 +37,7 @@ const App = () => {
             path="/registration"
             render={() => (
               <>
-                <RegistrationForm />
+                <Registration />
               </>
             )}
           />

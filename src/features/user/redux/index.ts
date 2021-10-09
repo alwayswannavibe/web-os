@@ -28,7 +28,7 @@ const initialState: InitialState = {
 };
 
 const logout = createAsyncThunk('user/logout', async () => {
-  await axios.post(`${process.env.REACT_APP_API_URL}/user/logout`, {
+  await axios.post(`${process.env.REACT_APP_API_URL}/auth/logout`, {
     timeout: 30000,
     withCredentials: true,
   });

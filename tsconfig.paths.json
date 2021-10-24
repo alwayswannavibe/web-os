@@ -18,6 +18,7 @@
       "@Calculator/*": ["./src/apps/Calculator/*"],
       "@Minesweeper/*": ["./src/apps/Minesweeper/*"],
       "@ToDo/*": ["./src/apps/ToDo/*"],
+      "@Translate/*": ["./src/apps/Translate/*"],
       "@Simon/*": ["./src/apps/Simon/*"],
       "@Settings/*": ["./src/apps/Settings/*"],
       "@Terminal/*": ["./src/apps/Terminal/*"]

@@ -72,7 +72,7 @@
 .toDoItemsContainer::-webkit-scrollbar-track {
   border-radius: 10px;
   background-color: transparent;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
 }
 
 .toDoItemsContainer::-webkit-scrollbar {
@@ -84,5 +84,5 @@
 .toDoItemsContainer::-webkit-scrollbar-thumb {
   border-radius: 0.2rem;
   background-color: #3b3b3b;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
 }

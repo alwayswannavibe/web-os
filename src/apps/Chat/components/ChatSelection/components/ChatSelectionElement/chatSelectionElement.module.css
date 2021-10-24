@@ -61,7 +61,7 @@
 
   transition: opacity 0.3s ease-in;
 
-  opacity: 0.8;
+  opacity: 80%;
   border-radius: 50%;
   background-color: #000;
 }
@@ -76,14 +76,14 @@
 
   transition: opacity 0.3s ease-in;
 
-  opacity: 0;
+  opacity: 0%;
   background-color: var(--chatBackgroundColor);
 }
 
 .count:hover {
-  opacity: 0;
+  opacity: 0%;
 }
 
 .newMessage:hover {
-  opacity: 1;
+  opacity: 100%;
 }

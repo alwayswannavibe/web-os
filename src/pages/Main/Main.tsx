@@ -22,6 +22,7 @@ import { ToDo } from '@ToDo/ToDo';
 import { Chat } from '@Chat/Chat';
 import { Simon } from '@Simon/Simon';
 import { Minesweeper } from '@Minesweeper/Minesweeper';
+import { Translate } from '@Translate/Translate';
 
 // Components
 import { MessageAlert } from '@Components/MessageAlert/MessageAlert';
@@ -70,6 +71,7 @@ const Main: FC<ChildrenNever> = () => {
           <Chat />
           <Simon />
           <Minesweeper />
+          <Translate />
           <MessageAlert />
         </div>
       </div>

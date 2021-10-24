@@ -1,6 +1,6 @@
 // Libraries
 import React, { FC } from 'react';
-import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Enums

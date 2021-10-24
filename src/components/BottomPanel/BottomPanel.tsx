@@ -9,7 +9,7 @@ import {
   faCommentDots,
   faSignOutAlt, faTerminal,
   faThLarge,
-  faUser,
+  faUser, faLanguage,
 } from '@fortawesome/free-solid-svg-icons';
 
 // Redux
@@ -74,6 +74,10 @@ export const BottomPanel: FC<ChildrenNever> = () => {
       <BottomTab
         type={App.Minesweeper}
         icon={faBomb}
+      />
+      <BottomTab
+        type={App.Translate}
+        icon={faLanguage}
       />
       {!loading &&
         (username !== '' ? (

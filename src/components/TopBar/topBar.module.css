@@ -12,7 +12,7 @@
 
   user-select: none;
 
-  background-color: var(--layout-background-color);
+  background-color: var(--layoutBackgroundColor);
 
   font-size: 1.5rem;
 }

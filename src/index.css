@@ -20,15 +20,15 @@
 
 .darkTheme {
   /* Global */
-  --layout-background-color: #131313;
+  --layoutBackgroundColor: #131313;
   --fontColor: #ececec;
 
   /* Window */
-  --windowTopBackground: rgba(23, 23, 24, 0.97);
-  --windowBodyBackground: rgb(23, 23, 24);
+  --windowTopBackground: rgb(23 23 24 / 97%);
+  --windowBodyBackground: rgb(23 23 24);
 
   /* Calculator */
-  --calculatorBackground: rgb(31, 31, 31);
+  --calculatorBackground: rgb(31 31 31);
   --calculatorBorder: #181818;
   --calculatorInputBorder: #515151;
 
@@ -60,15 +60,15 @@
 
 .lightTheme {
   /* Global */
-  --layout-background-color: #ececec;
+  --layoutBackgroundColor: #ececec;
   --fontColor: #373737;
 
   /* Window */
-  --windowTopBackground: rgba(255, 255, 255, 0.97);
-  --windowBodyBackground: rgb(210, 210, 210);
+  --windowTopBackground: rgb(255 255 255 / 97%);
+  --windowBodyBackground: rgb(210 210 210);
 
   /* Calculator */
-  --calculatorBackground: rgb(193, 193, 193);
+  --calculatorBackground: rgb(193 193 193);
   --calculatorBorder: #676767;
   --calculatorInputBorder: #000;
 
@@ -100,15 +100,15 @@
 
 .blueTheme {
   /* Global */
-  --layout-background-color: #446acf;
+  --layoutBackgroundColor: #446acf;
   --fontColor: #efefef;
 
   /* Window */
-  --windowTopBackground: rgba(83, 176, 241, 0.97);
-  --windowBodyBackground: rgb(108, 186, 246);
+  --windowTopBackground: rgb(83 176 241 / 97%);
+  --windowBodyBackground: rgb(108 186 246);
 
   /* Calculator */
-  --calculatorBackground: rgb(45, 155, 214);
+  --calculatorBackground: rgb(45 155 214);
   --calculatorBorder: #5552d7;
   --calculatorInputBorder: #021251;
 
@@ -141,15 +141,15 @@
 
 .greenTheme {
   /* Global */
-  --layout-background-color: #43ae58;
+  --layoutBackgroundColor: #43ae58;
   --fontColor: #efefef;
 
   /* Window */
-  --windowTopBackground: rgba(8, 164, 31, 0.97);
+  --windowTopBackground: rgb(8 164 31 / 97%);
   --windowBodyBackground: #43ae58;
 
   /* Calculator */
-  --calculatorBackground: rgb(24, 110, 20);
+  --calculatorBackground: rgb(24 110 20);
   --calculatorBorder: #07831b;
   --calculatorInputBorder: #024e04;
 
@@ -186,18 +186,19 @@ body {
 
   color: var(--font-color);
 
-  font-family: 'Nunito', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: Nunito, source-code-pro, Menlo, Monaco, Consolas, monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, monospace;
 }
 
+/* stylelint-disable */
 .Toastify__toast--dark {
   bottom: 1rem !important;
 
   border-radius: 0.5rem !important;
-  background-color: var(--layout-background-color) !important;
+  background-color: var(--layoutBackgroundColor) !important;
 }

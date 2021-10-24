@@ -6,6 +6,7 @@ enum App {
   Chat = 'Chat',
   Simon = 'Simon',
   Minesweeper = 'Minesweeper',
+  Translate = 'Translate',
 }
 
 export { App };

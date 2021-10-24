@@ -22,6 +22,7 @@ const appsInitialState: {
   [App.ToDo]: AppCommon,
   [App.Simon]: AppCommon,
   [App.Minesweeper]: AppCommon,
+  [App.Translate]: AppCommon,
 } = {
   [App.Calculator]: {
     isOpened: JSON.parse(localStorage.getItem(`${[App.Calculator]}IsOpened`) || 'false'),
@@ -105,6 +106,18 @@ const appsInitialState: {
     windowPos: {
       top: localStorage.getItem(`${[App.Minesweeper]}TopCoord`) || '15rem',
       left: localStorage.getItem(`${[App.Minesweeper]}LeftCoord`) || '8rem',
+    },
+  },
+  [App.Translate]: {
+    isOpened: JSON.parse(localStorage.getItem(`${[App.Translate]}IsOpened`) || 'false'),
+    isCollapsed: JSON.parse(localStorage.getItem(`${[App.Translate]}IsCollapsed`) || 'false'),
+    iconPos: {
+      top: localStorage.getItem(`${[App.Translate]}IconTopCoord`) || '38rem',
+      left: localStorage.getItem(`${[App.Translate]}IconLeftCoord`) || '1rem',
+    },
+    windowPos: {
+      top: localStorage.getItem(`${[App.Translate]}TopCoord`) || '15rem',
+      left: localStorage.getItem(`${[App.Translate]}LeftCoord`) || '8rem',
     },
   },
 };

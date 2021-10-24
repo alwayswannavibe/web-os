@@ -29,5 +29,6 @@ module.exports = {
     "jsx-a11y/no-autofocus": 0,
     "react/jsx-props-no-spreading": 0,
     "no-continue": 0,
+    "react/jsx-no-bind": 0
   }
 };

@@ -1,6 +1,7 @@
 // Libraries
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 // Redux
 import { getCalculatorResult, setCalculatorInput } from '@Calculator/redux/calculatorSlice/calculatorSlice';
@@ -14,6 +15,7 @@ import styles from './calculatorInput.module.css';
 
 const CalculatorInput: FC<ChildrenNever> = () => {
   const inputValue = useSelector((state: RootState) => state.calculator.inputValue);
+  const { t } = useTranslation('calculator');
   const dispatch = useDispatch();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +32,7 @@ const CalculatorInput: FC<ChildrenNever> = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
+    <form onSubmit={handleSubmit} className={styles.form} aria-label={t('calculator.enter')}>
       <input
         autoFocus
         type="text"
@@ -38,6 +40,7 @@ const CalculatorInput: FC<ChildrenNever> = () => {
         value={inputValue !== 'Error' && inputValue !== 'Infinity' ? inputValue : ''}
         placeholder={inputValue === 'Error' || inputValue === 'Infinity' ? inputValue : ''}
         onChange={handleChange}
+        aria-label={t('calculator.inputAriaLabel')}
       />
     </form>
   );

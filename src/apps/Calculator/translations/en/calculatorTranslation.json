@@ -2,6 +2,7 @@
   "calculator": {
     "enter": "Enter",
     "deleteOne": "Delete one character",
-    "deleteAll": "Delete all characters"
+    "deleteAll": "Delete all characters",
+    "inputAriaLabel": "Calculator expression"
   }
 }

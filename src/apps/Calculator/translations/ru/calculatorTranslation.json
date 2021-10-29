@@ -2,6 +2,7 @@
   "calculator": {
     "enter": "Ввод",
     "deleteOne": "Удалить один символ",
-    "deleteAll": "Удалить все символы"
+    "deleteAll": "Удалить все символы",
+    "inputAriaLabel": "Выражение для калькулятора"
   }
 }

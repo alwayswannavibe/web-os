@@ -1,5 +1,7 @@
 {
   "calculator": {
-    "enter": "Enter"
+    "enter": "Enter",
+    "deleteOne": "Delete one character",
+    "deleteAll": "Delete all characters"
   }
 }

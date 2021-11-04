@@ -34,10 +34,10 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "profiling": "npm run build -- --profile",
+    "profiling": "craco build -- --profile",
     "serve": "serve -s build",
     "test": "craco test",
-    "test:coverage": "npm test -- --env=jsdom --coverage --watchAll",
+    "test:coverage": "craco test --coverage --watchAll",
     "eject": "react-scripts eject",
     "lint:style": "npx stylelint \"src/**/*.css\"",
     "lint:style:fix": "npx stylelint \"src/**/*.css\" --fix",

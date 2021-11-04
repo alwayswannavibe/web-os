@@ -11,7 +11,7 @@ function setCommandsWithCurrentLevel(commands: string[], text: string): void {
     return;
   }
 
-  const availableCommands = commands.filter((command) => command.includes(textArr[textArr.length - 1]));
+  const availableCommands = commands.filter((command) => command.startsWith(textArr[textArr.length - 1]));
   store.dispatch(setAvailableAutocomplete(availableCommands));
 }
 
@@ -22,7 +22,7 @@ function getAvailableAutocomplete(text: string) {
     const { availableAutocomplete } = store.getState().terminal;
 
     if (!availableAutocomplete) {
-      return '';
+      return text.split(' ')[text.split(' ').length - 1];
     }
 
     return availableAutocomplete[autocompleteNumber % availableAutocomplete.length];
@@ -60,8 +60,8 @@ function getAvailableAutocomplete(text: string) {
 
   const { availableAutocomplete } = store.getState().terminal;
 
-  if (!availableAutocomplete) {
-    return '';
+  if (availableAutocomplete.length < 1) {
+    return text.split(' ')[text.split(' ').length - 1];
   }
 
   return availableAutocomplete[autocompleteNumber % availableAutocomplete.length];

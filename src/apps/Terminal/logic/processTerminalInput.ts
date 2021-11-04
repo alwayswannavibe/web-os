@@ -29,6 +29,14 @@ const processTerminalInput = (input: string) => {
       terminalProcessChangeCommand(input.split(' ').slice(1).join(' '));
       break;
     }
+    case 'ps': {
+      dispatch(addTerminalHistory('id name'));
+      const { apps } = store.getState().apps;
+      for (let i = 0; i < apps.length; i++) {
+        dispatch(addTerminalHistory(`${i < 10 ? `0${i}` : i} ${apps[i]}`));
+      }
+      break;
+    }
     default: {
       dispatch(addTerminalHistory(`${i18n.t('terminal:unknownCommand')}`));
       dispatch(addTerminalHistory(`${i18n.t('terminal:typeHelp')}`));

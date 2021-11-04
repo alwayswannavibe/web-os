@@ -12,27 +12,33 @@ export interface TerminalMessage {
   id: string;
 }
 
-const terminalHistory: TerminalMessage[] = [];
-const terminalInputHistory: string[] = [];
-const availableAutocomplete: string[] = [];
-
 const commands = {
-  firstLevelCommands: ['open', 'change', 'help', 'clear'],
+  firstLevelCommands: ['open', 'change', 'help', 'clear', 'ps'],
   openCommands: ['calculator', 'chat', 'settings', 'simon', 'terminal', 'toDo', 'minesweeper', 'help'],
   changeCommands: ['language', 'theme'],
   changeLanguageCommands: ['ru', 'en'],
   changeBackgroundImageCommands: Object.values(BackgroundImage).map((el) => el.toLowerCase()),
 };
 
+interface InitialStateInterface {
+  terminalHistory: TerminalMessage[],
+  terminalInputHistory: string[],
+  availableAutocomplete: string[],
+  commands: typeof commands,
+  autocompleteNumber: number,
+}
+
+const initialState: InitialStateInterface = {
+  terminalHistory: [],
+  terminalInputHistory: [],
+  autocompleteNumber: 0,
+  availableAutocomplete: [],
+  commands,
+};
+
 const terminalSlice = createSlice({
   name: 'terminal',
-  initialState: {
-    terminalHistory,
-    terminalInputHistory,
-    availableAutocomplete,
-    commands,
-    autocompleteNumber: 0,
-  },
+  initialState,
   reducers: {
     addTerminalHistory(state, { payload }) {
       state.terminalHistory.push({

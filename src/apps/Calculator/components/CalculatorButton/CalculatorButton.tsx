@@ -52,8 +52,21 @@ const CalculatorButton: FC<Props> = ({ value }: Props) => {
     return value;
   }
 
+  function getAriaLabel() {
+    if (value === 'Enter') {
+      return t('calculator.enter');
+    }
+    if (value === '←') {
+      return t('calculator.deleteOne');
+    }
+    if (value === 'C') {
+      return t('calculator.deleteAll');
+    }
+    return value;
+  }
+
   return (
-    <button type="button" className={styles.button} onClick={handleClick}>
+    <button type="button" className={styles.button} onClick={handleClick} aria-label={getAriaLabel()}>
       {getReadableValue()}
     </button>
   );

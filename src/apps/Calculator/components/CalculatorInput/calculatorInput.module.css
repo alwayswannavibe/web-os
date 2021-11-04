@@ -18,3 +18,7 @@
 .form {
   width: 100%;
 }
+
+.error {
+  outline: 4px solid #c12a2a;
+}

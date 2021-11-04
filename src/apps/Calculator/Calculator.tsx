@@ -6,8 +6,9 @@ import { Window } from '@Components/Window/Window';
 import { Icon } from '@Components/Icon/Icon';
 import { CalculatorButtons } from '@Calculator/components/CalculatorButtons/CalculatorButtons';
 import { CalculatorInput } from '@Calculator/components/CalculatorInput/CalculatorInput';
+import { CalculatorLastOperationsList } from '@Calculator/components/CalculatorLastOperationsList/CalculatorLastOperationsList';
 
-// Types
+// Enums
 import { App } from '@Enums/app.enum';
 
 // Assets
@@ -25,6 +26,7 @@ const Calculator: FC<ChildrenNever> = () => (
     <Window type={App.Calculator}>
       <div className={styles.container}>
         <CalculatorInput />
+        <CalculatorLastOperationsList />
         <CalculatorButtons />
       </div>
     </Window>

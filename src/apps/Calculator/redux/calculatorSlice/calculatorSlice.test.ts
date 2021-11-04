@@ -55,7 +55,25 @@ describe('calculatorSlice', () => {
     expect(getCalcResultMock).toHaveBeenCalledWith('1+2');
   });
 
-  it('deleteLastCalculatorInput should delete the last charachter of inputValue', () => {
+  it('getCalculatorResult should update lastOperations', () => {
+    const testStore = configureStore({
+      reducer: {
+        calculator: calculatorSlice,
+      },
+    });
+    jest.spyOn(logic, 'getCalcResult').mockReturnValue('4');
+
+    testStore.dispatch(setCalculatorInput('3+1'));
+    testStore.dispatch(getCalculatorResult());
+    testStore.dispatch(setCalculatorInput('2 + 2'));
+    testStore.dispatch(getCalculatorResult());
+    testStore.dispatch(setCalculatorInput('1+3'));
+    testStore.dispatch(getCalculatorResult());
+
+    expect(testStore.getState().calculator.lastOperations).toEqual(['3+1 = 4', '2+2 = 4', '1+3 = 4']);
+  });
+
+  it('deleteLastCalculatorInput should delete the last character of inputValue', () => {
     const testStore = configureStore({
       reducer: {
         calculator: calculatorSlice,
@@ -68,6 +86,32 @@ describe('calculatorSlice', () => {
     expect(testStore.getState().calculator.inputValue).toEqual('1+');
   });
 
+  it('deleteLastCalculatorInput should not delete the last character of inputValue if value is Error', () => {
+    const testStore = configureStore({
+      reducer: {
+        calculator: calculatorSlice,
+      },
+    });
+
+    testStore.dispatch(setCalculatorInput('Error'));
+    testStore.dispatch(deleteLastCalculatorInput());
+
+    expect(testStore.getState().calculator.inputValue).toEqual('Error');
+  });
+
+  it('deleteLastCalculatorInput should not delete the last character of inputValue if value is Infinity', () => {
+    const testStore = configureStore({
+      reducer: {
+        calculator: calculatorSlice,
+      },
+    });
+
+    testStore.dispatch(setCalculatorInput('Infinity'));
+    testStore.dispatch(deleteLastCalculatorInput());
+
+    expect(testStore.getState().calculator.inputValue).toEqual('Infinity');
+  });
+
   it('clearCalculatorInput should clear the inputValue', () => {
     const testStore = configureStore({
       reducer: {
@@ -75,9 +119,7 @@ describe('calculatorSlice', () => {
       },
     });
 
-    testStore.dispatch(addToCalculatorInput('1'));
-    testStore.dispatch(addToCalculatorInput('+'));
-    testStore.dispatch(addToCalculatorInput('2'));
+    testStore.dispatch(setCalculatorInput('1+2'));
     testStore.dispatch(clearCalculatorInput());
 
     expect(testStore.getState().calculator.inputValue).toEqual('');

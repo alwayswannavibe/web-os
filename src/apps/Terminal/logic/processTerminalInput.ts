@@ -6,10 +6,11 @@ import store from 'src/redux/store';
 import i18n from '@Features/i18n';
 
 // Logic
+import { getCalcResult } from '@Calculator/logic/getCalculatorResult';
 import { terminalProcessOpenCommand } from './open/terminalProcessOpenCommand';
 import { terminalProcessChangeCommand } from './change/terminalProcessChangeCommand';
 
-const processTerminalInput = (input: string) => {
+function processTerminalInput(input: string) {
   const { dispatch } = store;
 
   switch (input.split(' ')[0]) {
@@ -29,11 +30,29 @@ const processTerminalInput = (input: string) => {
       terminalProcessChangeCommand(input.split(' ').slice(1).join(' '));
       break;
     }
+    case 'ps': {
+      dispatch(addTerminalHistory('id name'));
+      const { apps } = store.getState().apps;
+      for (let i = 0; i < apps.length; i++) {
+        dispatch(addTerminalHistory(`${i < 10 ? `0${i}` : i} ${apps[i]}`));
+      }
+      break;
+    }
+    case 'calculator': {
+      const expression = input.split(' ');
+      if (expression.length < 2) {
+        dispatch(addTerminalHistory('You must enter expression'));
+        break;
+      }
+      const result = getCalcResult(expression.slice(1).join(' '));
+      dispatch(addTerminalHistory(result));
+      break;
+    }
     default: {
       dispatch(addTerminalHistory(`${i18n.t('terminal:unknownCommand')}`));
       dispatch(addTerminalHistory(`${i18n.t('terminal:typeHelp')}`));
     }
   }
-};
+}
 
 export { processTerminalInput };

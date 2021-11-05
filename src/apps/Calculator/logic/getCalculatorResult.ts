@@ -2,8 +2,14 @@ function checkInputValueCorrect(inputValue: string): boolean {
   const operatorRegExp = new RegExp(/[+, *, /, ^, .]/);
   const operatorsInRowRegExp = new RegExp(/[+, *, /, ^, .]{2,}/);
   const minusesInRowRegExp = new RegExp(/[-]{3,}/);
+  const onlyOperatorsAndNumbersRegExp = new RegExp(/^[\d+\-*^./\s]*$/g);
 
-  return !(operatorRegExp.test(inputValue[0]) || operatorsInRowRegExp.test(inputValue) || minusesInRowRegExp.test(inputValue));
+  return !(
+    !onlyOperatorsAndNumbersRegExp.test(inputValue)
+    || operatorRegExp.test(inputValue[0])
+    || operatorsInRowRegExp.test(inputValue)
+    || minusesInRowRegExp.test(inputValue)
+  );
 }
 
 function compare(symbol1: string, symbol2: string, operators: string[]): number {

@@ -13,7 +13,7 @@ export interface TerminalMessage {
 }
 
 const commands = {
-  firstLevelCommands: ['open', 'change', 'help', 'clear', 'ps'],
+  firstLevelCommands: ['open', 'change', 'help', 'clear', 'ps', 'calculator'],
   openCommands: ['calculator', 'chat', 'settings', 'simon', 'terminal', 'toDo', 'minesweeper', 'help'],
   changeCommands: ['language', 'theme'],
   changeLanguageCommands: ['ru', 'en'],

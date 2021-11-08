@@ -1,11 +1,26 @@
-import { ChildrenNever } from '@Interfaces/childrenNever.interface';
+// Libraries
 import { ChangeEvent, FC, useState } from 'react';
+import axios from 'axios';
+
+// Interfaces
+import { ChildrenNever } from '@Interfaces/childrenNever.interface';
+
+// Icons
 import imgSource from '@Icons/translate.svg';
+
+// Enums
 import { App } from '@Enums/app.enum';
+
+// Components
 import { Icon } from '@Components/Icon/Icon';
 import { Window } from '@Components/Window/Window';
-import axios from 'axios';
+import { Button } from '@Components/Button/Button';
+import { InDevelopment } from '@Components/InDevelopment/inDevelopment';
+
+// Constants
 import { AvailableTranslateLanguages } from './constants/availableTranslateLanguages';
+
+// Styles
 import styles from './translate.module.css';
 
 const Translate: FC<ChildrenNever> = () => {
@@ -34,6 +49,15 @@ const Translate: FC<ChildrenNever> = () => {
   function handleChangeResLanguage(event: ChangeEvent<HTMLSelectElement>) {
     setResLanguage(event.target.value as AvailableTranslateLanguages);
   }
+
+  return (
+    <>
+      <Icon imgSource={imgSource} type={App.Translate} />
+      <Window type={App.Translate}>
+        <InDevelopment />
+      </Window>
+    </>
+  );
 
   return (
     <>
@@ -72,7 +96,7 @@ const Translate: FC<ChildrenNever> = () => {
           </div>
         </div>
         <div className={styles.btnContainer}>
-          <button type="button" onClick={handleSubmit}>Перевести</button>
+          <Button type="button" onClick={handleSubmit}>Перевести</Button>
         </div>
       </Window>
     </>

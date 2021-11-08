@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 // Redux
-import { updateStatus, restartGame } from '@Simon/redux/simonSlice/simonSlice';
+import { changeDifficulty, restartGame, updateStatus } from '@Simon/redux/simonSlice/simonSlice';
 
 // I18n
 import 'src/features/i18n';
@@ -44,6 +44,10 @@ export const SimonBar: FC<Props> = ({ difficulty }: Props) => {
     dispatch(restartGame());
   }
 
+  function handleChangeDifficulty(): void {
+    dispatch(changeDifficulty({ difficulty: Difficulty.None }));
+  }
+
   return (
     <div className={styles.wrapper}>
       <div>
@@ -59,10 +63,13 @@ export const SimonBar: FC<Props> = ({ difficulty }: Props) => {
         </p>
       </div>
       {status === SimonStatus.Waiting && (
-        <Button type="button" className={styles.startBtn} onClick={startGame}>{t('simon.start')}</Button>
+        <Button type="button" onClick={startGame}>{t('simon.start')}</Button>
       )}
       {status === SimonStatus.Losed && (
-        <Button type="button" className={styles.startBtn} onClick={handleRestartGame}>{t('simon.restart')}</Button>
+        <div className={styles.buttons}>
+          <Button type="button" onClick={handleChangeDifficulty}>{t('simon.changeDifficulty')}</Button>
+          <Button type="button" onClick={handleRestartGame}>{t('simon.restart')}</Button>
+        </div>
       )}
     </div>
   );

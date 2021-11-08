@@ -11,10 +11,18 @@
   text-align: center;
 }
 
-.startBtn:disabled {
-  cursor: default;
-}
-
 .level {
   margin-top: 2rem;
+}
+
+.wrapper button {
+  min-width: 10rem;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
 }

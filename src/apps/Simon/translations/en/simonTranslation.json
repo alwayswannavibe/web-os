@@ -1,6 +1,7 @@
 {
   "simon": {
     "chooseDifficulty": "Choose difficulty",
+    "changeDifficulty": "Change difficulty",
     "start": "Start",
     "restart": "Restart",
     "level": "Level",

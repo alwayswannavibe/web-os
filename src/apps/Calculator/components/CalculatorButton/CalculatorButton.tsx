@@ -19,6 +19,8 @@ import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 // I18n
 import '@Features/i18n';
 
+import { Button } from '@Components/Button/Button';
+
 // Styles
 import styles from './calculatorButton.module.css';
 
@@ -66,9 +68,9 @@ const CalculatorButton: FC<Props> = ({ value }: Props) => {
   }
 
   return (
-    <button type="button" className={styles.button} onClick={handleClick} aria-label={getAriaLabel()}>
+    <Button type="button" className={styles.button} onClick={handleClick} aria-label={getAriaLabel()}>
       {getReadableValue()}
-    </button>
+    </Button>
   );
 };
 

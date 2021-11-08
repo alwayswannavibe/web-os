@@ -18,7 +18,7 @@
 .container select,
 .container textarea {
   border: none;
-  background-color: var(--settingsSelectItemBackground);
+  background-color: var(--secondaryColor);
 }
 
 .container textarea {
@@ -32,7 +32,7 @@
   margin-top: 1rem;
   padding: 0.4rem;
 
-  background-color: var(--settingsSelectItemBackground);
+  background-color: var(--secondaryColor);
 
   font-size: 1rem;
 }
@@ -53,7 +53,7 @@
 
   border: none;
   border-radius: 2px;
-  background-color: var(--settingsSelectItemBackground);
+  background-color: var(--secondaryColor);
 
   font-size: 1rem;
 }

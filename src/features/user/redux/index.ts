@@ -15,6 +15,10 @@ interface InitialState {
   loading: boolean,
   currentPage: number,
   id: number,
+  isLoginLoading: boolean,
+  loginError: string,
+  isRegistrationLoading: boolean,
+  registrationError: string,
 }
 
 const initialState: InitialState = {
@@ -24,6 +28,10 @@ const initialState: InitialState = {
   loading: false,
   currentPage: 1,
   id: -1,
+  isLoginLoading: false,
+  isRegistrationLoading: false,
+  loginError: '',
+  registrationError: '',
 };
 
 const logout = createAsyncThunk('user/logout', async () => {
@@ -31,6 +39,36 @@ const logout = createAsyncThunk('user/logout', async () => {
     timeout: 30000,
     withCredentials: true,
   });
+});
+
+const loginFetch = createAsyncThunk('user/login', async (payload: any, { rejectWithValue }) => {
+  try {
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
+      username: payload.username,
+      password: payload.password,
+    }, {
+      timeout: 30000,
+      withCredentials: true,
+    });
+    return res.data;
+  } catch (err: any) {
+    return rejectWithValue(err.response.data);
+  }
+});
+
+const registration = createAsyncThunk('user/registration', async (payload: any, { rejectWithValue }) => {
+  try {
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, {
+      username: payload.username,
+      password: payload.password,
+    }, {
+      timeout: 30000,
+      withCredentials: true,
+    });
+    return res.data;
+  } catch (err: any) {
+    return rejectWithValue(err.response.data);
+  }
 });
 
 const userSlice = createSlice({
@@ -60,6 +98,30 @@ const userSlice = createSlice({
       localStorage.clear();
       document.location.reload();
     });
+    builder.addCase(loginFetch.pending, (state) => {
+      state.isLoginLoading = true;
+      state.loginError = '';
+    });
+    builder.addCase(loginFetch.fulfilled, (state) => {
+      state.isLoginLoading = false;
+      window.history.pushState(null, '', '/');
+      window.location.reload();
+    });
+    builder.addCase(loginFetch.rejected, (state, payload: any) => {
+      state.loginError = payload.payload.error || payload.payload.message[0];
+    });
+    builder.addCase(registration.pending, (state) => {
+      state.isRegistrationLoading = true;
+      state.registrationError = '';
+    });
+    builder.addCase(registration.fulfilled, (state) => {
+      state.isRegistrationLoading = false;
+      window.history.pushState(null, '', '/');
+      window.location.reload();
+    });
+    builder.addCase(registration.rejected, (state, payload: any) => {
+      state.registrationError = payload.payload.error || payload.payload.message[0];
+    });
   },
 });
 
@@ -67,4 +129,4 @@ fetchUser();
 
 export default userSlice.reducer;
 export const { login, setUser } = userSlice.actions;
-export { logout };
+export { logout, loginFetch, registration };

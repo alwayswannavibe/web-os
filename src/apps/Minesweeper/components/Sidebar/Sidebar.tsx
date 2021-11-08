@@ -21,6 +21,9 @@ import { RootState } from '@Types/rootState.type';
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
+// Components
+import { Button } from '@Components/Button/Button';
+
 // I18n
 import '@Features/i18n';
 
@@ -54,19 +57,19 @@ const Sidebar: FC<ChildrenNever> = () => {
       {isLose && <p>{t('You lose!')}</p>}
       {isWin && <p>{t('You win!')}</p>}
       {(isLose || isWin) && (
-        <div className={styles.failButtons}>
-          <button
+        <div className={styles.endGameButtons}>
+          <Button
             type="button"
             onClick={handleChangeDifficulty}
           >
             {t('Change difficulty')}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             onClick={handleRestart}
           >
             {t('Restart')}
-          </button>
+          </Button>
         </div>
       )}
     </div>

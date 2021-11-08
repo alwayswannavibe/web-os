@@ -8,35 +8,14 @@
   padding: 2rem;
 }
 
-.failButtons button {
-  width: 50%;
-  margin-top: 1rem;
-  padding: 0.5rem;
-
-  cursor: pointer;
-  transition: background-color 0.15s;
-
-  color: black;
-
-  border: none;
-  border-radius: 3px;
-  background-color: white;
-
-  font-size: 1rem;
+.sidebar button {
+  min-width: 10rem;
 }
 
-.failButtons {
+.endGameButtons {
   display: flex;
   align-items: center;
-  flex-direction: column;
-
-  width: 100%;
-}
-
-.failButtons button:hover {
-  background-color: #c1c1c1;
-}
-
-.failButtons button:active {
-  background-color: #c1c1c1;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
 }

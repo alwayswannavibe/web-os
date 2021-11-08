@@ -10,7 +10,7 @@
   text-align: center;
 
   border-radius: 2px;
-  background-color: var(--chatBackgroundColor);
+  background-color: var(--secondaryColor);
 
   font-size: 0.8rem;
 }

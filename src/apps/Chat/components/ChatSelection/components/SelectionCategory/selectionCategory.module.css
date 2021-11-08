@@ -2,7 +2,7 @@
   margin-bottom: 0.5rem;
   padding: 0.3rem;
 
-  border: 2px solid var(--chatBackgroundColor);
+  border: 2px solid var(--secondaryColor);
   border-radius: 0.2rem;
 }
 
@@ -20,7 +20,7 @@
 
   color: var(--fontColor);
   border: 0;
-  background-color: var(--chatBackgroundColor);
+  background-color: var(--secondaryColor);
 
   font-family: inherit;
 
@@ -55,5 +55,5 @@
   color: inherit;
   border: none;
   border-radius: 2px;
-  background-color: var(--chatBackgroundColor);
+  background-color: var(--secondaryColor);
 }

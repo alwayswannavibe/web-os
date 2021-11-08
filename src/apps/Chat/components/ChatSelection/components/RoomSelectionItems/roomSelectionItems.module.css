@@ -8,7 +8,7 @@
   color: inherit;
   border: none;
   border-radius: 2px;
-  background-color: var(--chatBackgroundColor);
+  background-color: var(--secondaryColor);
 
   font-size: 1rem;
 }

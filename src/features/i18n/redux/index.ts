@@ -20,7 +20,7 @@ const languageSlice = createSlice({
   reducers: {
     setLanguage(state, { payload }: { payload: { language: Language } }) {
       state.language = payload.language;
-      localStorage.setItem('selectedLocale', payload.language);
+      localStorage.setItem('selectedLanguage', payload.language);
       i18n.changeLanguage(payload.language);
     },
   },

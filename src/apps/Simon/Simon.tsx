@@ -26,6 +26,7 @@ import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 import { Icon } from '@Components/Icon/Icon';
 import { Window } from '@Components/Window/Window';
 import { SimonMain } from '@Simon/components/SimonMain/SimonMain';
+import { Button } from '@Components/Button/Button';
 
 // Styles
 import styles from './simon.module.css';
@@ -52,16 +53,24 @@ export const Simon: FC<ChildrenNever> = () => {
             </h2>
             <ul className={styles.difficultiesList}>
               <li>
-                <button onClick={() => chooseDifficulty(Difficulty.Easy)} type="button">{t(`simon.difficulties.${Difficulty.Easy}`)}</button>
+                <Button onClick={() => chooseDifficulty(Difficulty.Easy)} type="button">
+                  {t(`simon.difficulties.${Difficulty.Easy}`)}
+                </Button>
               </li>
               <li>
-                <button onClick={() => chooseDifficulty(Difficulty.Normal)} type="button">{t(`simon.difficulties.${Difficulty.Normal}`)}</button>
+                <Button onClick={() => chooseDifficulty(Difficulty.Normal)} type="button">
+                  {t(`simon.difficulties.${Difficulty.Normal}`)}
+                </Button>
               </li>
               <li>
-                <button onClick={() => chooseDifficulty(Difficulty.Hard)} type="button">{t(`simon.difficulties.${Difficulty.Hard}`)}</button>
+                <Button onClick={() => chooseDifficulty(Difficulty.Hard)} type="button">
+                  {t(`simon.difficulties.${Difficulty.Hard}`)}
+                </Button>
               </li>
               <li>
-                <button onClick={() => chooseDifficulty(Difficulty.Extreme)} type="button">{t(`simon.difficulties.${Difficulty.Extreme}`)}</button>
+                <Button onClick={() => chooseDifficulty(Difficulty.Extreme)} type="button">
+                  {t(`simon.difficulties.${Difficulty.Extreme}`)}
+                </Button>
               </li>
             </ul>
           </div>

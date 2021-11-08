@@ -22,7 +22,7 @@
   padding: 0.2rem;
 
   border: none;
-  background-color: var(--chatBackgroundColor);
+  background-color: var(--secondaryColor);
 
   font-size: 1rem;
 }
@@ -44,7 +44,7 @@
 
   border: none;
   border-radius: 2px;
-  background-color: var(--chatBackgroundColor);
+  background-color: var(--secondaryColor);
 
   font-size: 0.75rem;
 }

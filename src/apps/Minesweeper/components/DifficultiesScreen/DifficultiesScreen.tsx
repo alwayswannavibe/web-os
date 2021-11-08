@@ -27,6 +27,9 @@ import {
   NORMAL_SIZE,
 } from '@Minesweeper/constants/sizesAndMines';
 
+// Components
+import { Button } from '@Components/Button/Button';
+
 // Styles
 import styles from './difficultiesScreen.module.css';
 
@@ -40,22 +43,22 @@ const DifficultiesScreen: FC<ChildrenNever> = () => {
 
   return (
     <div className={styles.difficulties}>
-      <button type="button" onClick={() => handleChoose(Difficulty.Easy)}>
+      <Button type="button" onClick={() => handleChoose(Difficulty.Easy)}>
         <span>{t(`difficulties.${Difficulty.Easy}`)}</span>
         <span>{`${EASY_SIZE} X ${EASY_SIZE} (${EASY_MINES_COUNT} ${t('mines')})`}</span>
-      </button>
-      <button type="button" onClick={() => handleChoose(Difficulty.Normal)}>
+      </Button>
+      <Button type="button" onClick={() => handleChoose(Difficulty.Normal)}>
         <span>{t(`difficulties.${Difficulty.Normal}`)}</span>
         <span>{`${NORMAL_SIZE} X ${NORMAL_SIZE} (${NORMAL_MINES_COUNT} ${t('mines')})`}</span>
-      </button>
-      <button type="button" onClick={() => handleChoose(Difficulty.Hard)}>
+      </Button>
+      <Button type="button" onClick={() => handleChoose(Difficulty.Hard)}>
         <span>{t(`difficulties.${Difficulty.Hard}`)}</span>
         <span>{`${HARD_SIZE} X ${HARD_SIZE} (${HARD_MINES_COUNT} ${t('mines')})`}</span>
-      </button>
-      <button type="button" onClick={() => handleChoose(Difficulty.Extreme)}>
+      </Button>
+      <Button type="button" onClick={() => handleChoose(Difficulty.Extreme)}>
         <span>{t(`difficulties.${Difficulty.Extreme}`)}</span>
         <span>{`${EXTREME_SIZE} X ${EXTREME_SIZE} (${EXTREME_MINES_COUNT} ${t('mines')})`}</span>
-      </button>
+      </Button>
     </div>
   );
 };

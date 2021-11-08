@@ -3,32 +3,14 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  gap: 2rem;
 
   height: 100%;
 }
 
 .difficulties button {
   display: flex;
-  align-items: center;
   flex-direction: column;
 
-  width: 40%;
-  margin-bottom: 2rem;
-  padding: 10px;
-
-  cursor: pointer;
-  transition: filter 0.15s;
-
-  color: black;
-
-  border: none;
-  border-radius: 3px;
-}
-
-.difficulties button:hover {
-  filter: opacity(75%);
-}
-
-.difficulties button:active {
-  filter: opacity(40%);
+  min-width: 20rem;
 }

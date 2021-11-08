@@ -21,7 +21,7 @@
   word-break: break-word;
 
   border: 1px solid #1d1d1d;
-  background-color: var(--toDoItemBackground);
+  background-color: var(--secondaryColor);
   box-shadow: 1px 1px 1px black;
 }
 

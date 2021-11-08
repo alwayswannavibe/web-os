@@ -19,35 +19,19 @@
   cursor: pointer;
 
   color: var(--font-color);
-  border: 2px solid #2d2d37;
+  border: 2px solid var(--secondaryColor);
   border-radius: 0.2rem;
-  outline: none;
-  background-color: var(--settingsSelectItemBackground);
+  background-color: var(--secondaryColor);
 }
 
 .resetBtn {
-  padding: 0.2rem 1rem;
+  min-width: 6rem;
 
-  cursor: pointer;
-  transition: background-color 0.25s linear;
-  transition: border-radius 0.25s linear;
+  color: white;
 
-  color: #fff;
-  border: 2px solid #2d2d37;
-  border-radius: 0.2rem;
-  outline: none;
   background-color: #882323;
 
-  font-size: 0.75rem;
-}
-
-.resetBtn:hover {
-  border-radius: 0.5rem;
-  background-color: #6b1b1b;
-}
-
-.resetBtn:active {
-  background-color: #210c0c;
+  font-size: 0.7rem;
 }
 
 .resetContainer {

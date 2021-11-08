@@ -23,6 +23,9 @@ import { RootState } from '@Types/rootState.type';
 import { useDragNDrop } from '@Hooks/useDragNDrop/useDragNDrop';
 import { useApp } from '@Hooks/useApp/useApp';
 
+// Components
+import { Button } from '@Components/Button/Button';
+
 // Utils
 import { getPxFromRem } from '@Utils/getPxFromRem';
 
@@ -157,28 +160,30 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
                 {t(`apps.${type}`)}
               </div>
               <div className={styles.buttonsContainer}>
-                <button
+                <Button
                   type="button"
                   className={`${styles.collapseBtn} ${styles.btn}`}
                   onClick={handleToggleCollapseWithProcessFullscreen}
+                  aria-label="minimize window"
                 >
                   <FontAwesomeIcon icon={faWindowMinimize} />
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
                   onClick={handleFullscreen}
                   aria-label="toggle fullscreen"
                   className={`${styles.collapseBtn} ${styles.btn}`}
                 >
                   <FontAwesomeIcon icon={faWindowRestore} />
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
                   className={`${styles.closeBtn} ${styles.btn}`}
                   onClick={handleCloseWithProcessFullscreen}
+                  aria-label="close window"
                 >
                   <FontAwesomeIcon icon={faTimes} />
-                </button>
+                </Button>
               </div>
             </div>
             <div className={styles.windowBody} onClick={handleSetActive}>

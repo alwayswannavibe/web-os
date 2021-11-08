@@ -5,6 +5,9 @@ import { useHistory } from 'react-router-dom';
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
+// Components
+import { Button } from '@Components/Button/Button';
+
 // Styles
 import styles from './authAppRedirect.module.css';
 
@@ -17,8 +20,8 @@ const AuthAppRedirect: FC<ChildrenNever> = () => {
 
   return (
     <div className={styles.container}>
-      <p>Please log in to view this app</p>
-      <button type="button" onClick={handleClick} className={styles.button}>Go to login page</button>
+      <p className={styles.text}>Please log in to view this app</p>
+      <Button type="button" onClick={handleClick}>Go to login page</Button>
     </div>
   );
 };

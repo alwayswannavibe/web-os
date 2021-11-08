@@ -22,6 +22,7 @@
   /* Global */
   --layoutBackgroundColor: #131313;
   --fontColor: #ececec;
+  --secondaryColor: #282828;
 
   /* Window */
   --windowTopBackground: rgb(23 23 24 / 97%);
@@ -62,6 +63,7 @@
   /* Global */
   --layoutBackgroundColor: #ececec;
   --fontColor: #373737;
+  --buttonColor: #b5b5b5;
 
   /* Window */
   --windowTopBackground: rgb(255 255 255 / 97%);
@@ -102,10 +104,11 @@
   /* Global */
   --layoutBackgroundColor: #446acf;
   --fontColor: #efefef;
+  --buttonColor: #0073ba;
 
   /* Window */
   --windowTopBackground: rgb(83 176 241 / 97%);
-  --windowBodyBackground: rgb(108 186 246);
+  --windowBodyBackground: #1387d6;
 
   /* Calculator */
   --calculatorBackground: rgb(45 155 214);
@@ -143,6 +146,7 @@
   /* Global */
   --layoutBackgroundColor: #43ae58;
   --fontColor: #efefef;
+  --secondaryColor: #439440;
 
   /* Window */
   --windowTopBackground: rgb(8 164 31 / 97%);

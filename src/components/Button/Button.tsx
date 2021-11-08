@@ -7,9 +7,9 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   type: 'reset' | 'submit' | 'button';
 }
 
-const Button: FC<Props> = ({ children, ...props }: Props) => (
+const Button: FC<Props> = ({ children, className, ...props }: Props) => (
   // eslint-disable-next-line react/button-has-type
-  <button className={styles.button} {...props}>{children}</button>
+  <button className={`${styles.button} ${className}`} {...props}>{children}</button>
 );
 
 export { Button };

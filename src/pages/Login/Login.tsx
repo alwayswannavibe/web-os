@@ -4,6 +4,8 @@ import { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 // Redux
 import { login } from '@Features/user/redux';
@@ -11,12 +13,16 @@ import { login } from '@Features/user/redux';
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
+// Components
+import { Button } from '@Components/Button/Button';
+
 // Styles
 import styles from './login.module.css';
 
 const Login: FC<ChildrenNever> = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [formError, setFormError] = useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -55,9 +61,13 @@ const Login: FC<ChildrenNever> = () => {
     setIsButtonDisabled(false);
   }
 
+  function handleTooglePasswordVisible(): void {
+    setIsPasswordVisible((value) => !value);
+  }
+
   return (
     <div className={styles.wrapper}>
-      <button type="button" onClick={() => history.push('/')} className={styles.closeBtn}>←</button>
+      <Button type="button" onClick={() => history.push('/')} className={styles.closeBtn}>←</Button>
       <form className={styles.loginForm} onSubmit={handleSubmit(handleLogin)}>
         <span
           className={`${styles.formErrorDefault} ${formError ? styles.formError : ''}`}
@@ -70,16 +80,20 @@ const Login: FC<ChildrenNever> = () => {
           >
             {errors.username?.message || 'Error'}
           </span>
-          <input
-            type="text"
-            id="loginName"
-            placeholder="Username"
-            className={errors.username ? styles.invalidInput : ''}
-            onFocus={() => setFormError('')}
-            {...register('username', {
-              required: { value: true, message: 'You must fill this field' },
-            })}
-          />
+          <div className={styles.inputBtnContainer}>
+            <div className={styles.empty} />
+            <input
+              type="text"
+              id="loginName"
+              placeholder="Username"
+              className={errors.username ? styles.invalidInput : ''}
+              onFocus={() => setFormError('')}
+              {...register('username', {
+                required: { value: true, message: 'You must fill this field' },
+              })}
+            />
+            <div className={styles.empty} />
+          </div>
         </label>
         <label htmlFor="loginPassword" className={styles.label}>
           <span
@@ -87,21 +101,27 @@ const Login: FC<ChildrenNever> = () => {
           >
             {errors.password?.message || 'Error'}
           </span>
-          <input
-            type="password"
-            id="loginPassword"
-            className={errors.password ? styles.invalidInput : ''}
-            placeholder="Password"
-            onFocus={() => setFormError('')}
-            {...register('password', {
-              required: { value: true, message: 'You must fill this field' },
-            })}
-          />
+          <div className={styles.inputBtnContainer}>
+            <div className={styles.empty} />
+            <input
+              type={isPasswordVisible ? 'text' : 'password'}
+              id="loginPassword"
+              className={errors.password ? styles.invalidInput : ''}
+              placeholder="Password"
+              onFocus={() => setFormError('')}
+              {...register('password', {
+                required: { value: true, message: 'You must fill this field' },
+              })}
+            />
+            <Button type="button" className={styles.changePasswordVisibility} onClick={handleTooglePasswordVisible}>
+              {isPasswordVisible ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
+            </Button>
+          </div>
         </label>
         <div className={styles.btnContainer}>
-          <button type="submit" className={styles.submit} disabled={isButtonDisabled}>
+          <Button type="submit" disabled={isButtonDisabled} className={styles.signIn}>
             Sign In
-          </button>
+          </Button>
         </div>
         <p className={styles.registration}>
           {'Don\'t have an account? '}

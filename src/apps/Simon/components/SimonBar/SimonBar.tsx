@@ -16,6 +16,9 @@ import { SimonStatus } from '@Simon/enums/simonStatus.enum';
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
+// Components
+import { Button } from '@Components/Button/Button';
+
 // Types
 import { RootState } from '@Types/rootState.type';
 
@@ -56,10 +59,10 @@ export const SimonBar: FC<Props> = ({ difficulty }: Props) => {
         </p>
       </div>
       {status === SimonStatus.Waiting && (
-        <button type="button" className={styles.startBtn} onClick={startGame}>{t('simon.start')}</button>
+        <Button type="button" className={styles.startBtn} onClick={startGame}>{t('simon.start')}</Button>
       )}
       {status === SimonStatus.Losed && (
-        <button type="button" className={styles.startBtn} onClick={handleRestartGame}>{t('simon.restart')}</button>
+        <Button type="button" className={styles.startBtn} onClick={handleRestartGame}>{t('simon.restart')}</Button>
       )}
     </div>
   );

@@ -7,7 +7,7 @@
   border: 3px solid #585656;
   border-radius: 0.3rem;
   outline: none;
-  background-color: transparent;
+  background-color: var(--secondaryColor);
 
   font-size: 1.5rem;
 }
@@ -67,22 +67,4 @@
 
 .addItemButton:active {
   color: #043c06;
-}
-
-.toDoItemsContainer::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background-color: transparent;
-  box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
-}
-
-.toDoItemsContainer::-webkit-scrollbar {
-  width: 12px;
-
-  background-color: transparent;
-}
-
-.toDoItemsContainer::-webkit-scrollbar-thumb {
-  border-radius: 0.2rem;
-  background-color: #3b3b3b;
-  box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
 }

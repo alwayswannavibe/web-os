@@ -9,6 +9,7 @@ import settingsTranslationEn from 'src/apps/Settings/translations/en/settingsTra
 import simonTranslationEn from 'src/apps/Simon/translations/en/simonTranslation.json';
 import terminalTranslationEn from 'src/apps/Terminal/translations/en/terminalTranslation.json';
 import minesweeperTranslationEn from 'src/apps/Minesweeper/translations/en/minesweeperTranslation.json';
+import authRedirectTranslationEn from 'src/components/AuthAppRedirect/translations/en/authAppRedirectTranslation.json';
 
 // Locales/Russian
 import translationRU from 'src/features/i18n/translations/ru/translation.json';
@@ -17,6 +18,7 @@ import settingsTranslationRu from 'src/apps/Settings/translations/ru/settingsTra
 import simonTranslationRu from 'src/apps/Simon/translations/ru/simonTranslation.json';
 import terminalTranslationRu from 'src/apps/Terminal/translations/ru/terminalTranslation.json';
 import minesweeperTranslationRu from 'src/apps/Minesweeper/translations/ru/minesweeperTranslation.json';
+import authRedirectTranslationRu from 'src/components/AuthAppRedirect/translations/ru/authAppRedirectTranslation.json';
 
 // Types
 import { Language } from 'src/features/i18n/types/language';
@@ -40,6 +42,7 @@ i18n.use(initReactI18next).init({
       simon: simonTranslationEn,
       terminal: terminalTranslationEn,
       minesweeper: minesweeperTranslationEn,
+      authRedirect: authRedirectTranslationEn,
     },
     [Language.Russian]: {
       translation: translationRU,
@@ -48,6 +51,7 @@ i18n.use(initReactI18next).init({
       simon: simonTranslationRu,
       terminal: terminalTranslationRu,
       minesweeper: minesweeperTranslationRu,
+      authRedirect: authRedirectTranslationRu,
     },
   },
 });

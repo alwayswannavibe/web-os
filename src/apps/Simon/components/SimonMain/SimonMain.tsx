@@ -1,11 +1,11 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 // Libraries
-import { FC, useEffect, useRef } from 'react';
+import { FC, useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 
 // Redux
 import { simonClick, startShowing, updateStatus } from '@Simon/redux/simonSlice/simonSlice';
+import reduxStore from 'src/redux/store';
 
 // Enums
 import { SimonStatus } from '@Simon/enums/simonStatus.enum';
@@ -15,10 +15,15 @@ import { App } from '@Enums/app.enum';
 import { RootState } from '@Types/rootState.type';
 
 // Assets
-import sound1 from '@Sounds/simon/simon1.wav';
-import sound2 from '@Sounds/simon/simon2.wav';
-import sound3 from '@Sounds/simon/simon3.wav';
-import sound4 from '@Sounds/simon/simon4.wav';
+import sound1 from '@Sounds/simon/simon1.mp3';
+import sound2 from '@Sounds/simon/simon2.mp3';
+import sound3 from '@Sounds/simon/simon3.mp3';
+import sound4 from '@Sounds/simon/simon4.mp3';
+import sound5 from '@Sounds/simon/simon5.mp3';
+import sound6 from '@Sounds/simon/simon6.mp3';
+import sound7 from '@Sounds/simon/simon7.mp3';
+import sound8 from '@Sounds/simon/simon8.mp3';
+import sound9 from '@Sounds/simon/simon9.wav';
 
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
@@ -53,8 +58,8 @@ export const SimonMain: FC<Props> = ({ numberOfButtons }: Props) => {
   const btnRef8 = useRef<HTMLButtonElement>(null);
   const btnRef9 = useRef<HTMLButtonElement>(null);
 
-  const sounds = [sound1, sound2, sound3, sound4];
-  const buttonsRefs = [btnRef1, btnRef2, btnRef3, btnRef4, btnRef5, btnRef6, btnRef7, btnRef8, btnRef9];
+  const sounds = useMemo(() => [sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9], []);
+  const buttonsRefs = useMemo(() => [btnRef1, btnRef2, btnRef3, btnRef4, btnRef5, btnRef6, btnRef7, btnRef8, btnRef9], []);
   const buttonsRefsWithLimit = buttonsRefs.slice(0, numberOfButtons);
 
   function handleClick(numberOfButton: number): void {
@@ -71,6 +76,8 @@ export const SimonMain: FC<Props> = ({ numberOfButtons }: Props) => {
       } else {
         pattern.forEach((el, index) => {
           setTimeout(() => {
+            // Use getState because hook not update state in setTimeout
+            if (!reduxStore.getState().apps.appsState[App.Simon].isOpened) return;
             new Audio(sounds[el]).play();
           }, 900 * index + 900);
           setTimeout(() => buttonsRefs[el]?.current?.classList.add(styles.btnActive), 900 * index + 900);
@@ -81,14 +88,19 @@ export const SimonMain: FC<Props> = ({ numberOfButtons }: Props) => {
         }, 900 * pattern.length + 400);
       }
     }
-  }, [isSimonOpen, pattern, level, status]);
+  }, [isSimonOpen, pattern, level, status, dispatch, sounds, buttonsRefs]);
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.buttons}>
         {buttonsRefsWithLimit.map((ref, index) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <SimonButton btnRef={ref} handleClick={handleClick} btnNumber={index} numberOfButtons={numberOfButtons} key={index} />
+          <SimonButton
+            btnRef={ref}
+            handleClick={handleClick}
+            btnNumber={index}
+            numberOfButtons={numberOfButtons}
+            key={uuidv4()}
+          />
         ))}
       </div>
       <SimonBar difficulty={difficulty} />

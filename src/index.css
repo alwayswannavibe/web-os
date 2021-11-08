@@ -30,17 +30,7 @@
 
   /* Calculator */
   --calculatorBackground: rgb(31 31 31);
-  --calculatorBorder: #181818;
   --calculatorInputBorder: #515151;
-
-  /* ToDoVars */
-  --toDoItemBackground: #333;
-
-  /* Settings */
-  --settingsSelectItemBackground: #3b3b40;
-
-  /* Chat */
-  --chatBackgroundColor: #2f2f2f;
 
   /* Minesweeper */
   --minesweeeperNodeDefaultBackground: #292929;
@@ -64,6 +54,7 @@
   --layoutBackgroundColor: #ececec;
   --fontColor: #373737;
   --buttonColor: #b5b5b5;
+  --secondaryColor: #c4c4c4;
 
   /* Window */
   --windowTopBackground: rgb(255 255 255 / 97%);
@@ -71,18 +62,7 @@
 
   /* Calculator */
   --calculatorBackground: rgb(193 193 193);
-  --calculatorBorder: #676767;
   --calculatorInputBorder: #000;
-
-  /* ToDoVars */
-  --toDoItemBackground: #cac9c9;
-
-  /* Settings */
-  --settingsSelectItemBackground: #d7d7d7;
-  --settingsOnHoverItemBackground: #51d5e9;
-
-  /* Chat */
-  --chatBackgroundColor: #c4c4c4;
 
   /* Minesweeper */
   --minesweeeperNodeDefaultBackground: #b5b5b5;
@@ -104,7 +84,7 @@
   /* Global */
   --layoutBackgroundColor: #446acf;
   --fontColor: #efefef;
-  --buttonColor: #0073ba;
+  --secondaryColor: #0463a7;
 
   /* Window */
   --windowTopBackground: rgb(83 176 241 / 97%);
@@ -112,18 +92,7 @@
 
   /* Calculator */
   --calculatorBackground: rgb(45 155 214);
-  --calculatorBorder: #5552d7;
   --calculatorInputBorder: #021251;
-
-  /* ToDoVars */
-  --toDoItemBackground: #4684ee;
-
-  /* Settings */
-  --settingsSelectItemBackground: #5297f5;
-  --settingsOnHoverItemBackground: #51d5e9;
-
-  /* Chat */
-  --chatBackgroundColor: #308ac6;
 
   /* Minesweeper */
   --minesweeeperNodeDefaultBackground: #2c41a9;
@@ -137,7 +106,7 @@
   --bottomTabBackground: transparent;
 
   /* Avatar */
-  --avatarBackgroundColor: #305aa7;
+  --avatarBackgroundColor: #04266e;
 
   color: #efefef;
 }
@@ -154,17 +123,7 @@
 
   /* Calculator */
   --calculatorBackground: rgb(24 110 20);
-  --calculatorBorder: #07831b;
   --calculatorInputBorder: #024e04;
-
-  /* ToDoVars */
-  --toDoItemBackground: #299227;
-
-  /* Settings */
-  --settingsSelectItemBackground: #429f40;
-
-  /* Chat */
-  --chatBackgroundColor: #439440;
 
   /* BottomTab */
   --bottomTabBorder: #c1c3c1;

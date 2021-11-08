@@ -27,7 +27,7 @@
   color: #fff;
   border: none;
   border-radius: 0 10px 10px 0;
-  background-color: var(--chatBackgroundColor);
+  background-color: var(--secondaryColor);
 
   font-size: 1rem;
 }

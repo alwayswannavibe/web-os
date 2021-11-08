@@ -27,6 +27,8 @@
 .resetBtn {
   min-width: 6rem;
 
+  color: white;
+
   background-color: #882323;
 
   font-size: 0.7rem;

@@ -29,6 +29,7 @@ import imgSource from '@Icons/settings.svg';
 import { Window } from '@Components/Window/Window';
 import { Icon } from '@Components/Icon/Icon';
 import { SettingsOption } from '@Settings/components/SettingsOption/SettingsOption';
+import { Button } from '@Components/Button/Button';
 
 // Styles
 import styles from './settings.module.css';
@@ -109,7 +110,7 @@ export const Settings: FC<ChildrenNever> = () => {
             </label>
           </div>
           <div className={styles.resetContainer}>
-            <button
+            <Button
               className={styles.resetBtn}
               type="button"
               onClick={() => {
@@ -118,7 +119,7 @@ export const Settings: FC<ChildrenNever> = () => {
               }}
             >
               {t('reset')}
-            </button>
+            </Button>
           </div>
         </form>
       </Window>

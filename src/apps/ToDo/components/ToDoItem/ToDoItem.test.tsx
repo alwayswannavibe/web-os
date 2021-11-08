@@ -79,7 +79,7 @@ describe('to do item component', () => {
       );
 
       const checkIcon = document.getElementsByClassName('fa-check');
-      const trashIcon = document.getElementsByClassName('fa-trash-alt');
+      const trashIcon = document.getElementsByClassName('fa-trash-can');
       expect(checkIcon).toHaveLength(1);
       expect(trashIcon).toHaveLength(1);
     });
@@ -109,7 +109,7 @@ describe('to do item component', () => {
         </Provider>,
       );
 
-      const trashIcon = document.getElementsByClassName('fa-trash-alt')[0];
+      const trashIcon = document.getElementsByClassName('fa-trash-can')[0];
       userEvent.click(trashIcon);
       expect(mockDispatch).toBeCalledTimes(1);
       expect(mockDispatch).toBeCalledWith({

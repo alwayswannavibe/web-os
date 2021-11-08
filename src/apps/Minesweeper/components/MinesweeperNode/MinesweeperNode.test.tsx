@@ -68,7 +68,7 @@ describe('MinesweeperNode', () => {
       const button = buttons[0];
 
       expect(buttons).toHaveLength(1);
-      expect(button.textContent).toEqual('1');
+      expect(button.textContent).toEqual('');
       expect(button.classList).toHaveLength(2);
       expect(button.classList[0]).toEqual('node');
       expect(button.classList[1]).toEqual('bombAround1');

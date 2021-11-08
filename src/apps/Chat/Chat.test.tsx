@@ -1,5 +1,9 @@
 // libraries
 import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import React from 'react';
+import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
+import configureStore from 'redux-mock-store';
 
 // Components
 import * as Window from '@Components/Window/Window';
@@ -18,9 +22,31 @@ describe('Chat', () => {
     jest.spyOn(ChatInput, 'ChatInput').mockReturnValue(<div data-testid="ChatInput" />);
   });
 
+  const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
+  const mockStore = configureStore(middlewares);
+
   it('should render correctly', () => {
+    const initialState = {
+      chatRooms: {
+        isAddRoomFormOpen: false,
+      },
+      chatUsers: {
+        users: [],
+      },
+      user: {
+        username: 'test',
+      },
+      chat: {
+        activeChat: -1,
+        activeType: 'User',
+      },
+    };
+    const mockStoreWithState = mockStore(initialState);
+
     render(
-      <Chat />,
+      <Provider store={mockStoreWithState}>
+        <Chat />
+      </Provider>,
     );
 
     const window = screen.queryByTestId('Window');

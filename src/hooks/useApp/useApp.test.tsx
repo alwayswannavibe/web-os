@@ -39,14 +39,10 @@ describe('useApp', () => {
         result.current.handleToggleCollapse();
       });
 
-      expect(mockDispatch).toBeCalledTimes(2);
+      expect(mockDispatch).toBeCalledTimes(1);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
         payload: App.Calculator,
         type: 'apps/setWindowActive',
-      });
-      expect(mockDispatch).toHaveBeenNthCalledWith(2, {
-        payload: { type: App.Calculator },
-        type: 'apps/toggleCollapseApp',
       });
     });
 
@@ -75,8 +71,8 @@ describe('useApp', () => {
 
       expect(mockDispatch).toBeCalledTimes(1);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
-        payload: { type: App.Calculator },
-        type: 'apps/toggleCollapseApp',
+        payload: App.Calculator,
+        type: 'apps/setWindowActive',
       });
     });
 

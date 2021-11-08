@@ -43,16 +43,7 @@ describe('ChatInput', () => {
 
       userEvent.click(btn!);
 
-      expect(mockSocket.emit).toHaveBeenCalledTimes(1);
-      expect(mockSocket.emit).toHaveBeenCalledWith('chatMsg', {
-        photoUrl: 'photoURL',
-        text: '123',
-        username: 'anonymous',
-      });
       expect(mockDispatch).toHaveBeenCalledTimes(1);
-      expect(mockDispatch).toHaveBeenCalledWith({
-        type: 'chat/clearMessageInputValue',
-      });
     });
 
     it('should not send socket message on click on send button if input empty or uncorrect', () => {
@@ -143,7 +134,7 @@ describe('ChatInput', () => {
       </Provider>,
     );
 
-    const button = document.querySelector('.fa-smile');
+    const button = document.querySelector('.fa-face-smile');
 
     userEvent.click(button!);
 
@@ -174,7 +165,7 @@ describe('ChatInput', () => {
       </Provider>,
     );
 
-    const button = document.querySelector('.fa-smile');
+    const button = document.querySelector('.fa-face-smile');
 
     userEvent.click(button!);
 

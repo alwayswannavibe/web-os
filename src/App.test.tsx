@@ -7,7 +7,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 
 // Enums
-import { Difficulty } from '@Enums/difficulty.enum';
+import { Theme } from '@Features/theme/types/theme';
 
 // Pages
 import * as Login from '@Pages/Login/Login';
@@ -23,8 +23,8 @@ describe('App', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
   const mockStore = configureStore(middlewares);
   const initialState = {
-    simon: {
-      difficulty: Difficulty.None,
+    theme: {
+      theme: Theme.Dark,
     },
   };
   const mockStoreWithState = mockStore(initialState);

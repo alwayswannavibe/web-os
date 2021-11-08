@@ -4,7 +4,7 @@ describe('calculatorLogic', () => {
   it('getCalcResult should work correctly if input empty', () => {
     const result = getCalcResult('');
 
-    expect(result).toEqual('');
+    expect(result).toEqual('Error');
   });
 
   it('getCalcResult should work correctly if input not correct', () => {

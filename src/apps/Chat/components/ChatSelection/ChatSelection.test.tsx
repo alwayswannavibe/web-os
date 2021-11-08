@@ -1,6 +1,10 @@
 // Libraries
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
+import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
+import React from 'react';
 
 // Components
 import * as SelectionCategory from '@Chat/components/ChatSelection/components/SelectionCategory/SelectionCategory';
@@ -13,9 +17,24 @@ describe('ChatSelection', () => {
     />);
   });
 
+  const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
+  const mockStore = configureStore(middlewares);
+
   it('should render correctly', () => {
+    const initialState = {
+      chatUsers: {
+        users: [],
+      },
+      chatRooms: {
+        rooms: [],
+      },
+    };
+    const mockStoreWithState = mockStore(initialState);
+
     render(
-      <ChatSelection />,
+      <Provider store={mockStoreWithState}>
+        <ChatSelection />
+      </Provider>,
     );
 
     const chatSelectionElement = document.getElementsByClassName('SelectionCategory');
@@ -27,8 +46,20 @@ describe('ChatSelection', () => {
   });
 
   it('should close on toggle visibility button click', () => {
+    const initialState = {
+      chatUsers: {
+        users: [],
+      },
+      chatRooms: {
+        rooms: [],
+      },
+    };
+    const mockStoreWithState = mockStore(initialState);
+
     render(
-      <ChatSelection />,
+      <Provider store={mockStoreWithState}>
+        <ChatSelection />
+      </Provider>,
     );
 
     const btn = document.querySelector('.toggleVisibilityBtn');
@@ -40,8 +71,20 @@ describe('ChatSelection', () => {
   });
 
   it('should open on toggle visibility button click twice', () => {
+    const initialState = {
+      chatUsers: {
+        users: [],
+      },
+      chatRooms: {
+        rooms: [],
+      },
+    };
+    const mockStoreWithState = mockStore(initialState);
+
     render(
-      <ChatSelection />,
+      <Provider store={mockStoreWithState}>
+        <ChatSelection />
+      </Provider>,
     );
 
     const btn = document.querySelector('.toggleVisibilityBtn');

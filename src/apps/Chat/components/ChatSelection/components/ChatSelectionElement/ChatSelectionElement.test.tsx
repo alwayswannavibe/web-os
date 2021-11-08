@@ -40,7 +40,7 @@ describe('ChatSelectionElement', () => {
           countOfNewMessages={1}
           avatarLink="test"
           lastVisitDate="02.05.2015"
-          lastMessage="Hello"
+          lastMessage={}
           changeChat={() => {}}
         />,
       );

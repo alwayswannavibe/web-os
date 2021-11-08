@@ -17,6 +17,6 @@ describe('BackgroundOption', () => {
 
     expect(option).toBeInTheDocument();
     expect(option!.value).toEqual(BackgroundImage.Tree);
-    expect(option!.textContent).toEqual(BackgroundImage.Tree);
+    expect(option!.textContent).toEqual('Background.Tree');
   });
 });

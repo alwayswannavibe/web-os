@@ -70,7 +70,7 @@ describe('calculatorSlice', () => {
     testStore.dispatch(setCalculatorInput('1+3'));
     testStore.dispatch(getCalculatorResult());
 
-    expect(testStore.getState().calculator.lastOperations).toEqual(['3+1 = 4', '2+2 = 4', '1+3 = 4']);
+    expect(testStore.getState().calculator.lastOperations).toEqual(['1+3 = 4', '2+2 = 4', '3+1 = 4']);
   });
 
   it('deleteLastCalculatorInput should delete the last character of inputValue', () => {

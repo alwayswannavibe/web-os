@@ -1,17 +1,19 @@
 // Libraries
-import { FC, useState } from 'react';
-import axios from 'axios';
+import { FC, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
+// Types
+import { RootState } from '@Types/rootState.type';
+
 // Redux
-import { login } from 'src/features/user/redux';
+import { registration } from 'src/features/user/redux';
 
 // Components
 import { Button } from '@Components/Button/Button';
@@ -20,10 +22,11 @@ import { Button } from '@Components/Button/Button';
 import styles from '../Login/login.module.css';
 
 const Registration: FC<ChildrenNever> = () => {
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [formError, setFormError] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isPasswordVisible2, setIsPasswordVisible2] = useState(false);
+  const registrationError = useSelector((state: RootState) => state.user.registrationError);
+  const isRegistrationLoading = useSelector((state: RootState) => state.user.isLoginLoading);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -36,6 +39,10 @@ const Registration: FC<ChildrenNever> = () => {
     mode: 'onBlur',
   });
 
+  useEffect(() => {
+    setFormError(registrationError);
+  }, [registrationError]);
+
   function handleTooglePasswordVisible(): void {
     setIsPasswordVisible((value) => !value);
   }
@@ -44,37 +51,11 @@ const Registration: FC<ChildrenNever> = () => {
     setIsPasswordVisible2((value) => !value);
   }
 
-  // ToDo: перенести в redux thunk
-  async function handleRegistration(): Promise<void> {
-    setIsButtonDisabled(true);
-
-    setFormError('');
-
-    try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, {
-        username: getValues('username'),
-        password: getValues('password'),
-      }, {
-        timeout: 5000,
-        withCredentials: true,
-      });
-
-      if (res.data.error) {
-        setFormError(res.data.error);
-        setIsButtonDisabled(false);
-        return;
-      }
-
-      dispatch(login({ username: getValues('username') }));
-
-      history.push('/');
-      window.location.reload();
-    } catch (error) {
-      setIsButtonDisabled(false);
-      setFormError('Server error, try again later');
-    }
-
-    setIsButtonDisabled(false);
+  function handleRegistration(): void {
+    dispatch(registration({
+      username: getValues('username'),
+      password: getValues('password'),
+    }));
   }
 
   return (
@@ -180,7 +161,7 @@ const Registration: FC<ChildrenNever> = () => {
           </div>
         </label>
         <div className={styles.btnContainer}>
-          <Button type="submit" className={styles.signIn} disabled={isButtonDisabled}>
+          <Button type="submit" className={styles.signIn} disabled={isRegistrationLoading}>
             Sign Up
           </Button>
         </div>

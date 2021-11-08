@@ -1,17 +1,19 @@
 // Libraries
-import axios from 'axios';
-import { FC, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { FC, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 // Redux
-import { login } from '@Features/user/redux';
+import { loginFetch } from '@Features/user/redux';
 
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
+
+// Types
+import { RootState } from '@Types/rootState.type';
 
 // Components
 import { Button } from '@Components/Button/Button';
@@ -20,45 +22,29 @@ import { Button } from '@Components/Button/Button';
 import styles from './login.module.css';
 
 const Login: FC<ChildrenNever> = () => {
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [formError, setFormError] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const loginError = useSelector((state: RootState) => state.user.loginError);
+  const isLoginLoading = useSelector((state: RootState) => state.user.isLoginLoading);
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const { register, handleSubmit, formState: { errors }, getValues } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm();
 
-  // ToDo: Перенести в redux thunk
-  async function handleLogin(): Promise<void> {
-    setIsButtonDisabled(true);
+  useEffect(() => {
+    setFormError(loginError);
+  }, [loginError]);
 
-    setFormError('');
-
-    try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
-        username: getValues('username'),
-        password: getValues('password'),
-      }, {
-        timeout: 5000,
-        withCredentials: true,
-      });
-
-      if (res.data.error) {
-        setFormError(res.data.error);
-        setIsButtonDisabled(false);
-        return;
-      }
-
-      dispatch(login({ username: getValues('username') }));
-
-      history.push('/');
-      window.location.reload();
-    } catch (error) {
-      setIsButtonDisabled(false);
-      setFormError('Server error, try again later');
-    }
-
-    setIsButtonDisabled(false);
+  function handleLogin(): void {
+    dispatch(loginFetch({
+      username: getValues('username'),
+      password: getValues('password'),
+    }));
   }
 
   function handleTooglePasswordVisible(): void {
@@ -89,7 +75,10 @@ const Login: FC<ChildrenNever> = () => {
               className={errors.username ? styles.invalidInput : ''}
               onFocus={() => setFormError('')}
               {...register('username', {
-                required: { value: true, message: 'You must fill this field' },
+                required: {
+                  value: true,
+                  message: 'You must fill this field',
+                },
               })}
             />
             <div className={styles.empty} />
@@ -110,7 +99,10 @@ const Login: FC<ChildrenNever> = () => {
               placeholder="Password"
               onFocus={() => setFormError('')}
               {...register('password', {
-                required: { value: true, message: 'You must fill this field' },
+                required: {
+                  value: true,
+                  message: 'You must fill this field',
+                },
               })}
             />
             <Button type="button" className={styles.changePasswordVisibility} onClick={handleTooglePasswordVisible}>
@@ -119,7 +111,7 @@ const Login: FC<ChildrenNever> = () => {
           </div>
         </label>
         <div className={styles.btnContainer}>
-          <Button type="submit" disabled={isButtonDisabled} className={styles.signIn}>
+          <Button type="submit" disabled={isLoginLoading} className={styles.signIn}>
             Sign In
           </Button>
         </div>

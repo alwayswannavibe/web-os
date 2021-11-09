@@ -108,6 +108,7 @@ const userSlice = createSlice({
       window.location.reload();
     });
     builder.addCase(loginFetch.rejected, (state, payload: any) => {
+      state.isLoginLoading = false;
       state.loginError = payload.payload.error || payload.payload.message[0];
     });
     builder.addCase(registration.pending, (state) => {
@@ -120,6 +121,7 @@ const userSlice = createSlice({
       window.location.reload();
     });
     builder.addCase(registration.rejected, (state, payload: any) => {
+      state.isRegistrationLoading = false;
       state.registrationError = payload.payload.error || payload.payload.message[0];
     });
   },

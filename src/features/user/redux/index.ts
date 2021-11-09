@@ -109,6 +109,7 @@ const userSlice = createSlice({
     });
     builder.addCase(loginFetch.rejected, (state, payload: any) => {
       state.isLoginLoading = false;
+      console.log(payload);
       state.loginError = payload.payload.error || payload.payload.message[0];
     });
     builder.addCase(registration.pending, (state) => {
@@ -122,6 +123,7 @@ const userSlice = createSlice({
     });
     builder.addCase(registration.rejected, (state, payload: any) => {
       state.isRegistrationLoading = false;
+      console.log(payload);
       state.registrationError = payload.payload.error || payload.payload.message[0];
     });
   },

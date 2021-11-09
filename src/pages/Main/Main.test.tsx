@@ -13,6 +13,7 @@ import { App } from '@Enums/app.enum';
 
 // Components
 import * as Terminal from '@Terminal/Terminal';
+import * as Translate from '@Translate/Translate';
 import * as Settings from '@Settings/Settings';
 import * as Calculator from '@Calculator/Calculator';
 import * as ToDo from '@ToDo/ToDo';
@@ -37,6 +38,7 @@ describe('main component', () => {
     jest.spyOn(Simon, 'Simon').mockReturnValue(<div data-testid="Simon" />);
     jest.spyOn(Minesweeper, 'Minesweeper').mockReturnValue(<div data-testid="Minesweeper" />);
     jest.spyOn(MessageAlert, 'MessageAlert').mockReturnValue(<div data-testid="MessageAlert" />);
+    jest.spyOn(Translate, 'Translate').mockReturnValue(<div data-testid="Translate" />);
   });
 
   afterAll(() => {
@@ -66,6 +68,7 @@ describe('main component', () => {
     );
 
     const terminal = screen.queryByTestId('Terminal');
+    const translate = screen.queryByTestId('Translate');
     const calculator = screen.queryByTestId('Calculator');
     const toDo = screen.queryByTestId('ToDoList');
     const settings = screen.queryByTestId('Settings');
@@ -74,6 +77,7 @@ describe('main component', () => {
     const messageAlert = screen.queryByTestId('MessageAlert');
 
     expect(terminal).toBeInTheDocument();
+    expect(translate).toBeInTheDocument();
     expect(calculator).toBeInTheDocument();
     expect(toDo).toBeInTheDocument();
     expect(settings).toBeInTheDocument();

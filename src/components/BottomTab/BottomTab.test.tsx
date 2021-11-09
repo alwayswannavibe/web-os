@@ -3,6 +3,7 @@ import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
 import configureStore from 'redux-mock-store';
+import { faTerminal } from '@fortawesome/free-solid-svg-icons';
 
 // Enums
 import { App } from '@Enums/app.enum';
@@ -58,7 +59,7 @@ describe('bottom tab component', () => {
       const mockStoreWithState = mockStore(initialState);
       render(
         <Provider store={mockStoreWithState}>
-          <BottomTab type={App.Terminal} iconName={iconName} />
+          <BottomTab type={App.Terminal} icon={faTerminal} />
         </Provider>,
       );
       const closedIcon = document.getElementsByClassName(styles.close);
@@ -84,13 +85,11 @@ describe('bottom tab component', () => {
       const mockStoreWithState = mockStore(initialState);
       render(
         <Provider store={mockStoreWithState}>
-          <BottomTab type={App.Terminal} icon={{}} />
+          <BottomTab type={App.Terminal} icon={faTerminal} />
         </Provider>,
       );
       const icon = document.getElementsByClassName(`fa-${iconName}`);
-      const icons = document.getElementsByClassName('fas');
       expect(icon).toHaveLength(1);
-      expect(icons).toHaveLength(1);
     });
 
     it('should render active icon if window active', () => {
@@ -108,7 +107,7 @@ describe('bottom tab component', () => {
       const mockStoreWithState = mockStore(initialState);
       render(
         <Provider store={mockStoreWithState}>
-          <BottomTab type={App.Terminal} iconName={iconName} />
+          <BottomTab type={App.Terminal} icon={faTerminal} />
         </Provider>,
       );
       const activeIcon = document.getElementsByClassName(styles.isActive);
@@ -132,7 +131,7 @@ describe('bottom tab component', () => {
       const mockStoreWithState = mockStore(initialState);
       render(
         <Provider store={mockStoreWithState}>
-          <BottomTab type={App.Terminal} iconName={iconName} />
+          <BottomTab type={App.Terminal} icon={faTerminal} />
         </Provider>,
       );
       const activeIcon = document.getElementsByClassName(styles.isActive);

@@ -46,6 +46,10 @@ describe('bottom panel component', () => {
           isOpen: false,
           isCollapsed: false,
         },
+        [App.Translate]: {
+          isOpen: false,
+          isCollapsed: false,
+        },
       },
     },
     user: {
@@ -63,7 +67,7 @@ describe('bottom panel component', () => {
 
   it('correct render icons', () => {
     const icons = document.getElementsByClassName(styles.container)[0].children;
-    expect(icons).toHaveLength(8);
+    expect(icons).toHaveLength(9);
   });
 });
 

@@ -7,7 +7,8 @@ import { ChatSelectionElement } from './ChatSelectionElement';
 
 describe('ChatSelectionElement', () => {
   beforeEach(() => {
-    jest.spyOn(Avatar, 'Avatar').mockReturnValue(<div data-testid="Avatar" />);
+    jest.spyOn(Avatar, 'Avatar')
+      .mockReturnValue(<div className="AvatarTest" />);
   });
 
   describe('should render correctly', () => {
@@ -18,19 +19,25 @@ describe('ChatSelectionElement', () => {
           countOfNewMessages={0}
           avatarLink="test"
           lastVisitDate="02.05.2015"
-          changeChat={() => {}}
+          changeChat={() => {
+          }}
+          userId={2}
         />,
       );
 
       const lastVisitDate = screen.queryByText('02.05.2015');
       const name = screen.queryByText('John');
       const countOfNewMessages = screen.queryByText('0');
-      const avatar = screen.queryByTestId('Avatar');
+      const avatar = document.getElementsByClassName('AvatarTest');
 
-      expect(lastVisitDate).toBeInTheDocument();
-      expect(name).toBeInTheDocument();
-      expect(avatar).toBeInTheDocument();
-      expect(countOfNewMessages).not.toBeInTheDocument();
+      expect(lastVisitDate)
+        .toBeInTheDocument();
+      expect(name)
+        .toBeInTheDocument();
+      expect(avatar).toHaveLength(2);
+      expect(countOfNewMessages)
+        .not
+        .toBeInTheDocument();
     });
 
     it('should render correctly if it has new messages', () => {
@@ -39,23 +46,39 @@ describe('ChatSelectionElement', () => {
           name="John"
           countOfNewMessages={1}
           avatarLink="test"
+          userId={2}
           lastVisitDate="02.05.2015"
-          lastMessage="Hello"
-          changeChat={() => {}}
+          lastMessage={{
+            text: 'test',
+            createdAt: new Date(),
+            listOfReaders: [],
+            id: 1,
+            owner: {
+              username: 'testUser',
+              photo: '',
+              id: 2,
+            },
+          }}
+          changeChat={() => {
+          }}
         />,
       );
 
       const lastVisitDate = screen.queryByText('02.05.2015');
       const name = screen.queryByText('John');
       const countOfNewMessages = screen.queryByText('1');
-      const avatar = screen.queryByTestId('Avatar');
+      const avatar = document.getElementsByClassName('AvatarTest');
       const lastMessage = screen.queryByText('Hello');
 
-      expect(lastVisitDate).toBeInTheDocument();
-      expect(name).toBeInTheDocument();
-      expect(avatar).toBeInTheDocument();
-      expect(countOfNewMessages).toBeInTheDocument();
-      expect(lastMessage).toBeInTheDocument();
+      expect(lastVisitDate)
+        .toBeInTheDocument();
+      expect(name)
+        .toBeInTheDocument();
+      expect(avatar).toHaveLength(2);
+      expect(countOfNewMessages)
+        .toBeInTheDocument();
+      expect(lastMessage)
+        .toBeInTheDocument();
     });
   });
 });

@@ -26,7 +26,7 @@ const Registration: FC<ChildrenNever> = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isPasswordVisible2, setIsPasswordVisible2] = useState(false);
   const registrationError = useSelector((state: RootState) => state.user.registrationError);
-  const isRegistrationLoading = useSelector((state: RootState) => state.user.isLoginLoading);
+  const isRegistrationLoading = useSelector((state: RootState) => state.user.isRegistrationLoading);
 
   const history = useHistory();
   const dispatch = useDispatch();

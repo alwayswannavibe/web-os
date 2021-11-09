@@ -24,7 +24,7 @@
 
   color: var(--font-color);
   border: none;
-  border-left: 1px solid rgb(14 14 14 / 15%);
+  border-left: 1px solid rgb(14 14 14 / 0.15);
   background-color: transparent;
 
   font-size: 1.5rem;

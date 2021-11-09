@@ -52,14 +52,14 @@
 }
 
 .inputErrorDefault {
-  opacity: 0%;
+  opacity: 0;
   color: #f50303;
 
   font-size: 1rem;
 }
 
 .inputError {
-  opacity: 100%;
+  opacity: 1;
 }
 
 .invalidInput {
@@ -67,12 +67,12 @@
 }
 
 .formErrorDefault {
-  opacity: 0%;
+  opacity: 0;
   color: #f64747;
 }
 
 .formError {
-  opacity: 100%;
+  opacity: 1;
 }
 
 .registration a {

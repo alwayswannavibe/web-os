@@ -25,7 +25,7 @@
   --secondaryColor: #282828;
 
   /* Window */
-  --windowTopBackground: rgb(23 23 24 / 97%);
+  --windowTopBackground: rgb(23 23 24 / 0.97);
   --windowBodyBackground: rgb(23 23 24);
 
   /* Calculator */
@@ -57,7 +57,7 @@
   --secondaryColor: #c4c4c4;
 
   /* Window */
-  --windowTopBackground: rgb(255 255 255 / 97%);
+  --windowTopBackground: rgb(255 255 255 / 0.97);
   --windowBodyBackground: rgb(210 210 210);
 
   /* Calculator */
@@ -87,7 +87,7 @@
   --secondaryColor: #0463a7;
 
   /* Window */
-  --windowTopBackground: rgb(83 176 241 / 97%);
+  --windowTopBackground: rgb(83 176 241 / 0.97);
   --windowBodyBackground: #1387d6;
 
   /* Calculator */
@@ -118,7 +118,7 @@
   --secondaryColor: #439440;
 
   /* Window */
-  --windowTopBackground: rgb(8 164 31 / 97%);
+  --windowTopBackground: rgb(8 164 31 / 0.97);
   --windowBodyBackground: #43ae58;
 
   /* Calculator */

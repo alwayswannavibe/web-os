@@ -48,7 +48,7 @@
 .terminalText::-webkit-scrollbar-track {
   border-radius: 10px;
   background-color: transparent;
-  box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+  box-shadow: inset 0 0 6px rgb(0 0 0 / 0.3);
 }
 
 .terminalText::-webkit-scrollbar {
@@ -60,5 +60,5 @@
 .terminalText::-webkit-scrollbar-thumb {
   border-radius: 0.2rem;
   background-color: #3b3b3b;
-  box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+  box-shadow: inset 0 0 6px rgb(0 0 0 / 0.3);
 }

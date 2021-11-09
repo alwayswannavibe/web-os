@@ -49,7 +49,7 @@ const AddRoomForm: FC<ChildrenNever> = () => {
       </label>
       <div className={styles.users}>
         <Scrollbars autoHeight autoHeightMax={300}>
-          {[...users, ...users, ...users, ...users, ...users, ...users, ...users, ...users, ...users, ...users, ...users, ...users, ...users, ...users, ...users, ...users].map((user) => (
+          {users.map((user) => (
             <AddRoomUserSelectItem username={user.username} id={user.id} />
           ))}
         </Scrollbars>

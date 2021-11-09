@@ -12,10 +12,6 @@ describe('ChatInput', () => {
   const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
   const mockStore = configureStore(middlewares);
 
-  const mockSocket = {
-    emit: jest.fn(),
-  };
-
   describe('should correctly handle send button', () => {
     it('should send socket message on click on send button', () => {
       const initialState = {
@@ -25,9 +21,6 @@ describe('ChatInput', () => {
         user: {
           username: 'anonymous',
           photo: 'photoURL',
-        },
-        websocket: {
-          socket: mockSocket,
         },
       };
       const mockStoreWithState = mockStore(initialState);
@@ -55,9 +48,6 @@ describe('ChatInput', () => {
           username: 'anonymous',
           photo: 'photoURL',
         },
-        websocket: {
-          socket: mockSocket,
-        },
       };
       const mockStoreWithState = mockStore(initialState);
       const mockDispatch = jest.spyOn(mockStoreWithState, 'dispatch');
@@ -72,7 +62,6 @@ describe('ChatInput', () => {
 
       userEvent.click(btn!);
 
-      expect(mockSocket.emit).toHaveBeenCalledTimes(0);
       expect(mockDispatch).toHaveBeenCalledTimes(1);
       expect(mockDispatch).toHaveBeenCalledWith({
         type: 'chat/clearMessageInputValue',
@@ -88,9 +77,6 @@ describe('ChatInput', () => {
       user: {
         username: 'anonymous',
         photo: 'photoURL',
-      },
-      websocket: {
-        socket: mockSocket,
       },
     };
     const mockStoreWithState = mockStore(initialState);
@@ -122,9 +108,6 @@ describe('ChatInput', () => {
         username: 'anonymous',
         photo: 'photoURL',
       },
-      websocket: {
-        socket: mockSocket,
-      },
     };
     const mockStoreWithState = mockStore(initialState);
 
@@ -151,9 +134,6 @@ describe('ChatInput', () => {
       user: {
         username: 'anonymous',
         photo: 'photoURL',
-      },
-      websocket: {
-        socket: mockSocket,
       },
     };
     const mockStoreWithState = mockStore(initialState);

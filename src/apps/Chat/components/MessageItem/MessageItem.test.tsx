@@ -29,18 +29,21 @@ describe('Chat MessageItem', () => {
       render(
         <Provider store={mockStoreWithState}>
           <MessageItem message={{
-            username: 'John',
+            owner: {
+              id: 1,
+              username: 'John',
+              photo: '',
+            },
             text: 'test msg',
-            photo: 'photoUrl',
-            id: '1',
-            date: '22.06.2036',
+            createdAt: new Date(),
+            id: 1,
+            listOfReaders: [],
           }}
           />
         </Provider>,
       );
 
       const myMsgElements = document.querySelectorAll('.myMsg');
-      const date = screen.queryByText('22.06.2036');
       const username = screen.queryByText('John');
       const avatar = screen.queryByTestId('Avatar');
       const images = document.querySelectorAll('img');
@@ -50,7 +53,6 @@ describe('Chat MessageItem', () => {
       expect(myMsgElements).toHaveLength(3);
       expect(text).toBeInTheDocument();
       expect(images).toHaveLength(0);
-      expect(date).toBeInTheDocument();
       expect(toYou).not.toBeInTheDocument();
       expect(username).toBeInTheDocument();
       expect(avatar).toBeInTheDocument();
@@ -67,18 +69,21 @@ describe('Chat MessageItem', () => {
       render(
         <Provider store={mockStoreWithState}>
           <MessageItem message={{
-            username: 'John',
+            owner: {
+              id: 1,
+              username: 'John',
+              photo: '',
+            },
             text: '@John2 test msg',
-            photo: 'photoUrl',
-            id: '1',
-            date: '22.06.2036',
+            createdAt: new Date(),
+            id: 1,
+            listOfReaders: [],
           }}
           />
         </Provider>,
       );
 
       const myMsgElements = document.querySelectorAll('.myMsg');
-      const date = screen.queryByText('22.06.2036');
       const username = screen.queryByText('John');
       const avatar = screen.queryByTestId('Avatar');
       const toYou = document.querySelector('.toYou');
@@ -88,7 +93,6 @@ describe('Chat MessageItem', () => {
       expect(text).toBeInTheDocument();
       expect(myMsgElements).toHaveLength(0);
       expect(images).toHaveLength(0);
-      expect(date).toBeInTheDocument();
       expect(toYou).toBeInTheDocument();
       expect(username).toBeInTheDocument();
       expect(avatar).toBeInTheDocument();
@@ -105,18 +109,21 @@ describe('Chat MessageItem', () => {
       render(
         <Provider store={mockStoreWithState}>
           <MessageItem message={{
-            username: 'John',
+            owner: {
+              id: 1,
+              username: 'John',
+              photo: '',
+            },
             text: 'http://photo.test',
-            photo: 'photoUrl',
-            id: '1',
-            date: '22.06.2036',
+            createdAt: new Date(),
+            id: 1,
+            listOfReaders: [],
           }}
           />
         </Provider>,
       );
 
       const myMsgElements = document.querySelectorAll('.myMsg');
-      const date = screen.queryByText('22.06.2036');
       const username = screen.queryByText('John');
       const avatar = screen.queryByTestId('Avatar');
       const images = document.querySelectorAll('img');
@@ -126,7 +133,6 @@ describe('Chat MessageItem', () => {
       expect(myMsgElements).toHaveLength(3);
       expect(text).not.toBeInTheDocument();
       expect(images).toHaveLength(1);
-      expect(date).toBeInTheDocument();
       expect(toYou).not.toBeInTheDocument();
       expect(username).toBeInTheDocument();
       expect(avatar).toBeInTheDocument();
@@ -143,18 +149,21 @@ describe('Chat MessageItem', () => {
       render(
         <Provider store={mockStoreWithState}>
           <MessageItem message={{
-            username: 'John',
+            owner: {
+              id: 1,
+              username: 'John',
+              photo: '',
+            },
             text: '@all test msg',
-            photo: 'photoUrl',
-            id: '1',
-            date: '22.06.2036',
+            createdAt: new Date(),
+            id: 1,
+            listOfReaders: [],
           }}
           />
         </Provider>,
       );
 
       const myMsgElements = document.querySelectorAll('.myMsg');
-      const date = screen.queryByText('22.06.2036');
       const username = screen.queryByText('John');
       const avatar = screen.queryByTestId('Avatar');
       const toYou = document.querySelector('.toYou');
@@ -164,7 +173,6 @@ describe('Chat MessageItem', () => {
       expect(text).toBeInTheDocument();
       expect(myMsgElements).toHaveLength(0);
       expect(images).toHaveLength(0);
-      expect(date).toBeInTheDocument();
       expect(toYou).toBeInTheDocument();
       expect(username).toBeInTheDocument();
       expect(avatar).toBeInTheDocument();
@@ -183,11 +191,15 @@ describe('Chat MessageItem', () => {
     render(
       <Provider store={mockStoreWithState}>
         <MessageItem message={{
-          username: 'John',
+          owner: {
+            id: 1,
+            username: 'John',
+            photo: '',
+          },
           text: 'test msg',
-          photo: 'photoUrl',
-          id: '1',
-          date: '22.06.2036',
+          createdAt: new Date(),
+          id: 1,
+          listOfReaders: [],
         }}
         />
       </Provider>,

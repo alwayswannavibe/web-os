@@ -26,13 +26,13 @@ export const TopDate: FC<ChildrenNever> = () => {
   }, [date]);
 
   return (
-    <div className={styles.date}>
+    <p className={styles.date}>
       {date.toLocaleDateString(locale, {
         month: 'long',
         day: 'numeric',
         hour: 'numeric',
         minute: 'numeric',
       })}
-    </div>
+    </p>
   );
 };

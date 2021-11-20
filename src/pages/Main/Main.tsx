@@ -1,6 +1,7 @@
 // Libraries
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { AnimatePresence } from 'framer-motion';
 
 // Assets
 import planet from '@Backgrounds/darkPlanet.webp';
@@ -26,6 +27,7 @@ import { Translate } from '@Translate/Translate';
 
 // Components
 import { MessageAlert } from '@Components/MessageAlert/MessageAlert';
+import { Welcome } from '@Components/Welcome/Welcome';
 
 // Types
 import { RootState } from '@Types/rootState.type';
@@ -42,6 +44,7 @@ import styles from './main.module.css';
 const Main: FC<ChildrenNever> = () => {
   const backgroundImage = useSelector((state: RootState) => state.theme.backgroundImage);
   const [themeBackground, setThemeBackground] = useState('');
+  const [isWelcomeOpen, setIsWelcomeOpen] = useState(!sessionStorage.getItem('isWelcomeOpen'));
 
   const backgroundImagesAssets = useMemo(() => ({
     [BackgroundImage.Car]: car,
@@ -60,22 +63,28 @@ const Main: FC<ChildrenNever> = () => {
     setThemeBackground(backgroundImagesAssets[backgroundImage]);
   }, [backgroundImage, backgroundImagesAssets]);
 
+  const handleWelcomeClose = useCallback(() => {
+    setIsWelcomeOpen(false);
+    sessionStorage.setItem('isWelcomeOpen', 'No');
+  }, []);
+
   return (
-    <>
-      <div style={{ backgroundImage: `url(${themeBackground})` }} className={styles.container} id="main-container">
-        <div>
-          <Terminal />
-          <Settings />
-          <Calculator />
-          <ToDo />
-          <Chat />
-          <Simon />
-          <Minesweeper />
-          <Translate />
-          <MessageAlert />
-        </div>
+    <div style={{ backgroundImage: `url(${themeBackground})` }} className={styles.container} id="main-container">
+      <AnimatePresence>
+        {isWelcomeOpen && <Welcome handleWelcomeClose={handleWelcomeClose} />}
+      </AnimatePresence>
+      <div>
+        <Terminal />
+        <Settings />
+        <Calculator />
+        <ToDo />
+        <Chat />
+        <Simon />
+        <Minesweeper />
+        <Translate />
+        <MessageAlert />
       </div>
-    </>
+    </div>
   );
 };
 

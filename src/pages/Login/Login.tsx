@@ -9,6 +9,9 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 // Redux
 import { loginFetch } from '@Features/user/redux';
 
+// Assets
+import space from '@Backgrounds/space.webp';
+
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
@@ -52,75 +55,78 @@ const Login: FC<ChildrenNever> = () => {
   }
 
   return (
-    <div className={styles.wrapper}>
-      <Button type="button" onClick={() => history.push('/')} className={styles.closeBtn}>←</Button>
-      <form className={styles.loginForm} onSubmit={handleSubmit(handleLogin)}>
-        <span
-          className={`${styles.formErrorDefault} ${formError ? styles.formError : ''}`}
-        >
-          {formError || 'Error'}
-        </span>
-        <label htmlFor="loginName" className={styles.label}>
+    <>
+      <div className={styles.overlay} style={{ backgroundImage: `url(${space})` }} />
+      <div className={styles.wrapper}>
+        <Button type="button" onClick={() => history.push('/')} className={styles.closeBtn}>←</Button>
+        <form className={styles.loginForm} onSubmit={handleSubmit(handleLogin)}>
           <span
-            className={`${styles.inputErrorDefault} ${errors.username ? styles.inputError : ''}`}
+            className={`${styles.formErrorDefault} ${formError ? styles.formError : ''}`}
           >
-            {errors.username?.message || 'Error'}
+            {formError || 'Error'}
           </span>
-          <div className={styles.inputBtnContainer}>
-            <div className={styles.empty} />
-            <input
-              type="text"
-              id="loginName"
-              placeholder="Username"
-              className={errors.username ? styles.invalidInput : ''}
-              onFocus={() => setFormError('')}
-              {...register('username', {
-                required: {
-                  value: true,
-                  message: 'You must fill this field',
-                },
-              })}
-            />
-            <div className={styles.empty} />
-          </div>
-        </label>
-        <label htmlFor="loginPassword" className={styles.label}>
-          <span
-            className={`${styles.inputErrorDefault} ${errors.password ? styles.inputError : ''}`}
-          >
-            {errors.password?.message || 'Error'}
-          </span>
-          <div className={styles.inputBtnContainer}>
-            <div className={styles.empty} />
-            <input
-              type={isPasswordVisible ? 'text' : 'password'}
-              id="loginPassword"
-              className={errors.password ? styles.invalidInput : ''}
-              placeholder="Password"
-              onFocus={() => setFormError('')}
-              {...register('password', {
-                required: {
-                  value: true,
-                  message: 'You must fill this field',
-                },
-              })}
-            />
-            <Button type="button" className={styles.changePasswordVisibility} onClick={handleTooglePasswordVisible}>
-              {isPasswordVisible ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
+          <label htmlFor="loginName" className={styles.label}>
+            <span
+              className={`${styles.inputErrorDefault} ${errors.username ? styles.inputError : ''}`}
+            >
+              {errors.username?.message || 'Error'}
+            </span>
+            <div className={styles.inputBtnContainer}>
+              <div className={styles.empty} />
+              <input
+                type="text"
+                id="loginName"
+                placeholder="Username"
+                className={errors.username ? styles.invalidInput : ''}
+                onFocus={() => setFormError('')}
+                {...register('username', {
+                  required: {
+                    value: true,
+                    message: 'You must fill this field',
+                  },
+                })}
+              />
+              <div className={styles.empty} />
+            </div>
+          </label>
+          <label htmlFor="loginPassword" className={styles.label}>
+            <span
+              className={`${styles.inputErrorDefault} ${errors.password ? styles.inputError : ''}`}
+            >
+              {errors.password?.message || 'Error'}
+            </span>
+            <div className={styles.inputBtnContainer}>
+              <div className={styles.empty} />
+              <input
+                type={isPasswordVisible ? 'text' : 'password'}
+                id="loginPassword"
+                className={errors.password ? styles.invalidInput : ''}
+                placeholder="Password"
+                onFocus={() => setFormError('')}
+                {...register('password', {
+                  required: {
+                    value: true,
+                    message: 'You must fill this field',
+                  },
+                })}
+              />
+              <Button type="button" className={styles.changePasswordVisibility} onClick={handleTooglePasswordVisible}>
+                {isPasswordVisible ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
+              </Button>
+            </div>
+          </label>
+          <div className={styles.btnContainer}>
+            <Button type="submit" disabled={isLoginLoading} className={styles.signIn}>
+              Sign In
             </Button>
           </div>
-        </label>
-        <div className={styles.btnContainer}>
-          <Button type="submit" disabled={isLoginLoading} className={styles.signIn}>
-            Sign In
-          </Button>
-        </div>
-        <p className={styles.registration}>
-          {'Don\'t have an account? '}
-          <Link to="/registration">Sign Up</Link>
-        </p>
-      </form>
-    </div>
+          <p className={styles.registration}>
+            {'Don\'t have an account? '}
+            <Link to="/registration">Sign Up</Link>
+          </p>
+        </form>
+      </div>
+    </>
   );
 };
 

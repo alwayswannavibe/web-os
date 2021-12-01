@@ -10,12 +10,12 @@ import i18n from '@Features/i18n';
 import { BackgroundImage } from '@Features/theme/types/backgroundImage';
 
 // Utils
-import { capitalizeFirstLatter } from '@Utils/capitalizeFirstLatter';
+import { capitalizeFirstLetter } from '@Utils/capitalizeFirstLetter';
 
 const terminalProcessChangeTheme = (input: string) => {
   const { dispatch } = store;
 
-  const newBackgroundImage = capitalizeFirstLatter(input.trim());
+  const newBackgroundImage = capitalizeFirstLetter(input.trim());
 
   if (store.getState().theme.backgroundImages.includes(newBackgroundImage as BackgroundImage)) {
     dispatch(addTerminalHistory(`${i18n.t('terminal:themeChange')}`));

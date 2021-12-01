@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
 import {
-  addWindow,
-  deleteWindow,
   setWindowActive,
   closeApp,
   openApp,
@@ -37,16 +35,15 @@ const useApp = (type: App) => {
     } else if (getAppIndex() === 0) {
       dispatch(setWindowActive(apps[1]));
     }
-    dispatch(toggleCollapseApp({ type }));
+    dispatch(toggleCollapseApp(type));
   };
 
   const handleOpen = () => {
     if (isCollapsed && isOpened) {
-      dispatch(toggleCollapseApp({ type }));
+      dispatch(toggleCollapseApp(type));
       dispatch(setWindowActive(type));
     } else if (!isOpened) {
-      dispatch(openApp({ type }));
-      dispatch(addWindow(type));
+      dispatch(openApp(type));
     }
   };
 
@@ -54,8 +51,7 @@ const useApp = (type: App) => {
     if (!isOpened) {
       return;
     }
-    dispatch(closeApp({ type }));
-    dispatch(deleteWindow(type));
+    dispatch(closeApp(type));
   };
 
   const isIncludeApp = () => apps.includes(type);

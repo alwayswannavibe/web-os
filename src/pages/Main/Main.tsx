@@ -30,7 +30,7 @@ import { MessageAlert } from '@Components/MessageAlert/MessageAlert';
 import { Welcome } from '@Components/Welcome/Welcome';
 
 // Features
-import { fetchUser } from '@Features/user/redux';
+import { fetchUser } from '@Features/user/redux/userSlice';
 
 // Types
 import { RootState } from '@Types/rootState.type';

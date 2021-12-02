@@ -1,10 +1,10 @@
 // Redux
-import { setLanguage } from '@Features/i18n/redux';
 import { addTerminalHistory } from '@Terminal/redux/terminalSlice/terminalSlice';
 import store from 'src/redux/store';
 
-// I18n
+// Features
 import i18n from '@Features/i18n';
+import { setLanguage } from '@Features/i18n/redux/languageSlice';
 
 // Types
 import { Language } from '@Features/i18n/types/language';

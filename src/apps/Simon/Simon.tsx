@@ -6,9 +6,6 @@ import { useTranslation } from 'react-i18next';
 // Redux
 import { changeDifficulty } from '@Simon/redux/simonSlice/simonSlice';
 
-// I18n
-import '@Features/i18n';
-
 // Assets
 import imgSource from '@Icons/saymon.svg';
 

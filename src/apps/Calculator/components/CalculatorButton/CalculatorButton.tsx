@@ -16,9 +16,7 @@ import {
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
-// I18n
-import '@Features/i18n';
-
+// Components
 import { Button } from '@Components/Button/Button';
 
 // Styles

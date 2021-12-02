@@ -6,8 +6,8 @@ import { useForm } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
-// Redux
-import { loginFetch } from '@Features/user/redux';
+// Features
+import { loginFetch } from '@Features/user/redux/userSlice';
 
 // Assets
 import space from '@Backgrounds/space.webp';

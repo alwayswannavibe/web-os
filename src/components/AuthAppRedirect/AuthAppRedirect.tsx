@@ -6,9 +6,6 @@ import { useTranslation } from 'react-i18next';
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
-// Features
-import '@Features/i18n';
-
 // Components
 import { Button } from '@Components/Button/Button';
 

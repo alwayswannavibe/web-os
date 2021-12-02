@@ -1,11 +1,11 @@
 // Libraries
 import { configureStore } from '@reduxjs/toolkit';
 
-// Feature/redux
-import themeSlice from '@Features/theme/redux';
-import languageSlice from '@Features/i18n/redux';
-import userSlice from '@Features/user/redux';
-import websocketSlice from '@Features/websocket/redux';
+// Feature
+import themeSlice from '@Features/theme/redux/themeSlice';
+import languageSlice from '@Features/i18n/redux/languageSlice';
+import userSlice from '@Features/user/redux/userSlice';
+import websocketSlice from '@Features/websocket/redux/websocketSlice';
 
 // Redux
 import appsSlice from 'src/redux/slices/appsSlice/appsSlice';

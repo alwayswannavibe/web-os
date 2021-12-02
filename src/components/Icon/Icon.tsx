@@ -7,7 +7,6 @@ import { changeIconPos } from 'src/redux/slices/appsSlice/appsSlice';
 
 // I18n
 import { useTranslation } from 'react-i18next';
-import '@Features/i18n';
 
 // Hooks
 import { useDragNDrop } from 'src/hooks/useDragNDrop/useDragNDrop';

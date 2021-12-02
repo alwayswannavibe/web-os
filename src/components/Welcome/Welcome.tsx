@@ -5,9 +5,6 @@ import { motion } from 'framer-motion';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-// I18n
-import '@Features/i18n';
-
 // Assets
 import space from '@Backgrounds/space.webp';
 

@@ -24,9 +24,6 @@ import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 // Components
 import { Button } from '@Components/Button/Button';
 
-// I18n
-import '@Features/i18n';
-
 // Styles
 import styles from './sidebar.module.css';
 

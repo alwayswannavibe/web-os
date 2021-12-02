@@ -3,9 +3,6 @@ import { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-// I18n
-import '@Features/i18n';
-
 // Enums
 import { Difficulty } from '@Enums/difficulty.enum';
 

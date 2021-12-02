@@ -15,8 +15,8 @@ import space from '@Backgrounds/space.webp';
 // Types
 import { RootState } from '@Types/rootState.type';
 
-// Redux
-import { registration } from '@Features/user/redux';
+// Features
+import { registration } from '@Features/user/redux/userSlice';
 
 // Components
 import { Button } from '@Components/Button/Button';

@@ -1,9 +1,9 @@
 // Redux
 import store from 'src/redux/store';
 import { addTerminalHistory } from '@Terminal/redux/terminalSlice/terminalSlice';
-import { setBackgroundImage } from '@Features/theme/redux';
 
-// I18n
+// Features
+import { setBackgroundImage } from '@Features/theme/redux/themeSlice';
 import i18n from '@Features/i18n';
 
 // Types

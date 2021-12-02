@@ -10,9 +10,6 @@ import { faWindowRestore, faTimes, faWindowMinimize } from '@fortawesome/free-so
 // Redux
 import { setWindowActive, changeWindowPos } from 'src/redux/slices/appsSlice/appsSlice';
 
-// I18n
-import '@Features/i18n';
-
 // Enums
 import { App } from '@Enums/app.enum';
 

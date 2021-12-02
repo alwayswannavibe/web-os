@@ -12,8 +12,8 @@ import {
   faUser, faLanguage,
 } from '@fortawesome/free-solid-svg-icons';
 
-// Redux
-import { logout } from '@Features/user/redux';
+// Features
+import { logout } from '@Features/user/redux/userSlice';
 
 // Enums
 import { App } from '@Enums/app.enum';

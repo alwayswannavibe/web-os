@@ -4,14 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 // Redux
-import { setBackgroundImage, setTheme } from '@Features/theme/redux';
-import { setLanguage } from '@Features/i18n/redux';
+import { setBackgroundImage, setTheme } from '@Features/theme/redux/themeSlice';
+import { setLanguage } from '@Features/i18n/redux/languageSlice';
 
 // Types
 import { RootState } from '@Types/rootState.type';
-
-// I18n
-import '@Features/i18n';
 
 // Enums
 import { App } from '@Enums/app.enum';

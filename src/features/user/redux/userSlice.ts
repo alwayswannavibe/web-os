@@ -1,6 +1,6 @@
 // Libraries
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 interface InitialState {
   username: string,
@@ -35,35 +35,37 @@ const logout = createAsyncThunk('user/logout', async () => {
   });
 });
 
-const loginFetch = createAsyncThunk('user/login', async (payload: any, { rejectWithValue }) => {
-  try {
-    const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
-      username: payload.username,
-      password: payload.password,
-    }, {
-      timeout: 30000,
-      withCredentials: true,
-    });
-    return res.data;
-  } catch (err: any) {
-    return rejectWithValue(err.response.data);
-  }
-});
+const loginFetch = createAsyncThunk('user/login',
+  async (payload: { username: string, password: string }, { rejectWithValue }) => {
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
+        username: payload.username,
+        password: payload.password,
+      }, {
+        timeout: 30000,
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err: unknown) {
+      return rejectWithValue(err);
+    }
+  });
 
-const registration = createAsyncThunk('user/registration', async (payload: any, { rejectWithValue }) => {
-  try {
-    const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, {
-      username: payload.username,
-      password: payload.password,
-    }, {
-      timeout: 30000,
-      withCredentials: true,
-    });
-    return res.data;
-  } catch (err: any) {
-    return rejectWithValue(err.response.data);
-  }
-});
+const registration = createAsyncThunk('user/registration',
+  async (payload: { username: string, password: string }, { rejectWithValue }) => {
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, {
+        username: payload.username,
+        password: payload.password,
+      }, {
+        timeout: 30000,
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err: unknown) {
+      return rejectWithValue(err);
+    }
+  });
 
 const fetchUser = createAsyncThunk('user/fetchUser', async () => {
   const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/me`, {
@@ -106,9 +108,13 @@ const userSlice = createSlice({
       window.history.pushState(null, '', '/');
       window.location.reload();
     });
-    builder.addCase(loginFetch.rejected, (state, payload: any) => {
+    builder.addCase(loginFetch.rejected, (state, action) => {
       state.isLoginLoading = false;
-      state.loginError = payload.payload.error || payload.payload.message[0];
+      try {
+        state.loginError = (action.payload as AxiosError).response?.data.error || (action.payload as AxiosError).response?.data.message[0];
+      } catch (error: unknown) {
+        state.loginError = (action.payload as string);
+      }
     });
     builder.addCase(registration.pending, (state) => {
       state.isRegistrationLoading = true;
@@ -119,12 +125,16 @@ const userSlice = createSlice({
       window.history.pushState(null, '', '/');
       window.location.reload();
     });
-    builder.addCase(registration.rejected, (state, payload: any) => {
+    builder.addCase(registration.rejected, (state, action) => {
       state.isRegistrationLoading = false;
-      state.registrationError = payload.payload.error || payload.payload.message[0];
+      try {
+        state.loginError = (action.payload as AxiosError).response?.data.error || (action.payload as AxiosError).response?.data.message[0];
+      } catch (error: unknown) {
+        state.loginError = (action.payload as string);
+      }
     });
-    builder.addCase(fetchUser.fulfilled, (state, payload: any) => {
-      state.username = payload.payload;
+    builder.addCase(fetchUser.fulfilled, (state, action: { payload: string }) => {
+      state.username = action.payload;
     });
   },
 });

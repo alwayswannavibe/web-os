@@ -8,7 +8,7 @@ import {
   closeApp,
   openApp,
   setWindowActive,
-  toggleCollapseApp
+  toggleCollapseApp,
 } from './appsSlice';
 
 describe('app slice', () => {
@@ -17,7 +17,7 @@ describe('app slice', () => {
     store.dispatch(closeApp(App.Settings));
     store.dispatch(closeApp(App.Calculator));
   });
-  
+
   describe('openApp', () => {
     it('should change app status then calls openApp', () => {
       store.dispatch(openApp(App.Terminal));
@@ -29,7 +29,7 @@ describe('app slice', () => {
       expect(store.getState().apps.apps[0]).toEqual(App.Terminal);
     });
   });
-  
+
   describe('closeApp', () => {
     it('should change app status then calls closeApp', () => {
       store.dispatch(openApp(App.Terminal));
@@ -42,7 +42,7 @@ describe('app slice', () => {
       expect(JSON.parse(localStorage.getItem('apps') || '[]')).toEqual([]);
     });
   });
-  
+
   describe('toggleCollapseApp', () => {
     it('should change app status then calls toggleCollapseApp and app is not collapsed', () => {
       store.dispatch(openApp(App.Terminal));
@@ -52,7 +52,7 @@ describe('app slice', () => {
       expect(localStorage.getItem('TerminalIsOpened')).toEqual('true');
       expect(localStorage.getItem('TerminalIsCollapsed')).toEqual('true');
     });
-  
+
     it('should change app status then calls toggleCollapseApp and app is collapsed', () => {
       store.dispatch(openApp(App.Terminal));
       store.dispatch(toggleCollapseApp(App.Terminal));
@@ -63,7 +63,7 @@ describe('app slice', () => {
       expect(localStorage.getItem('TerminalIsCollapsed')).toEqual('false');
     });
   });
-  
+
   describe('changeIconPos', () => {
     it('should change app state then calls changeIconPos', () => {
       store.dispatch(changeIconPos({ type: App.Terminal, coords: { top: '250px', left: '200px' } }));
@@ -73,7 +73,7 @@ describe('app slice', () => {
       localStorage.setItem('TerminalIconLeftCoord', '1rem');
     });
   });
-  
+
   describe('changeWindowPos', () => {
     it('should change app state then calls changeWindowPos', () => {
       store.dispatch(changeWindowPos({ type: App.Terminal, coords: { top: '250px', left: '200px' } }));

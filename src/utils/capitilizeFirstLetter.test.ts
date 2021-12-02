@@ -5,7 +5,7 @@ describe('capitalizeFirstLetter test', () => {
     const result = capitalizeFirstLetter('');
     expect(result).toBe('');
   });
-  
+
   it('should return input if input is not empty', () => {
     const result = capitalizeFirstLetter('collapse');
     expect(result).toBe('Collapse');

@@ -29,11 +29,11 @@ const useDragNDrop = (
 
   const drag = useCallback(
     (event: MouseEvent) => {
-      const heigthOfWindow = element!.current?.getBoundingClientRect().height || 0;
+      const heightOfWindow = element!.current?.getBoundingClientRect().height || 0;
       const widthOfWindow = element!.current?.getBoundingClientRect().width || 0;
       const topLimit = getPxFromRem(2.2);
       const leftLimit = 0;
-      const bottomLimit = window.innerHeight - heigthOfWindow - topLimit;
+      const bottomLimit = window.innerHeight - heightOfWindow - topLimit;
       const rightLimit = window.innerWidth - widthOfWindow;
 
       let left = event.pageX - shiftLeft;

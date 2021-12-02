@@ -6,7 +6,6 @@ import axios from 'axios';
 
 // Logic
 // eslint-disable-next-line import/no-cycle
-import { fetchUser } from '@Features/user/fetchUser';
 
 interface InitialState {
   username: string,
@@ -71,6 +70,14 @@ const registration = createAsyncThunk('user/registration', async (payload: any, 
   }
 });
 
+const fetchUser = createAsyncThunk('user/fetchUser', async () => {
+  const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/me`, {
+    timeout: 30000,
+    withCredentials: true,
+  });
+  return res.data;
+});
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -85,9 +92,6 @@ const userSlice = createSlice({
       state.photo = payload.photo || '';
       state.loading = false;
       localStorage.clear();
-    },
-    setUser(state, { payload }: { payload: string }) {
-      state.username = payload;
     },
   },
   extraReducers: (builder) => {
@@ -124,11 +128,12 @@ const userSlice = createSlice({
       state.isRegistrationLoading = false;
       state.registrationError = payload.payload.error || payload.payload.message[0];
     });
+    builder.addCase(fetchUser.fulfilled, (state, payload: any) => {
+      state.username = payload.payload;
+    });
   },
 });
 
-fetchUser();
-
 export default userSlice.reducer;
-export const { login, setUser } = userSlice.actions;
-export { logout, loginFetch, registration };
+export const { login } = userSlice.actions;
+export { logout, loginFetch, registration, fetchUser };

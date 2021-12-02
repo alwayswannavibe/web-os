@@ -77,9 +77,8 @@ export const Settings: FC<ChildrenNever> = () => {
                 onChange={handleChangeBackground}
                 defaultValue={backgroundImage}
               >
-                {backgroundImages.map((el, i) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <SettingsOption value={el} category="backgrounds" key={i} />
+                {backgroundImages.map((el) => (
+                  <SettingsOption value={el} category="backgrounds" key={el} />
                 ))}
               </select>
             </label>
@@ -88,9 +87,8 @@ export const Settings: FC<ChildrenNever> = () => {
             <label htmlFor="localeSelect" className={styles.label}>
               {t('language')}
               <select id="localeSelect" className={styles.select} onChange={handleChangeLanguage} defaultValue={language}>
-                {languages.map((el, i) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <SettingsOption value={el} category="languages" key={i} />
+                {languages.map((el) => (
+                  <SettingsOption value={el} category="languages" key={el} />
                 ))}
               </select>
             </label>
@@ -99,9 +97,8 @@ export const Settings: FC<ChildrenNever> = () => {
             <label htmlFor="themeSelect" className={styles.label}>
               {t('theme')}
               <select id="themeSelect" className={styles.select} onChange={handleChangeTheme} defaultValue={theme}>
-                {themes.map((el, i) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <SettingsOption value={el} category="themes" key={i} />
+                {themes.map((el) => (
+                  <SettingsOption value={el} category="themes" key={el} />
                 ))}
               </select>
             </label>

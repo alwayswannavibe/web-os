@@ -1,6 +1,4 @@
-/* eslint-disable no-param-reassign */
-
-// Librarries
+// Libraries
 import { createSlice } from '@reduxjs/toolkit';
 
 // Logic

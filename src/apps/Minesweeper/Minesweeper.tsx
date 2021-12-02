@@ -1,6 +1,7 @@
 // Libraries
 import { FC, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 
 // Types
 import { RootState } from '@Types/rootState.type';
@@ -63,8 +64,7 @@ const Minesweeper: FC<ChildrenNever> = () => {
           <div className={styles.wrapper}>
             <div className={styles.main} ref={mainContentRef}>
               {pattern.length && pattern.map((arr, arrIndex) => arr.map((el, i) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <MinesweeperNode value={el} arrIndex={arrIndex} index={i} key={`${arrIndex}-${i}`} />
+                <MinesweeperNode value={el} arrIndex={arrIndex} index={i} key={uuidv4()} />
               )))}
             </div>
             <Sidebar />

@@ -1,11 +1,6 @@
-/* eslint-disable no-param-reassign */
-
 // Libraries
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-
-// Logic
-// eslint-disable-next-line import/no-cycle
 
 interface InitialState {
   username: string,

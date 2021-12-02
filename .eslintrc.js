@@ -20,7 +20,6 @@ module.exports = {
     "import/prefer-default-export": 0,
     "max-len": 0,
     "react/require-default-props": 0,
-    "jsx-a11y/no-static-element-interactions": 0,
     "jsx-a11y/click-events-have-key-events": 0,
     "no-mixed-operators": 0,
     "operator-linebreak": 0,
@@ -29,6 +28,8 @@ module.exports = {
     "jsx-a11y/no-autofocus": 0,
     "react/jsx-props-no-spreading": 0,
     "no-continue": 0,
-    "react/jsx-no-bind": 0
+    "react/jsx-no-bind": 0,
+    "react-hooks/exhaustive-deps": 0,
+    "no-param-reassign": ['error', { props: true, ignorePropertyModificationsFor: ['state'] }],
   }
 };

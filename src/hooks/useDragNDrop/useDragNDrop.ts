@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 // Libraries
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { RefObject, useCallback, useEffect, useState } from 'react';
@@ -23,7 +21,7 @@ const useDragNDrop = (
   const [leftCoordLocal, setLeftCoordLocal] = useState(coords.left);
   const [shiftLeft, setShiftLeft] = useState(0);
   const [shiftTop, setShiftTop] = useState(0);
-  const [IsDrag, setIsDrag] = useState(false);
+  const [isDrag, setIsDrag] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -59,7 +57,6 @@ const useDragNDrop = (
   );
 
   const stopDrag = useCallback(() => {
-    element.current!.style.cursor = 'pointer';
     dispatch(
       changeCoord({
         type,
@@ -78,22 +75,21 @@ const useDragNDrop = (
     event.preventDefault();
     setShiftLeft(event.clientX - element.current!.getBoundingClientRect().x);
     setShiftTop(event.clientY - element.current!.getBoundingClientRect().y);
-    element.current!.style.cursor = 'grabbing';
     setIsDrag(true);
   };
 
   useEffect(() => {
-    if (!IsDrag) return;
+    if (!isDrag) return;
     document.addEventListener('mousemove', drag);
     document.addEventListener('mouseup', stopDrag);
-  }, [IsDrag, drag, stopDrag]);
+  }, [isDrag, drag, stopDrag]);
 
   const newCoords: Coordinates = {
     top: topCoordLocal,
     left: leftCoordLocal,
   };
 
-  return { startDrag, newCoords };
+  return { startDrag, newCoords, isDrag };
 };
 
 export { useDragNDrop };

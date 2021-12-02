@@ -2,6 +2,7 @@
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 // Types
 import { Theme } from '@Features/theme/types/theme';
@@ -18,13 +19,37 @@ import { Main } from '@Pages/Main/Main';
 
 const App = () => {
   const theme = useSelector((state: RootState) => state.theme.theme);
+  const [themeStyle, setThemeStyle] = useState('darkTheme');
+
+  useEffect(() => {
+    switch (theme) {
+      case Theme.Dark: {
+        setThemeStyle('darkTheme');
+        break;
+      }
+      case Theme.Light: {
+        setThemeStyle('lightTheme');
+        break;
+      }
+      case Theme.Blue: {
+        setThemeStyle('blueTheme');
+        break;
+      }
+      case Theme.Green: {
+        setThemeStyle('greenTheme');
+        break;
+      }
+      default: {
+        setThemeStyle('darkTheme');
+      }
+    }
+  }, [theme]);
 
   return (
     <BrowserRouter>
       <Route render={({ location }) => (
         <AnimatePresence>
-          {/* eslint-disable-next-line no-nested-ternary */}
-          <div className={theme === Theme.Dark ? 'darkTheme' : theme === Theme.Light ? 'lightTheme' : theme === Theme.Blue ? 'blueTheme' : 'greenTheme'}>
+          <div className={themeStyle}>
             <Switch location={location} key={location.pathname}>
               <Route
                 exact

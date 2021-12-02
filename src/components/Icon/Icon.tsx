@@ -36,7 +36,7 @@ export const Icon: FC<Props> = ({ imgSource, type }: Props) => {
   const { t } = useTranslation();
 
   const { handleOpen } = useApp(type);
-  const { startDrag, newCoords } = useDragNDrop(changeIconPos, icon, iconCoords, type);
+  const { startDrag, newCoords, isDrag } = useDragNDrop(changeIconPos, icon, iconCoords, type);
 
   return (
     <div
@@ -48,7 +48,7 @@ export const Icon: FC<Props> = ({ imgSource, type }: Props) => {
       <button
         type="button"
         onDoubleClick={handleOpen}
-        className={styles.imgContainer}
+        className={`${styles.imgContainer} ${isDrag ? styles.grabbed : ''}`}
         onMouseDown={startDrag}
         aria-label={`${type} icon`}
       >

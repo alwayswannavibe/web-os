@@ -11,6 +11,9 @@ import { toggleCompleteToDoItem, deleteToDoItem } from '@ToDo/redux/toDoSlice/to
 // Types
 import { RootState } from '@Types/rootState.type';
 
+// Components
+import { Button } from '@Components/Button/Button';
+
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
@@ -37,12 +40,12 @@ const ToDoItem: FC<Props> = ({ text, id }: Props) => {
       >
         {text}
       </motion.p>
-      <div className={`${styles.button} ${styles.checkButton}`} onClick={() => dispatch(toggleCompleteToDoItem(id))}>
+      <Button className={`${styles.button} ${styles.checkButton}`} onClick={() => dispatch(toggleCompleteToDoItem(id))}>
         <FontAwesomeIcon icon={faCheck} />
-      </div>
-      <div className={`${styles.button} ${styles.deleteButton}`} onClick={() => dispatch(deleteToDoItem(id))}>
+      </Button>
+      <Button className={`${styles.button} ${styles.deleteButton}`} onClick={() => dispatch(deleteToDoItem(id))}>
         <FontAwesomeIcon icon={faTrashAlt} />
-      </div>
+      </Button>
     </li>
   );
 };

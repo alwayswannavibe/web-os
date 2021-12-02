@@ -27,6 +27,8 @@ const ChatSelectionElement: FC<Props> = (
   <div
     className={styles.wrapper}
     onClick={() => changeChat(userId)}
+    role="button"
+    tabIndex={0}
   >
     <div className={styles.newMessage}>
       <div className={styles.nameAndMsg}>

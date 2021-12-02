@@ -39,7 +39,6 @@ export const MessageAlert: FC<ChildrenNever> = () => {
         toastId: message.id,
       });
     }
-    /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, [numberOfRender]);
 
   return (

@@ -11,6 +11,9 @@ import { SimonStatus } from '@Simon/enums/simonStatus.enum';
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
+// Components
+import { Button } from '@Components/Button/Button';
+
 // Styles
 import styles from './simonButton.module.css';
 
@@ -25,10 +28,9 @@ const SimonButton: FC<Props> = ({ btnRef, btnNumber, handleClick, numberOfButton
   const status = useSelector((store: RootState) => store.simon.simonStatus);
 
   return (
-    <button
-      type="button"
+    <Button
       disabled={status !== SimonStatus.Playing}
-      ref={btnRef}
+      forwardedRef={btnRef}
       onClick={() => handleClick(btnNumber)}
       aria-label="simon-button"
       className={styles[`btn${numberOfButtons}`]}

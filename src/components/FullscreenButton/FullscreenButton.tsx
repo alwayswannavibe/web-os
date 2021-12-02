@@ -6,6 +6,9 @@ import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
+// Components
+import { Button } from '@Components/Button/Button';
+
 // Styles
 import styles from './fullscreenButton.module.css';
 
@@ -21,17 +24,16 @@ export const FullscreenButton: FC<ChildrenNever> = () => {
     return () => document.removeEventListener('fullscreenchange', toggleFullscreen);
   }, []);
 
-  function handleFullscreen(): void {
+  async function handleFullscreen(): Promise<void> {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
+      await document.documentElement.requestFullscreen();
     } else {
-      document.exitFullscreen();
+      await document.exitFullscreen();
     }
   }
 
   return (
-    <button
-      type="button"
+    <Button
       onClick={handleFullscreen}
       id="fullscreen-btn"
       className={styles.fullscreenButtonContainer}
@@ -42,6 +44,6 @@ export const FullscreenButton: FC<ChildrenNever> = () => {
           (<FontAwesomeIcon icon={faCompress} className={styles.fullscreenButton} />)
           : (<FontAwesomeIcon icon={faExpand} className={styles.fullscreenButton} />)
       }
-    </button>
+    </Button>
   );
 };

@@ -63,12 +63,12 @@ export const SimonBar: FC<Props> = ({ difficulty }: Props) => {
         </p>
       </div>
       {status === SimonStatus.Waiting && (
-        <Button type="button" onClick={startGame}>{t('simon.start')}</Button>
+        <Button onClick={startGame} className={styles.btn}>{t('simon.start')}</Button>
       )}
       {status === SimonStatus.Losed && (
         <div className={styles.buttons}>
-          <Button type="button" onClick={handleChangeDifficulty}>{t('simon.changeDifficulty')}</Button>
-          <Button type="button" onClick={handleRestartGame}>{t('simon.restart')}</Button>
+          <Button onClick={handleChangeDifficulty} className={styles.btn}>{t('simon.changeDifficulty')}</Button>
+          <Button onClick={handleRestartGame} className={styles.btn}>{t('simon.restart')}</Button>
         </div>
       )}
     </div>

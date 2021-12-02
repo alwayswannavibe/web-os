@@ -56,13 +56,13 @@ const Sidebar: FC<ChildrenNever> = () => {
       {(isLose || isWin) && (
         <div className={styles.endGameButtons}>
           <Button
-            type="button"
+            className={styles.btn}
             onClick={handleChangeDifficulty}
           >
             {t('Change difficulty')}
           </Button>
           <Button
-            type="button"
+            className={styles.btn}
             onClick={handleRestart}
           >
             {t('Restart')}

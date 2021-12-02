@@ -65,7 +65,7 @@ const Registration: FC<ChildrenNever> = () => {
     <>
       <div className={styles.overlay} style={{ backgroundImage: `url(${space})` }} />
       <div className={styles.wrapper}>
-        <Button type="button" onClick={() => history.push('/')} className={styles.closeBtn}>←</Button>
+        <Button onClick={() => history.push('/')} className={styles.closeBtn}>←</Button>
         <form className={styles.loginForm} onSubmit={handleSubmit(handleRegistration)}>
           <span
             className={`${styles.formErrorDefault} ${formError ? styles.formError : ''}`}
@@ -137,7 +137,7 @@ const Registration: FC<ChildrenNever> = () => {
                   },
                 })}
               />
-              <Button type="button" className={styles.changePasswordVisibility} onClick={handleTooglePasswordVisible}>
+              <Button className={styles.changePasswordVisibility} onClick={handleTooglePasswordVisible}>
                 {isPasswordVisible ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
               </Button>
             </div>
@@ -160,7 +160,7 @@ const Registration: FC<ChildrenNever> = () => {
                   validate: (value) => value === getValues('password') || 'Passwords should be equals',
                 })}
               />
-              <Button type="button" className={styles.changePasswordVisibility} onClick={handleTooglePasswordVisible2}>
+              <Button className={styles.changePasswordVisibility} onClick={handleTooglePasswordVisible2}>
                 {isPasswordVisible2 ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
               </Button>
             </div>

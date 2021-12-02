@@ -167,7 +167,6 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
               </div>
               <div className={styles.buttonsContainer}>
                 <Button
-                  type="button"
                   className={`${styles.collapseBtn} ${styles.btn}`}
                   onClick={handleToggleCollapseWithProcessFullscreen}
                   aria-label="minimize window"
@@ -175,7 +174,6 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
                   <FontAwesomeIcon icon={faWindowMinimize} />
                 </Button>
                 <Button
-                  type="button"
                   onClick={handleFullscreen}
                   aria-label="toggle fullscreen"
                   className={`${styles.collapseBtn} ${styles.btn}`}
@@ -183,7 +181,6 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
                   <FontAwesomeIcon icon={faWindowRestore} />
                 </Button>
                 <Button
-                  type="button"
                   className={`${styles.closeBtn} ${styles.btn}`}
                   onClick={handleCloseWithProcessFullscreen}
                   aria-label="close window"

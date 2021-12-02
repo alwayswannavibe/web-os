@@ -49,11 +49,4 @@
 
 .toggleCollapseButton {
   padding: 0.2rem 1.5rem;
-
-  cursor: pointer;
-
-  color: inherit;
-  border: none;
-  border-radius: 2px;
-  background-color: var(--secondaryColor);
 }

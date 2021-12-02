@@ -96,7 +96,7 @@ const Translate: FC<ChildrenNever> = () => {
           </div>
         </div>
         <div className={styles.btnContainer}>
-          <Button type="button" onClick={handleSubmit}>Перевести</Button>
+          <Button onClick={handleSubmit}>Перевести</Button>
         </div>
       </Window>
     </>

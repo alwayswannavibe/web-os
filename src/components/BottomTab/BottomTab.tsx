@@ -12,6 +12,9 @@ import { useApp } from '@Hooks/useApp/useApp';
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
+// Components
+import { Button } from '@Components/Button/Button';
+
 // Styles
 import styles from './bottomTab.module.css';
 
@@ -26,20 +29,19 @@ const BottomTab: FC<Props> = ({ type, icon }: Props) => {
   return (
     <div data-cy="bottom-tab">
       {!isIncludeApp() && (
-        <button type="button" className={`${styles.close} ${styles.tab}`} onClick={handleOpen} aria-label={`${type} bottom icon`}>
+        <Button className={`${styles.close} ${styles.tab}`} onClick={handleOpen} aria-label={`${type} bottom icon`}>
           <FontAwesomeIcon icon={icon} />
-        </button>
+        </Button>
       )}
       {isIncludeApp() && (
-        <button
-          type="button"
+        <Button
           className={
             getAppIndex() === 0 ? `${styles.isActive} ${styles.tab} ${styles.open}` : `${styles.tab} ${styles.open}`
           }
           onClick={handleToggleCollapse}
         >
           <FontAwesomeIcon icon={icon} />
-        </button>
+        </Button>
       )}
     </div>
   );

@@ -66,7 +66,7 @@ const CalculatorButton: FC<Props> = ({ value }: Props) => {
   }
 
   return (
-    <Button type="button" className={styles.button} onClick={handleClick} aria-label={getAriaLabel()}>
+    <Button className={styles.button} onClick={handleClick} aria-label={getAriaLabel()}>
       {getReadableValue()}
     </Button>
   );

@@ -15,10 +15,6 @@
 .userSelectButton {
   margin-left: 5rem;
 
-  cursor: pointer;
-
-  color: var(--fontColor);
-  border: none;
   background-color: transparent;
 
   font-size: 1.7rem;

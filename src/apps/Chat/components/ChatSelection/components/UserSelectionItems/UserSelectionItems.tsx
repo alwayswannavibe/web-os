@@ -61,7 +61,7 @@ const UserSelectionItems: FC<Props> = ({ users }: Props) => {
 
   return (
     <>
-      {users.map((user: any) => (
+      {users.map((user: User) => (
         <ChatSelectionElement
           name={user.username}
           lastVisitDate={user.online ? 'Online' : getReadableLastVisitDate(user.lastVisit, language)}

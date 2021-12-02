@@ -24,7 +24,7 @@ const AuthAppRedirect: FC<ChildrenNever> = () => {
   return (
     <div className={styles.container}>
       <p className={styles.text}>{t('authRedirect.pleaseLogin')}</p>
-      <Button type="button" onClick={handleClick}>{t('authRedirect.goToLogin')}</Button>
+      <Button onClick={handleClick}>{t('authRedirect.goToLogin')}</Button>
     </div>
   );
 };

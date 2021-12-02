@@ -4,15 +4,14 @@
   margin-right: 2px;
   padding: 0.3rem 0.6rem;
 
-  cursor: pointer;
   user-select: none;
   transition: background-color 0.12s linear;
   text-align: center;
 
   color: inherit;
-  border: none;
   border-collapse: collapse;
   border-bottom: 4px solid var(--bottomTabBorder);
+  border-radius: 0 !important;
   background-color: var(--bottomTabBackground);
 
   font-size: inherit;
@@ -24,12 +23,4 @@
 
 .close {
   border-bottom-color: var(--closedBottomTab);
-}
-
-.tab:hover {
-  background-color: var(--onHoverBottomTab);
-}
-
-.tab:active {
-  background-color: var(--onActiveBottomTab);
 }

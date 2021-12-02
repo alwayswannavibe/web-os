@@ -50,22 +50,22 @@ export const Simon: FC<ChildrenNever> = () => {
             </h2>
             <ul className={styles.difficultiesList}>
               <li>
-                <Button onClick={() => chooseDifficulty(Difficulty.Easy)} type="button">
+                <Button onClick={() => chooseDifficulty(Difficulty.Easy)} className={styles.difficultyButton}>
                   {t(`simon.difficulties.${Difficulty.Easy}`)}
                 </Button>
               </li>
               <li>
-                <Button onClick={() => chooseDifficulty(Difficulty.Normal)} type="button">
+                <Button onClick={() => chooseDifficulty(Difficulty.Normal)} className={styles.difficultyButton}>
                   {t(`simon.difficulties.${Difficulty.Normal}`)}
                 </Button>
               </li>
               <li>
-                <Button onClick={() => chooseDifficulty(Difficulty.Hard)} type="button">
+                <Button onClick={() => chooseDifficulty(Difficulty.Hard)} className={styles.difficultyButton}>
                   {t(`simon.difficulties.${Difficulty.Hard}`)}
                 </Button>
               </li>
               <li>
-                <Button onClick={() => chooseDifficulty(Difficulty.Extreme)} type="button">
+                <Button onClick={() => chooseDifficulty(Difficulty.Extreme)} className={styles.difficultyButton}>
                   {t(`simon.difficulties.${Difficulty.Extreme}`)}
                 </Button>
               </li>

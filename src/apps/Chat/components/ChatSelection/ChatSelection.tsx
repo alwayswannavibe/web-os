@@ -20,6 +20,7 @@ import { RootState } from '@Types/rootState.type';
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
 // Components
+import { Button } from '@Components/Button/Button';
 import { SelectionCategory } from './components/SelectionCategory/SelectionCategory';
 
 // Styles
@@ -75,8 +76,7 @@ const ChatSelection: FC<ChildrenNever> = () => {
             </motion.div>
           )}
         </AnimatePresence>
-        <button
-          type="button"
+        <Button
           className={
             classNames(styles.toggleVisibilityBtn, {
               [styles.closeBtn]: !isOpen,
@@ -85,7 +85,7 @@ const ChatSelection: FC<ChildrenNever> = () => {
           onClick={handleClick}
         >
           {isOpen ? <FontAwesomeIcon icon={faAngleLeft} /> : <FontAwesomeIcon icon={faAngleRight} />}
-        </button>
+        </Button>
       </div>
     </AnimateSharedLayout>
   );

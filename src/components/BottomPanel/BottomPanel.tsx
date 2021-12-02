@@ -26,6 +26,7 @@ import { RootState } from '@Types/rootState.type';
 
 // Components
 import { BottomTab } from '@Components/BottomTab/BottomTab';
+import { Button } from '@Components/Button/Button';
 
 // Styles
 import styles from './bottomPanel.module.css';
@@ -81,13 +82,13 @@ export const BottomPanel: FC<ChildrenNever> = () => {
       />
       {!loading &&
         (username !== '' ? (
-          <button onClick={handleLogout} type="button" className={styles.logBtn} aria-label="logout">
+          <Button onClick={handleLogout} className={styles.logBtn} aria-label="logout">
             <FontAwesomeIcon icon={faSignOutAlt} />
-          </button>
+          </Button>
         ) : (
-          <button onClick={handleLogin} type="button" className={styles.logBtn} aria-label="login">
+          <Button onClick={handleLogin} className={styles.logBtn} aria-label="login">
             <FontAwesomeIcon icon={faUser} />
-          </button>
+          </Button>
         ))}
     </div>
   );

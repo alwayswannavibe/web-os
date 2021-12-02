@@ -21,6 +21,9 @@ import { RootState } from '@Types/rootState.type';
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
+// Components
+import { Button } from '@Components/Button/Button';
+
 // Styles
 import styles from './icon.module.css';
 
@@ -45,15 +48,14 @@ export const Icon: FC<Props> = ({ imgSource, type }: Props) => {
       ref={icon}
       data-cy={`icon-${type}`}
     >
-      <button
-        type="button"
+      <Button
         onDoubleClick={handleOpen}
         className={`${styles.imgContainer} ${isDrag ? styles.grabbed : ''}`}
         onMouseDown={startDrag}
         aria-label={`${type} icon`}
       >
         <img src={imgSource} alt="" className={`${styles.img}`} />
-      </button>
+      </Button>
       <span className={styles.title}>{t(`apps.${type}`)}</span>
     </div>
   );

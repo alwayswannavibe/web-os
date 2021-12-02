@@ -14,6 +14,9 @@ import { RootState } from '@Types/rootState.type';
 // Redux
 import { addFlag, removeFlag, setVisible } from '@Minesweeper/redux/minesweeperSlice/minesweeperSlice';
 
+// Components
+import { Button } from '@Components/Button/Button';
+
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
@@ -120,8 +123,7 @@ const MinesweeperNode: FC<Props> = ({ value, arrIndex, index }: Props) => {
   }
 
   return (
-    <button
-      type="button"
+    <Button
       className={classNames(styles.node, {
         [styles.lose]: value === BOMB_NUMBER && isLose,
         [styles.win]: value === BOMB_NUMBER && isWin,
@@ -131,7 +133,7 @@ const MinesweeperNode: FC<Props> = ({ value, arrIndex, index }: Props) => {
       onClick={handleClick}
     >
       {getIcon()}
-    </button>
+    </Button>
   );
 };
 

@@ -55,7 +55,7 @@ const AddRoomForm: FC<ChildrenNever> = () => {
         </Scrollbars>
       </div>
       <div className={styles.buttonsContainer}>
-        <Button type="button" className={styles.submitButton} onClick={handleCancel}>Cancel</Button>
+        <Button className={styles.submitButton} onClick={handleCancel}>Cancel</Button>
         <Button type="submit" className={styles.submitButton}>Create room</Button>
       </div>
     </form>

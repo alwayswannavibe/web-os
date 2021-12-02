@@ -62,8 +62,8 @@ export const SimonMain: FC<Props> = ({ numberOfButtons }: Props) => {
   const buttonsRefs = useMemo(() => [btnRef1, btnRef2, btnRef3, btnRef4, btnRef5, btnRef6, btnRef7, btnRef8, btnRef9], []);
   const buttonsRefsWithLimit = buttonsRefs.slice(0, numberOfButtons);
 
-  function handleClick(numberOfButton: number): void {
-    new Audio(sounds[numberOfButton]).play();
+  async function handleClick(numberOfButton: number): Promise<void> {
+    await new Audio(sounds[numberOfButton]).play();
     setTimeout(() => buttonsRefs[numberOfButton]?.current?.classList.add(styles.btnActive), 0);
     setTimeout(() => buttonsRefs[numberOfButton]?.current?.classList.remove(styles.btnActive), 400);
     setTimeout(() => dispatch(simonClick({ numberOfButton })), 400);
@@ -75,10 +75,10 @@ export const SimonMain: FC<Props> = ({ numberOfButtons }: Props) => {
         dispatch(startShowing());
       } else {
         pattern.forEach((el, index) => {
-          setTimeout(() => {
+          setTimeout(async () => {
             // Use getState because hook not update state in setTimeout
             if (!reduxStore.getState().apps.appsState[App.Simon].isOpened) return;
-            new Audio(sounds[el]).play();
+            await new Audio(sounds[el]).play();
           }, 900 * index + 900);
           setTimeout(() => buttonsRefs[el]?.current?.classList.add(styles.btnActive), 900 * index + 900);
           setTimeout(() => buttonsRefs[el]?.current?.classList.remove(styles.btnActive), 900 * index + 1400);

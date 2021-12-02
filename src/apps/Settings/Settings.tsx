@@ -106,7 +106,6 @@ export const Settings: FC<ChildrenNever> = () => {
           <div className={styles.resetContainer}>
             <Button
               className={styles.resetBtn}
-              type="button"
               onClick={() => {
                 localStorage.clear();
                 window.location.reload();

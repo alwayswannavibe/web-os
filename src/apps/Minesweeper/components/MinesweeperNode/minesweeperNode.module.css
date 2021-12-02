@@ -1,9 +1,6 @@
 .node {
   width: 100%;
 
-  cursor: pointer;
-  transition: filter 0.15s;
-
   color: white;
   border: none;
   background-color: var(--minesweeeperNodeDefaultBackground);
@@ -18,14 +15,6 @@
   justify-content: center;
 
   font-size: 80%;
-}
-
-.node:hover {
-  filter: opacity(60%);
-}
-
-.node:active {
-  filter: opacity(30%);
 }
 
 .lose {

@@ -1,6 +1,4 @@
 .button {
-  padding: 0.5rem;
-
   cursor: pointer;
 
   transition: filter 0.15s linear;

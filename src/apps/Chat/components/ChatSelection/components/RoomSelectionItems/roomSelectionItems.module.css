@@ -3,12 +3,5 @@
   height: 2rem;
   margin: 0 2px;
 
-  cursor: pointer;
-
   color: inherit;
-  border: none;
-  border-radius: 2px;
-  background-color: var(--secondaryColor);
-
-  font-size: 1rem;
 }

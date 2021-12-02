@@ -1,5 +1,5 @@
 // Libraries
-import React, { FC, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleUp, faAngleDown, faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -10,6 +10,7 @@ import { User } from '@Interfaces/user.interface';
 import { Room } from '@Apps/Chat/interfaces/room';
 
 // Components
+import { Button } from '@Components/Button/Button';
 import { UserSelectionItems } from '../UserSelectionItems/UserSelectionItems';
 import { RoomSelectionItems } from '../RoomSelectionItems/RoomSelectionItems';
 
@@ -37,7 +38,7 @@ const SelectionCategory: FC<Props> = ({ items, itemsType, categoryName }: Props)
     return (items as Room[]).filter((item) => item.name.includes(filterExp));
   }
 
-  function handleChangeSearch(event: any): void {
+  function handleChangeSearch(event: ChangeEvent<HTMLInputElement>): void {
     setVisibleItems(getFilteredItems(event.target.value));
   }
 
@@ -49,9 +50,9 @@ const SelectionCategory: FC<Props> = ({ items, itemsType, categoryName }: Props)
     <div className={styles.selectContainer}>
       <div className={styles.category}>
         <p className={styles.categoryName}>{categoryName}</p>
-        <button type="button" onClick={handleToggleCollapse} className={styles.toggleCollapseButton}>
+        <Button onClick={handleToggleCollapse} className={styles.toggleCollapseButton}>
           {!isCollapsed ? (<FontAwesomeIcon icon={faAngleUp} />) : (<FontAwesomeIcon icon={faAngleDown} />)}
-        </button>
+        </Button>
       </div>
       <div className={styles.findContainer}>
         <input type="text" className={styles.findInput} onChange={handleChangeSearch} />

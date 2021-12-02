@@ -54,5 +54,5 @@
 }
 
 .btnActive {
-  filter: opacity(30%);
+  filter: opacity(30%) !important;
 }

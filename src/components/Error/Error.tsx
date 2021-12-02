@@ -6,6 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
+// Components
+import { Button } from '@Components/Button/Button';
+
 // Styles
 import styles from './error.module.css';
 
@@ -16,9 +19,9 @@ interface Props extends ChildrenNever {
 const Error: FC<Props> = ({ refetch }: Props) => (
   <div className={styles.errorContainer}>
     Error, try again later
-    <button type="button" onClick={refetch}>
+    <Button onClick={refetch}>
       <FontAwesomeIcon icon={faArrowsRotate} />
-    </button>
+    </Button>
   </div>
 );
 

@@ -50,22 +50,22 @@ const Welcome: FC<Props> = ({ handleWelcomeClose }: Props) => {
             <p>
               {`${t('hello')}, ${username}`}
             </p>
-            <Button type="button" className={styles.enter} onClick={handleWelcomeClose}>
+            <Button className={styles.enter} onClick={handleWelcomeClose}>
               {t('enter')}
             </Button>
-            <Button type="button" className={styles.changeAccount} onClick={handleGoToLogin}>
+            <Button className={styles.changeAccount} onClick={handleGoToLogin}>
               {t('changeAccount')}
             </Button>
           </>
         ) || (
           <>
-            <Button type="button" className={styles.enter} onClick={handleGoToLogin}>
+            <Button className={styles.enter} onClick={handleGoToLogin}>
               {t('login')}
             </Button>
             <p>
               {t('or')}
             </p>
-            <Button type="button" className={styles.enter} onClick={handleWelcomeClose}>
+            <Button className={styles.enter} onClick={handleWelcomeClose}>
               {t('continueAsAGuest')}
             </Button>
           </>

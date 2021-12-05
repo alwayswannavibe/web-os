@@ -10,7 +10,7 @@ import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 // Styles
 import styles from './calculatorOperationButtons.module.css';
 
-const CalculatorOperationButtons: FC<ChildrenNever> = () => {
+const CalculatorOperationButtons: FC<ChildrenNever> = React.memo(() => {
   const operationButtons = ['+', '-', '*', '/', '^', '.', 'C'];
 
   return (
@@ -30,6 +30,6 @@ const CalculatorOperationButtons: FC<ChildrenNever> = () => {
       </div>
     </div>
   );
-};
+});
 
 export { CalculatorOperationButtons };

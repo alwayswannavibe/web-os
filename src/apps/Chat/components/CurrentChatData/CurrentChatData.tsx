@@ -15,7 +15,7 @@ import { CurrentChatRoomData } from './components/CurrentChatRoomData/CurrentCha
 // Styles
 import styles from './currentChatData.module.css';
 
-const CurrentChatData: FC<ChildrenNever> = () => {
+const CurrentChatData: FC<ChildrenNever> = React.memo(() => {
   const users = useSelector((state: RootState) => state.chatUsers.users);
   const rooms = useSelector((state: RootState) => state.chatRooms.rooms);
   const activeChat = useSelector((state: RootState) => state.chat.activeChat);
@@ -34,6 +34,6 @@ const CurrentChatData: FC<ChildrenNever> = () => {
   }
 
   return null;
-};
+});
 
 export { CurrentChatData };

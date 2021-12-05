@@ -1,5 +1,5 @@
 // Libraries
-import { FC, useEffect, useRef } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -29,7 +29,7 @@ import { Sidebar } from '@Minesweeper/components/Sidebar/Sidebar';
 // Styles
 import styles from './minesweeper.module.css';
 
-const Minesweeper: FC<ChildrenNever> = () => {
+const Minesweeper: FC<ChildrenNever> = React.memo(() => {
   const pattern = useSelector((state: RootState) => state.minesweeper.pattern);
   const size = useSelector((state: RootState) => state.minesweeper.size);
   const difficulty = useSelector((state: RootState) => state.minesweeper.difficulty);
@@ -73,6 +73,6 @@ const Minesweeper: FC<ChildrenNever> = () => {
       </Window>
     </>
   );
-};
+});
 
 export { Minesweeper };

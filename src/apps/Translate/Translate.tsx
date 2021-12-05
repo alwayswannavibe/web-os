@@ -1,5 +1,5 @@
 // Libraries
-import { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import axios from 'axios';
 
 // Interfaces
@@ -23,7 +23,7 @@ import { AvailableTranslateLanguages } from './constants/availableTranslateLangu
 // Styles
 import styles from './translate.module.css';
 
-const Translate: FC<ChildrenNever> = () => {
+const Translate: FC<ChildrenNever> = React.memo(() => {
   const [reqLanguage, setReqLanguage] = useState(AvailableTranslateLanguages.EN);
   const [reqText, setReqText] = useState('');
   const [resLanguage, setResLanguage] = useState(AvailableTranslateLanguages.EN);
@@ -101,6 +101,6 @@ const Translate: FC<ChildrenNever> = () => {
       </Window>
     </>
   );
-};
+});
 
 export { Translate };

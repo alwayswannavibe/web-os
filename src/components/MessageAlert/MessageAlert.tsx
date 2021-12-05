@@ -1,7 +1,7 @@
 // Libraries
 import { toast, ToastContainer } from 'react-toastify';
 import { useSelector } from 'react-redux';
-import { FC, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 
 // Enums
 import { App } from '@Enums/app.enum';

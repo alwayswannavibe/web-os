@@ -1,5 +1,5 @@
 // Libraries
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -30,7 +30,7 @@ import { Button } from '@Components/Button/Button';
 // Styles
 import styles from './difficultiesScreen.module.css';
 
-const DifficultiesScreen: FC<ChildrenNever> = () => {
+const DifficultiesScreen: FC<ChildrenNever> = React.memo(() => {
   const dispatch = useDispatch();
   const { t } = useTranslation('minesweeper');
 
@@ -58,6 +58,6 @@ const DifficultiesScreen: FC<ChildrenNever> = () => {
       </Button>
     </div>
   );
-};
+});
 
 export { DifficultiesScreen };

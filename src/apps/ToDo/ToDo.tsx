@@ -27,7 +27,7 @@ import { ToDoItem } from '@ToDo/components/ToDoItem/ToDoItem';
 // Styles
 import styles from './toDo.module.css';
 
-const ToDo: FC<ChildrenNever> = () => {
+const ToDo: FC<ChildrenNever> = React.memo(() => {
   const toDoList = useSelector((state: RootState) => state.toDo.toDoList);
 
   const dispatch = useDispatch();
@@ -73,6 +73,6 @@ const ToDo: FC<ChildrenNever> = () => {
       </Window>
     </>
   );
-};
+});
 
 export { ToDo };

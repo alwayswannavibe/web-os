@@ -1,5 +1,5 @@
 // Libraries
-import { FC, useEffect, useMemo, useRef } from 'react';
+import React, { FC, useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -39,7 +39,7 @@ interface Props extends ChildrenNever {
   numberOfButtons: number;
 }
 
-export const SimonMain: FC<Props> = ({ numberOfButtons }: Props) => {
+export const SimonMain: FC<Props> = React.memo(({ numberOfButtons }: Props) => {
   const dispatch = useDispatch();
 
   const status = useSelector((store: RootState) => store.simon.simonStatus);
@@ -106,4 +106,4 @@ export const SimonMain: FC<Props> = ({ numberOfButtons }: Props) => {
       <SimonBar difficulty={difficulty} />
     </div>
   );
-};
+});

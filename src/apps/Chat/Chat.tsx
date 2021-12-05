@@ -27,7 +27,7 @@ import { AuthAppRedirect } from '@Components/AuthAppRedirect/AuthAppRedirect';
 // Styles
 import styles from './chat.module.css';
 
-export const Chat: FC<ChildrenNever> = () => {
+export const Chat: FC<ChildrenNever> = React.memo(() => {
   const isAddRoomFormOpen = useSelector((state: RootState) => state.chatRooms.isAddRoomFormOpen);
   const username = useSelector((state: RootState) => state.user.username);
 
@@ -54,4 +54,4 @@ export const Chat: FC<ChildrenNever> = () => {
       </Window>
     </>
   );
-};
+});

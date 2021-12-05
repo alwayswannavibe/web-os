@@ -26,7 +26,7 @@ interface Props extends ChildrenNever {
   value: string;
 }
 
-const CalculatorButton: FC<Props> = ({ value }: Props) => {
+const CalculatorButton: FC<Props> = React.memo(({ value }: Props) => {
   const dispatch = useDispatch();
   const { t } = useTranslation('calculator');
 
@@ -70,6 +70,6 @@ const CalculatorButton: FC<Props> = ({ value }: Props) => {
       {getReadableValue()}
     </Button>
   );
-};
+});
 
 export { CalculatorButton };

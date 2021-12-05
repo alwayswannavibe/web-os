@@ -25,7 +25,7 @@ interface Props extends ChildrenNever {
   id: string;
 }
 
-const ToDoItem: FC<Props> = ({ text, id }: Props) => {
+const ToDoItem: FC<Props> = React.memo(({ text, id }: Props) => {
   const dispatch = useDispatch();
   const completed = useSelector(
     (state: RootState) => state.toDo.toDoList[state.toDo.toDoList.findIndex((el) => el.id === id)].completed,
@@ -48,6 +48,6 @@ const ToDoItem: FC<Props> = ({ text, id }: Props) => {
       </Button>
     </li>
   );
-};
+});
 
 export { ToDoItem };

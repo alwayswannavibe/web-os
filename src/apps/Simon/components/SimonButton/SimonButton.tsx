@@ -1,5 +1,5 @@
 // Libraries
-import { FC, RefObject } from 'react';
+import React, { FC, RefObject } from 'react';
 import { useSelector } from 'react-redux';
 
 // Types
@@ -24,7 +24,7 @@ interface Props extends ChildrenNever {
   numberOfButtons: number;
 }
 
-const SimonButton: FC<Props> = ({ btnRef, btnNumber, handleClick, numberOfButtons }: Props) => {
+const SimonButton: FC<Props> = React.memo(({ btnRef, btnNumber, handleClick, numberOfButtons }: Props) => {
   const status = useSelector((store: RootState) => store.simon.simonStatus);
 
   return (
@@ -36,6 +36,6 @@ const SimonButton: FC<Props> = ({ btnRef, btnNumber, handleClick, numberOfButton
       className={styles[`btn${numberOfButtons}`]}
     />
   );
-};
+});
 
 export { SimonButton };

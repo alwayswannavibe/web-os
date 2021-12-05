@@ -1,5 +1,5 @@
 // Libraries
-import { FC, useRef } from 'react';
+import React, { FC, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 // Redux

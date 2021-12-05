@@ -31,7 +31,7 @@ import { Button } from '@Components/Button/Button';
 // Styles
 import styles from './settings.module.css';
 
-export const Settings: FC<ChildrenNever> = () => {
+export const Settings: FC<ChildrenNever> = React.memo(() => {
   const dispatch = useDispatch();
 
   const backgroundImage = useSelector((state: RootState) => state.theme.backgroundImage);
@@ -118,4 +118,4 @@ export const Settings: FC<ChildrenNever> = () => {
       </Window>
     </>
   );
-};
+});

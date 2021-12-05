@@ -1,5 +1,5 @@
 // Libraries
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -28,7 +28,7 @@ import { Button } from '@Components/Button/Button';
 // Styles
 import styles from './simon.module.css';
 
-export const Simon: FC<ChildrenNever> = () => {
+export const Simon: FC<ChildrenNever> = React.memo(() => {
   const dispatch = useDispatch();
 
   const difficulty = useSelector((state: RootState) => state.simon.difficulty);
@@ -81,4 +81,4 @@ export const Simon: FC<ChildrenNever> = () => {
       </Window>
     </>
   );
-};
+});

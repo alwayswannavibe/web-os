@@ -27,7 +27,7 @@ import { Button } from '@Components/Button/Button';
 // Styles
 import styles from './sidebar.module.css';
 
-const Sidebar: FC<ChildrenNever> = () => {
+const Sidebar: FC<ChildrenNever> = React.memo(() => {
   const availableFlags = useSelector((state: RootState) => state.minesweeper.availableFlags);
   const isLose = useSelector((state: RootState) => state.minesweeper.isLose);
   const isWin = useSelector((state: RootState) => state.minesweeper.isWin);
@@ -71,6 +71,6 @@ const Sidebar: FC<ChildrenNever> = () => {
       )}
     </div>
   );
-};
+});
 
 export { Sidebar };

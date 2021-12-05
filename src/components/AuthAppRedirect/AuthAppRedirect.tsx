@@ -1,5 +1,5 @@
 // Libraries
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -12,7 +12,7 @@ import { Button } from '@Components/Button/Button';
 // Styles
 import styles from './authAppRedirect.module.css';
 
-const AuthAppRedirect: FC<ChildrenNever> = () => {
+const AuthAppRedirect: FC<ChildrenNever> = React.memo(() => {
   const history = useHistory();
 
   const { t } = useTranslation('authRedirect');
@@ -27,6 +27,6 @@ const AuthAppRedirect: FC<ChildrenNever> = () => {
       <Button onClick={handleClick}>{t('authRedirect.goToLogin')}</Button>
     </div>
   );
-};
+});
 
 export { AuthAppRedirect };

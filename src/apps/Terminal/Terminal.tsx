@@ -32,7 +32,7 @@ import { Icon } from '@Components/Icon/Icon';
 // Styles
 import styles from './terminal.module.css';
 
-export const Terminal: FC<ChildrenNever> = () => {
+export const Terminal: FC<ChildrenNever> = React.memo(() => {
   const terminalHistory = useSelector((state: RootState) => state.terminal.terminalHistory);
   const inputHistory = useSelector((state: RootState) => state.terminal.terminalInputHistory);
 
@@ -126,4 +126,4 @@ export const Terminal: FC<ChildrenNever> = () => {
       </Window>
     </>
   );
-};
+});

@@ -1,5 +1,5 @@
 // Libraries
-import { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -29,7 +29,7 @@ interface Props extends ChildrenNever {
   index: number;
 }
 
-const MinesweeperNode: FC<Props> = ({ value, arrIndex, index }: Props) => {
+const MinesweeperNode: FC<Props> = React.memo(({ value, arrIndex, index }: Props) => {
   const [isFlag, setIsFlag] = useState(false);
   const [isBombClick, setIsBombClick] = useState(false);
   const isVisible = useSelector((state: RootState) => state.minesweeper.visibilityList[arrIndex][index]);
@@ -135,6 +135,6 @@ const MinesweeperNode: FC<Props> = ({ value, arrIndex, index }: Props) => {
       {getIcon()}
     </Button>
   );
-};
+});
 
 export { MinesweeperNode };

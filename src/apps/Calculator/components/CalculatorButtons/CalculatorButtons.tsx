@@ -11,13 +11,13 @@ import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 // Styles
 import styles from './calculatorButtons.module.css';
 
-const CalculatorButtons: FC<ChildrenNever> = () => (
+const CalculatorButtons: FC<ChildrenNever> = React.memo(() => (
   <div className={styles.wrapper}>
     <div className={styles.buttons}>
       <CalculatorNumberButtons />
       <CalculatorOperationButtons />
     </div>
   </div>
-);
+));
 
 export { CalculatorButtons };

@@ -1,6 +1,6 @@
 // Libraries
 import { motion } from 'framer-motion';
-import { FC, useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 
@@ -25,7 +25,7 @@ interface Props extends ChildrenNever {
   message: Message;
 }
 
-const MessageItem: FC<Props> = ({ message }: Props) => {
+const MessageItem: FC<Props> = React.memo(({ message }: Props) => {
   const username = useSelector((state: RootState) => state.user.username);
   const dispatch = useDispatch();
 
@@ -79,6 +79,6 @@ const MessageItem: FC<Props> = ({ message }: Props) => {
       </motion.li>
     </div>
   );
-};
+});
 
 export { MessageItem };

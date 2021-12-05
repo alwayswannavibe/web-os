@@ -21,7 +21,7 @@ import { MessageItem } from '@Chat/components/MessageItem/MessageItem';
 import Scrollbars from 'react-custom-scrollbars';
 import styles from './messagesList.module.css';
 
-export const MessagesList: FC<ChildrenNever> = () => {
+export const MessagesList: FC<ChildrenNever> = React.memo(() => {
   const messages = useSelector((state: RootState) => state.chat.messages);
   const isLoading = useSelector((state: RootState) => state.chat.isLoading);
   const hasError = useSelector((state: RootState) => state.chat.hasError);
@@ -75,4 +75,4 @@ export const MessagesList: FC<ChildrenNever> = () => {
       </Scrollbars>
     </div>
   );
-};
+});

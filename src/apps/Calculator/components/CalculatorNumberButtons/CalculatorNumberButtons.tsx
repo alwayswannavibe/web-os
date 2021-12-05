@@ -10,7 +10,7 @@ import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 // Styles
 import styles from './calculatorNumberButtons.module.css';
 
-const CalculatorNumberButtons: FC<ChildrenNever> = () => {
+const CalculatorNumberButtons: FC<ChildrenNever> = React.memo(() => {
   const numberButtons = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
   return (
@@ -27,6 +27,6 @@ const CalculatorNumberButtons: FC<ChildrenNever> = () => {
       </div>
     </div>
   );
-};
+});
 
 export { CalculatorNumberButtons };

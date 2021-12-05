@@ -26,7 +26,7 @@ import { SelectionCategory } from './components/SelectionCategory/SelectionCateg
 // Styles
 import styles from './chatSelection.module.css';
 
-const ChatSelection: FC<ChildrenNever> = () => {
+const ChatSelection: FC<ChildrenNever> = React.memo(() => {
   const users = useSelector((state: RootState) => state.chatUsers.users);
   const rooms = useSelector((state: RootState) => state.chatRooms.rooms);
 
@@ -89,6 +89,6 @@ const ChatSelection: FC<ChildrenNever> = () => {
       </div>
     </AnimateSharedLayout>
   );
-};
+});
 
 export { ChatSelection };

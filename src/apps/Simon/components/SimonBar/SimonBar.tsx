@@ -1,5 +1,5 @@
 // Libraries
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -29,7 +29,7 @@ interface Props extends ChildrenNever {
   difficulty: Difficulty;
 }
 
-export const SimonBar: FC<Props> = ({ difficulty }: Props) => {
+export const SimonBar: FC<Props> = React.memo(({ difficulty }: Props) => {
   const status = useSelector((store: RootState) => store.simon.simonStatus);
   const level = useSelector((store: RootState) => store.simon.level);
 
@@ -73,4 +73,4 @@ export const SimonBar: FC<Props> = ({ difficulty }: Props) => {
       )}
     </div>
   );
-};
+});

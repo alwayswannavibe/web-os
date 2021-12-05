@@ -16,13 +16,13 @@ interface Props extends ChildrenNever {
   refetch: () => void;
 }
 
-const Error: FC<Props> = ({ refetch }: Props) => (
+const Error: FC<Props> = React.memo(({ refetch }: Props) => (
   <div className={styles.errorContainer}>
     Error, try again later
     <Button onClick={refetch}>
       <FontAwesomeIcon icon={faArrowsRotate} />
     </Button>
   </div>
-);
+));
 
 export { Error };

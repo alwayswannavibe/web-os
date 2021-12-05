@@ -19,7 +19,7 @@ import { AddRoomUserSelectItem } from './components/AddRoomUserSelectItem/AddRoo
 // Styles
 import styles from './addRoomForm.module.css';
 
-const AddRoomForm: FC<ChildrenNever> = () => {
+const AddRoomForm: FC<ChildrenNever> = React.memo(() => {
   const users = useSelector((state: RootState) => state.chatUsers.users);
 
   const dispatch = useDispatch();
@@ -60,6 +60,6 @@ const AddRoomForm: FC<ChildrenNever> = () => {
       </div>
     </form>
   );
-};
+});
 
 export { AddRoomForm };

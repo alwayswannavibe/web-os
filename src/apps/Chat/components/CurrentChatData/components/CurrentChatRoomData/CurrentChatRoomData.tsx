@@ -32,7 +32,7 @@ const CurrentChatRoomData: FC<Props> = ({ room }: Props) => {
         <div>{room.name}</div>
         <div>{getReadableLastVisitDate(room.lastMessage?.createdAt || room.createdAt, language)}</div>
       </div>
-      <Avatar name={room.name} width={40} height={40} />
+      <Avatar name={room.name} width={40} height={40} link={room.image} />
     </div>
   );
 };

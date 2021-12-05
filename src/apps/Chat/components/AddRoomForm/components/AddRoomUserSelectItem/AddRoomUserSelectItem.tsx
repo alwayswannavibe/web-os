@@ -21,16 +21,16 @@ interface Props extends ChildrenNever {
 
 const AddRoomUserSelectItem: FC<Props> = ({ username, id }: Props) => {
   const [isIncluded, setIsIncluded] = useState(false);
+
   const dispatch = useDispatch();
 
   function toggleUserIncluded() {
     if (isIncluded) {
       dispatch(removeUserFromNewRoom(id));
-      setIsIncluded(false);
     } else {
       dispatch(addUserToNewRoom(id));
-      setIsIncluded(true);
     }
+    setIsIncluded((prev) => !prev);
   }
 
   return (

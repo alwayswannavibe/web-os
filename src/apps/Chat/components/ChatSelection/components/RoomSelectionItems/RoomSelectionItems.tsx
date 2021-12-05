@@ -44,7 +44,7 @@ const RoomSelectionItems: FC<Props> = ({ rooms }: Props) => {
 
   const dispatch = useDispatch();
 
-  function changeChat(chatId: number): void {
+  function changeChat(chatId: number) {
     dispatch(closeAddRoomForm());
     dispatch(changeActiveChat({ id: chatId, type: 'Room' }));
     dispatch(fetchMessages(chatId));
@@ -53,11 +53,11 @@ const RoomSelectionItems: FC<Props> = ({ rooms }: Props) => {
     dispatch(changeNewMessageRoomCountToZero({ userId: chatId }));
   }
 
-  const refetchRooms = useCallback((): void => {
+  const refetchRooms = useCallback(() => {
     dispatch(fetchRooms());
   }, []);
 
-  const handleOpenAddRoom = useCallback((): void => {
+  const handleOpenAddRoom = useCallback(() => {
     dispatch(openAddRoomForm());
   }, []);
 

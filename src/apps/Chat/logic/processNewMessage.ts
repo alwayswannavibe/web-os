@@ -1,9 +1,14 @@
-import { Message } from '@Interfaces/message.interface';
+// Redux
 import store from 'src/redux/store';
 import { changeLastUserMessage, incrementNewMessageCount } from '@Chat/redux/chatUsersSlice/chatUsersSlice';
+import { addMessage, incrementNumberOfRender, readMessages } from '@Chat/redux/chatSlice/chatSlice';
+import { changeLastRoomMessage, incrementRoomNewMessagesCount } from '@Chat/redux/chatRoomsSlice/chatRooms';
+
+// Interface
+import { Message } from '@Interfaces/message.interface';
+
+// Enums
 import { App } from '@Enums/app.enum';
-import { addMessage, incrementNumberOfRender, readMessages } from '../redux/chatSlice/chatSlice';
-import { changeLastRoomMessage, incrementRoomNewMessagesCount } from '../redux/chatRoomsSlice/chatRooms';
 
 function processNewMessage(newMessage: Message): void {
   const { activeChat } = store.getState().chat;

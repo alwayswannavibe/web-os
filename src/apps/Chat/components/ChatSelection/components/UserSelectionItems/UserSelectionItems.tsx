@@ -1,5 +1,5 @@
 // Libraries
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
@@ -38,18 +38,18 @@ const UserSelectionItems: FC<Props> = ({ users }: Props) => {
 
   const dispatch = useDispatch();
 
-  function changeChat(chatId: number): void {
+  const changeChat = useCallback((chatId: number) => {
     dispatch(closeAddRoomForm());
     dispatch(changeActiveChat({ id: chatId, type: 'User' }));
     dispatch(fetchMessages(chatId));
     dispatch(readMessages());
     dispatch(changeNewMessageCount({ id: chatId, activeType: 'User' }));
     dispatch(changeNewMessageCountToZero({ userId: chatId }));
-  }
+  }, []);
 
-  function refetchUsers(): void {
+  const refetchUsers = useCallback(() => {
     dispatch(fetchUsers());
-  }
+  }, []);
 
   if (isLoading) {
     return <Loading />;

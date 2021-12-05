@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 // Redux
-import { getCalculatorResult, setCalculatorInput } from '@Calculator/redux/calculatorSlice/calculatorSlice';
+import { getCalculatorResultAndUpdateLastOperations, setCalculatorInput } from '@Calculator/redux/calculatorSlice/calculatorSlice';
 import { RootState } from '@Types/rootState.type';
 
 // Interfaces
@@ -15,20 +15,21 @@ import styles from './calculatorInput.module.css';
 
 const CalculatorInput: FC<ChildrenNever> = () => {
   const inputValue = useSelector((state: RootState) => state.calculator.inputValue);
-  const { t } = useTranslation('calculator');
-  const dispatch = useDispatch();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const dispatch = useDispatch();
+  const { t } = useTranslation('calculator');
+
+  function handleChangeInput(event: React.ChangeEvent<HTMLInputElement>) {
     const numbersAndOperatorsRegExp = new RegExp(/^[\d+\-*^./\s]*$/);
     if (numbersAndOperatorsRegExp.test(event.target.value)) {
       dispatch(setCalculatorInput(event.target.value));
     }
-  };
+  }
 
-  const handleSubmit = (event: React.FormEvent) => {
+  function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    dispatch(getCalculatorResult());
-  };
+    dispatch(getCalculatorResultAndUpdateLastOperations());
+  }
 
   return (
     <form onSubmit={handleSubmit} className={styles.form} aria-label={t('calculator.enter')}>
@@ -38,7 +39,7 @@ const CalculatorInput: FC<ChildrenNever> = () => {
         className={`${styles.input} ${inputValue === 'Error' ? styles.error : ''}`}
         value={inputValue !== 'Error' && inputValue !== 'Infinity' ? inputValue : ''}
         placeholder={inputValue === 'Error' || inputValue === 'Infinity' ? inputValue : ''}
-        onChange={handleChange}
+        onChange={handleChangeInput}
         aria-label={t('calculator.inputAriaLabel')}
       />
     </form>

@@ -3,8 +3,8 @@ function checkIsCalculatorInputCorrect(inputValue: string): boolean {
     return false;
   }
 
-  const operatorRegExp = new RegExp(/[+, *, /, ^, .]/);
-  const operatorsInRowRegExp = new RegExp(/[+, *, /, ^, .]{2,}/);
+  const operatorRegExp = new RegExp(/[+*/^.]/);
+  const operatorsInRowRegExp = new RegExp(/[+*/^.]{2,}/);
   const minusesInRowRegExp = new RegExp(/[-]{3,}/);
   const hasNumberRegExp = new RegExp(/\d/);
   const onlyOperatorsAndNumbersRegExp = new RegExp(/^[\d+\-*^./\s]*$/g);

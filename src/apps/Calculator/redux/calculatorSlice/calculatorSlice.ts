@@ -4,14 +4,21 @@ import { createSlice } from '@reduxjs/toolkit';
 // Logic
 import { getCalcResult } from '@Calculator/logic/getCalculatorResult';
 
+interface InitialState {
+  inputValue: string;
+  lastOperations: [string, string, string];
+}
+
+const initialState: InitialState = {
+  inputValue: '',
+  lastOperations: ['', '', ''],
+};
+
 const calculatorSlice = createSlice({
   name: 'calculator',
-  initialState: {
-    inputValue: '',
-    lastOperations: ['', '', ''],
-  },
+  initialState,
   reducers: {
-    getCalculatorResult(state) {
+    getCalculatorResultAndUpdateLastOperations(state) {
       const result = getCalcResult(state.inputValue);
       state.lastOperations = [`${state.inputValue.replace(/\s+/g, '')} = ${result}`, state.lastOperations[0], state.lastOperations[1]];
       state.inputValue = result;
@@ -19,7 +26,7 @@ const calculatorSlice = createSlice({
     addToCalculatorInput(state, { payload }: { payload: string }) {
       state.inputValue += payload;
     },
-    deleteLastCalculatorInput(state) {
+    deleteLastCalculatorInputCharacter(state) {
       if (state.inputValue === 'Error' || state.inputValue === 'Infinity') return;
       state.inputValue = state.inputValue.slice(0, state.inputValue.length - 1);
     },
@@ -34,9 +41,9 @@ const calculatorSlice = createSlice({
 
 export default calculatorSlice.reducer;
 export const {
-  getCalculatorResult,
+  getCalculatorResultAndUpdateLastOperations,
   addToCalculatorInput,
-  deleteLastCalculatorInput,
+  deleteLastCalculatorInputCharacter,
   setCalculatorInput,
   clearCalculatorInput,
 } = calculatorSlice.actions;

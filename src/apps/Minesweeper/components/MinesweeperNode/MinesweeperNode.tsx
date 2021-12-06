@@ -30,15 +30,17 @@ interface Props extends ChildrenNever {
 }
 
 const MinesweeperNode: FC<Props> = React.memo(({ value, arrIndex, index }: Props) => {
-  const [isFlag, setIsFlag] = useState(false);
-  const [isBombClick, setIsBombClick] = useState(false);
   const isVisible = useSelector((state: RootState) => state.minesweeper.visibilityList[arrIndex][index]);
   const isLose = useSelector((state: RootState) => state.minesweeper.isLose);
   const isWin = useSelector((state: RootState) => state.minesweeper.isWin);
   const isFlagAvailable = useSelector((state: RootState) => state.minesweeper.isFlagAvailable);
+
+  const [isFlag, setIsFlag] = useState(false);
+  const [isBombClick, setIsBombClick] = useState(false);
+
   const dispatch = useDispatch();
 
-  const handleRightClick = (event: React.MouseEvent) => {
+  function handleRightClick(event: React.MouseEvent) {
     event.preventDefault();
 
     if (isVisible) {
@@ -56,9 +58,9 @@ const MinesweeperNode: FC<Props> = React.memo(({ value, arrIndex, index }: Props
     }
 
     setIsFlag(!isFlag);
-  };
+  }
 
-  const handleClick = () => {
+  function handleClick() {
     if (isFlag || isVisible) {
       return;
     }
@@ -69,7 +71,7 @@ const MinesweeperNode: FC<Props> = React.memo(({ value, arrIndex, index }: Props
     } else {
       dispatch(setVisible({ arrIndex, index }));
     }
-  };
+  }
 
   useEffect(() => {
     if (!isLose && !isWin) {

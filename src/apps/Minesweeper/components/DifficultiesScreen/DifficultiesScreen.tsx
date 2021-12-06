@@ -34,9 +34,9 @@ const DifficultiesScreen: FC<ChildrenNever> = React.memo(() => {
   const dispatch = useDispatch();
   const { t } = useTranslation('minesweeper');
 
-  const handleChoose = (difficulty: Difficulty) => {
+  function handleChoose(difficulty: Difficulty) {
     dispatch(setMinesweeperDifficulty({ difficulty }));
-  };
+  }
 
   return (
     <div className={styles.difficulties}>

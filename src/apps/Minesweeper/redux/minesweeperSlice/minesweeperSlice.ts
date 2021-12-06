@@ -44,28 +44,21 @@ const minesweeperSlice = createSlice({
       state.isWin = false;
       state.displayCount = 0;
 
-      const newPattern = Array(state.size);
+      const newPattern = Array(state.size).fill([]).map(() => Array(state.size).fill(0));
 
-      for (let i = 0; i < state.size; i++) {
-        newPattern[i] = Array(state.size).fill(0);
-      }
-
-      const newVisibilityList = Array(state.size);
-
-      for (let i = 0; i < state.size; i++) {
-        newVisibilityList[i] = Array(state.size).fill(false);
-      }
+      const newVisibilityList = Array(state.size).fill(Array(state.size).fill(false));
 
       state.visibilityList = newVisibilityList;
 
       for (let i = 0; i < state.bombCount; i++) {
         let randomIndex = Math.round(Math.random() * (state.size * state.size - 1));
-        while (newPattern[Math.floor(randomIndex / state.size)][randomIndex % state.size]) {
+        while (newPattern[Math.trunc(randomIndex / state.size)][randomIndex % state.size]) {
           randomIndex = Math.round(Math.random() * (state.size * state.size - 1));
         }
-        newPattern[Math.floor(randomIndex / state.size)][randomIndex % state.size] = BOMB_NUMBER;
-        state.pattern = newPattern;
+        newPattern[Math.trunc(randomIndex / state.size)][randomIndex % state.size] = BOMB_NUMBER;
       }
+
+      state.pattern = newPattern;
     },
     calculateMinesweeper(state) {
       state.pattern = state.pattern.map((arr, arrIndex) => (
@@ -158,13 +151,14 @@ const minesweeperSlice = createSlice({
       state.numberOfFlags++;
       state.availableFlags--;
 
-      if (state.availableFlags < 1) {
+      if (state.availableFlags === 0) {
         state.isFlagAvailable = false;
       }
     },
     removeFlag(state) {
       state.numberOfFlags--;
       state.availableFlags++;
+      state.isFlagAvailable = true;
     },
     setMinesweeperDifficulty(state, { payload }: { payload: { difficulty: Difficulty } }) {
       if (payload.difficulty === Difficulty.Easy) {
@@ -181,7 +175,12 @@ const minesweeperSlice = createSlice({
       }
 
       if (payload.difficulty === Difficulty.Hard) {
-        minesweeperSlice.caseReducers.setSettings(state, { payload: { size: HARD_SIZE, bombCount: HARD_MINES_COUNT } });
+        minesweeperSlice.caseReducers.setSettings(state, {
+          payload: {
+            size: HARD_SIZE,
+            bombCount: HARD_MINES_COUNT,
+          },
+        });
       }
 
       if (payload.difficulty === Difficulty.Extreme) {

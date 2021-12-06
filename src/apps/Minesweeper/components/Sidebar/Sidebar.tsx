@@ -35,12 +35,12 @@ const Sidebar: FC<ChildrenNever> = React.memo(() => {
   const dispatch = useDispatch();
   const { t } = useTranslation('minesweeper');
 
-  function handleRestart(): void {
+  function handleRestart() {
     dispatch(generateMinesweeperPattern());
     dispatch(calculateMinesweeper());
   }
 
-  function handleChangeDifficulty(): void {
+  function handleChangeDifficulty() {
     dispatch(setMinesweeperDifficulty({ difficulty: Difficulty.None }));
   }
 

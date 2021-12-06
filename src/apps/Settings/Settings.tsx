@@ -32,36 +32,41 @@ import { Button } from '@Components/Button/Button';
 import styles from './settings.module.css';
 
 export const Settings: FC<ChildrenNever> = React.memo(() => {
-  const dispatch = useDispatch();
-
   const backgroundImage = useSelector((state: RootState) => state.theme.backgroundImage);
   const backgroundImages = useSelector((state: RootState) => state.theme.backgroundImages);
   const language = useSelector((state: RootState) => state.language.language);
   const languages = useSelector((state: RootState) => state.language.languages);
   const theme = useSelector((state: RootState) => state.theme.theme);
   const themes = useSelector((state: RootState) => state.theme.themes);
+
+  const dispatch = useDispatch();
   const { t } = useTranslation('settings');
 
-  const handleChangeBackground = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const seletedBackgroundImage = event.target.selectedOptions[0].value as BackgroundImage;
-    if (Object.values(BackgroundImage).includes(seletedBackgroundImage)) {
-      dispatch(setBackgroundImage({ backgroundImage: seletedBackgroundImage }));
+  function handleChangeBackground(event: React.ChangeEvent<HTMLSelectElement>) {
+    const selectedBackgroundImage = event.target.selectedOptions[0].value as BackgroundImage;
+    if (Object.values(BackgroundImage).includes(selectedBackgroundImage)) {
+      dispatch(setBackgroundImage({ backgroundImage: selectedBackgroundImage }));
     }
-  };
+  }
 
-  const handleChangeLanguage = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const seletedLanguage = event.target.selectedOptions[0].value as Language;
-    if (Object.values(Language).includes(seletedLanguage)) {
-      dispatch(setLanguage({ language: seletedLanguage }));
+  function handleChangeLanguage(event: React.ChangeEvent<HTMLSelectElement>) {
+    const selectedLanguage = event.target.selectedOptions[0].value as Language;
+    if (Object.values(Language).includes(selectedLanguage)) {
+      dispatch(setLanguage({ language: selectedLanguage }));
     }
-  };
+  }
 
-  const handleChangeTheme = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const seletedTheme = event.target.selectedOptions[0].value as Theme;
-    if (Object.values(Theme).includes(seletedTheme)) {
-      dispatch(setTheme({ theme: seletedTheme }));
+  function handleChangeTheme(event: React.ChangeEvent<HTMLSelectElement>) {
+    const selectedTheme = event.target.selectedOptions[0].value as Theme;
+    if (Object.values(Theme).includes(selectedTheme)) {
+      dispatch(setTheme({ theme: selectedTheme }));
     }
-  };
+  }
+
+  function resetSettings() {
+    localStorage.clear();
+    window.location.reload();
+  }
 
   return (
     <>
@@ -70,7 +75,7 @@ export const Settings: FC<ChildrenNever> = React.memo(() => {
         <form className={styles.form}>
           <div>
             <label htmlFor="themeSelect" className={styles.label}>
-              {t('wallpapper')}
+              {t('wallpaper')}
               <select
                 id="themeSelect"
                 className={styles.select}
@@ -106,10 +111,7 @@ export const Settings: FC<ChildrenNever> = React.memo(() => {
           <div className={styles.resetContainer}>
             <Button
               className={styles.resetBtn}
-              onClick={() => {
-                localStorage.clear();
-                window.location.reload();
-              }}
+              onClick={resetSettings}
             >
               {t('reset')}
             </Button>

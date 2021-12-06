@@ -9,10 +9,6 @@
   background: #fff;
 }
 
-.img:hover {
-  cursor: pointer;
-}
-
 .container {
   position: absolute;
 
@@ -42,7 +38,9 @@
 
   width: 2rem;
 
-  border: none;
-  border-radius: 0.3rem;
   background: transparent;
+}
+
+.grabbed {
+  cursor: grabbing !important;
 }

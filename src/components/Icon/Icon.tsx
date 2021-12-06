@@ -1,5 +1,5 @@
 // Libraries
-import { FC, useRef } from 'react';
+import React, { FC, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 // Redux
@@ -7,7 +7,6 @@ import { changeIconPos } from 'src/redux/slices/appsSlice/appsSlice';
 
 // I18n
 import { useTranslation } from 'react-i18next';
-import '@Features/i18n';
 
 // Hooks
 import { useDragNDrop } from 'src/hooks/useDragNDrop/useDragNDrop';
@@ -21,6 +20,9 @@ import { RootState } from '@Types/rootState.type';
 
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
+
+// Components
+import { Button } from '@Components/Button/Button';
 
 // Styles
 import styles from './icon.module.css';
@@ -37,7 +39,7 @@ export const Icon: FC<Props> = ({ imgSource, type }: Props) => {
   const { t } = useTranslation();
 
   const { handleOpen } = useApp(type);
-  const { startDrag, newCoords } = useDragNDrop(changeIconPos, icon, iconCoords, type);
+  const { startDrag, newCoords, isDrag } = useDragNDrop(changeIconPos, icon, iconCoords, type);
 
   return (
     <div
@@ -46,15 +48,14 @@ export const Icon: FC<Props> = ({ imgSource, type }: Props) => {
       ref={icon}
       data-cy={`icon-${type}`}
     >
-      <button
-        type="button"
+      <Button
         onDoubleClick={handleOpen}
-        className={styles.imgContainer}
+        className={`${styles.imgContainer} ${isDrag ? styles.grabbed : ''}`}
         onMouseDown={startDrag}
         aria-label={`${type} icon`}
       >
         <img src={imgSource} alt="" className={`${styles.img}`} />
-      </button>
+      </Button>
       <span className={styles.title}>{t(`apps.${type}`)}</span>
     </div>
   );

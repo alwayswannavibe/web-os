@@ -1,5 +1,5 @@
 // Libraries
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Redux
@@ -21,6 +21,7 @@ import { RootState } from '@Types/rootState.type';
 import { getReadableLastVisitDate } from '@Chat/logic/dateProcess';
 import { Loading } from '@Components/Loading/Loading';
 import { Error } from '@Components/Error/Error';
+import { Button } from '@Components/Button/Button';
 import {
   changeNewMessageRoomCountToZero,
   closeAddRoomForm,
@@ -43,7 +44,7 @@ const RoomSelectionItems: FC<Props> = ({ rooms }: Props) => {
 
   const dispatch = useDispatch();
 
-  function changeChat(chatId: number): void {
+  function changeChat(chatId: number) {
     dispatch(closeAddRoomForm());
     dispatch(changeActiveChat({ id: chatId, type: 'Room' }));
     dispatch(fetchMessages(chatId));
@@ -52,13 +53,13 @@ const RoomSelectionItems: FC<Props> = ({ rooms }: Props) => {
     dispatch(changeNewMessageRoomCountToZero({ userId: chatId }));
   }
 
-  function refetchRooms(): void {
+  const refetchRooms = useCallback(() => {
     dispatch(fetchRooms());
-  }
+  }, []);
 
-  function handleOpenAddRoom(): void {
+  const handleOpenAddRoom = useCallback(() => {
     dispatch(openAddRoomForm());
-  }
+  }, []);
 
   if (isLoading) {
     return <Loading />;
@@ -82,7 +83,7 @@ const RoomSelectionItems: FC<Props> = ({ rooms }: Props) => {
           changeChat={changeChat}
         />
       ))}
-      <button type="button" className={styles.addButton} onClick={handleOpenAddRoom}>+</button>
+      <Button className={styles.addButton} onClick={handleOpenAddRoom}>+</Button>
     </>
   );
 };

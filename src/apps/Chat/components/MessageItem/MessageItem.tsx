@@ -1,6 +1,6 @@
 // Libraries
 import { motion } from 'framer-motion';
-import { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 
@@ -16,6 +16,7 @@ import { Message } from '@Interfaces/message.interface';
 
 // Components
 import { Avatar } from '@Components/Avatar/Avatar';
+import { Button } from '@Components/Button/Button';
 
 // Styles
 import styles from './messageItem.module.css';
@@ -24,13 +25,13 @@ interface Props extends ChildrenNever {
   message: Message;
 }
 
-const MessageItem: FC<Props> = ({ message }: Props) => {
+const MessageItem: FC<Props> = React.memo(({ message }: Props) => {
   const username = useSelector((state: RootState) => state.user.username);
   const dispatch = useDispatch();
 
-  const handleClickUsername = () => {
+  const handleClickUsername = useCallback(() => {
     dispatch(addMessageInputValue(`@${message.owner.username}, `));
-  };
+  }, []);
 
   return (
     <div className={classNames(styles.wrapper, {
@@ -61,7 +62,7 @@ const MessageItem: FC<Props> = ({ message }: Props) => {
           })}
           >
             <div className={styles.username}>
-              <button type="button" onClick={handleClickUsername}>{message.owner.username}</button>
+              <Button onClick={handleClickUsername}>{message.owner.username}</Button>
             </div>
             <div className={styles.date}>
               {(new Date(message.createdAt)).toLocaleString()}
@@ -78,6 +79,6 @@ const MessageItem: FC<Props> = ({ message }: Props) => {
       </motion.li>
     </div>
   );
-};
+});
 
 export { MessageItem };

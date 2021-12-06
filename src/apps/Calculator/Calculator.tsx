@@ -1,5 +1,5 @@
 // Libraries
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 // Components
 import { Window } from '@Components/Window/Window';
@@ -20,7 +20,7 @@ import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 // Styles
 import styles from './calculator.module.css';
 
-const Calculator: FC<ChildrenNever> = () => (
+const Calculator: FC<ChildrenNever> = React.memo(() => (
   <>
     <Icon imgSource={imgSource} type={App.Calculator} />
     <Window type={App.Calculator}>
@@ -31,6 +31,6 @@ const Calculator: FC<ChildrenNever> = () => (
       </div>
     </Window>
   </>
-);
+));
 
 export { Calculator };

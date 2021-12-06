@@ -10,19 +10,8 @@
 .fullscreenButtonContainer {
   height: 100%;
 
-  cursor: pointer;
-  transition: background-color 0.25s linear;
-
-  color: var(--font-color);
-  border: none;
   border-left: 1px solid rgb(14 14 14 / 0.15);
+
+  border-radius: 0;
   background: transparent;
-}
-
-.fullscreenButtonContainer:hover {
-  background-color: #145967;
-}
-
-.fullscreenButtonContainer:active {
-  background-color: #092d34;
 }

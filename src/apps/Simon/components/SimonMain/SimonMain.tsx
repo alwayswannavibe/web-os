@@ -1,5 +1,5 @@
 // Libraries
-import { FC, useEffect, useMemo, useRef } from 'react';
+import React, { FC, useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -39,7 +39,9 @@ interface Props extends ChildrenNever {
   numberOfButtons: number;
 }
 
-export const SimonMain: FC<Props> = ({ numberOfButtons }: Props) => {
+const sounds = [sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9];
+
+export const SimonMain: FC<Props> = React.memo(({ numberOfButtons }: Props) => {
   const dispatch = useDispatch();
 
   const status = useSelector((store: RootState) => store.simon.simonStatus);
@@ -58,12 +60,11 @@ export const SimonMain: FC<Props> = ({ numberOfButtons }: Props) => {
   const btnRef8 = useRef<HTMLButtonElement>(null);
   const btnRef9 = useRef<HTMLButtonElement>(null);
 
-  const sounds = useMemo(() => [sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9], []);
   const buttonsRefs = useMemo(() => [btnRef1, btnRef2, btnRef3, btnRef4, btnRef5, btnRef6, btnRef7, btnRef8, btnRef9], []);
   const buttonsRefsWithLimit = buttonsRefs.slice(0, numberOfButtons);
 
-  function handleClick(numberOfButton: number): void {
-    new Audio(sounds[numberOfButton]).play();
+  async function handleClick(numberOfButton: number): Promise<void> {
+    await new Audio(sounds[numberOfButton]).play();
     setTimeout(() => buttonsRefs[numberOfButton]?.current?.classList.add(styles.btnActive), 0);
     setTimeout(() => buttonsRefs[numberOfButton]?.current?.classList.remove(styles.btnActive), 400);
     setTimeout(() => dispatch(simonClick({ numberOfButton })), 400);
@@ -75,10 +76,10 @@ export const SimonMain: FC<Props> = ({ numberOfButtons }: Props) => {
         dispatch(startShowing());
       } else {
         pattern.forEach((el, index) => {
-          setTimeout(() => {
+          setTimeout(async () => {
             // Use getState because hook not update state in setTimeout
             if (!reduxStore.getState().apps.appsState[App.Simon].isOpened) return;
-            new Audio(sounds[el]).play();
+            await new Audio(sounds[el]).play();
           }, 900 * index + 900);
           setTimeout(() => buttonsRefs[el]?.current?.classList.add(styles.btnActive), 900 * index + 900);
           setTimeout(() => buttonsRefs[el]?.current?.classList.remove(styles.btnActive), 900 * index + 1400);
@@ -106,4 +107,4 @@ export const SimonMain: FC<Props> = ({ numberOfButtons }: Props) => {
       <SimonBar difficulty={difficulty} />
     </div>
   );
-};
+});

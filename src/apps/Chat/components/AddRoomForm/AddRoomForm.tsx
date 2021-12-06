@@ -2,6 +2,7 @@
 import React, { FC, SyntheticEvent, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Scrollbars from 'react-custom-scrollbars';
+import { useTranslation } from 'react-i18next';
 
 // Types
 import { RootState } from '@Types/rootState.type';
@@ -19,10 +20,11 @@ import { AddRoomUserSelectItem } from './components/AddRoomUserSelectItem/AddRoo
 // Styles
 import styles from './addRoomForm.module.css';
 
-const AddRoomForm: FC<ChildrenNever> = () => {
+const AddRoomForm: FC<ChildrenNever> = React.memo(() => {
   const users = useSelector((state: RootState) => state.chatUsers.users);
 
   const dispatch = useDispatch();
+  const { t } = useTranslation('chat');
 
   const roomNameRef = useRef<HTMLInputElement>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
@@ -40,11 +42,11 @@ const AddRoomForm: FC<ChildrenNever> = () => {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <label htmlFor="roomNameInput" className={styles.label}>
-        <span className={styles.labelText}>Room name:</span>
+        <span className={styles.labelText}>{`${t('roomName')}:`}</span>
         <input type="text" id="roomNameInput" className={styles.input} ref={roomNameRef} />
       </label>
       <label htmlFor="roomImageInput" className={`${styles.label} ${styles.imageInput}`}>
-        <span className={styles.labelText}>Image link:</span>
+        <span className={styles.labelText}>{`${t('imageLink')}:`}</span>
         <input type="text" id="roomImageInput" className={styles.input} ref={imageInputRef} />
       </label>
       <div className={styles.users}>
@@ -55,11 +57,11 @@ const AddRoomForm: FC<ChildrenNever> = () => {
         </Scrollbars>
       </div>
       <div className={styles.buttonsContainer}>
-        <Button type="button" className={styles.submitButton} onClick={handleCancel}>Cancel</Button>
-        <Button type="submit" className={styles.submitButton}>Create room</Button>
+        <Button className={styles.submitButton} onClick={handleCancel}>{t('cancel')}</Button>
+        <Button type="submit" className={styles.submitButton}>{t('createRoom')}</Button>
       </div>
     </form>
   );
-};
+});
 
 export { AddRoomForm };

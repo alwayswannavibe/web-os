@@ -1,5 +1,5 @@
 // Libraries
-import { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,6 +14,9 @@ import { RootState } from '@Types/rootState.type';
 // Redux
 import { addFlag, removeFlag, setVisible } from '@Minesweeper/redux/minesweeperSlice/minesweeperSlice';
 
+// Components
+import { Button } from '@Components/Button/Button';
+
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
@@ -26,16 +29,18 @@ interface Props extends ChildrenNever {
   index: number;
 }
 
-const MinesweeperNode: FC<Props> = ({ value, arrIndex, index }: Props) => {
-  const [isFlag, setIsFlag] = useState(false);
-  const [isBombClick, setIsBombClick] = useState(false);
+const MinesweeperNode: FC<Props> = React.memo(({ value, arrIndex, index }: Props) => {
   const isVisible = useSelector((state: RootState) => state.minesweeper.visibilityList[arrIndex][index]);
   const isLose = useSelector((state: RootState) => state.minesweeper.isLose);
   const isWin = useSelector((state: RootState) => state.minesweeper.isWin);
   const isFlagAvailable = useSelector((state: RootState) => state.minesweeper.isFlagAvailable);
+
+  const [isFlag, setIsFlag] = useState(false);
+  const [isBombClick, setIsBombClick] = useState(false);
+
   const dispatch = useDispatch();
 
-  const handleRightClick = (event: React.MouseEvent) => {
+  function handleRightClick(event: React.MouseEvent) {
     event.preventDefault();
 
     if (isVisible) {
@@ -53,9 +58,9 @@ const MinesweeperNode: FC<Props> = ({ value, arrIndex, index }: Props) => {
     }
 
     setIsFlag(!isFlag);
-  };
+  }
 
-  const handleClick = () => {
+  function handleClick() {
     if (isFlag || isVisible) {
       return;
     }
@@ -66,7 +71,7 @@ const MinesweeperNode: FC<Props> = ({ value, arrIndex, index }: Props) => {
     } else {
       dispatch(setVisible({ arrIndex, index }));
     }
-  };
+  }
 
   useEffect(() => {
     if (!isLose && !isWin) {
@@ -120,8 +125,7 @@ const MinesweeperNode: FC<Props> = ({ value, arrIndex, index }: Props) => {
   }
 
   return (
-    <button
-      type="button"
+    <Button
       className={classNames(styles.node, {
         [styles.lose]: value === BOMB_NUMBER && isLose,
         [styles.win]: value === BOMB_NUMBER && isWin,
@@ -131,8 +135,8 @@ const MinesweeperNode: FC<Props> = ({ value, arrIndex, index }: Props) => {
       onClick={handleClick}
     >
       {getIcon()}
-    </button>
+    </Button>
   );
-};
+});
 
 export { MinesweeperNode };

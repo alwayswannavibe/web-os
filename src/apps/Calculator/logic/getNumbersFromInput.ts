@@ -1,10 +1,10 @@
 function getNumbersFromInput(value: string): number[] {
   const numbers: number[] = [];
-  const splitedValue = value.split('');
+  const splitValue = value.split('');
   let currentNumber = '';
-  for (let i = 0; i < splitedValue.length; i++) {
-    if (!/[\d.]/.test(splitedValue[i])) {
-      if (splitedValue[i] === '-' && (i === 0 || !/[\d.]/.test(splitedValue[i - 1]))) {
+  for (let i = 0; i < splitValue.length; i++) {
+    if (!/[\d.]/.test(splitValue[i])) {
+      if (splitValue[i] === '-' && (i === 0 || !/[\d.]/.test(splitValue[i - 1]))) {
         currentNumber += '-';
         continue;
       }
@@ -12,11 +12,10 @@ function getNumbersFromInput(value: string): number[] {
       currentNumber = '';
       continue;
     }
-    currentNumber += splitedValue[i];
-    if (i === splitedValue.length - 1) {
+    currentNumber += splitValue[i];
+    if (i === splitValue.length - 1) {
       numbers.push(+currentNumber);
       currentNumber = '';
-      continue;
     }
   }
   return numbers;

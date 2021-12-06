@@ -2,8 +2,6 @@
   position: absolute;
   z-index: 10;
 
-  color: var(--font-color);
-
   border: 3px solid #343030;
 }
 
@@ -12,6 +10,8 @@
   justify-content: space-between;
 
   height: 2rem;
+
+  cursor: grab;
 
   border-bottom: 2px solid #353535;
   background-color: var(--windowTopBackground);
@@ -66,4 +66,8 @@
 
 .collapseBtn:hover {
   background-color: #474747;
+}
+
+.grabbed {
+  cursor: grabbing;
 }

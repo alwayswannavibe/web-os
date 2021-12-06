@@ -4,14 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 // Redux
-import { setBackgroundImage, setTheme } from '@Features/theme/redux';
-import { setLanguage } from '@Features/i18n/redux';
+import { setBackgroundImage, setTheme } from '@Features/theme/redux/themeSlice';
+import { setLanguage } from '@Features/i18n/redux/languageSlice';
 
 // Types
 import { RootState } from '@Types/rootState.type';
-
-// I18n
-import '@Features/i18n';
 
 // Enums
 import { App } from '@Enums/app.enum';
@@ -34,37 +31,42 @@ import { Button } from '@Components/Button/Button';
 // Styles
 import styles from './settings.module.css';
 
-export const Settings: FC<ChildrenNever> = () => {
-  const dispatch = useDispatch();
-
+export const Settings: FC<ChildrenNever> = React.memo(() => {
   const backgroundImage = useSelector((state: RootState) => state.theme.backgroundImage);
   const backgroundImages = useSelector((state: RootState) => state.theme.backgroundImages);
   const language = useSelector((state: RootState) => state.language.language);
   const languages = useSelector((state: RootState) => state.language.languages);
   const theme = useSelector((state: RootState) => state.theme.theme);
   const themes = useSelector((state: RootState) => state.theme.themes);
+
+  const dispatch = useDispatch();
   const { t } = useTranslation('settings');
 
-  const handleChangeBackground = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const seletedBackgroundImage = event.target.selectedOptions[0].value as BackgroundImage;
-    if (Object.values(BackgroundImage).includes(seletedBackgroundImage)) {
-      dispatch(setBackgroundImage({ backgroundImage: seletedBackgroundImage }));
+  function handleChangeBackground(event: React.ChangeEvent<HTMLSelectElement>) {
+    const selectedBackgroundImage = event.target.selectedOptions[0].value as BackgroundImage;
+    if (Object.values(BackgroundImage).includes(selectedBackgroundImage)) {
+      dispatch(setBackgroundImage({ backgroundImage: selectedBackgroundImage }));
     }
-  };
+  }
 
-  const handleChangeLanguage = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const seletedLanguage = event.target.selectedOptions[0].value as Language;
-    if (Object.values(Language).includes(seletedLanguage)) {
-      dispatch(setLanguage({ language: seletedLanguage }));
+  function handleChangeLanguage(event: React.ChangeEvent<HTMLSelectElement>) {
+    const selectedLanguage = event.target.selectedOptions[0].value as Language;
+    if (Object.values(Language).includes(selectedLanguage)) {
+      dispatch(setLanguage({ language: selectedLanguage }));
     }
-  };
+  }
 
-  const handleChangeTheme = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const seletedTheme = event.target.selectedOptions[0].value as Theme;
-    if (Object.values(Theme).includes(seletedTheme)) {
-      dispatch(setTheme({ theme: seletedTheme }));
+  function handleChangeTheme(event: React.ChangeEvent<HTMLSelectElement>) {
+    const selectedTheme = event.target.selectedOptions[0].value as Theme;
+    if (Object.values(Theme).includes(selectedTheme)) {
+      dispatch(setTheme({ theme: selectedTheme }));
     }
-  };
+  }
+
+  function resetSettings() {
+    localStorage.clear();
+    window.location.reload();
+  }
 
   return (
     <>
@@ -73,16 +75,15 @@ export const Settings: FC<ChildrenNever> = () => {
         <form className={styles.form}>
           <div>
             <label htmlFor="themeSelect" className={styles.label}>
-              {t('wallpapper')}
+              {t('wallpaper')}
               <select
                 id="themeSelect"
                 className={styles.select}
                 onChange={handleChangeBackground}
                 defaultValue={backgroundImage}
               >
-                {backgroundImages.map((el, i) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <SettingsOption value={el} category="backgrounds" key={i} />
+                {backgroundImages.map((el) => (
+                  <SettingsOption value={el} category="backgrounds" key={el} />
                 ))}
               </select>
             </label>
@@ -91,9 +92,8 @@ export const Settings: FC<ChildrenNever> = () => {
             <label htmlFor="localeSelect" className={styles.label}>
               {t('language')}
               <select id="localeSelect" className={styles.select} onChange={handleChangeLanguage} defaultValue={language}>
-                {languages.map((el, i) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <SettingsOption value={el} category="languages" key={i} />
+                {languages.map((el) => (
+                  <SettingsOption value={el} category="languages" key={el} />
                 ))}
               </select>
             </label>
@@ -102,9 +102,8 @@ export const Settings: FC<ChildrenNever> = () => {
             <label htmlFor="themeSelect" className={styles.label}>
               {t('theme')}
               <select id="themeSelect" className={styles.select} onChange={handleChangeTheme} defaultValue={theme}>
-                {themes.map((el, i) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <SettingsOption value={el} category="themes" key={i} />
+                {themes.map((el) => (
+                  <SettingsOption value={el} category="themes" key={el} />
                 ))}
               </select>
             </label>
@@ -112,11 +111,7 @@ export const Settings: FC<ChildrenNever> = () => {
           <div className={styles.resetContainer}>
             <Button
               className={styles.resetBtn}
-              type="button"
-              onClick={() => {
-                localStorage.clear();
-                window.location.reload();
-              }}
+              onClick={resetSettings}
             >
               {t('reset')}
             </Button>
@@ -125,4 +120,4 @@ export const Settings: FC<ChildrenNever> = () => {
       </Window>
     </>
   );
-};
+});

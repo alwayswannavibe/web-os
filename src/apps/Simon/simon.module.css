@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+.difficultyButton {
+  padding: 0.5rem;
+}
+
 .difficultiesList {
   list-style: none;
 }

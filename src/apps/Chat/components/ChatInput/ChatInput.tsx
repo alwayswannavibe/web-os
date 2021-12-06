@@ -1,7 +1,8 @@
 // Libraries
-import { ChangeEvent, FC, useCallback, useEffect, useRef, useState } from 'react';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import Picker, { IEmojiData } from 'emoji-picker-react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faSmile } from '@fortawesome/free-solid-svg-icons';
 
@@ -26,17 +27,13 @@ const ChatInput: FC<ChildrenNever> = () => {
   const activeChat = useSelector((state: RootState) => state.chat.activeChat);
 
   const dispatch = useDispatch();
+  const { t } = useTranslation('chat');
 
   const pickerRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const [isSmileOpen, setIsSmileOpen] = useState(false);
 
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, [text]);
-
-  function handleChange(event: ChangeEvent<HTMLTextAreaElement>): void {
+  function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>): void {
     dispatch(changeMessageInputValue(event.target.value));
   }
 
@@ -99,7 +96,13 @@ const ChatInput: FC<ChildrenNever> = () => {
 
   return (
     <form className={styles.wrapper}>
-      <textarea value={text} onChange={handleChange} onKeyDown={handleKeyDown} ref={inputRef} placeholder="Напишите сообщение..." />
+      <textarea
+        value={text}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        placeholder={`${t('printYourMessage')}...`}
+        autoFocus
+      />
       <FontAwesomeIcon icon={faSmile} className={`${styles.smileBtn} ${styles.btn}`} onClick={handleSmileClick} />
       <FontAwesomeIcon icon={faPaperPlane} className={`${styles.sendBtn} ${styles.btn}`} onClick={handleSubmit} />
       {isSmileOpen && (

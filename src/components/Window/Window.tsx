@@ -10,9 +10,6 @@ import { faWindowRestore, faTimes, faWindowMinimize } from '@fortawesome/free-so
 // Redux
 import { setWindowActive, changeWindowPos } from 'src/redux/slices/appsSlice/appsSlice';
 
-// I18n
-import '@Features/i18n';
-
 // Enums
 import { App } from '@Enums/app.enum';
 
@@ -45,7 +42,7 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
   const windowTop = useRef<HTMLDivElement>(null);
   const ref = useRef<HTMLDivElement>(null);
 
-  const { startDrag, newCoords } = useDragNDrop(changeWindowPos, windowTop, windowCoords, type);
+  const { startDrag, newCoords, isDrag } = useDragNDrop(changeWindowPos, windowTop, windowCoords, type);
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -91,35 +88,33 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
     return document.fullscreenElement?.className.split('_')[1] === 'window';
   }
 
-  function handleCloseWithProcessFullscreen(): void {
+  async function handleCloseWithProcessFullscreen(): Promise<void> {
     if (isDocumentFullscreen()) {
-      document.exitFullscreen();
+      await document.exitFullscreen();
       returnToDefaultSize();
     }
     handleClose();
   }
 
-  function handleToggleCollapseWithProcessFullscreen(): void {
+  async function handleToggleCollapseWithProcessFullscreen(): Promise<void> {
     if (isDocumentFullscreen()) {
-      document.exitFullscreen();
+      await document.exitFullscreen();
       returnToDefaultSize();
     }
     handleToggleCollapse();
   }
 
-  function handleFullscreen(): void {
+  async function handleFullscreen(): Promise<void> {
     if (!document.fullscreenElement) {
-      ref.current!.requestFullscreen();
+      await ref.current!.requestFullscreen();
       windowToFullscreenSize();
     } else if (isDocumentFullscreen()) {
-      document.exitFullscreen();
+      await document.exitFullscreen();
       returnToDefaultSize();
     } else {
-      document.exitFullscreen();
-      setTimeout(() => {
-        ref.current!.requestFullscreen();
-        windowToFullscreenSize();
-      }, 300);
+      await document.exitFullscreen();
+      await ref.current!.requestFullscreen();
+      windowToFullscreenSize();
     }
   }
 
@@ -155,13 +150,23 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
             bounds="window"
             lockAspectRatio
           >
-            <div className={`${styles.windowTop} ${getAppIndex() === 0 ? '' : styles.notActiveWindow}`} onMouseDown={startDrag} ref={windowTop}>
-              <div onClick={handleSetActive} className={styles.title}>
+            <div
+              className={`
+                ${styles.windowTop}
+                ${getAppIndex() === 0 ? '' : styles.notActiveWindow}
+                ${isDrag ? styles.grabbed : ''}
+              `}
+              onMouseDown={startDrag}
+              ref={windowTop}
+              tabIndex={0}
+              role="button"
+              aria-grabbed={isDrag}
+            >
+              <div onClick={handleSetActive} className={styles.title} role="button" tabIndex={0}>
                 {t(`apps.${type}`)}
               </div>
               <div className={styles.buttonsContainer}>
                 <Button
-                  type="button"
                   className={`${styles.collapseBtn} ${styles.btn}`}
                   onClick={handleToggleCollapseWithProcessFullscreen}
                   aria-label="minimize window"
@@ -169,7 +174,6 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
                   <FontAwesomeIcon icon={faWindowMinimize} />
                 </Button>
                 <Button
-                  type="button"
                   onClick={handleFullscreen}
                   aria-label="toggle fullscreen"
                   className={`${styles.collapseBtn} ${styles.btn}`}
@@ -177,7 +181,6 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
                   <FontAwesomeIcon icon={faWindowRestore} />
                 </Button>
                 <Button
-                  type="button"
                   className={`${styles.closeBtn} ${styles.btn}`}
                   onClick={handleCloseWithProcessFullscreen}
                   aria-label="close window"
@@ -186,7 +189,7 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
                 </Button>
               </div>
             </div>
-            <div className={styles.windowBody} onClick={handleSetActive}>
+            <div className={styles.windowBody} onClick={handleSetActive} role="button" tabIndex={0}>
               {children}
             </div>
           </Resizable>

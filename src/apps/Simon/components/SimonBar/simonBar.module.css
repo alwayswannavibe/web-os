@@ -26,3 +26,7 @@
   justify-content: center;
   gap: 2rem;
 }
+
+.btn {
+  padding: 0.5rem;
+}

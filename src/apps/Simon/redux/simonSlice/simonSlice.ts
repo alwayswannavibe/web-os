@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 // Libraries
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -14,17 +12,25 @@ import { generatePattern, regeneratePattern, updatePattern } from 'src/apps/Simo
 import simonSuccessSound from 'src/assets/sounds/simon/simonSuccess.wav';
 import simonLoseSound from 'src/assets/sounds/simon/simonLoseSound.wav';
 
-const pattern: number[] = [];
+interface InitialState {
+  difficulty: Difficulty;
+  simonStatus: SimonStatus;
+  level: number;
+  move: number;
+  pattern: number[];
+}
+
+const initialState: InitialState = {
+  difficulty: Difficulty.None,
+  simonStatus: SimonStatus.Waiting,
+  level: 1,
+  move: 1,
+  pattern: [],
+};
 
 const simonSlice = createSlice({
   name: 'simon',
-  initialState: {
-    difficulty: Difficulty.None,
-    simonStatus: SimonStatus.Waiting,
-    level: 1,
-    move: 1,
-    pattern,
-  },
+  initialState,
   reducers: {
     changeDifficulty(state, { payload }: { payload: { difficulty: Difficulty } }) {
       state.difficulty = payload.difficulty;
@@ -61,7 +67,6 @@ const simonSlice = createSlice({
         state.move++;
         if (state.move === state.pattern.length + 1) {
           const audio = new Audio(simonSuccessSound);
-          audio.volume = 0.4;
           audio.play();
           state.move = 1;
           state.level++;

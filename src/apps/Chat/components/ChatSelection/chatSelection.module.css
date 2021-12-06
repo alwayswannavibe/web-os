@@ -18,13 +18,8 @@
   right: -12px;
 
   height: 6rem;
-  padding: 3px;
   padding: 0.2rem;
 
-  cursor: pointer;
-  transition: right 1s;
-
-  color: #fff;
   border: none;
   border-radius: 0 10px 10px 0;
   background-color: var(--secondaryColor);

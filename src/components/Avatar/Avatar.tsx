@@ -1,5 +1,5 @@
 // Libraries
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
@@ -17,7 +17,7 @@ interface Props extends ChildrenNever {
   name: string;
 }
 
-const Avatar: FC<Props> = ({ link, name, height = 56, width = 56 }: Props) => {
+const Avatar: FC<Props> = React.memo(({ link, name, height = 56, width = 56 }: Props) => {
   if (link) {
     return <img src={link || DEFAULT_IMAGE_LINK} alt="avatar" className={styles.avatar} width={width} height={height} />;
   }
@@ -27,6 +27,6 @@ const Avatar: FC<Props> = ({ link, name, height = 56, width = 56 }: Props) => {
       {name[0].toUpperCase()}
     </div>
   );
-};
+});
 
 export { Avatar };

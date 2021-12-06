@@ -3,13 +3,18 @@ import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faTimes, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'react-i18next';
+import classNames from 'classnames';
 
 // Redux
 import { toggleCompleteToDoItem, deleteToDoItem } from '@ToDo/redux/toDoSlice/toDoSlice';
 
 // Types
 import { RootState } from '@Types/rootState.type';
+
+// Components
+import { Button } from '@Components/Button/Button';
 
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
@@ -22,11 +27,13 @@ interface Props extends ChildrenNever {
   id: string;
 }
 
-const ToDoItem: FC<Props> = ({ text, id }: Props) => {
-  const dispatch = useDispatch();
+const ToDoItem: FC<Props> = React.memo(({ text, id }: Props) => {
   const completed = useSelector(
     (state: RootState) => state.toDo.toDoList[state.toDo.toDoList.findIndex((el) => el.id === id)].completed,
   );
+
+  const { t } = useTranslation('toDo');
+  const dispatch = useDispatch();
 
   return (
     <li className={styles.toDoItem} data-cy="todo-item">
@@ -37,14 +44,25 @@ const ToDoItem: FC<Props> = ({ text, id }: Props) => {
       >
         {text}
       </motion.p>
-      <div className={`${styles.button} ${styles.checkButton}`} onClick={() => dispatch(toggleCompleteToDoItem(id))}>
-        <FontAwesomeIcon icon={faCheck} />
-      </div>
-      <div className={`${styles.button} ${styles.deleteButton}`} onClick={() => dispatch(deleteToDoItem(id))}>
+      <Button
+        className={classNames(styles.button, {
+          [styles.checkButton]: !completed,
+          [styles.uncheckButton]: completed,
+        })}
+        onClick={() => dispatch(toggleCompleteToDoItem(id))}
+        aria-label={`${t('toggleItemWithText')} ${text}`}
+      >
+        {completed ? <FontAwesomeIcon icon={faTimes} /> : <FontAwesomeIcon icon={faCheck} />}
+      </Button>
+      <Button
+        className={`${styles.button} ${styles.deleteButton}`}
+        onClick={() => dispatch(deleteToDoItem(id))}
+        aria-label={`${t('deleteItemWithText')} ${text}`}
+      >
         <FontAwesomeIcon icon={faTrashAlt} />
-      </div>
+      </Button>
     </li>
   );
-};
+});
 
 export { ToDoItem };

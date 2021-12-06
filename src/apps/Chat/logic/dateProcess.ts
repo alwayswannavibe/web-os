@@ -1,5 +1,5 @@
-// Types
-import { Language } from 'src/features/i18n/types/language';
+// Features
+import { Language } from '@Features/i18n/types/language';
 
 const getReadableSeconds = (seconds: number): string => {
   if (Math.floor(seconds / 10) === 1) return 'секунд';

@@ -6,8 +6,8 @@ import { useForm } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
-// Redux
-import { loginFetch } from '@Features/user/redux';
+// Features
+import { loginFetch } from '@Features/user/redux/userSlice';
 
 // Assets
 import space from '@Backgrounds/space.webp';
@@ -58,7 +58,7 @@ const Login: FC<ChildrenNever> = () => {
     <>
       <div className={styles.overlay} style={{ backgroundImage: `url(${space})` }} />
       <div className={styles.wrapper}>
-        <Button type="button" onClick={() => history.push('/')} className={styles.closeBtn}>←</Button>
+        <Button onClick={() => history.push('/')} className={styles.closeBtn}>←</Button>
         <form className={styles.loginForm} onSubmit={handleSubmit(handleLogin)}>
           <span
             className={`${styles.formErrorDefault} ${formError ? styles.formError : ''}`}
@@ -110,7 +110,7 @@ const Login: FC<ChildrenNever> = () => {
                   },
                 })}
               />
-              <Button type="button" className={styles.changePasswordVisibility} onClick={handleTooglePasswordVisible}>
+              <Button className={styles.changePasswordVisibility} onClick={handleTooglePasswordVisible}>
                 {isPasswordVisible ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
               </Button>
             </div>

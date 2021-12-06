@@ -1,7 +1,7 @@
 // Libraries
 import { toast, ToastContainer } from 'react-toastify';
 import { useSelector } from 'react-redux';
-import { FC, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 
 // Enums
 import { App } from '@Enums/app.enum';
@@ -39,7 +39,6 @@ export const MessageAlert: FC<ChildrenNever> = () => {
         toastId: message.id,
       });
     }
-    /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, [numberOfRender]);
 
   return (

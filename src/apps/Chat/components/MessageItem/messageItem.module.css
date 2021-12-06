@@ -42,9 +42,6 @@
 }
 
 .usernameAndDate button {
-  cursor: pointer;
-
-  color: var(--font-color);
   border: none;
   background-color: transparent;
 }

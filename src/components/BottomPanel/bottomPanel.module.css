@@ -1,6 +1,5 @@
 .container {
   position: fixed;
-  z-index: 5;
   z-index: 1000;
   bottom: 0;
 
@@ -19,21 +18,9 @@
   width: 4rem;
   height: 100%;
 
-  cursor: pointer;
-  transition: background-color 0.25s linear;
-
-  color: var(--font-color);
-  border: none;
   border-left: 1px solid rgb(14 14 14 / 0.15);
-  background-color: transparent;
+  border-radius: 0 !important;
+  background: transparent !important;
 
   font-size: 1.5rem;
-}
-
-.logBtn:hover {
-  background-color: #145967;
-}
-
-.logBtn:active {
-  background-color: #092d34;
 }

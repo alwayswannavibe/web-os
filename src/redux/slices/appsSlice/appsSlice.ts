@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 // Redux
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -139,29 +137,25 @@ const appsSlice = createSlice({
       state.apps = [payload, ...firstPart, ...secondPart];
       localStorage.setItem('apps', JSON.stringify(state.apps));
     },
-    addWindow(state, { payload }: { payload: App }) {
+    openApp(state, { payload }: { payload: App }) {
+      state.appsState[payload].isOpened = true;
+      state.appsState[payload].isCollapsed = false;
+      localStorage.setItem(`${[payload]}IsOpened`, 'true');
+      localStorage.setItem(`${[payload]}IsCollapsed`, 'false');
       state.apps.unshift(payload);
       localStorage.setItem('apps', JSON.stringify(state.apps));
     },
-    deleteWindow(state, { payload }: { payload: App }) {
+    toggleCollapseApp(state, { payload }: { payload: App }) {
+      state.appsState[payload].isCollapsed = !state.appsState[payload].isCollapsed;
+      localStorage.setItem(`${[payload]}IsCollapsed`, state.appsState[payload].isCollapsed.toString());
+    },
+    closeApp(state, { payload }: { payload: App }) {
+      state.appsState[payload].isOpened = false;
+      state.appsState[payload].isCollapsed = false;
+      localStorage.setItem(`${[payload]}IsOpened`, 'false');
+      localStorage.setItem(`${[payload]}IsCollapsed`, 'false');
       state.apps.splice(state.apps.indexOf(payload), 1);
       localStorage.setItem('apps', JSON.stringify(state.apps));
-    },
-    openApp(state, { payload }: { payload: { type: App } }) {
-      state.appsState[payload.type].isOpened = true;
-      state.appsState[payload.type].isCollapsed = false;
-      localStorage.setItem(`${[payload.type]}IsOpened`, 'true');
-      localStorage.setItem(`${[payload.type]}IsCollapsed`, 'false');
-    },
-    toggleCollapseApp(state, { payload }: { payload: { type: App } }) {
-      state.appsState[payload.type].isCollapsed = !state.appsState[payload.type].isCollapsed;
-      localStorage.setItem(`${[payload.type]}IsCollapsed`, state.appsState[payload.type].isCollapsed.toString());
-    },
-    closeApp(state, { payload }: { payload: { type: App } }) {
-      state.appsState[payload.type].isOpened = false;
-      state.appsState[payload.type].isCollapsed = false;
-      localStorage.setItem(`${[payload.type]}IsOpened`, 'false');
-      localStorage.setItem(`${[payload.type]}IsCollapsed`, 'false');
     },
     changeIconPos(state, { payload }: { payload: { type: App, coords: Coordinates } }) {
       state.appsState[payload.type].iconPos.top = payload.coords.top;
@@ -181,8 +175,6 @@ const appsSlice = createSlice({
 export default appsSlice.reducer;
 export const {
   setWindowActive,
-  addWindow,
-  deleteWindow,
   toggleCollapseApp,
   openApp,
   closeApp,

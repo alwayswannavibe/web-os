@@ -1,0 +1,5 @@
+{
+  "addToDoItem": "Добавить в список дел",
+  "toggleItemWithText": "Переключить элемент с текстом",
+  "deleteItemWithText": "Удалить элемент с текстом"
+}

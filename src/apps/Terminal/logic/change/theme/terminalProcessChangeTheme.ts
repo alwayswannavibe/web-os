@@ -1,21 +1,21 @@
 // Redux
 import store from 'src/redux/store';
 import { addTerminalHistory } from '@Terminal/redux/terminalSlice/terminalSlice';
-import { setBackgroundImage } from '@Features/theme/redux';
 
-// I18n
+// Features
+import { setBackgroundImage } from '@Features/theme/redux/themeSlice';
 import i18n from '@Features/i18n';
 
 // Types
 import { BackgroundImage } from '@Features/theme/types/backgroundImage';
 
 // Utils
-import { capitalizeFirstLatter } from '@Utils/capitalizeFirstLatter';
+import { capitalizeFirstLetter } from '@Utils/capitalizeFirstLetter';
 
 const terminalProcessChangeTheme = (input: string) => {
   const { dispatch } = store;
 
-  const newBackgroundImage = capitalizeFirstLatter(input.trim());
+  const newBackgroundImage = capitalizeFirstLetter(input.trim());
 
   if (store.getState().theme.backgroundImages.includes(newBackgroundImage as BackgroundImage)) {
     dispatch(addTerminalHistory(`${i18n.t('terminal:themeChange')}`));

@@ -21,7 +21,7 @@ const terminalProcessOpenCommand = (input: string) => {
 
   if (Object.values(App).includes(app as App)) {
     dispatch(addTerminalHistory(`${i18n.t('terminal:appOpen')}`));
-    dispatch(openApp({ type: app as App }));
+    dispatch(openApp(app as App));
     return;
   }
 

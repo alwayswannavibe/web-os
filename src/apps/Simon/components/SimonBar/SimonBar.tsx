@@ -1,5 +1,5 @@
 // Libraries
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -29,22 +29,22 @@ interface Props extends ChildrenNever {
   difficulty: Difficulty;
 }
 
-export const SimonBar: FC<Props> = ({ difficulty }: Props) => {
+export const SimonBar: FC<Props> = React.memo(({ difficulty }: Props) => {
   const status = useSelector((store: RootState) => store.simon.simonStatus);
   const level = useSelector((store: RootState) => store.simon.level);
 
   const dispatch = useDispatch();
   const { t } = useTranslation('simon');
 
-  function startGame(): void {
+  function startGame() {
     dispatch(updateStatus({ status: SimonStatus.Showing }));
   }
 
-  function handleRestartGame(): void {
+  function handleRestartGame() {
     dispatch(restartGame());
   }
 
-  function handleChangeDifficulty(): void {
+  function handleChangeDifficulty() {
     dispatch(changeDifficulty({ difficulty: Difficulty.None }));
   }
 
@@ -52,25 +52,25 @@ export const SimonBar: FC<Props> = ({ difficulty }: Props) => {
     <div className={styles.wrapper}>
       <div>
         <p>
-          {t('simon.difficulty')}
+          {t('difficulty')}
           {': '}
-          {t(`simon.difficulties.${difficulty}`)}
+          {t(`difficulties.${difficulty}`)}
         </p>
         <p className={styles.level}>
-          {t('simon.level')}
+          {t('level')}
           {': '}
           {level}
         </p>
       </div>
       {status === SimonStatus.Waiting && (
-        <Button type="button" onClick={startGame}>{t('simon.start')}</Button>
+        <Button onClick={startGame} className={styles.btn}>{t('start')}</Button>
       )}
       {status === SimonStatus.Losed && (
         <div className={styles.buttons}>
-          <Button type="button" onClick={handleChangeDifficulty}>{t('simon.changeDifficulty')}</Button>
-          <Button type="button" onClick={handleRestartGame}>{t('simon.restart')}</Button>
+          <Button onClick={handleChangeDifficulty} className={styles.btn}>{t('changeDifficulty')}</Button>
+          <Button onClick={handleRestartGame} className={styles.btn}>{t('restart')}</Button>
         </div>
       )}
     </div>
   );
-};
+});

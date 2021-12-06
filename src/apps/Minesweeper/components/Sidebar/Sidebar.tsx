@@ -24,13 +24,10 @@ import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 // Components
 import { Button } from '@Components/Button/Button';
 
-// I18n
-import '@Features/i18n';
-
 // Styles
 import styles from './sidebar.module.css';
 
-const Sidebar: FC<ChildrenNever> = () => {
+const Sidebar: FC<ChildrenNever> = React.memo(() => {
   const availableFlags = useSelector((state: RootState) => state.minesweeper.availableFlags);
   const isLose = useSelector((state: RootState) => state.minesweeper.isLose);
   const isWin = useSelector((state: RootState) => state.minesweeper.isWin);
@@ -38,12 +35,12 @@ const Sidebar: FC<ChildrenNever> = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation('minesweeper');
 
-  function handleRestart(): void {
+  function handleRestart() {
     dispatch(generateMinesweeperPattern());
     dispatch(calculateMinesweeper());
   }
 
-  function handleChangeDifficulty(): void {
+  function handleChangeDifficulty() {
     dispatch(setMinesweeperDifficulty({ difficulty: Difficulty.None }));
   }
 
@@ -59,13 +56,13 @@ const Sidebar: FC<ChildrenNever> = () => {
       {(isLose || isWin) && (
         <div className={styles.endGameButtons}>
           <Button
-            type="button"
+            className={styles.btn}
             onClick={handleChangeDifficulty}
           >
             {t('Change difficulty')}
           </Button>
           <Button
-            type="button"
+            className={styles.btn}
             onClick={handleRestart}
           >
             {t('Restart')}
@@ -74,6 +71,6 @@ const Sidebar: FC<ChildrenNever> = () => {
       )}
     </div>
   );
-};
+});
 
 export { Sidebar };

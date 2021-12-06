@@ -1,7 +1,7 @@
 // Libraries
 import React, { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,12 +20,13 @@ import { RootState } from '@Types/rootState.type';
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
 // Components
+import { Button } from '@Components/Button/Button';
 import { SelectionCategory } from './components/SelectionCategory/SelectionCategory';
 
 // Styles
 import styles from './chatSelection.module.css';
 
-const ChatSelection: FC<ChildrenNever> = () => {
+const ChatSelection: FC<ChildrenNever> = React.memo(() => {
   const users = useSelector((state: RootState) => state.chatUsers.users);
   const rooms = useSelector((state: RootState) => state.chatRooms.rooms);
 
@@ -38,57 +39,54 @@ const ChatSelection: FC<ChildrenNever> = () => {
     dispatch(fetchRooms());
   }, [dispatch]);
 
-  function handleClick(): void {
+  function handleClick() {
     setIsOpen(!isOpen);
   }
 
   return (
-    <AnimateSharedLayout>
-      <div className={styles.wrapperWithBtn}>
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              className={styles.wrapper}
-              initial="collapsed"
-              animate="open"
-              exit="collapsed"
-              variants={{
-                open: { width: '15rem', opacity: '100%' },
-                collapsed: { width: '0px', opacity: 0 },
-              }}
-              transition={{ duration: 1 }}
+    <div className={styles.wrapperWithBtn}>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className={styles.wrapper}
+            initial="collapsed"
+            animate="open"
+            exit="collapsed"
+            variants={{
+              open: { width: '15rem', opacity: '100%' },
+              collapsed: { width: '0px', opacity: 0 },
+            }}
+            transition={{ duration: 1 }}
+          >
+            <Scrollbars
+              renderView={(({ style, ...props }) => {
+                const viewStyle = {
+                  paddingRight: 12,
+                };
+                return (
+                  <div style={{ ...style, ...viewStyle }} {...props} />
+                );
+              })}
+              autoHide={false}
             >
-              <Scrollbars
-                renderView={(({ style, ...props }) => {
-                  const viewStyle = {
-                    paddingRight: 12,
-                  };
-                  return (
-                    <div style={{ ...style, ...viewStyle }} {...props} />
-                  );
-                })}
-                autoHide={false}
-              >
-                <SelectionCategory items={rooms} itemsType="Room" categoryName="Rooms" />
-                <SelectionCategory items={users} itemsType="User" categoryName="Users" />
-              </Scrollbars>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <button
-          type="button"
-          className={
-            classNames(styles.toggleVisibilityBtn, {
-              [styles.closeBtn]: !isOpen,
-            })
-          }
-          onClick={handleClick}
-        >
-          {isOpen ? <FontAwesomeIcon icon={faAngleLeft} /> : <FontAwesomeIcon icon={faAngleRight} />}
-        </button>
-      </div>
-    </AnimateSharedLayout>
+              <SelectionCategory items={rooms} itemsType="Room" categoryName="Rooms" />
+              <SelectionCategory items={users} itemsType="User" categoryName="Users" />
+            </Scrollbars>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <Button
+        className={
+          classNames(styles.toggleVisibilityBtn, {
+            [styles.closeBtn]: !isOpen,
+          })
+        }
+        onClick={handleClick}
+      >
+        {isOpen ? <FontAwesomeIcon icon={faAngleLeft} /> : <FontAwesomeIcon icon={faAngleRight} />}
+      </Button>
+    </div>
   );
-};
+});
 
 export { ChatSelection };

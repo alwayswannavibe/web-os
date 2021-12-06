@@ -1,6 +1,6 @@
 // Libraries
 import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 
 // Assets
@@ -29,6 +29,9 @@ import { Translate } from '@Translate/Translate';
 import { MessageAlert } from '@Components/MessageAlert/MessageAlert';
 import { Welcome } from '@Components/Welcome/Welcome';
 
+// Features
+import { fetchUser } from '@Features/user/redux/userSlice';
+
 // Types
 import { RootState } from '@Types/rootState.type';
 
@@ -45,6 +48,11 @@ const Main: FC<ChildrenNever> = () => {
   const backgroundImage = useSelector((state: RootState) => state.theme.backgroundImage);
   const [themeBackground, setThemeBackground] = useState('');
   const [isWelcomeOpen, setIsWelcomeOpen] = useState(!sessionStorage.getItem('isWelcomeOpen'));
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
 
   const backgroundImagesAssets = useMemo(() => ({
     [BackgroundImage.Car]: car,

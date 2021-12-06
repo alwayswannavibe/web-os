@@ -1,13 +1,10 @@
 // Libraries
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 // Redux
 import { changeDifficulty } from '@Simon/redux/simonSlice/simonSlice';
-
-// I18n
-import '@Features/i18n';
 
 // Assets
 import imgSource from '@Icons/saymon.svg';
@@ -31,14 +28,14 @@ import { Button } from '@Components/Button/Button';
 // Styles
 import styles from './simon.module.css';
 
-export const Simon: FC<ChildrenNever> = () => {
+export const Simon: FC<ChildrenNever> = React.memo(() => {
   const dispatch = useDispatch();
 
   const difficulty = useSelector((state: RootState) => state.simon.difficulty);
   const { t } = useTranslation('simon');
 
-  const chooseDifficulty = (choosedDifficulty: Difficulty) => {
-    dispatch(changeDifficulty({ difficulty: choosedDifficulty }));
+  const chooseDifficulty = (chosenDifficulty: Difficulty) => {
+    dispatch(changeDifficulty({ difficulty: chosenDifficulty }));
   };
 
   return (
@@ -48,28 +45,28 @@ export const Simon: FC<ChildrenNever> = () => {
         {difficulty === Difficulty.None && (
           <div className={styles.difficulties}>
             <h2>
-              {t('simon.chooseDifficulty')}
+              {t('chooseDifficulty')}
               :
             </h2>
             <ul className={styles.difficultiesList}>
               <li>
-                <Button onClick={() => chooseDifficulty(Difficulty.Easy)} type="button">
-                  {t(`simon.difficulties.${Difficulty.Easy}`)}
+                <Button onClick={() => chooseDifficulty(Difficulty.Easy)} className={styles.difficultyButton}>
+                  {t(`difficulties.${Difficulty.Easy}`)}
                 </Button>
               </li>
               <li>
-                <Button onClick={() => chooseDifficulty(Difficulty.Normal)} type="button">
-                  {t(`simon.difficulties.${Difficulty.Normal}`)}
+                <Button onClick={() => chooseDifficulty(Difficulty.Normal)} className={styles.difficultyButton}>
+                  {t(`difficulties.${Difficulty.Normal}`)}
                 </Button>
               </li>
               <li>
-                <Button onClick={() => chooseDifficulty(Difficulty.Hard)} type="button">
-                  {t(`simon.difficulties.${Difficulty.Hard}`)}
+                <Button onClick={() => chooseDifficulty(Difficulty.Hard)} className={styles.difficultyButton}>
+                  {t(`difficulties.${Difficulty.Hard}`)}
                 </Button>
               </li>
               <li>
-                <Button onClick={() => chooseDifficulty(Difficulty.Extreme)} type="button">
-                  {t(`simon.difficulties.${Difficulty.Extreme}`)}
+                <Button onClick={() => chooseDifficulty(Difficulty.Extreme)} className={styles.difficultyButton}>
+                  {t(`difficulties.${Difficulty.Extreme}`)}
                 </Button>
               </li>
             </ul>
@@ -84,4 +81,4 @@ export const Simon: FC<ChildrenNever> = () => {
       </Window>
     </>
   );
-};
+});

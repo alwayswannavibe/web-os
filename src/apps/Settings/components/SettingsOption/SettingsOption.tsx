@@ -1,5 +1,5 @@
 // Libraries
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 // Enums
@@ -15,12 +15,12 @@ interface Props extends ChildrenNever {
   category: string;
 }
 
-const SettingsOption: FC<Props> = ({ value, category }: Props) => {
+const SettingsOption: FC<Props> = React.memo(({ value, category }: Props) => {
   const { t } = useTranslation('settings');
 
   return (
     <option value={value}>{t(`${category}.${value}`)}</option>
   );
-};
+});
 
 export { SettingsOption };

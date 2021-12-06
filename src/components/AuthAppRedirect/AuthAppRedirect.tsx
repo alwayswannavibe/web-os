@@ -24,7 +24,7 @@ const AuthAppRedirect: FC<ChildrenNever> = React.memo(() => {
   return (
     <div className={styles.container}>
       <p className={styles.text}>{t('authRedirect.pleaseLogin')}</p>
-      <Button onClick={handleClick}>{t('authRedirect.goToLogin')}</Button>
+      <Button onClick={handleClick} className={styles.btn}>{t('authRedirect.goToLogin')}</Button>
     </div>
   );
 });

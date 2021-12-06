@@ -33,13 +33,17 @@
 }
 
 .enter {
-  min-width: 10rem;
+  min-width: 15rem;
+  padding: 0.5rem;
 }
 
-.changeAccount {
+.goToLogin {
   position: absolute;
   bottom: 20px;
   left: 20px;
+
+  min-width: 15rem;
+  padding: 0.5rem;
 }
 
 .animation {

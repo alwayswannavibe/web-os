@@ -53,7 +53,7 @@ const Welcome: FC<Props> = ({ handleWelcomeClose }: Props) => {
             <Button className={styles.enter} onClick={handleWelcomeClose}>
               {t('enter')}
             </Button>
-            <Button className={styles.changeAccount} onClick={handleGoToLogin}>
+            <Button className={styles.goToLogin} onClick={handleGoToLogin}>
               {t('changeAccount')}
             </Button>
           </>

@@ -46,15 +46,15 @@ const Registration: FC<ChildrenNever> = () => {
     setFormError(registrationError);
   }, [registrationError]);
 
-  function handleTooglePasswordVisible(): void {
+  function handleTogglePasswordVisible() {
     setIsPasswordVisible((value) => !value);
   }
 
-  function handleTooglePasswordVisible2(): void {
+  function handleTogglePasswordVisible2() {
     setIsPasswordVisible2((value) => !value);
   }
 
-  function handleRegistration(): void {
+  function handleRegistration() {
     dispatch(registration({
       username: getValues('username'),
       password: getValues('password'),
@@ -137,7 +137,7 @@ const Registration: FC<ChildrenNever> = () => {
                   },
                 })}
               />
-              <Button className={styles.changePasswordVisibility} onClick={handleTooglePasswordVisible}>
+              <Button className={styles.changePasswordVisibility} onClick={handleTogglePasswordVisible}>
                 {isPasswordVisible ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
               </Button>
             </div>
@@ -160,13 +160,13 @@ const Registration: FC<ChildrenNever> = () => {
                   validate: (value) => value === getValues('password') || 'Passwords should be equals',
                 })}
               />
-              <Button className={styles.changePasswordVisibility} onClick={handleTooglePasswordVisible2}>
+              <Button className={styles.changePasswordVisibility} onClick={handleTogglePasswordVisible2}>
                 {isPasswordVisible2 ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
               </Button>
             </div>
           </label>
           <div className={styles.btnContainer}>
-            <Button type="submit" className={styles.signIn} disabled={isRegistrationLoading}>
+            <Button type="submit" className={styles.signUp} disabled={isRegistrationLoading}>
               Sign Up
             </Button>
           </div>

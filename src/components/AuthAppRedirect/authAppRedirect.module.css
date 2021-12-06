@@ -11,3 +11,7 @@
 .text {
   margin-bottom: 4rem;
 }
+
+.btn {
+  padding: 0.5rem;
+}

@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 // Redux
 import {
   addTerminalHistory,
-  incrementAutocompleteNumber, resetAutocompleteNumber,
+  incrementAutocompleteNumber,
+  resetAutocompleteNumber,
   TerminalMessage,
 } from '@Terminal/redux/terminalSlice/terminalSlice';
 
@@ -36,33 +37,33 @@ export const Terminal: FC<ChildrenNever> = React.memo(() => {
   const terminalHistory = useSelector((state: RootState) => state.terminal.terminalHistory);
   const inputHistory = useSelector((state: RootState) => state.terminal.terminalInputHistory);
 
-  const dispatch = useDispatch();
   const [text, setText] = useState('');
   const [inputHistoryNumber, setInputHistoryNumber] = useState(inputHistory.length);
 
   const listRef = useRef<HTMLDivElement>(null);
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
+  const dispatch = useDispatch();
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setText(event.target.value);
     dispatch(resetAutocompleteNumber());
   }
 
-  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>): void {
-    if (event.keyCode === 38) {
+  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === 'ArrowUp') {
       event.preventDefault();
       const updatedInputHistoryNumber = inputHistoryNumber > 0 ? inputHistoryNumber - 1 : inputHistoryNumber;
       setInputHistoryNumber(updatedInputHistoryNumber);
       setText(inputHistory[updatedInputHistoryNumber] || '');
-    } else if (event.keyCode === 40) {
+    } else if (event.key === 'ArrowDown') {
       event.preventDefault();
       const updatedInputHistoryNumber = inputHistoryNumber < inputHistory.length - 1 ? inputHistoryNumber + 1 : inputHistoryNumber;
       setInputHistoryNumber(updatedInputHistoryNumber);
       setText(inputHistory[updatedInputHistoryNumber] || '');
-    } else if (event.keyCode === 9) {
+    } else if (event.key === 'Tab') {
       event.preventDefault();
       const textArr = text.split(' ');
-      const autocomplete = getAvailableAutocomplete(text);
-      textArr[textArr.length - 1] = autocomplete;
+      textArr[textArr.length - 1] = getAvailableAutocomplete(text);
       setText(textArr.join(' '));
       dispatch(incrementAutocompleteNumber());
     } else {
@@ -97,9 +98,9 @@ export const Terminal: FC<ChildrenNever> = React.memo(() => {
                 {terminalMessage.message.startsWith('root:~$ ') ? (
                   <>
                     <span className={styles.user}>root</span>
-                    :
+                    <span>:</span>
                     <span className={styles.tilda}>~</span>
-                    {'$ '}
+                    <span>{'$ '}</span>
                     {terminalMessage.message.slice(8)}
                   </>
                 ) : terminalMessage.message}
@@ -108,9 +109,9 @@ export const Terminal: FC<ChildrenNever> = React.memo(() => {
           </ul>
           <pre className={styles.pre}>
             <span className={styles.user}>root</span>
-            :
+            <span>:</span>
             <span className={styles.tilda}>~</span>
-            {'$ '}
+            <span>{'$ '}</span>
             <form onSubmit={handleSubmit}>
               <input
                 autoFocus

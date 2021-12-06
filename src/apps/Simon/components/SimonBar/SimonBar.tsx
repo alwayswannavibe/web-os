@@ -36,15 +36,15 @@ export const SimonBar: FC<Props> = React.memo(({ difficulty }: Props) => {
   const dispatch = useDispatch();
   const { t } = useTranslation('simon');
 
-  function startGame(): void {
+  function startGame() {
     dispatch(updateStatus({ status: SimonStatus.Showing }));
   }
 
-  function handleRestartGame(): void {
+  function handleRestartGame() {
     dispatch(restartGame());
   }
 
-  function handleChangeDifficulty(): void {
+  function handleChangeDifficulty() {
     dispatch(changeDifficulty({ difficulty: Difficulty.None }));
   }
 
@@ -52,23 +52,23 @@ export const SimonBar: FC<Props> = React.memo(({ difficulty }: Props) => {
     <div className={styles.wrapper}>
       <div>
         <p>
-          {t('simon.difficulty')}
+          {t('difficulty')}
           {': '}
-          {t(`simon.difficulties.${difficulty}`)}
+          {t(`difficulties.${difficulty}`)}
         </p>
         <p className={styles.level}>
-          {t('simon.level')}
+          {t('level')}
           {': '}
           {level}
         </p>
       </div>
       {status === SimonStatus.Waiting && (
-        <Button onClick={startGame} className={styles.btn}>{t('simon.start')}</Button>
+        <Button onClick={startGame} className={styles.btn}>{t('start')}</Button>
       )}
       {status === SimonStatus.Losed && (
         <div className={styles.buttons}>
-          <Button onClick={handleChangeDifficulty} className={styles.btn}>{t('simon.changeDifficulty')}</Button>
-          <Button onClick={handleRestartGame} className={styles.btn}>{t('simon.restart')}</Button>
+          <Button onClick={handleChangeDifficulty} className={styles.btn}>{t('changeDifficulty')}</Button>
+          <Button onClick={handleRestartGame} className={styles.btn}>{t('restart')}</Button>
         </div>
       )}
     </div>

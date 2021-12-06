@@ -34,8 +34,8 @@ export const Simon: FC<ChildrenNever> = React.memo(() => {
   const difficulty = useSelector((state: RootState) => state.simon.difficulty);
   const { t } = useTranslation('simon');
 
-  const chooseDifficulty = (choosedDifficulty: Difficulty) => {
-    dispatch(changeDifficulty({ difficulty: choosedDifficulty }));
+  const chooseDifficulty = (chosenDifficulty: Difficulty) => {
+    dispatch(changeDifficulty({ difficulty: chosenDifficulty }));
   };
 
   return (
@@ -45,28 +45,28 @@ export const Simon: FC<ChildrenNever> = React.memo(() => {
         {difficulty === Difficulty.None && (
           <div className={styles.difficulties}>
             <h2>
-              {t('simon.chooseDifficulty')}
+              {t('chooseDifficulty')}
               :
             </h2>
             <ul className={styles.difficultiesList}>
               <li>
                 <Button onClick={() => chooseDifficulty(Difficulty.Easy)} className={styles.difficultyButton}>
-                  {t(`simon.difficulties.${Difficulty.Easy}`)}
+                  {t(`difficulties.${Difficulty.Easy}`)}
                 </Button>
               </li>
               <li>
                 <Button onClick={() => chooseDifficulty(Difficulty.Normal)} className={styles.difficultyButton}>
-                  {t(`simon.difficulties.${Difficulty.Normal}`)}
+                  {t(`difficulties.${Difficulty.Normal}`)}
                 </Button>
               </li>
               <li>
                 <Button onClick={() => chooseDifficulty(Difficulty.Hard)} className={styles.difficultyButton}>
-                  {t(`simon.difficulties.${Difficulty.Hard}`)}
+                  {t(`difficulties.${Difficulty.Hard}`)}
                 </Button>
               </li>
               <li>
                 <Button onClick={() => chooseDifficulty(Difficulty.Extreme)} className={styles.difficultyButton}>
-                  {t(`simon.difficulties.${Difficulty.Extreme}`)}
+                  {t(`difficulties.${Difficulty.Extreme}`)}
                 </Button>
               </li>
             </ul>

@@ -39,6 +39,8 @@ interface Props extends ChildrenNever {
   numberOfButtons: number;
 }
 
+const sounds = [sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9];
+
 export const SimonMain: FC<Props> = React.memo(({ numberOfButtons }: Props) => {
   const dispatch = useDispatch();
 
@@ -58,7 +60,6 @@ export const SimonMain: FC<Props> = React.memo(({ numberOfButtons }: Props) => {
   const btnRef8 = useRef<HTMLButtonElement>(null);
   const btnRef9 = useRef<HTMLButtonElement>(null);
 
-  const sounds = useMemo(() => [sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9], []);
   const buttonsRefs = useMemo(() => [btnRef1, btnRef2, btnRef3, btnRef4, btnRef5, btnRef6, btnRef7, btnRef8, btnRef9], []);
   const buttonsRefsWithLimit = buttonsRefs.slice(0, numberOfButtons);
 

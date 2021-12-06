@@ -22,7 +22,7 @@ import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 // Styles
 import styles from './calculatorOperationButtons.module.css';
 
-const operationButtons = ['+', '-', '*', '/', '^', '.', 'C'];
+const operationButtons = ['+', '-', '*', '/', '^', '.'];
 
 const CalculatorOperationButtons: FC<ChildrenNever> = React.memo(() => {
   const dispatch = useDispatch();

@@ -10,10 +10,14 @@
   font-size: 1rem;
 }
 
-.button:hover {
+.button:disabled {
+  cursor: default;
+}
+
+.button:hover:enabled {
   filter: brightness(0.85);
 }
 
-.button:active {
+.button:active:enabled {
   filter: brightness(0.7);
 }

@@ -10,6 +10,7 @@ import { RootState } from '@Types/rootState.type';
 
 // Components
 import { ToDoItem } from '@ToDo/components/ToDoItem/ToDoItem';
+import { Scrollbar } from '@Components/Scrollbar/Scrollbar';
 
 // Styles
 import styles from './toDoList.module.css';
@@ -25,11 +26,15 @@ const ToDoList: FC<ChildrenNever> = React.memo(() => {
   }, [toDoList.length]);
 
   return (
-    <ul className={styles.toDoItemsContainer} ref={listRef}>
-      {toDoList.map((toDoItem) => (
-        <ToDoItem key={toDoItem.id} text={toDoItem.text} id={toDoItem.id} />
-      ))}
-    </ul>
+    <div className={styles.container}>
+      <Scrollbar>
+        <ul className={styles.toDoItemsContainer} ref={listRef}>
+          {toDoList.map((toDoItem) => (
+            <ToDoItem key={toDoItem.id} text={toDoItem.text} id={toDoItem.id} />
+          ))}
+        </ul>
+      </Scrollbar>
+    </div>
   );
 });
 

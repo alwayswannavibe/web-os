@@ -15,9 +15,8 @@
   width: 100%;
   margin-top: 0.5rem;
   margin-left: 1rem;
-  padding: 0.5rem;
 
-  transition: color 0.2s linear;
+  text-align: left;
   word-break: break-word;
 
   border: 1px solid #1d1d1d;
@@ -50,4 +49,35 @@
 
 .uncheckButton {
   color: #ae2727;
+}
+
+.collapseButton {
+  width: 2rem;
+  height: 100%;
+  padding: 0.5rem;
+
+  border-radius: 0;
+}
+
+.textButton {
+  width: calc(100% - 2rem);
+  padding: 0.5rem;
+
+  transition: color 0.2s linear;
+
+  text-align: left;
+
+  border-radius: 0;
+
+  font-size: 1.2rem;
+}
+
+.description {
+  padding: 0.5rem;
+
+  white-space: pre-wrap;
+
+  border-top: 2px dotted black;
+
+  font-size: 0.75rem;
 }

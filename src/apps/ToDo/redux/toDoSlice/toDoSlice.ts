@@ -5,19 +5,26 @@ import { v4 as uuidv4 } from 'uuid';
 // Types
 import { ToDoItem } from '@ToDo/interfaces/toDo.interface';
 
-const toDoList: ToDoItem[] = localStorage.getItem('toDoList') && JSON.parse(localStorage.getItem('toDoList')!) || [];
+interface InitialState {
+  toDoList: ToDoItem[];
+  activeToDoPage: string;
+}
+
+const initialState: InitialState = {
+  toDoList: localStorage.getItem('toDoList') && JSON.parse(localStorage.getItem('toDoList')!) || [],
+  activeToDoPage: '',
+};
 
 const toDoSlice = createSlice({
   name: 'toDo',
-  initialState: {
-    toDoList,
-  },
+  initialState,
   reducers: {
     addToDoItem(state, { payload }: { payload: string }) {
       state.toDoList.push({
         id: uuidv4(),
         text: payload,
         completed: false,
+        description: '',
       });
       localStorage.setItem('toDoList', JSON.stringify(state.toDoList));
     },
@@ -38,6 +45,16 @@ const toDoSlice = createSlice({
       state.toDoList = [];
       localStorage.setItem('toDoList', JSON.stringify(state.toDoList));
     },
+    changeActiveToDoPage(state, { payload }: { payload: string }) {
+      state.activeToDoPage = payload;
+    },
+    updateToDoItem(state, { payload }: { payload: ToDoItem }) {
+      const index = state.toDoList.findIndex((el) => el.id === payload.id);
+      state.toDoList[index].completed = payload.completed;
+      state.toDoList[index].text = payload.text;
+      state.toDoList[index].description = payload.description;
+      localStorage.setItem('toDoList', JSON.stringify(state.toDoList));
+    },
   },
 });
 
@@ -47,4 +64,6 @@ export const {
   deleteToDoItem,
   toggleCompleteToDoItem,
   clearToDo,
+  changeActiveToDoPage,
+  updateToDoItem,
 } = toDoSlice.actions;

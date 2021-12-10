@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 
 // Redux
-import { toggleCompleteToDoItem, deleteToDoItem, changeActiveToDoPage } from '@ToDo/redux/toDoSlice/toDoSlice';
+import { deleteToDoItem, changeActiveToDoPage, updateToDoItem } from '@ToDo/redux/toDoSlice/toDoSlice';
 
 // Types
 import { RootState } from '@Types/rootState.type';
@@ -55,7 +55,7 @@ const ToDoItem: FC<Props> = React.memo(({ text, id }: Props) => {
         <Button
           onClick={handleChangeActiveToDoPage}
           className={classNames(styles.textButton, {
-            [styles.completed]: toDoItem.completed,
+            [styles.completed]: toDoItem.isComplete,
           })}
           aria-label={t('goToToDoEditPage')}
         >
@@ -88,13 +88,16 @@ const ToDoItem: FC<Props> = React.memo(({ text, id }: Props) => {
       </motion.div>
       <Button
         className={classNames(styles.button, {
-          [styles.checkButton]: !toDoItem.completed,
-          [styles.uncheckButton]: toDoItem.completed,
+          [styles.checkButton]: !toDoItem.isComplete,
+          [styles.uncheckButton]: toDoItem.isComplete,
         })}
-        onClick={() => dispatch(toggleCompleteToDoItem(id))}
+        onClick={() => dispatch(updateToDoItem({
+          ...toDoItem,
+          isComplete: !toDoItem.isComplete,
+        }))}
         aria-label={`${t('toggleItemWithText')} ${text}`}
       >
-        {toDoItem.completed ? <FontAwesomeIcon icon={faTimes} /> : <FontAwesomeIcon icon={faCheck} />}
+        {toDoItem.isComplete ? <FontAwesomeIcon icon={faTimes} /> : <FontAwesomeIcon icon={faCheck} />}
       </Button>
       <Button
         className={`${styles.button} ${styles.deleteButton}`}

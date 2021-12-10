@@ -1,4 +1,5 @@
 // Libraries
+import { Loading } from '@Components/Loading/Loading';
 import React, { FC, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -17,6 +18,7 @@ import styles from './toDoList.module.css';
 
 const ToDoList: FC<ChildrenNever> = React.memo(() => {
   const toDoList = useSelector((state: RootState) => state.toDo.toDoList);
+  const isLoading = useSelector((state: RootState) => state.toDo.isToDoListLoading);
 
   const listRef = useRef<HTMLUListElement>(null);
 
@@ -25,12 +27,20 @@ const ToDoList: FC<ChildrenNever> = React.memo(() => {
     listRef.current.scrollTop = listRef.current.scrollHeight;
   }, [toDoList.length]);
 
+  if (isLoading) {
+    return (
+      <div className={styles.container}>
+        <Loading />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.container}>
       <Scrollbar>
         <ul className={styles.toDoItemsContainer} ref={listRef}>
           {toDoList.map((toDoItem) => (
-            <ToDoItem key={toDoItem.id} text={toDoItem.text} id={toDoItem.id} />
+            <ToDoItem key={toDoItem.id} text={toDoItem.heading} id={toDoItem.id} />
           ))}
         </ul>
       </Scrollbar>

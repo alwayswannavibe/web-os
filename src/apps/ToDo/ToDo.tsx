@@ -1,9 +1,12 @@
 // Libraries
-import React, { FC } from 'react';
-import { useSelector } from 'react-redux';
+import React, { FC, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Enums
 import { App } from '@Enums/app.enum';
+
+// Redux
+import { getToDoItems } from '@ToDo/redux/toDoSlice/toDoSlice';
 
 // Types
 import { RootState } from '@Types/rootState.type';
@@ -24,8 +27,14 @@ import { ToDoItemDetails } from '@ToDo/components/ToDoItemDetails/ToDoItemDetail
 // Styles
 import styles from './toDo.module.css';
 
-const ToDo: FC<ChildrenNever> = React.memo(() => {
+const ToDo: FC<ChildrenNever> = () => {
   const activeToDoPage = useSelector((state: RootState) => state.toDo.activeToDoPage);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getToDoItems());
+  }, []);
 
   return (
     <>
@@ -42,6 +51,6 @@ const ToDo: FC<ChildrenNever> = React.memo(() => {
       </Window>
     </>
   );
-});
+};
 
 export { ToDo };

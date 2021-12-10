@@ -15,9 +15,9 @@ interface Props extends ChildrenNever {
 const ToDoItemDetails: FC<Props> = ({ id }: Props) => {
   const toDoItem = useSelector((state: RootState) => state.toDo.toDoList[state.toDo.toDoList.findIndex((el) => el.id === id)]);
 
-  const [text, setText] = useState(toDoItem.text);
+  const [text, setText] = useState(toDoItem.heading);
   const [description, setDescription] = useState(toDoItem.description);
-  const [isComplete, setIsComplete] = useState(toDoItem.completed);
+  const [isComplete, setIsComplete] = useState(toDoItem.isComplete);
   const [isEditable, setIsEditable] = useState(false);
 
   const nameRef = useRef<HTMLInputElement>(null);
@@ -59,7 +59,7 @@ const ToDoItemDetails: FC<Props> = ({ id }: Props) => {
 
   function handleSave() {
     dispatch(updateToDoItem({
-      id, description, text, completed: isComplete,
+      id, description, heading: text, isComplete,
     }));
     setIsEditable(false);
   }

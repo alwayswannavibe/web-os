@@ -1,4 +1,5 @@
 // Libraries
+import { isLoggedIn } from '@Utils/isLoggedIn';
 import React, { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -8,7 +9,12 @@ import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 
 // Redux
-import { deleteToDoItem, changeActiveToDoPage, updateToDoItem } from '@ToDo/redux/toDoSlice/toDoSlice';
+import {
+  deleteToDoItem,
+  changeActiveToDoPage,
+  updateToDoItem,
+  deleteToDoItemLocal, updateToDoItemLocal,
+} from '@ToDo/redux/toDoSlice/toDoSlice';
 
 // Types
 import { RootState } from '@Types/rootState.type';
@@ -43,6 +49,28 @@ const ToDoItem: FC<Props> = React.memo(({ text, id }: Props) => {
 
   function toggleIsDescriptionCollapsed() {
     setIsDescriptionCollapsed((prev) => !prev);
+  }
+
+  function handleDeleteItem() {
+    if (isLoggedIn()) {
+      dispatch(deleteToDoItem(id));
+    } else {
+      dispatch(deleteToDoItemLocal(id));
+    }
+  }
+
+  function handleToggleToDoItem() {
+    if (isLoggedIn()) {
+      dispatch(updateToDoItem({
+        ...toDoItem,
+        isComplete: !toDoItem.isComplete,
+      }));
+    } else {
+      dispatch(updateToDoItemLocal({
+        ...toDoItem,
+        isComplete: !toDoItem.isComplete,
+      }));
+    }
   }
 
   return (
@@ -91,17 +119,14 @@ const ToDoItem: FC<Props> = React.memo(({ text, id }: Props) => {
           [styles.checkButton]: !toDoItem.isComplete,
           [styles.uncheckButton]: toDoItem.isComplete,
         })}
-        onClick={() => dispatch(updateToDoItem({
-          ...toDoItem,
-          isComplete: !toDoItem.isComplete,
-        }))}
+        onClick={handleToggleToDoItem}
         aria-label={`${t('toggleItemWithText')} ${text}`}
       >
         {toDoItem.isComplete ? <FontAwesomeIcon icon={faTimes} /> : <FontAwesomeIcon icon={faCheck} />}
       </Button>
       <Button
         className={`${styles.button} ${styles.deleteButton}`}
-        onClick={() => dispatch(deleteToDoItem(id))}
+        onClick={handleDeleteItem}
         aria-label={`${t('deleteItemWithText')} ${text}`}
       >
         <FontAwesomeIcon icon={faTrashAlt} />

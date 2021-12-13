@@ -8,8 +8,11 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
+// Utils
+import { isLoggedIn } from '@Utils/isLoggedIn';
+
 // Redux
-import { addToDoItem } from '@ToDo/redux/toDoSlice/toDoSlice';
+import { addToDoItem, addToDoItemLocal } from '@ToDo/redux/toDoSlice/toDoSlice';
 
 // Components
 import { Button } from '@Components/Button/Button';
@@ -26,7 +29,11 @@ const ToDoInput: FC<ChildrenNever> = React.memo(() => {
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
     if (text !== '') {
-      dispatch(addToDoItem(text));
+      if (isLoggedIn()) {
+        dispatch(addToDoItem(text));
+      } else {
+        dispatch(addToDoItemLocal(text));
+      }
       setText('');
     }
   }

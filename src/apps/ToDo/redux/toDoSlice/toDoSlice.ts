@@ -3,106 +3,85 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
-// Types
+// Interfaces
 import { ToDoItem } from '@ToDo/interfaces/toDo.interface';
 
 interface InitialState {
   toDoList: ToDoItem[];
   activeToDoPage: string;
   isToDoListLoading: boolean;
+  toDoListError: string;
+  isToDoUpdateLoading: boolean;
+  toDoUpdateError: string;
+  isDeleteLoading: boolean;
+  deleteError: string;
+  isAddLoading: boolean;
+  addError: string;
 }
 
 const initialState: InitialState = {
   toDoList: localStorage.getItem('toDoList') && JSON.parse(localStorage.getItem('toDoList')!) || [],
   activeToDoPage: '',
   isToDoListLoading: false,
+  toDoListError: '',
+  isToDoUpdateLoading: false,
+  toDoUpdateError: '',
+  isDeleteLoading: false,
+  deleteError: '',
+  isAddLoading: false,
+  addError: '',
 };
 
 const addToDoItem = createAsyncThunk('toDo/addToDoItem', async (payload: string, thunkApi) => {
-  try {
-    const res = await axios.post(`${process.env.REACT_APP_API_URL}/toDo/items`, {
-      heading: payload,
-    }, {
-      withCredentials: true,
-      timeout: 30000,
-    });
+  const res = await axios.post(`${process.env.REACT_APP_API_URL}/toDo/items`, {
+    heading: payload,
+  }, {
+    withCredentials: true,
+    timeout: 30000,
+  });
 
-    if (res.data.isSuccess) {
-      return res.data;
-    }
-
-    return thunkApi.rejectWithValue({
-      error: res.data.error,
-      payload,
-    });
-  } catch (err: unknown) {
-    return thunkApi.rejectWithValue({
-      error: err,
-      payload,
-    });
+  if (res.data.isSuccess) {
+    return res.data;
   }
+
+  return thunkApi.rejectWithValue({});
 });
 
 const deleteToDoItem = createAsyncThunk('toDo/deleteToDoItem', async (payload: string, thunkApi) => {
-  try {
-    const res = await axios.delete(`${process.env.REACT_APP_API_URL}/toDo/items?id=${payload}`, {
-      withCredentials: true,
-      timeout: 30000,
-    });
+  const res = await axios.delete(`${process.env.REACT_APP_API_URL}/toDo/items?id=${payload}`, {
+    withCredentials: true,
+    timeout: 30000,
+  });
 
-    if (res.data.isSuccess) {
-      return res.data;
-    }
-
-    return thunkApi.rejectWithValue({
-      error: res.data.error,
-      payload,
-    });
-  } catch (err: unknown) {
-    return thunkApi.rejectWithValue({
-      error: err,
-      payload,
-    });
+  if (res.data.isSuccess) {
+    return res.data;
   }
+
+  return thunkApi.rejectWithValue({});
 });
 
-const getToDoItems = createAsyncThunk('toDo/getToDoItems', async (payload, thunkApi) => {
-  try {
-    const res = await axios.get(`${process.env.REACT_APP_API_URL}/toDo/items`, {
-      withCredentials: true,
-      timeout: 30000,
-    });
-    return res.data;
-  } catch (err: unknown) {
-    return thunkApi.rejectWithValue({
-      error: err,
-    });
-  }
+const getToDoItems = createAsyncThunk('toDo/getToDoItems', async () => {
+  const res = await axios.get(`${process.env.REACT_APP_API_URL}/toDo/items`, {
+    withCredentials: true,
+    timeout: 30000,
+  });
+  return res.data;
 });
 
 const updateToDoItem = createAsyncThunk('toDo/updateToDoItem', async (payload: ToDoItem, thunkApi) => {
-  try {
-    const res = await axios.put(`${process.env.REACT_APP_API_URL}/toDo/items`, {
-      ...payload,
-      ...{ id: +payload.id },
-    }, {
-      withCredentials: true,
-      timeout: 30000,
-    });
+  const res = await axios.put(`${process.env.REACT_APP_API_URL}/toDo/items`, {
+    ...payload,
+    ...{ id: +payload.id },
+  }, {
+    withCredentials: true,
+    timeout: 30000,
+  });
 
-    if (res.data.isSuccess) {
-      return res.data;
-    }
-
-    return thunkApi.rejectWithValue({
-      error: res.data.error,
-      payload,
-    });
-  } catch (err: unknown) {
-    return thunkApi.rejectWithValue({
-      error: err,
-    });
+  if (res.data.isSuccess) {
+    return res.data;
   }
+
+  return thunkApi.rejectWithValue({});
 });
 
 const toDoSlice = createSlice({
@@ -112,54 +91,82 @@ const toDoSlice = createSlice({
     changeActiveToDoPage(state, { payload }: { payload: string }) {
       state.activeToDoPage = payload;
     },
-  },
-  extraReducers: ((builder) => {
-    builder.addCase(addToDoItem.rejected, (state, action) => {
+    addToDoItemLocal(state, { payload }: { payload: string }) {
       state.toDoList.push({
         id: uuidv4(),
-        heading: (action.payload as { error: string, payload: string }).payload,
+        heading: payload,
         isComplete: false,
         description: '',
       });
       localStorage.setItem('toDoList', JSON.stringify(state.toDoList));
-    });
-    builder.addCase(addToDoItem.fulfilled, (state, action) => {
-      state.toDoList.push({ ...action.payload.toDoItem, ...{ id: action.payload.toDoItem.id.toString() } });
-    });
-    builder.addCase(deleteToDoItem.rejected, (state, action) => {
+    },
+    deleteToDoItemLocal(state, { payload }: { payload: string }) {
       state.toDoList.splice(
-        state.toDoList.findIndex((el) => el.id === (action.payload as { error: string, payload: string }).payload),
+        state.toDoList.findIndex((el) => el.id === payload),
         1,
       );
       localStorage.setItem('toDoList', JSON.stringify(state.toDoList));
+    },
+    updateToDoItemLocal(state, { payload }: { payload: ToDoItem }) {
+      const index = state.toDoList.findIndex((el) => el.id === payload.id);
+      state.toDoList[index].isComplete = payload.isComplete;
+      state.toDoList[index].heading = payload.heading;
+      state.toDoList[index].description = payload.description;
+      localStorage.setItem('toDoList', JSON.stringify(state.toDoList));
+    },
+  },
+  extraReducers: ((builder) => {
+    builder.addCase(addToDoItem.pending, (state) => {
+      state.isAddLoading = true;
+    });
+    builder.addCase(addToDoItem.fulfilled, (state, action) => {
+      state.isAddLoading = false;
+      state.addError = '';
+      state.toDoList.push({ ...action.payload.toDoItem, ...{ id: action.payload.toDoItem.id.toString() } });
+    });
+    builder.addCase(addToDoItem.rejected, (state) => {
+      state.isAddLoading = false;
+      state.addError = 'Error';
+    });
+    builder.addCase(deleteToDoItem.pending, (state) => {
+      state.isDeleteLoading = true;
     });
     builder.addCase(deleteToDoItem.fulfilled, (state, action) => {
+      state.isDeleteLoading = false;
+      state.deleteError = '';
       state.toDoList.splice(
         state.toDoList.findIndex((el) => el.id === action.payload.id.toString()),
         1,
       );
+    });
+    builder.addCase(deleteToDoItem.rejected, (state) => {
+      state.isDeleteLoading = false;
+      state.deleteError = 'Error';
     });
     builder.addCase(getToDoItems.pending, (state) => {
       state.isToDoListLoading = true;
     });
     builder.addCase(getToDoItems.fulfilled, (state, action) => {
       state.isToDoListLoading = false;
+      state.toDoListError = '';
       state.toDoList = action.payload.sort((prev: ToDoItem, current: ToDoItem) => +prev.id - +current.id);
     });
     builder.addCase(getToDoItems.rejected, (state) => {
       state.isToDoListLoading = false;
-      state.toDoList = localStorage.getItem('toDoList') && JSON.parse(localStorage.getItem('toDoList')!) || [];
+      state.toDoListError = 'Error';
+    });
+    builder.addCase(updateToDoItem.pending, (state) => {
+      state.isToDoUpdateLoading = true;
     });
     builder.addCase(updateToDoItem.fulfilled, (state, action) => {
+      state.isToDoUpdateLoading = false;
+      state.toDoUpdateError = '';
       const index = state.toDoList.findIndex((el) => el.id === action.payload.toDoItem.id);
       state.toDoList[index] = action.payload.toDoItem;
     });
-    builder.addCase(updateToDoItem.rejected, (state, action) => {
-      const index = state.toDoList.findIndex((el) => el.id === (action.payload as { error: string, payload: ToDoItem }).payload.id);
-      state.toDoList[index].isComplete = (action.payload as { error: string, payload: ToDoItem }).payload.isComplete;
-      state.toDoList[index].heading = (action.payload as { error: string, payload: ToDoItem }).payload.heading;
-      state.toDoList[index].description = (action.payload as { error: string, payload: ToDoItem }).payload.description;
-      localStorage.setItem('toDoList', JSON.stringify(state.toDoList));
+    builder.addCase(updateToDoItem.rejected, (state) => {
+      state.isToDoUpdateLoading = false;
+      state.toDoUpdateError = 'Error';
     });
   }),
 });
@@ -167,5 +174,8 @@ const toDoSlice = createSlice({
 export default toDoSlice.reducer;
 export const {
   changeActiveToDoPage,
+  addToDoItemLocal,
+  deleteToDoItemLocal,
+  updateToDoItemLocal,
 } = toDoSlice.actions;
 export { addToDoItem, deleteToDoItem, getToDoItems, updateToDoItem };

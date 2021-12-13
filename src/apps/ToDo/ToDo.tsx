@@ -1,4 +1,5 @@
 // Libraries
+import { isLoggedIn } from '@Utils/isLoggedIn';
 import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -33,6 +34,9 @@ const ToDo: FC<ChildrenNever> = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (!isLoggedIn()) {
+      return;
+    }
     dispatch(getToDoItems());
   }, []);
 

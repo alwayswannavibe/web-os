@@ -1,7 +1,9 @@
 // Libraries
-import { Loading } from '@Components/Loading/Loading';
 import React, { FC, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+// Redux
+import { getToDoItems } from '@ToDo/redux/toDoSlice/toDoSlice';
 
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
@@ -12,6 +14,8 @@ import { RootState } from '@Types/rootState.type';
 // Components
 import { ToDoItem } from '@ToDo/components/ToDoItem/ToDoItem';
 import { Scrollbar } from '@Components/Scrollbar/Scrollbar';
+import { Error } from '@Components/Error/Error';
+import { Loading } from '@Components/Loading/Loading';
 
 // Styles
 import styles from './toDoList.module.css';
@@ -19,8 +23,11 @@ import styles from './toDoList.module.css';
 const ToDoList: FC<ChildrenNever> = React.memo(() => {
   const toDoList = useSelector((state: RootState) => state.toDo.toDoList);
   const isLoading = useSelector((state: RootState) => state.toDo.isToDoListLoading);
+  const error = useSelector((state: RootState) => state.toDo.toDoListError);
 
   const listRef = useRef<HTMLUListElement>(null);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!listRef.current) return;
@@ -31,6 +38,14 @@ const ToDoList: FC<ChildrenNever> = React.memo(() => {
     return (
       <div className={styles.container}>
         <Loading />
+      </div>
+    );
+  }
+
+  if (error !== '') {
+    return (
+      <div className={styles.container}>
+        <Error refetch={() => dispatch(getToDoItems())} />
       </div>
     );
   }

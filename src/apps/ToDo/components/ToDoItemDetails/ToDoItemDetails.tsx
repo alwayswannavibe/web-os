@@ -14,6 +14,7 @@ interface Props extends ChildrenNever {
 
 const ToDoItemDetails: FC<Props> = ({ id }: Props) => {
   const toDoItem = useSelector((state: RootState) => state.toDo.toDoList[state.toDo.toDoList.findIndex((el) => el.id === id)]);
+  const isUpdateLoading = useSelector((state: RootState) => state.toDo.isToDoUpdateLoading);
 
   const [text, setText] = useState(toDoItem.heading);
   const [description, setDescription] = useState(toDoItem.description);
@@ -102,7 +103,7 @@ const ToDoItemDetails: FC<Props> = ({ id }: Props) => {
           : <Button onClick={handleCancel} className={styles.bottomBtn}>{t('cancel')}</Button>}
         {!isEditable ?
           <Button onClick={setIsEditableToTrue} className={styles.bottomBtn}>{t('edit')}</Button>
-          : <Button className={styles.bottomBtn} onClick={handleSave}>{t('save')}</Button>}
+          : <Button className={styles.bottomBtn} onClick={handleSave} disabled={isUpdateLoading}>{t('save')}</Button>}
       </div>
     </form>
   );

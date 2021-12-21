@@ -1,4 +1,5 @@
 // Libraries
+import { ToDoError } from '@ToDo/components/ToDoError/ToDoError';
 import { isLoggedIn } from '@Utils/isLoggedIn';
 import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { App } from '@Enums/app.enum';
 
 // Redux
-import { getToDoItems } from '@ToDo/redux/toDoSlice/toDoSlice';
+import { closeToDoAddError, closeToDoUpdateError, getToDoItems } from '@ToDo/redux/toDoSlice/toDoSlice';
 
 // Types
 import { RootState } from '@Types/rootState.type';
@@ -30,6 +31,8 @@ import styles from './toDo.module.css';
 
 const ToDo: FC<ChildrenNever> = () => {
   const activeToDoPage = useSelector((state: RootState) => state.toDo.activeToDoPage);
+  const addError = useSelector((state: RootState) => state.toDo.addError);
+  const updateError = useSelector((state: RootState) => state.toDo.updateError);
 
   const dispatch = useDispatch();
 
@@ -40,6 +43,11 @@ const ToDo: FC<ChildrenNever> = () => {
     dispatch(getToDoItems());
   }, []);
 
+  function closeErrors() {
+    dispatch(closeToDoUpdateError());
+    dispatch(closeToDoAddError());
+  }
+
   return (
     <>
       <Icon imgSource={imgSource} type={App.ToDo} />
@@ -47,6 +55,7 @@ const ToDo: FC<ChildrenNever> = () => {
         <div className={styles.container}>
           {activeToDoPage !== '' ? <ToDoItemDetails id={activeToDoPage} /> : (
             <>
+              {addError || updateError ? <ToDoError handleClick={closeErrors} /> : <div className={styles.emptyError} />}
               <ToDoList />
               <ToDoInput />
             </>

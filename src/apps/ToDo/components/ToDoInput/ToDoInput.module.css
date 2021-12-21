@@ -33,9 +33,6 @@
   position: absolute;
   bottom: 0.5rem;
 
-  display: flex;
-  align-items: center;
-
   width: calc(100% - 1rem);
   margin-left: 1rem;
 
@@ -43,5 +40,11 @@
 }
 
 .form {
+  display: flex;
+
   width: 100%;
+}
+
+.inputError:focus {
+  border: 3px solid #871b1b !important;
 }

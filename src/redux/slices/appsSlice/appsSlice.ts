@@ -10,6 +10,10 @@ interface AppCommon {
   isCollapsed: boolean,
   iconPos: Coordinates,
   windowPos: Coordinates,
+  windowSize: {
+    width: string,
+    height: string,
+  }
 }
 
 const appsInitialState: {
@@ -23,104 +27,136 @@ const appsInitialState: {
   [App.Translate]: AppCommon,
 } = {
   [App.Calculator]: {
-    isOpened: JSON.parse(localStorage.getItem(`${[App.Calculator]}IsOpened`) || 'false'),
-    isCollapsed: JSON.parse(localStorage.getItem(`${[App.Calculator]}IsCollapsed`) || 'false'),
+    isOpened: false,
+    isCollapsed: false,
     iconPos: {
       top: localStorage.getItem(`${[App.Calculator]}IconTopCoord`) || '28rem',
       left: localStorage.getItem(`${[App.Calculator]}IconLeftCoord`) || '1rem',
     },
     windowPos: {
-      top: localStorage.getItem(`${[App.Calculator]}TopCoord`) || '15rem',
-      left: localStorage.getItem(`${[App.Calculator]}TopCoord`) || '8rem',
+      top: '15rem',
+      left: '8rem',
+    },
+    windowSize: {
+      width: '48rem',
+      height: '27rem',
     },
   },
   [App.Settings]: {
-    isOpened: JSON.parse(localStorage.getItem(`${[App.Settings]}IsOpened`) || 'false'),
-    isCollapsed: JSON.parse(localStorage.getItem(`${[App.Settings]}IsCollapsed`) || 'false'),
+    isOpened: false,
+    isCollapsed: false,
     iconPos: {
       top: localStorage.getItem(`${[App.Settings]}IconTopCoord`) || '23rem',
       left: localStorage.getItem(`${[App.Settings]}IconLeftCoord`) || '1rem',
     },
     windowPos: {
-      top: localStorage.getItem(`${[App.Settings]}TopCoord`) || '15rem',
-      left: localStorage.getItem(`${[App.Settings]}LeftCoord`) || '8rem',
+      top: '15rem',
+      left: '8rem',
+    },
+    windowSize: {
+      width: '48rem',
+      height: '27rem',
     },
   },
   [App.Chat]: {
-    isOpened: JSON.parse(localStorage.getItem(`${[App.Chat]}IsOpened`) || 'false'),
-    isCollapsed: JSON.parse(localStorage.getItem(`${[App.Chat]}IsCollapsed`) || 'false'),
+    isOpened: false,
+    isCollapsed: false,
     iconPos: {
       top: localStorage.getItem(`${[App.Chat]}IconTopCoord`) || '18rem',
       left: localStorage.getItem(`${[App.Chat]}IconLeftCoord`) || '1rem',
     },
     windowPos: {
-      top: localStorage.getItem(`${[App.Chat]}TopCoord`) || '15rem',
-      left: localStorage.getItem(`${[App.Chat]}LeftCoord`) || '8rem',
+      top: '15rem',
+      left: '8rem',
+    },
+    windowSize: {
+      width: '48rem',
+      height: '27rem',
     },
   },
   [App.Simon]: {
-    isOpened: JSON.parse(localStorage.getItem(`${[App.Simon]}IsOpened`) || 'false'),
-    isCollapsed: JSON.parse(localStorage.getItem(`${[App.Simon]}IsCollapsed`) || 'false'),
+    isOpened: false,
+    isCollapsed: false,
     iconPos: {
       top: localStorage.getItem(`${[App.Simon]}IconTopCoord`) || '13rem',
       left: localStorage.getItem(`${[App.Simon]}IconLeftCoord`) || '1rem',
     },
     windowPos: {
-      top: localStorage.getItem(`${[App.Simon]}TopCoord`) || '15rem',
-      left: localStorage.getItem(`${[App.Simon]}LeftCoord`) || '8rem',
+      top: '15rem',
+      left: '8rem',
+    },
+    windowSize: {
+      width: '48rem',
+      height: '27rem',
     },
   },
   [App.Terminal]: {
-    isOpened: JSON.parse(localStorage.getItem(`${[App.Terminal]}IsOpened`) || 'false'),
-    isCollapsed: JSON.parse(localStorage.getItem(`${[App.Terminal]}IsCollapsed`) || 'false'),
+    isOpened: false,
+    isCollapsed: false,
     iconPos: {
       top: localStorage.getItem(`${[App.Terminal]}IconTopCoord`) || '8rem',
       left: localStorage.getItem(`${[App.Terminal]}IconLeftCoord`) || '1rem',
     },
     windowPos: {
-      top: localStorage.getItem(`${[App.Terminal]}TopCoord`) || '15rem',
-      left: localStorage.getItem(`${[App.Terminal]}LeftCoord`) || '8rem',
+      top: '15rem',
+      left: '8rem',
+    },
+    windowSize: {
+      width: '48rem',
+      height: '27rem',
     },
   },
   [App.ToDo]: {
-    isOpened: JSON.parse(localStorage.getItem(`${[App.ToDo]}IsOpened`) || 'false'),
-    isCollapsed: JSON.parse(localStorage.getItem(`${[App.ToDo]}IsCollapsed`) || 'false'),
+    isOpened: false,
+    isCollapsed: false,
     iconPos: {
       top: localStorage.getItem(`${[App.ToDo]}IconTopCoord`) || '3rem',
       left: localStorage.getItem(`${[App.ToDo]}IconLeftCoord`) || '1rem',
     },
     windowPos: {
-      top: localStorage.getItem(`${[App.ToDo]}TopCoord`) || '15rem',
-      left: localStorage.getItem(`${[App.ToDo]}LeftCoord`) || '8rem',
+      top: '15rem',
+      left: '8rem',
+    },
+    windowSize: {
+      width: '48rem',
+      height: '27rem',
     },
   },
   [App.Minesweeper]: {
-    isOpened: JSON.parse(localStorage.getItem(`${[App.Minesweeper]}IsOpened`) || 'false'),
-    isCollapsed: JSON.parse(localStorage.getItem(`${[App.Minesweeper]}IsCollapsed`) || 'false'),
+    isOpened: false,
+    isCollapsed: false,
     iconPos: {
       top: localStorage.getItem(`${[App.Minesweeper]}IconTopCoord`) || '33rem',
       left: localStorage.getItem(`${[App.Minesweeper]}IconLeftCoord`) || '1rem',
     },
     windowPos: {
-      top: localStorage.getItem(`${[App.Minesweeper]}TopCoord`) || '15rem',
-      left: localStorage.getItem(`${[App.Minesweeper]}LeftCoord`) || '8rem',
+      top: '15rem',
+      left: '8rem',
+    },
+    windowSize: {
+      width: '48rem',
+      height: '27rem',
     },
   },
   [App.Translate]: {
-    isOpened: JSON.parse(localStorage.getItem(`${[App.Translate]}IsOpened`) || 'false'),
-    isCollapsed: JSON.parse(localStorage.getItem(`${[App.Translate]}IsCollapsed`) || 'false'),
+    isOpened: false,
+    isCollapsed: false,
     iconPos: {
       top: localStorage.getItem(`${[App.Translate]}IconTopCoord`) || '38rem',
       left: localStorage.getItem(`${[App.Translate]}IconLeftCoord`) || '1rem',
     },
     windowPos: {
-      top: localStorage.getItem(`${[App.Translate]}TopCoord`) || '15rem',
-      left: localStorage.getItem(`${[App.Translate]}LeftCoord`) || '8rem',
+      top: '15rem',
+      left: '8rem',
+    },
+    windowSize: {
+      width: '48rem',
+      height: '27rem',
     },
   },
 };
 
-const apps: App[] = JSON.parse(localStorage.getItem('apps') || '[]');
+const apps: App[] = [];
 
 const appsSlice = createSlice({
   name: 'apps',
@@ -135,7 +171,6 @@ const appsSlice = createSlice({
       const firstPart: App[] = state.apps.slice(0, index);
       const secondPart: App[] = state.apps.slice(index + 1);
       state.apps = [payload, ...firstPart, ...secondPart];
-      localStorage.setItem('apps', JSON.stringify(state.apps));
     },
     openApp(state, { payload }: { payload: App }) {
       state.appsState[payload].isOpened = true;
@@ -143,11 +178,9 @@ const appsSlice = createSlice({
       localStorage.setItem(`${[payload]}IsOpened`, 'true');
       localStorage.setItem(`${[payload]}IsCollapsed`, 'false');
       state.apps.unshift(payload);
-      localStorage.setItem('apps', JSON.stringify(state.apps));
     },
     toggleCollapseApp(state, { payload }: { payload: App }) {
       state.appsState[payload].isCollapsed = !state.appsState[payload].isCollapsed;
-      localStorage.setItem(`${[payload]}IsCollapsed`, state.appsState[payload].isCollapsed.toString());
     },
     closeApp(state, { payload }: { payload: App }) {
       state.appsState[payload].isOpened = false;
@@ -155,7 +188,6 @@ const appsSlice = createSlice({
       localStorage.setItem(`${[payload]}IsOpened`, 'false');
       localStorage.setItem(`${[payload]}IsCollapsed`, 'false');
       state.apps.splice(state.apps.indexOf(payload), 1);
-      localStorage.setItem('apps', JSON.stringify(state.apps));
     },
     changeIconPos(state, { payload }: { payload: { type: App, coords: Coordinates } }) {
       state.appsState[payload.type].iconPos.top = payload.coords.top;
@@ -166,8 +198,10 @@ const appsSlice = createSlice({
     changeWindowPos(state, { payload }: { payload: { type: App, coords: Coordinates } }) {
       state.appsState[payload.type].windowPos.top = payload.coords.top;
       state.appsState[payload.type].windowPos.left = payload.coords.left;
-      localStorage.setItem(`${[payload.type]}TopCoord`, payload.coords.top);
-      localStorage.setItem(`${[payload.type]}LeftCoord`, payload.coords.left);
+    },
+    setWindowSize(state, { payload }: { payload: { type: App, newWidth: string, newHeight: string } }) {
+      state.appsState[payload.type].windowSize.width = payload.newWidth;
+      state.appsState[payload.type].windowSize.height = payload.newHeight;
     },
   },
 });
@@ -180,4 +214,5 @@ export const {
   closeApp,
   changeIconPos,
   changeWindowPos,
+  setWindowSize,
 } = appsSlice.actions;

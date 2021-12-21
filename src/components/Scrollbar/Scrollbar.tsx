@@ -10,7 +10,6 @@ const Scrollbar: FC<Props> = ({ children }: Props) => (
     renderView={(({ style, ...props }) => {
       const viewStyle = {
         overflowX: 'hidden',
-        paddingRight: 10,
       };
       return (
         <div style={{ ...style, ...viewStyle }} {...props} />

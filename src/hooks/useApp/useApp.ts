@@ -7,7 +7,11 @@ import {
   closeApp,
   openApp,
   toggleCollapseApp,
+  setWindowSize,
 } from 'src/redux/slices/appsSlice/appsSlice';
+
+// Utils
+import { getRemFromPx } from '@Utils/getRemFromPx';
 
 // Enums
 import { App } from '@Enums/app.enum';
@@ -56,9 +60,19 @@ const useApp = (type: App) => {
 
   const isIncludeApp = () => apps.includes(type);
 
+  function handleResize(newWidth: number, newHeight: number) {
+    console.log(getRemFromPx(newWidth));
+    dispatch(setWindowSize({
+      type,
+      newWidth: `${getRemFromPx(newWidth)}rem`,
+      newHeight: `${getRemFromPx(newHeight)}rem`,
+    }));
+  }
+
   return {
     handleClose,
     handleOpen,
+    handleResize,
     handleToggleCollapse,
     isIncludeApp,
     getAppIndex,

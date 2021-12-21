@@ -12,10 +12,10 @@ import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 import { RootState } from '@Types/rootState.type';
 
 // Components
-import { ToDoItem } from '@ToDo/components/ToDoItem/ToDoItem';
-import { Scrollbar } from '@Components/Scrollbar/Scrollbar';
 import { Error } from '@Components/Error/Error';
 import { Loading } from '@Components/Loading/Loading';
+import { ToDoItem } from '@ToDo/components/ToDoItem/ToDoItem';
+import { Scrollbar } from '@Components/Scrollbar/Scrollbar';
 
 // Styles
 import styles from './toDoList.module.css';

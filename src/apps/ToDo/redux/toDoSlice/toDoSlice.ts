@@ -11,8 +11,8 @@ interface InitialState {
   activeToDoPage: string;
   isToDoListLoading: boolean;
   toDoListError: string;
-  isToDoUpdateLoading: boolean;
-  toDoUpdateError: string;
+  isUpdateLoading: boolean;
+  updateError: string;
   isDeleteLoading: boolean;
   deleteError: string;
   isAddLoading: boolean;
@@ -24,8 +24,8 @@ const initialState: InitialState = {
   activeToDoPage: '',
   isToDoListLoading: false,
   toDoListError: '',
-  isToDoUpdateLoading: false,
-  toDoUpdateError: '',
+  isUpdateLoading: false,
+  updateError: '',
   isDeleteLoading: false,
   deleteError: '',
   isAddLoading: false,
@@ -90,6 +90,12 @@ const toDoSlice = createSlice({
   reducers: {
     changeActiveToDoPage(state, { payload }: { payload: string }) {
       state.activeToDoPage = payload;
+    },
+    closeToDoUpdateError(state) {
+      state.updateError = '';
+    },
+    closeToDoAddError(state) {
+      state.addError = '';
     },
     addToDoItemLocal(state, { payload }: { payload: string }) {
       state.toDoList.push({
@@ -156,17 +162,17 @@ const toDoSlice = createSlice({
       state.toDoListError = 'Error';
     });
     builder.addCase(updateToDoItem.pending, (state) => {
-      state.isToDoUpdateLoading = true;
+      state.isUpdateLoading = true;
     });
     builder.addCase(updateToDoItem.fulfilled, (state, action) => {
-      state.isToDoUpdateLoading = false;
-      state.toDoUpdateError = '';
+      state.isUpdateLoading = false;
+      state.updateError = '';
       const index = state.toDoList.findIndex((el) => el.id === action.payload.toDoItem.id);
       state.toDoList[index] = action.payload.toDoItem;
     });
     builder.addCase(updateToDoItem.rejected, (state) => {
-      state.isToDoUpdateLoading = false;
-      state.toDoUpdateError = 'Error';
+      state.isUpdateLoading = false;
+      state.updateError = 'Error';
     });
   }),
 });
@@ -177,5 +183,7 @@ export const {
   addToDoItemLocal,
   deleteToDoItemLocal,
   updateToDoItemLocal,
+  closeToDoUpdateError,
+  closeToDoAddError,
 } = toDoSlice.actions;
 export { addToDoItem, deleteToDoItem, getToDoItems, updateToDoItem };

@@ -1,5 +1,7 @@
 // Libraries
-import React, { FC, FormEvent, useState } from 'react';
+import classNames from 'classnames';
+import React, { FC } from 'react';
+import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,41 +23,42 @@ import { Button } from '@Components/Button/Button';
 import styles from './ToDoInput.module.css';
 
 const ToDoInput: FC<ChildrenNever> = React.memo(() => {
-  const [text, setText] = useState('');
-
   const dispatch = useDispatch();
   const { t } = useTranslation('toDo');
+  const { register, getValues, handleSubmit, formState, reset, setFocus } = useForm();
 
-  function handleSubmit(event: FormEvent) {
-    event.preventDefault();
-    if (text !== '') {
-      if (isLoggedIn()) {
-        dispatch(addToDoItem(text));
-      } else {
-        dispatch(addToDoItemLocal(text));
-      }
-      setText('');
+  function handleAddToDo() {
+    if (isLoggedIn()) {
+      dispatch(addToDoItem(getValues('addToDo')));
+      return reset();
     }
-  }
-
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setText(event.target.value);
+    dispatch(addToDoItemLocal(getValues('addToDo')));
+    return reset();
   }
 
   return (
     <div className={styles.addContainer}>
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form onSubmit={handleSubmit(handleAddToDo)} className={styles.form}>
         <input
           type="text"
-          className={styles.input}
-          value={text}
+          className={classNames(styles.input, {
+            [styles.inputError]: formState.errors?.addToDo,
+          })}
           autoFocus
-          onChange={handleChange}
+          required
+          {...register('addToDo', {
+            required: true,
+          })}
         />
+        <Button
+          className={styles.addItemButton}
+          aria-label={t('addToDoItem')}
+          type="submit"
+          onClick={() => setFocus('addToDo')}
+        >
+          <FontAwesomeIcon icon={faPlus} />
+        </Button>
       </form>
-      <Button className={styles.addItemButton} onClick={handleSubmit} aria-label={t('addToDoItem')}>
-        <FontAwesomeIcon icon={faPlus} />
-      </Button>
     </div>
   );
 });

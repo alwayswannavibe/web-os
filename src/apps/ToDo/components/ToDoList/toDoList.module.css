@@ -1,6 +1,16 @@
 .toDoItemsContainer {
-  overflow-y: scroll;
+  width: calc(100% - 1.5rem);
+  height: 100%;
+}
 
-  width: 100%;
+.emptyError {
+  height: 1.5rem;
+}
+
+.container {
   height: calc(100% - 3.5rem);
+}
+
+.toDoItemsContainer:last-child {
+  margin-bottom: 20px;
 }

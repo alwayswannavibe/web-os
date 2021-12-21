@@ -1,14 +1,20 @@
 // Libraries
-import React, { FC } from 'react';
+import { isLoggedIn } from '@Utils/isLoggedIn';
+import React, { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faTimes, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faTimes, faTrashAlt, faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 
 // Redux
-import { toggleCompleteToDoItem, deleteToDoItem } from '@ToDo/redux/toDoSlice/toDoSlice';
+import {
+  deleteToDoItem,
+  changeActiveToDoPage,
+  updateToDoItem,
+  deleteToDoItemLocal, updateToDoItemLocal,
+} from '@ToDo/redux/toDoSlice/toDoSlice';
 
 // Types
 import { RootState } from '@Types/rootState.type';
@@ -28,35 +34,99 @@ interface Props extends ChildrenNever {
 }
 
 const ToDoItem: FC<Props> = React.memo(({ text, id }: Props) => {
-  const completed = useSelector(
-    (state: RootState) => state.toDo.toDoList[state.toDo.toDoList.findIndex((el) => el.id === id)].completed,
+  const toDoItem = useSelector(
+    (state: RootState) => state.toDo.toDoList[state.toDo.toDoList.findIndex((el) => el.id === id)],
   );
+
+  const [isDescriptionCollapsed, setIsDescriptionCollapsed] = useState(true);
 
   const { t } = useTranslation('toDo');
   const dispatch = useDispatch();
 
+  function handleChangeActiveToDoPage() {
+    dispatch(changeActiveToDoPage(id));
+  }
+
+  function toggleIsDescriptionCollapsed() {
+    setIsDescriptionCollapsed((prev) => !prev);
+  }
+
+  function handleDeleteItem() {
+    if (isLoggedIn()) {
+      dispatch(deleteToDoItem(id));
+    } else {
+      dispatch(deleteToDoItemLocal(id));
+    }
+  }
+
+  function handleToggleToDoItem() {
+    if (isLoggedIn()) {
+      dispatch(updateToDoItem({
+        ...toDoItem,
+        isComplete: !toDoItem.isComplete,
+      }));
+    } else {
+      dispatch(updateToDoItemLocal({
+        ...toDoItem,
+        isComplete: !toDoItem.isComplete,
+      }));
+    }
+  }
+
   return (
     <li className={styles.toDoItem} data-cy="todo-item">
-      <motion.p
-        className={`${styles.text} ${completed ? styles.completed : ''}`}
+      <motion.div
+        className={styles.text}
         initial={{ y: 50, opacity: 0.2 }}
         animate={{ y: 0, opacity: 1 }}
       >
-        {text}
-      </motion.p>
+        <Button
+          onClick={handleChangeActiveToDoPage}
+          className={classNames(styles.textButton, {
+            [styles.completed]: toDoItem.isComplete,
+          })}
+          aria-label={t('goToToDoEditPage')}
+        >
+          {text}
+        </Button>
+        <Button
+          className={styles.collapseButton}
+          onClick={toggleIsDescriptionCollapsed}
+          aria-label={t('toggleCollapseDescription')}
+        >
+          {isDescriptionCollapsed ? <FontAwesomeIcon icon={faAngleDown} /> : <FontAwesomeIcon icon={faAngleUp} />}
+        </Button>
+        <AnimatePresence initial={false}>
+          {!isDescriptionCollapsed && (
+            <motion.p
+              className={styles.description}
+              initial="collapsed"
+              animate="open"
+              exit="collapsed"
+              variants={{
+                open: { opacity: 1, height: 'auto' },
+                collapsed: { opacity: 0, height: 0 },
+              }}
+              transition={{ duration: 0.4 }}
+            >
+              {toDoItem.description}
+            </motion.p>
+          )}
+        </AnimatePresence>
+      </motion.div>
       <Button
         className={classNames(styles.button, {
-          [styles.checkButton]: !completed,
-          [styles.uncheckButton]: completed,
+          [styles.checkButton]: !toDoItem.isComplete,
+          [styles.uncheckButton]: toDoItem.isComplete,
         })}
-        onClick={() => dispatch(toggleCompleteToDoItem(id))}
+        onClick={handleToggleToDoItem}
         aria-label={`${t('toggleItemWithText')} ${text}`}
       >
-        {completed ? <FontAwesomeIcon icon={faTimes} /> : <FontAwesomeIcon icon={faCheck} />}
+        {toDoItem.isComplete ? <FontAwesomeIcon icon={faTimes} /> : <FontAwesomeIcon icon={faCheck} />}
       </Button>
       <Button
         className={`${styles.button} ${styles.deleteButton}`}
-        onClick={() => dispatch(deleteToDoItem(id))}
+        onClick={handleDeleteItem}
         aria-label={`${t('deleteItemWithText')} ${text}`}
       >
         <FontAwesomeIcon icon={faTrashAlt} />

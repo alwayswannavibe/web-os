@@ -1,0 +1,21 @@
+.error {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 1.5rem;
+
+  color: white;
+  background-color: #871b1b;
+
+  font-size: 1.2rem;
+}
+
+.closeError {
+  position: absolute;
+  right: 20px;
+
+  background-color: transparent;
+}

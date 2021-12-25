@@ -31,7 +31,6 @@ import { Language } from '@Features/i18n/types/language';
 
 i18n.use(initReactI18next).init({
   fallbackLng: Language.English,
-  whitelist: [Language.English, Language.Russian],
   debug: false,
   detection: {
     order: ['localStorage', 'cookie'],

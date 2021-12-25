@@ -29,11 +29,10 @@ import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 import styles from './toDoItem.module.css';
 
 interface Props extends ChildrenNever {
-  text: string;
   id: string;
 }
 
-const ToDoItem: FC<Props> = React.memo(({ text, id }: Props) => {
+const ToDoItem: FC<Props> = React.memo(({ id }: Props) => {
   const toDoItem = useSelector(
     (state: RootState) => state.toDo.toDoList[state.toDo.toDoList.findIndex((el) => el.id === id)],
   );
@@ -87,7 +86,7 @@ const ToDoItem: FC<Props> = React.memo(({ text, id }: Props) => {
           })}
           aria-label={t('goToToDoEditPage')}
         >
-          {text}
+          {toDoItem.heading}
         </Button>
         <Button
           className={styles.collapseButton}
@@ -120,14 +119,14 @@ const ToDoItem: FC<Props> = React.memo(({ text, id }: Props) => {
           [styles.uncheckButton]: toDoItem.isComplete,
         })}
         onClick={handleToggleToDoItem}
-        aria-label={`${t('toggleItemWithText')} ${text}`}
+        aria-label={`${t('toggleItemWithText')} ${toDoItem.heading}`}
       >
         {toDoItem.isComplete ? <FontAwesomeIcon icon={faTimes} /> : <FontAwesomeIcon icon={faCheck} />}
       </Button>
       <Button
         className={`${styles.button} ${styles.deleteButton}`}
         onClick={handleDeleteItem}
-        aria-label={`${t('deleteItemWithText')} ${text}`}
+        aria-label={`${t('deleteItemWithText')} ${toDoItem.heading}`}
       >
         <FontAwesomeIcon icon={faTrashAlt} />
       </Button>

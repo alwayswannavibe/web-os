@@ -1,6 +1,6 @@
 // Libraries
 import { FC, useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -31,7 +31,7 @@ const Registration: FC<ChildrenNever> = () => {
   const registrationError = useSelector((state: RootState) => state.user.registrationError);
   const isRegistrationLoading = useSelector((state: RootState) => state.user.isRegistrationLoading);
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
     register,
@@ -65,7 +65,7 @@ const Registration: FC<ChildrenNever> = () => {
     <>
       <div className={styles.overlay} style={{ backgroundImage: `url(${space})` }} />
       <div className={styles.wrapper}>
-        <Button onClick={() => history.push('/')} className={styles.closeBtn}>←</Button>
+        <Button onClick={() => navigate('/')} className={styles.closeBtn}>←</Button>
         <form className={styles.loginForm} onSubmit={handleSubmit(handleRegistration)}>
           <span
             className={`${styles.formErrorDefault} ${formError ? styles.formError : ''}`}

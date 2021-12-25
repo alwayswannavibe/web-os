@@ -11,7 +11,7 @@ const socket: Socket = io(process.env.REACT_APP_API_URL as string, {
   withCredentials: true,
 });
 
-socket!.on('chatUpdate', (payload) => {
+socket?.on('chatUpdate', (payload) => {
   processNewMessage(payload);
   if ((payload.toUserId !== null && payload.owner.id === store.getState().chat.activeChat && store.getState().chat.activeType)
   || (payload.toRoomId !== null && payload.owner.id === store.getState().chat.activeChat && store.getState().chat.activeType)) {
@@ -19,7 +19,7 @@ socket!.on('chatUpdate', (payload) => {
   }
 });
 
-socket!.on('readMessages', (payload) => {
+socket?.on('readMessages', (payload) => {
   if (payload.roomId) {
     store.dispatch(changeNewMessageCount({ id: payload.id, activeType: payload.activeType, roomId: payload.roomId }));
   } else {

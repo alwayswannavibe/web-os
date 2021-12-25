@@ -1,7 +1,7 @@
 // Libraries
 import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -31,7 +31,7 @@ const Login: FC<ChildrenNever> = () => {
   const isLoginLoading = useSelector((state: RootState) => state.user.isLoginLoading);
 
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -58,7 +58,7 @@ const Login: FC<ChildrenNever> = () => {
     <>
       <div className={styles.overlay} style={{ backgroundImage: `url(${space})` }} />
       <div className={styles.wrapper}>
-        <Button onClick={() => history.push('/')} className={styles.closeBtn}>←</Button>
+        <Button onClick={() => navigate('/')} className={styles.closeBtn}>←</Button>
         <form className={styles.loginForm} onSubmit={handleSubmit(handleLogin)}>
           <span
             className={`${styles.formErrorDefault} ${formError ? styles.formError : ''}`}

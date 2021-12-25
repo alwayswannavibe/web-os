@@ -13,6 +13,10 @@
   font-size: 1.2rem;
 }
 
+.emptyError {
+  height: 0.5rem;
+}
+
 .closeError {
   position: absolute;
   right: 20px;

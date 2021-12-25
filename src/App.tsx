@@ -1,6 +1,6 @@
 // Libraries
 import { useSelector } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
@@ -47,35 +47,30 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Route render={({ location }) => (
-        <AnimatePresence>
-          <div className={themeStyle}>
-            <Switch location={location} key={location.pathname}>
-              <Route
-                exact
-                path="/login"
-                component={Login}
-              />
-              <Route
-                exact
-                path="/registration"
-                component={Registration}
-              />
-              <Route
-                path="/"
-                render={() => (
-                  <>
-                    <TopBar />
-                    <Main />
-                    <BottomPanel />
-                  </>
-                )}
-              />
-            </Switch>
-          </div>
-        </AnimatePresence>
-      )}
-      />
+      <AnimatePresence>
+        <div className={themeStyle}>
+          <Routes>
+            <Route
+              path='/login'
+              element={<Login />}
+            />
+            <Route
+              path='/registration'
+              element={<Registration />}
+            />
+            <Route
+              path='/'
+              element={
+                <>
+                  <TopBar/>
+                  <Main/>
+                  <BottomPanel/>
+                </>
+              }
+            />
+          </Routes>
+        </div>
+      </AnimatePresence>
     </BrowserRouter>
   );
 };

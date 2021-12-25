@@ -1,6 +1,4 @@
 // Libraries
-import { ToDoError } from '@ToDo/components/ToDoError/ToDoError';
-import { isLoggedIn } from '@Utils/isLoggedIn';
 import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -16,6 +14,9 @@ import { RootState } from '@Types/rootState.type';
 // Interfaces
 import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
+// Utils
+import { isLoggedIn } from '@Utils/isLoggedIn';
+
 // Assets
 import imgSource from '@Icons/toDo.svg';
 
@@ -25,6 +26,7 @@ import { Icon } from '@Components/Icon/Icon';
 import { ToDoList } from '@ToDo/components/ToDoList/ToDoList';
 import { ToDoInput } from '@ToDo/components/ToDoInput/ToDoInput';
 import { ToDoItemDetails } from '@ToDo/components/ToDoItemDetails/ToDoItemDetails';
+import { TopWindowError } from '@Components/TopWindowError/TopWindowError';
 
 // Styles
 import styles from './toDo.module.css';
@@ -55,7 +57,7 @@ const ToDo: FC<ChildrenNever> = () => {
         <div className={styles.container}>
           {activeToDoPage !== '' ? <ToDoItemDetails id={activeToDoPage} /> : (
             <>
-              {addError || updateError ? <ToDoError handleClick={closeErrors} /> : <div className={styles.emptyError} />}
+              <TopWindowError handleClick={closeErrors} error={updateError || addError} />
               <ToDoList />
               <ToDoInput />
             </>

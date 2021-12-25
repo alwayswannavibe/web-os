@@ -1,7 +1,7 @@
 // Libraries
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBomb, faCalculator,
@@ -36,14 +36,14 @@ export const BottomPanel: FC<ChildrenNever> = () => {
   const loading = useSelector((state: RootState) => state.user.loading);
 
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   function handleLogout(): void {
     dispatch(logout());
   }
 
   function handleLogin(): void {
-    history.push('/login');
+    navigate('/login');
   }
 
   return (

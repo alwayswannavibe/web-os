@@ -1,117 +1,126 @@
 // Libraries
-import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
+import { Middleware } from '@reduxjs/toolkit';
+import React from 'react';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
-import { render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen } from '@testing-library/react';
+
+// Utils
+import * as isLoggedIn from 'src/utils/isLoggedIn';
 
 // Components
-import * as Icon from '@Components/Icon/Icon';
-import * as Window from '@Components/Window/Window';
-import * as ToDoItem from '@ToDo/components/ToDoItem/ToDoItem';
 import { ToDo } from './ToDo';
 
-describe('ToDoList', () => {
-  const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
+jest.mock('socket.io-client');
+jest.mock('react-i18next', () => jest.requireActual('../../../__mocks__/react-i18next'));
+jest.mock('src/components/Icon/Icon', () => ({
+  Icon: () => <div data-testid="Icon" />,
+}));
+jest.mock('src/components/Window/Window', () => ({
+  Window: ({ children }: { children: React.ReactNode }) => <div data-testid="Window">{children}</div>,
+}));
+jest.mock('./components/ToDoItemDetails/ToDoItemDetails', () => ({
+  ToDoItemDetails: () => <div data-testid="ToDoItemDetails" />,
+}));
+jest.mock('./components/ToDoInput/ToDoInput', () => ({
+  ToDoInput: () => <div data-testid="ToDoInput" />,
+}));
+jest.mock('../../components/TopWindowError/TopWindowError', () => ({
+  TopWindowError: () => <div data-testid="TopWindowError" />,
+}));
+jest.mock('./components/ToDoList/ToDoList', () => ({
+  ToDoList: () => <div data-testid="ToDoList" />,
+}));
+jest.mock('./redux/toDoSlice/toDoSlice', () => ({
+  getToDoItems: () => ({
+    type: 'getToDoItems',
+  }),
+}));
+
+describe('ToDo', () => {
+  const middlewares: Middleware[] | undefined = [];
   const mockStore = configureStore(middlewares);
-  const initialState = {
-    toDo: {
-      toDoList: [
-        {
-          id: 1,
-          text: 'test1',
+
+  describe('should render correct', () => {
+    it('should render if activeToDoPage equals \'\' and isLoggedIn return false', () => {
+      const initialState = {
+        toDo: {
+          activeToDoPage: '',
+          addError: '',
+          updateError: '',
         },
-        {
-          id: 2,
-          text: 'test2',
+      };
+      const mockStoreWithState = mockStore(initialState);
+      const mockDispatch = jest.spyOn(mockStoreWithState, 'dispatch');
+      jest.spyOn(isLoggedIn, 'isLoggedIn').mockReturnValue(false);
+
+      render(
+        <Provider store={mockStoreWithState}>
+          <ToDo />
+        </Provider>,
+      );
+
+      expect(screen.getByTestId('Icon')).toBeInTheDocument();
+      expect(screen.getByTestId('Window')).toBeInTheDocument();
+      expect(screen.getByTestId('ToDoList')).toBeInTheDocument();
+      expect(screen.queryByTestId('ToDoItemDetails')).not.toBeInTheDocument();
+      expect(screen.getByTestId('TopWindowError')).toBeInTheDocument();
+      expect(mockDispatch).toBeCalledTimes(0);
+    });
+
+    it('should render if activeToDoPage equals \'\' and isLoggedIn return true', () => {
+      const initialState = {
+        toDo: {
+          activeToDoPage: '',
+          addError: '',
+          updateError: '',
         },
-      ],
-    },
-  };
-  const mockStoreWithState = mockStore(initialState);
-  const mockDispatch = jest.spyOn(mockStoreWithState, 'dispatch');
+      };
+      const mockStoreWithState = mockStore(initialState);
+      const mockDispatch = jest.spyOn(mockStoreWithState, 'dispatch');
+      jest.spyOn(isLoggedIn, 'isLoggedIn').mockReturnValue(true);
 
-  beforeEach(() => {
-    jest.spyOn(Icon, 'Icon').mockReturnValue(<div data-testid="Icon" />);
-    jest.spyOn(Window, 'Window').mockImplementation(({ children }) => <div data-testid="Window">{children}</div>);
-    jest.spyOn(ToDoItem, 'ToDoItem').mockReturnValue(<div className="ToDoItem" />);
-  });
+      render(
+        <Provider store={mockStoreWithState}>
+          <ToDo />
+        </Provider>,
+      );
 
-  it('should render', () => {
-    render(
-      <Provider store={mockStoreWithState}>
-        <ToDo />
-      </Provider>,
-    );
-
-    expect(document.getElementsByClassName('ToDoItem')).toHaveLength(2);
-    expect(document.getElementsByClassName('fa-plus')).toHaveLength(1);
-    expect(document.getElementsByTagName('input')).toHaveLength(1);
-  });
-
-  it('should does nothing on click if input is empty', () => {
-    render(
-      <Provider store={mockStoreWithState}>
-        <ToDo />
-      </Provider>,
-    );
-
-    const addButton = document.getElementsByClassName('fa-plus')[0];
-
-    userEvent.click(addButton);
-
-    expect(mockDispatch).toBeCalledTimes(0);
-  });
-
-  it('should does nothing on click if input is not empty', () => {
-    render(
-      <Provider store={mockStoreWithState}>
-        <ToDo />
-      </Provider>,
-    );
-
-    const addButton = document.getElementsByClassName('fa-plus')[0];
-    const input = document.getElementsByTagName('input')[0];
-
-    userEvent.type(input, 'test');
-    userEvent.click(addButton);
-
-    expect(mockDispatch).toBeCalledTimes(1);
-    expect(mockDispatch).toBeCalledWith({
-      payload: 'test',
-      type: 'toDo/addToDoItem',
+      expect(screen.getByTestId('Icon')).toBeInTheDocument();
+      expect(screen.getByTestId('Window')).toBeInTheDocument();
+      expect(screen.getByTestId('ToDoList')).toBeInTheDocument();
+      expect(screen.queryByTestId('ToDoItemDetails')).not.toBeInTheDocument();
+      expect(screen.getByTestId('TopWindowError')).toBeInTheDocument();
+      expect(mockDispatch).toBeCalledTimes(1);
+      expect(mockDispatch).toBeCalledWith({
+        'type': 'getToDoItems',
+      });
     });
-  });
 
-  it('should does nothing on submit if input is not empty', () => {
-    render(
-      <Provider store={mockStoreWithState}>
-        <ToDo />
-      </Provider>,
-    );
+    it('should render if activeToDoPage not equals \'\'', () => {
+      const initialState = {
+        toDo: {
+          activeToDoPage: '1',
+          addError: '',
+          updateError: '',
+        },
+      };
+      const mockStoreWithState = mockStore(initialState);
+      const mockDispatch = jest.spyOn(mockStoreWithState, 'dispatch');
+      jest.spyOn(isLoggedIn, 'isLoggedIn').mockReturnValue(false);
 
-    const input = document.getElementsByTagName('input')[0];
+      render(
+        <Provider store={mockStoreWithState}>
+          <ToDo />
+        </Provider>,
+      );
 
-    userEvent.type(input, 'test{enter}');
-
-    expect(mockDispatch).toBeCalledTimes(1);
-    expect(mockDispatch).toBeCalledWith({
-      payload: 'test',
-      type: 'toDo/addToDoItem',
+      expect(screen.getByTestId('Icon')).toBeInTheDocument();
+      expect(screen.getByTestId('Window')).toBeInTheDocument();
+      expect(screen.queryByTestId('ToDoList')).not.toBeInTheDocument();
+      expect(screen.getByTestId('ToDoItemDetails')).toBeInTheDocument();
+      expect(screen.queryByTestId('TopWindowError')).not.toBeInTheDocument();
+      expect(mockDispatch).toBeCalledTimes(0);
     });
-  });
-
-  it('should does nothing on submit if input is empty', () => {
-    render(
-      <Provider store={mockStoreWithState}>
-        <ToDo />
-      </Provider>,
-    );
-
-    const input = document.getElementsByTagName('input')[0];
-
-    userEvent.type(input, '{enter}');
-
-    expect(mockDispatch).toBeCalledTimes(0);
   });
 });

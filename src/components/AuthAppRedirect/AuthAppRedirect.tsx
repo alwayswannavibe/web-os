@@ -1,6 +1,6 @@
 // Libraries
 import React, { FC } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 // Interfaces
@@ -13,12 +13,12 @@ import { Button } from '@Components/Button/Button';
 import styles from './authAppRedirect.module.css';
 
 const AuthAppRedirect: FC<ChildrenNever> = React.memo(() => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const { t } = useTranslation('authRedirect');
 
   function handleClick() {
-    history.push('/login');
+    navigate('/login');
   }
 
   return (

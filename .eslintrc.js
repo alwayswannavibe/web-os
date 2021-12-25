@@ -31,5 +31,6 @@ module.exports = {
     "react/jsx-no-bind": 0,
     "react-hooks/exhaustive-deps": 0,
     "no-param-reassign": ['error', { props: true, ignorePropertyModificationsFor: ['state'] }],
+    "testing-library/no-unnecessary-act": 0
   }
 };

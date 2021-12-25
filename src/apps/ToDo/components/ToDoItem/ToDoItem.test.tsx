@@ -1,120 +1,172 @@
 // Libraries
-import { AnyAction, Dispatch, Middleware } from '@reduxjs/toolkit';
+import { Middleware } from '@reduxjs/toolkit';
+import userEvent from '@testing-library/user-event';
 import configureStore from 'redux-mock-store';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import React from 'react';
-import userEvent from '@testing-library/user-event';
+
+// Utils
+import * as isLoggedIn from 'src/utils/isLoggedIn';
 
 // Components
-import { ToDoItem } from '@ToDo/components/ToDoItem/ToDoItem';
+import { ToDoItem } from 'src/apps/ToDo/components/ToDoItem/ToDoItem';
 
-// Styles
-import styles from './toDoItem.module.css';
+jest.mock('socket.io-client');
+jest.mock('react-i18next', () => jest.requireActual('../../../../../__mocks__/react-i18next'));
+jest.mock('src/apps/toDo/redux/toDoSlice/toDoSlice', () => ({
+  deleteToDoItemLocal: (payload: unknown) => ({
+    type: 'deleteToDoItemLocal',
+    payload,
+  }),
+  deleteToDoItem: (payload: unknown) => ({
+    type: 'deleteToDoItem',
+    payload,
+  }),
+  updateToDoItemLocal: (payload: unknown) => ({
+    type: 'updateToDoItemLocal',
+    payload,
+  }),
+  updateToDoItem: (payload: unknown) => ({
+    type: 'updateToDoItem',
+    payload,
+  }),
+  changeActiveToDoPage: (payload: unknown) => ({
+    type: 'changeActiveToDoPage',
+    payload,
+  }),
+}));
 
 describe('to do item component', () => {
-  const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
+  const middlewares: Middleware[] | undefined = [];
   const mockStore = configureStore(middlewares);
   const initialState = {
     toDo: {
-      toDoList: [
-        {
-          id: 'a1',
-          completed: true,
-        },
-        {
-          id: 'a2',
-          completed: false,
-        },
-      ],
+      toDoList: [{
+        id: '1',
+        heading: 'test',
+        isComplete: false,
+        description: 'test description',
+      }, {
+        id: '2',
+        heading: 'test2',
+        isComplete: true,
+        description: '',
+      }],
     },
   };
   const mockStoreWithState = mockStore(initialState);
   const mockDispatch = jest.spyOn(mockStoreWithState, 'dispatch');
 
-  const id = 'a1';
-  const id2 = 'a2';
-  const text = 'a1 text';
-  const text2 = 'a2 text';
+  it('should render correct', () => {
+    render(
+      <Provider store={mockStoreWithState}>
+        <ToDoItem id='1' />
+      </Provider>,
+    );
 
-  describe('correct render', () => {
-    it('should render uncompleted item', () => {
-      render(
-        <Provider store={mockStoreWithState}>
-          <ToDoItem text={text2} id={id2} />
-        </Provider>,
-      );
-
-      const completedItem = document.getElementsByClassName(styles.completed);
-      expect(completedItem).toHaveLength(0);
-    });
-
-    it('should render completed item', () => {
-      render(
-        <Provider store={mockStoreWithState}>
-          <ToDoItem text={text} id={id} />
-        </Provider>,
-      );
-
-      const completedItem = document.getElementsByClassName(styles.completed);
-      expect(completedItem).toHaveLength(1);
-    });
-
-    it('should render text', () => {
-      render(
-        <Provider store={mockStoreWithState}>
-          <ToDoItem text={text} id={id} />
-        </Provider>,
-      );
-
-      const textParagraph = document.getElementsByClassName(styles.text)[0];
-      expect(textParagraph.textContent).toBe(text);
-    });
-
-    it('should render icons', () => {
-      render(
-        <Provider store={mockStoreWithState}>
-          <ToDoItem text={text} id={id} />
-        </Provider>,
-      );
-
-      const checkIcon = document.getElementsByClassName('fa-check');
-      const trashIcon = document.getElementsByClassName('fa-trash-can');
-      expect(checkIcon).toHaveLength(1);
-      expect(trashIcon).toHaveLength(1);
-    });
+    expect(screen.getAllByRole('button')).toHaveLength(4);
+    expect(screen.getByText(initialState.toDo.toDoList[0].heading)).toBeInTheDocument();
+    expect(screen.queryByText(initialState.toDo.toDoList[0].description)).not.toBeInTheDocument();
   });
 
-  describe('should dispatch correct actions on clicks', () => {
-    it('should dispatch correct action on click complete button', () => {
+  describe('should handle user events', () => {
+    it('should dispatch deleteToDoItemLocal on click delete button if isLoggedIn return false', () => {
       render(
         <Provider store={mockStoreWithState}>
-          <ToDoItem text={text} id={id} />
+          <ToDoItem id='1' />
         </Provider>,
       );
+      jest.spyOn(isLoggedIn, 'isLoggedIn').mockReturnValue(false);
 
-      const checkIcon = document.getElementsByClassName('fa-check')[0];
-      userEvent.click(checkIcon);
+      const deleteButton = screen.getByRole('button', { name: 'deleteItemWithText test' });
+      userEvent.click(deleteButton);
+
       expect(mockDispatch).toBeCalledTimes(1);
-      expect(mockDispatch).toBeCalledWith({
-        payload: id,
-        type: 'toDo/toggleCompleteToDoItem',
+      expect(mockDispatch).toHaveBeenNthCalledWith(1, {
+        type: 'deleteToDoItemLocal',
+        payload: '1',
       });
     });
 
-    it('should dispatch correct action on click delete button', () => {
+    it('should dispatch deleteToDoItem on click delete button if isLoggedIn return true', () => {
       render(
         <Provider store={mockStoreWithState}>
-          <ToDoItem text={text} id={id} />
+          <ToDoItem id='1' />
+        </Provider>,
+      );
+      jest.spyOn(isLoggedIn, 'isLoggedIn').mockReturnValue(true);
+
+      const deleteButton = screen.getByRole('button', { name: 'deleteItemWithText test' });
+      userEvent.click(deleteButton);
+
+      expect(mockDispatch).toBeCalledTimes(1);
+      expect(mockDispatch).toHaveBeenNthCalledWith(1, {
+        type: 'deleteToDoItem',
+        payload: '1',
+      });
+    });
+
+    it('should dispatch updateToDoItemLocal on click toggle button if isLoggedIn return false', () => {
+      render(
+        <Provider store={mockStoreWithState}>
+          <ToDoItem id='1' />
+        </Provider>,
+      );
+      jest.spyOn(isLoggedIn, 'isLoggedIn').mockReturnValue(false);
+
+      const toggleButton = screen.getByRole('button', { name: 'toggleItemWithText test' });
+      userEvent.click(toggleButton);
+
+      expect(mockDispatch).toBeCalledTimes(1);
+      expect(mockDispatch).toHaveBeenNthCalledWith(1, {
+        type: 'updateToDoItemLocal',
+        payload: {
+          'description': 'test description',
+          'heading': 'test',
+          'id': '1',
+          'isComplete': true,
+        },
+      });
+    });
+
+    it('should dispatch updateToDoItem on click toggle button if isLoggedIn return true', () => {
+      render(
+        <Provider store={mockStoreWithState}>
+          <ToDoItem id='1' />
+        </Provider>,
+      );
+      jest.spyOn(isLoggedIn, 'isLoggedIn').mockReturnValue(true);
+
+      const toggleButton = screen.getByRole('button', { name: 'toggleItemWithText test' });
+      userEvent.click(toggleButton);
+
+      expect(mockDispatch).toBeCalledTimes(1);
+      expect(mockDispatch).toHaveBeenNthCalledWith(1, {
+        type: 'updateToDoItem',
+        payload: {
+          'description': 'test description',
+          'heading': 'test',
+          'id': '1',
+          'isComplete': true,
+        },
+      });
+    });
+
+    it('should dispatch changeActiveToDoPage on click item', () => {
+      render(
+        <Provider store={mockStoreWithState}>
+          <ToDoItem id='1' />
         </Provider>,
       );
 
-      const trashIcon = document.getElementsByClassName('fa-trash-can')[0];
-      userEvent.click(trashIcon);
+      const itemButton = screen.getByRole('button', { name: 'goToToDoEditPage' });
+      userEvent.click(itemButton);
+
       expect(mockDispatch).toBeCalledTimes(1);
-      expect(mockDispatch).toBeCalledWith({
-        payload: id,
-        type: 'toDo/deleteToDoItem',
+      expect(mockDispatch).toHaveBeenNthCalledWith(1, {
+        type: 'changeActiveToDoPage',
+        payload: '1',
       });
     });
   });

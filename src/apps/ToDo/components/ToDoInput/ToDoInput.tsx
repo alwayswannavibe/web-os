@@ -38,7 +38,7 @@ const ToDoInput: FC<ChildrenNever> = React.memo(() => {
 
   return (
     <div className={styles.addContainer}>
-      <form onSubmit={handleSubmit(handleAddToDo)} className={styles.form}>
+      <form onSubmit={handleSubmit(handleAddToDo)} className={styles.form} aria-label={t('toDoItemCreateForm')}>
         <input
           type="text"
           className={classNames(styles.input, {
@@ -49,6 +49,7 @@ const ToDoInput: FC<ChildrenNever> = React.memo(() => {
           {...register('addToDo', {
             required: true,
           })}
+          aria-label={t('headingOfNewToDoItem')}
         />
         <Button
           className={styles.addItemButton}

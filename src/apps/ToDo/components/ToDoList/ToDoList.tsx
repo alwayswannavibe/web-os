@@ -55,7 +55,7 @@ const ToDoList: FC<ChildrenNever> = React.memo(() => {
       <Scrollbar>
         <ul className={styles.toDoItemsContainer} ref={listRef}>
           {toDoList.map((toDoItem) => (
-            <ToDoItem key={toDoItem.id} text={toDoItem.heading} id={toDoItem.id} />
+            <ToDoItem key={toDoItem.id} id={toDoItem.id} />
           ))}
         </ul>
       </Scrollbar>

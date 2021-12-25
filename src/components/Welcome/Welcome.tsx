@@ -2,7 +2,7 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 // Assets
@@ -29,10 +29,10 @@ const Welcome: FC<Props> = ({ handleWelcomeClose }: Props) => {
   const username = useSelector((state: RootState) => state.user.username);
 
   const { t } = useTranslation('welcome');
-  const history = useHistory();
+  const navigate = useNavigate();
 
   function handleGoToLogin() {
-    history.push('/login');
+    navigate('/login');
     sessionStorage.setItem('isWelcomeOpen', 'No');
   }
 

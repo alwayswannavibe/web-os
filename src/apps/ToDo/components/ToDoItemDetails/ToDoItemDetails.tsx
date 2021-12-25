@@ -1,4 +1,5 @@
 // Libraries
+import { isLoggedIn } from '@Utils/isLoggedIn';
 import { useDispatch, useSelector } from 'react-redux';
 import { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
@@ -11,10 +12,15 @@ import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 import { RootState } from '@Types/rootState.type';
 
 // Redux
-import { changeActiveToDoPage, closeToDoUpdateError, updateToDoItem } from '@ToDo/redux/toDoSlice/toDoSlice';
+import {
+  changeActiveToDoPage,
+  closeToDoUpdateError,
+  updateToDoItem,
+  updateToDoItemLocal,
+} from '@ToDo/redux/toDoSlice/toDoSlice';
 
 // Components
-import { ToDoError } from '@ToDo/components/ToDoError/ToDoError';
+import { TopWindowError } from '@Components/TopWindowError/TopWindowError';
 import { Button } from '@Components/Button/Button';
 
 // Styles
@@ -78,9 +84,15 @@ const ToDoItemDetails: FC<Props> = ({ id }: Props) => {
   }
 
   function handleSave() {
-    dispatch(updateToDoItem({
-      id, description, heading: text, isComplete,
-    }));
+    if (isLoggedIn()) {
+      dispatch(updateToDoItem({
+        id, description, heading: text, isComplete,
+      }));
+    } else {
+      dispatch(updateToDoItemLocal({
+        id, description, heading: text, isComplete,
+      }));
+    }
     setIsEditable(false);
   }
 
@@ -90,7 +102,7 @@ const ToDoItemDetails: FC<Props> = ({ id }: Props) => {
 
   return (
     <>
-      {updateError ? <ToDoError handleClick={closeUpdateError} /> : <div className={styles.emptyError} />}
+      <TopWindowError handleClick={closeUpdateError} error={updateError} />
       <form className={styles.form}>
         <label htmlFor="toDoDetailsHeadingInput" className={styles.label}>
           <span>{`${t('heading')}:`}</span>
@@ -102,6 +114,7 @@ const ToDoItemDetails: FC<Props> = ({ id }: Props) => {
             onChange={handleChangeName}
             disabled={!isEditable}
             ref={nameRef}
+            aria-label={t('heading')}
           />
         </label>
         <label htmlFor="toDoDetailsDescriptionInput" className={classNames(styles.label, styles.textareaLabel)}>
@@ -112,6 +125,7 @@ const ToDoItemDetails: FC<Props> = ({ id }: Props) => {
             value={description}
             onChange={handleChangeDescription}
             disabled={!isEditable}
+            aria-label={t('description')}
           />
         </label>
         <label htmlFor="toDoDetailsStatus" className={styles.status}>
@@ -124,11 +138,20 @@ const ToDoItemDetails: FC<Props> = ({ id }: Props) => {
         </label>
         <div className={styles.buttons}>
           {!isEditable ?
-            (<Button onClick={handleBack} className={styles.bottomBtn}>{t('back')}</Button>)
-            : <Button onClick={handleCancel} className={styles.bottomBtn}>{t('cancel')}</Button>}
+            (<Button onClick={handleBack} className={styles.bottomBtn} aria-label={t('back')}>
+              {t('back')}
+            </Button>)
+            : <Button onClick={handleCancel} className={styles.bottomBtn} aria-label={t('cancel')}>
+              {t('cancel')}
+            </Button>
+          }
           {!isEditable ?
-            <Button onClick={setIsEditableToTrue} className={styles.bottomBtn}>{t('edit')}</Button>
-            : <Button className={styles.bottomBtn} onClick={handleSave} disabled={isUpdateLoading}>{t('save')}</Button>}
+            <Button onClick={setIsEditableToTrue} className={styles.bottomBtn} aria-label={t('edit')}>
+              {t('edit')}
+            </Button>
+            : <Button className={styles.bottomBtn} onClick={handleSave} disabled={isUpdateLoading} aria-label={t('save')}>
+              {t('save')}
+            </Button>}
         </div>
       </form>
     </>

@@ -13,6 +13,8 @@
   "cancel": "Cancel",
   "save": "Save",
   "edit": "Edit",
-  "goToToDoEditPage": "Перейти на страницу изменения дела",
-  "toggleCollapseDescription": "Toggle collapse description"
+  "goToToDoEditPage": "Go to to do edit page",
+  "toggleCollapseDescription": "Toggle collapse description",
+  "headingOfNewToDoItem": "Heading of new to do item",
+  "toDoItemCreateForm": "To do item create form"
 }

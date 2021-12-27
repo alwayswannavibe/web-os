@@ -1,6 +1,6 @@
 // Libraries
 import configureStore from 'redux-mock-store';
-import { Middleware, Dispatch, AnyAction } from '@reduxjs/toolkit';
+import { Middleware } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { ReactNode } from 'react';
@@ -12,17 +12,18 @@ import { App } from '@Enums/app.enum';
 import { useApp } from './useApp';
 
 describe('useApp', () => {
-  const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
+  const middlewares: Middleware[] | undefined = [];
   const mockStore = configureStore(middlewares);
 
   describe('handleToggleCollapse', () => {
-    it('should set window active and collapse it if it collapsed', () => {
+    it('should dispatch toggleCollapseApp and setWindowActive if it collapsed, open and the application index not' +
+      ' equals 0', () => {
       const initialState = {
         apps: {
-          apps: [App.Terminal, App.Calculator],
+          currentAppsList: [App.Terminal, App.Calculator],
           appsState: {
             [App.Calculator]: {
-              isOpened: true,
+              isOpen: true,
               isCollapsed: true,
             },
           },
@@ -39,20 +40,25 @@ describe('useApp', () => {
         result.current.handleToggleCollapse();
       });
 
-      expect(mockDispatch).toBeCalledTimes(1);
+      expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
+        payload: App.Calculator,
+        type: 'apps/toggleCollapseApp',
+      });
+      expect(mockDispatch).toHaveBeenNthCalledWith(2, {
         payload: App.Calculator,
         type: 'apps/setWindowActive',
       });
     });
 
-    it('should set window active and collapse it if it is not collapsed and app index not equals 0', () => {
+    it('should dispatch setWindowActive if it is not collapsed, open and the application index' +
+      ' not equals 0', () => {
       const initialState = {
         apps: {
-          apps: [App.Terminal, App.Calculator],
+          currentAppsList: [App.Terminal, App.Calculator],
           appsState: {
             [App.Calculator]: {
-              isOpened: true,
+              isOpen: true,
               isCollapsed: false,
             },
           },
@@ -76,13 +82,76 @@ describe('useApp', () => {
       });
     });
 
-    it('should set window active and collapse it if it is not collapsed and app index equals 0', () => {
+    it('should not dispatch anything if it not collapsed, not open and the application index not' +
+      ' equals 0', () => {
       const initialState = {
         apps: {
-          apps: [App.Calculator, App.Terminal],
+          currentAppsList: [App.Terminal, App.Calculator],
           appsState: {
             [App.Calculator]: {
-              isOpened: true,
+              isOpen: false,
+              isCollapsed: false,
+            },
+          },
+        },
+      };
+      const mockStoreWithState = mockStore(initialState);
+      const mockDispatch = jest.spyOn(mockStoreWithState, 'dispatch');
+      const wrapper = ({ children }: { children: ReactNode }) => (
+        <Provider store={mockStoreWithState}>{children}</Provider>
+      );
+      const { result } = renderHook(() => useApp(App.Calculator), { wrapper });
+
+      act(() => {
+        result.current.handleToggleCollapse();
+      });
+
+      expect(mockDispatch).toBeCalledTimes(0);
+    });
+
+    it('should dispatch toggleCollapseApp and setWindowActive if it collapsed, open and the' +
+      ' application index equals 0', () => {
+      const initialState = {
+        apps: {
+          currentAppsList: [App.Calculator, App.Terminal],
+          appsState: {
+            [App.Calculator]: {
+              isOpen: true,
+              isCollapsed: true,
+            },
+          },
+        },
+      };
+      const mockStoreWithState = mockStore(initialState);
+      const mockDispatch = jest.spyOn(mockStoreWithState, 'dispatch');
+      const wrapper = ({ children }: { children: ReactNode }) => (
+        <Provider store={mockStoreWithState}>{children}</Provider>
+      );
+      const { result } = renderHook(() => useApp(App.Calculator), { wrapper });
+
+      act(() => {
+        result.current.handleToggleCollapse();
+      });
+
+      expect(mockDispatch).toBeCalledTimes(2);
+      expect(mockDispatch).toHaveBeenNthCalledWith(1, {
+        payload: App.Calculator,
+        type: 'apps/toggleCollapseApp',
+      });
+      expect(mockDispatch).toHaveBeenNthCalledWith(2, {
+        payload: App.Calculator,
+        type: 'apps/setWindowActive',
+      });
+    });
+
+    it('should dispatch toggleCollapseApp and setWindowActive if it is not collapsed, open, the application index' +
+      ' equals 0 and currentAppsList has another app', () => {
+      const initialState = {
+        apps: {
+          currentAppsList: [App.Calculator, App.Terminal],
+          appsState: {
+            [App.Calculator]: {
+              isOpen: true,
               isCollapsed: false,
             },
           },
@@ -101,24 +170,82 @@ describe('useApp', () => {
 
       expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
+        payload: App.Calculator,
+        type: 'apps/toggleCollapseApp',
+      });
+      expect(mockDispatch).toHaveBeenNthCalledWith(2, {
         payload: App.Terminal,
         type: 'apps/setWindowActive',
       });
-      expect(mockDispatch).toHaveBeenNthCalledWith(2, {
-        payload: { type: App.Calculator },
+    });
+
+    it('should dispatch toggleCollapseApp and setWindowActive if it is not collapsed, open, the application index' +
+      ' equals 0 and currentAppsList has not another app', () => {
+      const initialState = {
+        apps: {
+          currentAppsList: [App.Calculator],
+          appsState: {
+            [App.Calculator]: {
+              isOpen: true,
+              isCollapsed: false,
+            },
+          },
+        },
+      };
+      const mockStoreWithState = mockStore(initialState);
+      const mockDispatch = jest.spyOn(mockStoreWithState, 'dispatch');
+      const wrapper = ({ children }: { children: ReactNode }) => (
+        <Provider store={mockStoreWithState}>{children}</Provider>
+      );
+      const { result } = renderHook(() => useApp(App.Calculator), { wrapper });
+
+      act(() => {
+        result.current.handleToggleCollapse();
+      });
+
+      expect(mockDispatch).toBeCalledTimes(1);
+      expect(mockDispatch).toHaveBeenNthCalledWith(1, {
+        payload: App.Calculator,
         type: 'apps/toggleCollapseApp',
       });
+    });
+
+    it('should not dispatch anything if it not collapsed, not open and the application index' +
+      ' equals 0', () => {
+      const initialState = {
+        apps: {
+          currentAppsList: [App.Calculator, App.Terminal],
+          appsState: {
+            [App.Calculator]: {
+              isOpen: false,
+              isCollapsed: false,
+            },
+          },
+        },
+      };
+      const mockStoreWithState = mockStore(initialState);
+      const mockDispatch = jest.spyOn(mockStoreWithState, 'dispatch');
+      const wrapper = ({ children }: { children: ReactNode }) => (
+        <Provider store={mockStoreWithState}>{children}</Provider>
+      );
+      const { result } = renderHook(() => useApp(App.Calculator), { wrapper });
+
+      act(() => {
+        result.current.handleToggleCollapse();
+      });
+
+      expect(mockDispatch).toBeCalledTimes(0);
     });
   });
 
   describe('handleOpen', () => {
-    it('should open app if it is not open', () => {
+    it('should dispatch openApp if the application is not open', () => {
       const initialState = {
         apps: {
-          apps: [],
+          currentAppsList: [],
           appsState: {
             [App.Calculator]: {
-              isOpened: false,
+              isOpen: false,
               isCollapsed: false,
             },
           },
@@ -136,24 +263,20 @@ describe('useApp', () => {
         result.current.handleOpen();
       });
 
-      expect(mockDispatch).toBeCalledTimes(2);
+      expect(mockDispatch).toBeCalledTimes(1);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
-        payload: { type: App.Calculator },
-        type: 'apps/openApp',
-      });
-      expect(mockDispatch).toHaveBeenNthCalledWith(2, {
         payload: App.Calculator,
-        type: 'apps/addWindow',
+        type: 'apps/openApp',
       });
     });
 
-    it('should toggle collapse if app is open and collapsed', () => {
+    it('should dispatch toggleCollapseApp and setWindowActive if the application open and collapsed', () => {
       const initialState = {
         apps: {
-          apps: [App.Calculator],
+          currentAppsList: [App.Calculator],
           appsState: {
             [App.Calculator]: {
-              isOpened: true,
+              isOpen: true,
               isCollapsed: true,
             },
           },
@@ -173,7 +296,7 @@ describe('useApp', () => {
 
       expect(mockDispatch).toBeCalledTimes(2);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
-        payload: { type: App.Calculator },
+        payload: App.Calculator,
         type: 'apps/toggleCollapseApp',
       });
       expect(mockDispatch).toHaveBeenNthCalledWith(2, {
@@ -182,13 +305,13 @@ describe('useApp', () => {
       });
     });
 
-    it('should do nothing if app is open and not collapsed', () => {
+    it('should not dispatch anything if the application is open and not collapsed', () => {
       const initialState = {
         apps: {
-          apps: [App.Calculator],
+          currentAppsList: [App.Calculator],
           appsState: {
             [App.Calculator]: {
-              isOpened: true,
+              isOpen: true,
               isCollapsed: false,
             },
           },
@@ -211,13 +334,13 @@ describe('useApp', () => {
   });
 
   describe('handleClose', () => {
-    it('should close app if it opens', () => {
+    it('should dispatch closeApp if the application is open', () => {
       const initialState = {
         apps: {
-          apps: [App.Calculator],
+          currentAppsList: [App.Calculator],
           appsState: {
             [App.Calculator]: {
-              isOpened: true,
+              isOpen: true,
               isCollapsed: false,
             },
           },
@@ -235,24 +358,20 @@ describe('useApp', () => {
         result.current.handleClose();
       });
 
-      expect(mockDispatch).toBeCalledTimes(2);
+      expect(mockDispatch).toBeCalledTimes(1);
       expect(mockDispatch).toHaveBeenNthCalledWith(1, {
-        payload: { type: App.Calculator },
-        type: 'apps/closeApp',
-      });
-      expect(mockDispatch).toHaveBeenNthCalledWith(2, {
         payload: App.Calculator,
-        type: 'apps/deleteWindow',
+        type: 'apps/closeApp',
       });
     });
 
-    it('should close app if it not opens', () => {
+    it('should not dispatch anything if the application is not open', () => {
       const initialState = {
         apps: {
-          apps: [App.Calculator],
+          currentAppsList: [App.Calculator],
           appsState: {
             [App.Calculator]: {
-              isOpened: false,
+              isOpen: false,
               isCollapsed: false,
             },
           },

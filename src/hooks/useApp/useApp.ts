@@ -7,11 +7,7 @@ import {
   closeApp,
   openApp,
   toggleCollapseApp,
-  setWindowSize,
 } from 'src/redux/slices/appsSlice/appsSlice';
-
-// Utils
-import { getRemFromPx } from '@Utils/getRemFromPx';
 
 // Enums
 import { App } from '@Enums/app.enum';
@@ -20,64 +16,58 @@ import { App } from '@Enums/app.enum';
 import { RootState } from '@Types/rootState.type';
 
 const useApp = (type: App) => {
-  const apps = useSelector((state: RootState) => state.apps.currentAppsList);
+  const currentAppsList = useSelector((state: RootState) => state.apps.currentAppsList);
   const isCollapsed = useSelector((state: RootState) => state.apps.appsState[type].isCollapsed);
   const isOpen = useSelector((state: RootState) => state.apps.appsState[type].isOpen);
 
   const dispatch = useDispatch();
 
-  const getAppIndex = () => apps.indexOf(type);
+  const appIndex = currentAppsList.indexOf(type);
 
-  const handleToggleCollapse = () => {
-    if (isOpen && getAppIndex() !== 0) {
-      dispatch(setWindowActive(type));
+  function handleToggleCollapse() {
+    if (!isOpen) {
       return;
     }
 
     if (isCollapsed) {
-      dispatch(setWindowActive(type));
-    } else if (getAppIndex() === 0) {
-      dispatch(setWindowActive(apps[1]));
-    }
-    dispatch(toggleCollapseApp(type));
-  };
-
-  const handleOpen = () => {
-    if (isCollapsed && isOpen) {
       dispatch(toggleCollapseApp(type));
       dispatch(setWindowActive(type));
-    } else if (!isOpen) {
-      dispatch(openApp(type));
-    }
-  };
-
-  const handleClose = () => {
-    if (!isOpen) {
       return;
     }
-    dispatch(closeApp(type));
-  };
 
-  const isIncludeApp = () => apps.includes(type);
+    if (appIndex !== 0) {
+      dispatch(setWindowActive(type));
+      return;
+    }
 
-  function handleResize(newWidth: number, newHeight: number) {
-    console.log(getRemFromPx(newWidth));
-    dispatch(setWindowSize({
-      type,
-      size: {
-        width: `${getRemFromPx(newWidth)}rem`,
-        height: `${getRemFromPx(newHeight)}rem`,
-      },
-    }));
+    dispatch(toggleCollapseApp(type));
+    if (currentAppsList.length > 1) {
+      dispatch(setWindowActive(currentAppsList[1]));
+    }
+  }
+
+  function handleOpen() {
+    if (!isOpen) {
+      dispatch(openApp(type));
+    }
+
+    if (isCollapsed) {
+      dispatch(toggleCollapseApp(type));
+      dispatch(setWindowActive(type));
+    }
+  }
+
+  function handleClose() {
+    if (isOpen) {
+      dispatch(closeApp(type));
+    }
   }
 
   return {
     handleClose,
     handleOpen,
-    handleResize,
     handleToggleCollapse,
-    isIncludeApp,
-    getAppIndex,
+    appIndex,
   };
 };
 

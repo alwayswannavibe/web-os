@@ -1,5 +1,5 @@
 // Libraries
-import React, { FC, ReactNode, useRef } from 'react';
+import React, { FC, ReactNode, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Resizable } from 're-resizable';
@@ -35,12 +35,12 @@ interface Props {
 }
 
 export const Window: FC<Props> = ({ children, type }: Props) => {
+  const windowPosition = useSelector((state: RootState) => state.apps.appsState[type].windowPosition);
   const isOpen = useSelector((state: RootState) => state.apps.appsState[type].isOpen);
   const isCollapsed = useSelector((state: RootState) => state.apps.appsState[type].isCollapsed);
-  const windowPosition = useSelector((state: RootState) => state.apps.appsState[type].windowPosition);
-  const windowWidth = useSelector((state: RootState) => state.apps.appsState[type].windowSize.width);
-  const windowHeight = useSelector((state: RootState) => state.apps.appsState[type].windowSize.height);
-  console.log(windowWidth);
+
+  const [width, setWidth] = useState(getPxFromRem(48));
+  const [height, setHeight] = useState(getPxFromRem(27));
 
   const windowTop = useRef<HTMLDivElement>(null);
   const ref = useRef<HTMLDivElement>(null);
@@ -49,7 +49,12 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { getAppIndex, handleClose, handleToggleCollapse, handleResize } = useApp(type);
+  const { appIndex, handleClose, handleToggleCollapse } = useApp(type);
+
+  function handleResize(newWidth: number, newHeight: number) {
+    setWidth(newWidth);
+    setHeight(newHeight);
+  }
 
   function handleSetActive() {
     dispatch(setWindowActive(type));
@@ -102,7 +107,7 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
       {isOpen && !isCollapsed && (
         <motion.div
           className={styles.window}
-          style={{ top: newCoords?.top, left: newCoords?.left, zIndex: 100 - getAppIndex() }}
+          style={{ top: newCoords?.top, left: newCoords?.left, zIndex: 100 - appIndex }}
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           exit={{ scale: 0 }}
@@ -114,12 +119,12 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
         >
           <Resizable
             size={{
-              width: getPxFromRem(+(windowWidth.split('rem')[0])),
-              height: getPxFromRem(+(windowHeight.split('rem')[0])),
+              width,
+              height,
             }}
             onResizeStop={(e, direction, _ref, d) => {
-              const newWidth = getPxFromRem(+windowWidth.split('rem')[0]) + d.width;
-              const newHeight = getPxFromRem(+windowHeight.split('rem')[0]) + d.height;
+              const newWidth = width + d.width;
+              const newHeight = height + d.height;
               handleResize(newWidth, newHeight);
             }}
             minWidth={getPxFromRem(48)}
@@ -129,7 +134,7 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
             <div
               className={`
                 ${styles.windowTop}
-                ${getAppIndex() === 0 ? '' : styles.notActiveWindow}
+                ${appIndex === 0 ? '' : styles.notActiveWindow}
                 ${isDrag ? styles.grabbed : ''}
               `}
               onMouseDown={startDrag}

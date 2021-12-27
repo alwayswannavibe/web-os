@@ -1,4 +1,5 @@
 // Libraries
+import { RootState } from '@Types/rootState.type';
 import React, { FC } from 'react';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,6 +15,7 @@ import { ChildrenNever } from '@Interfaces/childrenNever.interface';
 
 // Components
 import { Button } from '@Components/Button/Button';
+import { useSelector } from 'react-redux';
 
 // Styles
 import styles from './bottomTab.module.css';
@@ -24,19 +26,21 @@ interface Props extends ChildrenNever {
 }
 
 const BottomTab: FC<Props> = ({ type, icon }: Props) => {
-  const { isIncludeApp, getAppIndex, handleToggleCollapse, handleOpen } = useApp(type);
+  const isOpen = useSelector((state: RootState) => state.apps.appsState[type].isOpen);
+
+  const { appIndex, handleToggleCollapse, handleOpen } = useApp(type);
 
   return (
     <div data-cy="bottom-tab">
-      {!isIncludeApp() && (
+      {!isOpen && (
         <Button className={`${styles.close} ${styles.tab}`} onClick={handleOpen} aria-label={`${type} bottom icon`}>
           <FontAwesomeIcon icon={icon} />
         </Button>
       )}
-      {isIncludeApp() && (
+      {isOpen && (
         <Button
           className={
-            getAppIndex() === 0 ? `${styles.isActive} ${styles.tab} ${styles.open}` : `${styles.tab} ${styles.open}`
+            appIndex === 0 ? `${styles.isActive} ${styles.tab} ${styles.open}` : `${styles.tab} ${styles.open}`
           }
           onClick={handleToggleCollapse}
         >

@@ -7,7 +7,7 @@ import appsSlice, {
   setWindowPosition,
   closeApp,
   openApp,
-  setWindowActive, setWindowSize,
+  setWindowActive,
   toggleCollapseApp,
 } from './appsSlice';
 
@@ -25,10 +25,6 @@ describe('appsSlice', () => {
           top: '15rem',
           left: '8rem',
         },
-        windowSize: {
-          width: '48rem',
-          height: '27rem',
-        },
       },
       [App.Settings]: {
         isOpen: false,
@@ -40,10 +36,6 @@ describe('appsSlice', () => {
         windowPosition: {
           top: '15rem',
           left: '8rem',
-        },
-        windowSize: {
-          width: '48rem',
-          height: '27rem',
         },
       },
       [App.Chat]: {
@@ -57,10 +49,6 @@ describe('appsSlice', () => {
           top: '15rem',
           left: '8rem',
         },
-        windowSize: {
-          width: '48rem',
-          height: '27rem',
-        },
       },
       [App.Simon]: {
         isOpen: false,
@@ -72,10 +60,6 @@ describe('appsSlice', () => {
         windowPosition: {
           top: '15rem',
           left: '8rem',
-        },
-        windowSize: {
-          width: '48rem',
-          height: '27rem',
         },
       },
       [App.Terminal]: {
@@ -89,10 +73,6 @@ describe('appsSlice', () => {
           top: '15rem',
           left: '8rem',
         },
-        windowSize: {
-          width: '48rem',
-          height: '27rem',
-        },
       },
       [App.ToDo]: {
         isOpen: false,
@@ -104,10 +84,6 @@ describe('appsSlice', () => {
         windowPosition: {
           top: '15rem',
           left: '8rem',
-        },
-        windowSize: {
-          width: '48rem',
-          height: '27rem',
         },
       },
       [App.Minesweeper]: {
@@ -121,10 +97,6 @@ describe('appsSlice', () => {
           top: '15rem',
           left: '8rem',
         },
-        windowSize: {
-          width: '48rem',
-          height: '27rem',
-        },
       },
       [App.Translate]: {
         isOpen: false,
@@ -136,10 +108,6 @@ describe('appsSlice', () => {
         windowPosition: {
           top: '15rem',
           left: '8rem',
-        },
-        windowSize: {
-          width: '48rem',
-          height: '27rem',
         },
       },
     },
@@ -306,32 +274,6 @@ describe('appsSlice', () => {
             windowPosition: {
               top: '101rem',
               left: '404rem',
-            },
-          },
-        },
-      });
-    });
-  });
-
-  describe('setWindowSize', () => {
-    it('should set windowSize to new size', () => {
-      const resultState = appsSlice(defaultState, setWindowSize({
-        type: App.Calculator,
-        size: {
-          width: '101rem',
-          height: '505rem',
-        },
-      }));
-
-      expect(resultState).toEqual({
-        ...defaultState,
-        appsState: {
-          ...defaultState.appsState,
-          [App.Calculator]: {
-            ...defaultState.appsState[App.Calculator],
-            windowSize: {
-              width: '101rem',
-              height: '505rem',
             },
           },
         },

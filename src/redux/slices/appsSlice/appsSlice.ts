@@ -6,16 +6,10 @@ import { App } from '@Enums/app.enum';
 
 // Interface
 import { Coordinates } from '@Interfaces/coordinates.interface';
-import { Size } from '@Interfaces/size.interface';
 
 interface TypeAndCoordinates {
   type: App;
   coordinates: Coordinates;
-}
-
-interface TypeAndSize {
-  type: App;
-  size: Size;
 }
 
 interface AppCommon {
@@ -23,7 +17,6 @@ interface AppCommon {
   isCollapsed: boolean,
   iconPosition: Coordinates,
   windowPosition: Coordinates,
-  windowSize: Size,
 }
 
 const appsInitialState: {
@@ -47,10 +40,6 @@ const appsInitialState: {
       top: '15rem',
       left: '8rem',
     },
-    windowSize: {
-      width: '48rem',
-      height: '27rem',
-    },
   },
   [App.Settings]: {
     isOpen: false,
@@ -62,10 +51,6 @@ const appsInitialState: {
     windowPosition: {
       top: '15rem',
       left: '8rem',
-    },
-    windowSize: {
-      width: '48rem',
-      height: '27rem',
     },
   },
   [App.Chat]: {
@@ -79,10 +64,6 @@ const appsInitialState: {
       top: '15rem',
       left: '8rem',
     },
-    windowSize: {
-      width: '48rem',
-      height: '27rem',
-    },
   },
   [App.Simon]: {
     isOpen: false,
@@ -94,10 +75,6 @@ const appsInitialState: {
     windowPosition: {
       top: '15rem',
       left: '8rem',
-    },
-    windowSize: {
-      width: '48rem',
-      height: '27rem',
     },
   },
   [App.Terminal]: {
@@ -111,10 +88,6 @@ const appsInitialState: {
       top: '15rem',
       left: '8rem',
     },
-    windowSize: {
-      width: '48rem',
-      height: '27rem',
-    },
   },
   [App.ToDo]: {
     isOpen: false,
@@ -126,10 +99,6 @@ const appsInitialState: {
     windowPosition: {
       top: '15rem',
       left: '8rem',
-    },
-    windowSize: {
-      width: '48rem',
-      height: '27rem',
     },
   },
   [App.Minesweeper]: {
@@ -143,10 +112,6 @@ const appsInitialState: {
       top: '15rem',
       left: '8rem',
     },
-    windowSize: {
-      width: '48rem',
-      height: '27rem',
-    },
   },
   [App.Translate]: {
     isOpen: false,
@@ -158,10 +123,6 @@ const appsInitialState: {
     windowPosition: {
       top: '15rem',
       left: '8rem',
-    },
-    windowSize: {
-      width: '48rem',
-      height: '27rem',
     },
   },
 };
@@ -208,10 +169,6 @@ const appsSlice = createSlice({
       state.appsState[payload.type].windowPosition.top = payload.coordinates.top;
       state.appsState[payload.type].windowPosition.left = payload.coordinates.left;
     },
-    setWindowSize(state, { payload }: PayloadAction<TypeAndSize>) {
-      state.appsState[payload.type].windowSize.width = payload.size.width;
-      state.appsState[payload.type].windowSize.height = payload.size.height;
-    },
   },
 });
 
@@ -223,5 +180,4 @@ export const {
   closeApp,
   setIconPosition,
   setWindowPosition,
-  setWindowSize,
 } = appsSlice.actions;

@@ -20,16 +20,16 @@ import { App } from '@Enums/app.enum';
 import { RootState } from '@Types/rootState.type';
 
 const useApp = (type: App) => {
-  const apps = useSelector((state: RootState) => state.apps.apps);
+  const apps = useSelector((state: RootState) => state.apps.currentAppsList);
   const isCollapsed = useSelector((state: RootState) => state.apps.appsState[type].isCollapsed);
-  const isOpened = useSelector((state: RootState) => state.apps.appsState[type].isOpened);
+  const isOpen = useSelector((state: RootState) => state.apps.appsState[type].isOpen);
 
   const dispatch = useDispatch();
 
   const getAppIndex = () => apps.indexOf(type);
 
   const handleToggleCollapse = () => {
-    if (isOpened && getAppIndex() !== 0) {
+    if (isOpen && getAppIndex() !== 0) {
       dispatch(setWindowActive(type));
       return;
     }
@@ -43,16 +43,16 @@ const useApp = (type: App) => {
   };
 
   const handleOpen = () => {
-    if (isCollapsed && isOpened) {
+    if (isCollapsed && isOpen) {
       dispatch(toggleCollapseApp(type));
       dispatch(setWindowActive(type));
-    } else if (!isOpened) {
+    } else if (!isOpen) {
       dispatch(openApp(type));
     }
   };
 
   const handleClose = () => {
-    if (!isOpened) {
+    if (!isOpen) {
       return;
     }
     dispatch(closeApp(type));
@@ -64,8 +64,10 @@ const useApp = (type: App) => {
     console.log(getRemFromPx(newWidth));
     dispatch(setWindowSize({
       type,
-      newWidth: `${getRemFromPx(newWidth)}rem`,
-      newHeight: `${getRemFromPx(newHeight)}rem`,
+      size: {
+        width: `${getRemFromPx(newWidth)}rem`,
+        height: `${getRemFromPx(newHeight)}rem`,
+      },
     }));
   }
 

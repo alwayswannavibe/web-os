@@ -33,7 +33,7 @@ const Minesweeper: FC<ChildrenNever> = React.memo(() => {
   const pattern = useSelector((state: RootState) => state.minesweeper.pattern);
   const size = useSelector((state: RootState) => state.minesweeper.size);
   const difficulty = useSelector((state: RootState) => state.minesweeper.difficulty);
-  const isOpen = useSelector((state: RootState) => state.apps.appsState[App.Minesweeper].isOpened);
+  const isOpen = useSelector((state: RootState) => state.apps.appsState[App.Minesweeper].isOpen);
   const isCollapsed = useSelector((state: RootState) => state.apps.appsState[App.Minesweeper].isCollapsed);
 
   const mainContentRef = useRef<HTMLDivElement>(null);

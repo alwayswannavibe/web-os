@@ -3,7 +3,7 @@ import React, { FC, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 // Redux
-import { changeIconPos } from 'src/redux/slices/appsSlice/appsSlice';
+import { setIconPosition } from 'src/redux/slices/appsSlice/appsSlice';
 
 // I18n
 import { useTranslation } from 'react-i18next';
@@ -33,13 +33,13 @@ interface Props extends ChildrenNever {
 }
 
 export const Icon: FC<Props> = ({ imgSource, type }: Props) => {
-  const iconCoords = useSelector((state: RootState) => state.apps.appsState[type].iconPos);
+  const iconPosition = useSelector((state: RootState) => state.apps.appsState[type].iconPosition);
 
   const icon = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
 
   const { handleOpen } = useApp(type);
-  const { startDrag, newCoords, isDrag } = useDragNDrop(changeIconPos, icon, iconCoords, type);
+  const { startDrag, newCoords, isDrag } = useDragNDrop(setIconPosition, icon, iconPosition, type);
 
   return (
     <div

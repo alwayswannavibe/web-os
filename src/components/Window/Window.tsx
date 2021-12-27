@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowRestore, faTimes, faWindowMinimize } from '@fortawesome/free-solid-svg-icons';
 
 // Redux
-import { setWindowActive, changeWindowPos } from 'src/redux/slices/appsSlice/appsSlice';
+import { setWindowActive, setWindowPosition } from 'src/redux/slices/appsSlice/appsSlice';
 
 // Enums
 import { App } from '@Enums/app.enum';
@@ -35,9 +35,9 @@ interface Props {
 }
 
 export const Window: FC<Props> = ({ children, type }: Props) => {
-  const isOpen = useSelector((state: RootState) => state.apps.appsState[type].isOpened);
+  const isOpen = useSelector((state: RootState) => state.apps.appsState[type].isOpen);
   const isCollapsed = useSelector((state: RootState) => state.apps.appsState[type].isCollapsed);
-  const windowCoords = useSelector((state: RootState) => state.apps.appsState[type].windowPos);
+  const windowPosition = useSelector((state: RootState) => state.apps.appsState[type].windowPosition);
   const windowWidth = useSelector((state: RootState) => state.apps.appsState[type].windowSize.width);
   const windowHeight = useSelector((state: RootState) => state.apps.appsState[type].windowSize.height);
   console.log(windowWidth);
@@ -45,7 +45,7 @@ export const Window: FC<Props> = ({ children, type }: Props) => {
   const windowTop = useRef<HTMLDivElement>(null);
   const ref = useRef<HTMLDivElement>(null);
 
-  const { startDrag, newCoords, isDrag } = useDragNDrop(changeWindowPos, windowTop, windowCoords, type);
+  const { startDrag, newCoords, isDrag } = useDragNDrop(setWindowPosition, windowTop, windowPosition, type);
 
   const dispatch = useDispatch();
   const { t } = useTranslation();

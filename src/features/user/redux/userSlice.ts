@@ -1,5 +1,5 @@
 // Libraries
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 
 interface InitialState {
@@ -15,6 +15,16 @@ interface InitialState {
   registrationError: string,
 }
 
+interface UsernameAndPassword {
+  username: string;
+  password: string;
+}
+
+interface UsernameAndPhoto {
+  username: string;
+  photo?: string;
+}
+
 const initialState: InitialState = {
   username: '',
   name: '',
@@ -28,15 +38,15 @@ const initialState: InitialState = {
   registrationError: '',
 };
 
-const logout = createAsyncThunk('user/logout', async () => {
+const logout = createAsyncThunk<void, void>('user/logout', async () => {
   await axios.post(`${process.env.REACT_APP_API_URL}/auth/logout`, {}, {
     timeout: 30000,
     withCredentials: true,
   });
 });
 
-const loginFetch = createAsyncThunk('user/login',
-  async (payload: { username: string, password: string }, { rejectWithValue }) => {
+const loginFetch = createAsyncThunk<unknown, UsernameAndPassword>('user/login',
+  async (payload, { rejectWithValue }) => {
     try {
       const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
         username: payload.username,
@@ -51,8 +61,8 @@ const loginFetch = createAsyncThunk('user/login',
     }
   });
 
-const registration = createAsyncThunk('user/registration',
-  async (payload: { username: string, password: string }, { rejectWithValue }) => {
+const registration = createAsyncThunk<unknown, UsernameAndPassword>('user/registration',
+  async (payload, { rejectWithValue }) => {
     try {
       const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, {
         username: payload.username,
@@ -79,12 +89,7 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    login(state, { payload }: {
-      payload: {
-        username: string;
-        photo?: string;
-      };
-    }) {
+    login(state, { payload }: PayloadAction<UsernameAndPhoto>) {
       state.username = payload.username;
       state.photo = payload.photo || '';
       state.loading = false;

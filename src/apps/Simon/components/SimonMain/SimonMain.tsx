@@ -47,7 +47,7 @@ export const SimonMain: FC<Props> = React.memo(({ numberOfButtons }: Props) => {
   const status = useSelector((store: RootState) => store.simon.simonStatus);
   const pattern = useSelector((store: RootState) => store.simon.pattern);
   const level = useSelector((store: RootState) => store.simon.level);
-  const isSimonOpen = useSelector((store: RootState) => store.apps.appsState[App.Simon].isOpened);
+  const isSimonOpen = useSelector((store: RootState) => store.apps.appsState[App.Simon].isOpen);
   const difficulty = useSelector((store: RootState) => store.simon.difficulty);
 
   const btnRef1 = useRef<HTMLButtonElement>(null);
@@ -78,7 +78,7 @@ export const SimonMain: FC<Props> = React.memo(({ numberOfButtons }: Props) => {
         pattern.forEach((el, index) => {
           setTimeout(async () => {
             // Use getState because hook not update state in setTimeout
-            if (!reduxStore.getState().apps.appsState[App.Simon].isOpened) return;
+            if (!reduxStore.getState().apps.appsState[App.Simon].isOpen) return;
             await new Audio(sounds[el]).play();
           }, 900 * index + 900);
           setTimeout(() => buttonsRefs[el]?.current?.classList.add(styles.btnActive), 900 * index + 900);

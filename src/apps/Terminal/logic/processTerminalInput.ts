@@ -32,9 +32,9 @@ function processTerminalInput(input: string) {
     }
     case 'ps': {
       dispatch(addTerminalHistory('id name'));
-      const { apps } = store.getState().apps;
-      for (let i = 0; i < apps.length; i++) {
-        dispatch(addTerminalHistory(`${i < 10 ? `0${i}` : i} ${apps[i]}`));
+      const { currentAppsList } = store.getState().apps;
+      for (let i = 0; i < currentAppsList.length; i++) {
+        dispatch(addTerminalHistory(`${i < 10 ? `0${i}` : i} ${currentAppsList[i]}`));
       }
       break;
     }

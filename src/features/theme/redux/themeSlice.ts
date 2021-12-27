@@ -1,5 +1,5 @@
 // Libraries
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Types
 import { BackgroundImage } from '../types/backgroundImage';
@@ -14,13 +14,13 @@ const themeSlice = createSlice({
     themes: Object.values(Theme),
   },
   reducers: {
-    setBackgroundImage(state, { payload }: { payload: { backgroundImage: BackgroundImage } }) {
-      state.backgroundImage = payload.backgroundImage;
-      localStorage.setItem('BackgroundImage', payload.backgroundImage);
+    setBackgroundImage(state, { payload }: PayloadAction<BackgroundImage>) {
+      state.backgroundImage = payload;
+      localStorage.setItem('BackgroundImage', payload);
     },
-    setTheme(state, { payload } : { payload : { theme: Theme } }) {
-      state.theme = payload.theme;
-      localStorage.setItem('Theme', payload.theme.toString());
+    setTheme(state, { payload } : PayloadAction<Theme>) {
+      state.theme = payload;
+      localStorage.setItem('Theme', payload.toString());
     },
   },
 });

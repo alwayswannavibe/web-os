@@ -33,7 +33,7 @@ function processNewMessage(newMessage: Message): void {
     store.dispatch(incrementNewMessageCount({ userIndex }));
   }
 
-  if (!store.getState().apps.appsState[App.Chat].isOpened || store.getState().apps.appsState[App.Chat].isCollapsed) {
+  if (!store.getState().apps.appsState[App.Chat].isOpen || store.getState().apps.appsState[App.Chat].isCollapsed) {
     store.dispatch(addMessage(newMessage));
   }
 

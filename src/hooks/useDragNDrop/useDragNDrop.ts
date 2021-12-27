@@ -14,7 +14,7 @@ import { Coordinates } from '@Interfaces/coordinates.interface';
 
 const useDragNDrop = (
   changeCoord: ActionCreatorWithPayload<{
-    type: App, coords: Coordinates
+    type: App, coordinates: Coordinates
   }>, element: RefObject<HTMLDivElement>, coords: Coordinates, type: App,
 ) => {
   const [topCoordLocal, setTopCoordLocal] = useState(coords.top);
@@ -60,7 +60,7 @@ const useDragNDrop = (
     dispatch(
       changeCoord({
         type,
-        coords: {
+        coordinates: {
           top: topCoordLocal,
           left: leftCoordLocal,
         },

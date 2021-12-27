@@ -14,12 +14,12 @@ const terminalProcessChangeLanguage = (input: string) => {
 
   switch (input.split(' ')[0]) {
     case 'ru': {
-      dispatch(setLanguage({ language: Language.Russian }));
+      dispatch(setLanguage(Language.Russian));
       dispatch(addTerminalHistory(`${i18n.t('terminal:languageChange')}`));
       break;
     }
     case 'en': {
-      dispatch(setLanguage({ language: Language.English }));
+      dispatch(setLanguage(Language.English));
       dispatch(addTerminalHistory(`${i18n.t('terminal:languageChange')}`));
       break;
     }

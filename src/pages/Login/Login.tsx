@@ -27,8 +27,8 @@ import styles from './login.module.css';
 const Login: FC<ChildrenNever> = () => {
   const [formError, setFormError] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const loginError = useSelector((state: RootState) => state.user.loginError);
-  const isLoginLoading = useSelector((state: RootState) => state.user.isLoginLoading);
+  const loginError = useSelector((state: RootState) => state.user.login.error);
+  const isLoginLoading = useSelector((state: RootState) => state.user.login.isLoading);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

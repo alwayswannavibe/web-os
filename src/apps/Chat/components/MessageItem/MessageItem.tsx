@@ -26,7 +26,7 @@ interface Props extends ChildrenNever {
 }
 
 const MessageItem: FC<Props> = React.memo(({ message }: Props) => {
-  const username = useSelector((state: RootState) => state.user.username);
+  const username = useSelector((state: RootState) => state.user.currentUser.username);
   const dispatch = useDispatch();
 
   const handleClickUsername = useCallback(() => {

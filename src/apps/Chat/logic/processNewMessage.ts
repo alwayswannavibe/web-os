@@ -22,7 +22,7 @@ function processNewMessage(newMessage: Message): void {
     if (newMessage.toRoomId !== null) {
       store.dispatch(changeLastRoomMessage({ message: newMessage }));
     }
-    if (newMessage.owner.username !== store.getState().user.username) {
+    if (newMessage.owner.username !== store.getState().user.currentUser.username) {
       store.dispatch(readMessages());
     }
   } else if (newMessage.toRoomId) {

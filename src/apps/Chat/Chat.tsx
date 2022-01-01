@@ -25,9 +25,9 @@ import { ChatMainContent } from '@Chat/components/ChatMainContent/ChatMainConten
 import styles from './chat.module.css';
 
 export const Chat: FC<ChildrenNever> = React.memo(() => {
-  const username = useSelector((state: RootState) => state.user.username);
+  const username = useSelector((state: RootState) => state.user.currentUser.username);
 
-  let mainComponent: ReactNode = null;
+  let mainComponent: ReactNode;
 
   if (username === '') {
     mainComponent = <AuthAppRedirect />;

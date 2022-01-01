@@ -6,6 +6,9 @@ import store from 'src/redux/store';
 // Interfaces
 import { Message } from '@Interfaces/message.interface';
 
+// Features
+import { socket } from '@Features/websocket/websocket';
+
 const fetchMessages = createAsyncThunk('users/fetchMessages', async (from?: number) => {
   const response = await axios.get(`${process.env.REACT_APP_API_URL}/chat/messages?from=${from}&type=${store.getState().chat.activeType}`, {
     timeout: 30000,
@@ -15,7 +18,7 @@ const fetchMessages = createAsyncThunk('users/fetchMessages', async (from?: numb
 });
 
 const readMessages = createAsyncThunk('users/readMessages', () => {
-  store.getState().websocket.socket.emit('readMessages', {
+  socket.emit('readMessages', {
     id: store.getState().chat.activeChat,
     activeType: store.getState().chat.activeType,
   });
@@ -23,7 +26,6 @@ const readMessages = createAsyncThunk('users/readMessages', () => {
 
 const sendMessage = createAsyncThunk('users/readMessages', (payload: string) => {
   const { activeChat, activeType } = store.getState().chat;
-  const { socket } = store.getState().websocket;
   if (activeType === 'User') {
     socket.emit('chatMsg', { text: payload, toUserId: activeChat });
   } else {

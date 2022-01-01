@@ -1,5 +1,5 @@
 // Libraries
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Types
 import { Language } from 'src/features/i18n/types/language';
@@ -16,10 +16,10 @@ const languageSlice = createSlice({
     languages: [Language.English, Language.Russian],
   },
   reducers: {
-    setLanguage(state, { payload }: { payload: { language: Language } }) {
-      state.language = payload.language;
-      localStorage.setItem('selectedLanguage', payload.language);
-      i18n.changeLanguage(payload.language);
+    setLanguage(state, { payload }: PayloadAction<Language>) {
+      state.language = payload;
+      localStorage.setItem('selectedLanguage', payload);
+      i18n.changeLanguage(payload);
     },
   },
 });

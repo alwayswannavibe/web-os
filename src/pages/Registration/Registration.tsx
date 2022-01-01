@@ -28,8 +28,8 @@ const Registration: FC<ChildrenNever> = () => {
   const [formError, setFormError] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isPasswordVisible2, setIsPasswordVisible2] = useState(false);
-  const registrationError = useSelector((state: RootState) => state.user.registrationError);
-  const isRegistrationLoading = useSelector((state: RootState) => state.user.isRegistrationLoading);
+  const registrationError = useSelector((state: RootState) => state.user.registration.error);
+  const isRegistrationLoading = useSelector((state: RootState) => state.user.registration.isLoading);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

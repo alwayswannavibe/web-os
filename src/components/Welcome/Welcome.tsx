@@ -26,7 +26,7 @@ interface Props extends ChildrenNever {
 }
 
 const Welcome: FC<Props> = ({ handleWelcomeClose }: Props) => {
-  const username = useSelector((state: RootState) => state.user.username);
+  const username = useSelector((state: RootState) => state.user.currentUser.username);
 
   const { t } = useTranslation('welcome');
   const navigate = useNavigate();

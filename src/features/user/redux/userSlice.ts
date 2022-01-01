@@ -1,42 +1,60 @@
 // Libraries
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { FetchState } from '@Interfaces/fetchState.interface';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 
+// Features
+import { initSocket } from '@Features/websocket/websocket';
+
 interface InitialState {
-  username: string,
-  name: string,
-  photo: string,
-  loading: boolean,
-  currentPage: number,
-  id: number,
-  isLoginLoading: boolean,
-  loginError: string,
-  isRegistrationLoading: boolean,
-  registrationError: string,
+  currentUser: {
+    username: string,
+    name: string,
+    photo: string,
+    id: number,
+  }
+  login: FetchState,
+  registration: FetchState,
+  isUserLoading: boolean,
+}
+
+interface UsernameAndPassword {
+  username: string;
+  password: string;
+}
+
+interface UsernameAndPhoto {
+  username: string;
+  photo?: string;
 }
 
 const initialState: InitialState = {
-  username: '',
-  name: '',
-  photo: '',
-  loading: false,
-  currentPage: 1,
-  id: -1,
-  isLoginLoading: false,
-  isRegistrationLoading: false,
-  loginError: '',
-  registrationError: '',
+  currentUser: {
+    username: '',
+    name: '',
+    photo: '',
+    id: -1,
+  },
+  login: {
+    isLoading: false,
+    error: '',
+  },
+  registration: {
+    isLoading: false,
+    error: '',
+  },
+  isUserLoading: false,
 };
 
-const logout = createAsyncThunk('user/logout', async () => {
+const logout = createAsyncThunk<void, void>('user/logout', async () => {
   await axios.post(`${process.env.REACT_APP_API_URL}/auth/logout`, {}, {
     timeout: 30000,
     withCredentials: true,
   });
 });
 
-const loginFetch = createAsyncThunk('user/login',
-  async (payload: { username: string, password: string }, { rejectWithValue }) => {
+const loginFetch = createAsyncThunk<unknown, UsernameAndPassword>('user/login',
+  async (payload, { rejectWithValue }) => {
     try {
       const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
         username: payload.username,
@@ -51,8 +69,8 @@ const loginFetch = createAsyncThunk('user/login',
     }
   });
 
-const registration = createAsyncThunk('user/registration',
-  async (payload: { username: string, password: string }, { rejectWithValue }) => {
+const registration = createAsyncThunk<unknown, UsernameAndPassword>('user/registration',
+  async (payload, { rejectWithValue }) => {
     try {
       const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, {
         username: payload.username,
@@ -79,62 +97,61 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    login(state, { payload }: {
-      payload: {
-        username: string;
-        photo?: string;
-      };
-    }) {
-      state.username = payload.username;
-      state.photo = payload.photo || '';
-      state.loading = false;
+    login(state, { payload }: PayloadAction<UsernameAndPhoto>) {
+      state.currentUser.username = payload.username;
+      state.currentUser.photo = payload.photo || '';
+      state.isUserLoading = false;
       localStorage.clear();
     },
   },
   extraReducers: (builder) => {
     builder.addCase(logout.fulfilled, (state) => {
-      state.username = '';
-      state.photo = '';
-      state.name = '';
+      state.currentUser.username = '';
+      state.currentUser.photo = '';
+      state.currentUser.name = '';
       localStorage.clear();
       document.location.reload();
     });
     builder.addCase(loginFetch.pending, (state) => {
-      state.isLoginLoading = true;
-      state.loginError = '';
+      state.login.isLoading = true;
+      state.login.error = '';
     });
     builder.addCase(loginFetch.fulfilled, (state) => {
-      state.isLoginLoading = false;
+      state.login.isLoading = false;
       window.history.pushState(null, '', '/');
       window.location.reload();
     });
     builder.addCase(loginFetch.rejected, (state, action) => {
-      state.isLoginLoading = false;
+      state.login.isLoading = false;
       try {
-        state.loginError = (action.payload as AxiosError).response?.data.error || (action.payload as AxiosError).response?.data.message[0];
+        state.login.error = (action.payload as AxiosError).response?.data.error || (action.payload as AxiosError).response?.data.message[0];
       } catch (error: unknown) {
-        state.loginError = (action.payload as string);
+        state.login.error = (action.payload as string);
       }
     });
     builder.addCase(registration.pending, (state) => {
-      state.isRegistrationLoading = true;
-      state.registrationError = '';
+      state.registration.isLoading = true;
+      state.registration.error = '';
     });
     builder.addCase(registration.fulfilled, (state) => {
-      state.isRegistrationLoading = false;
+      state.registration.isLoading = false;
       window.history.pushState(null, '', '/');
       window.location.reload();
     });
     builder.addCase(registration.rejected, (state, action) => {
-      state.isRegistrationLoading = false;
+      state.registration.isLoading = false;
       try {
-        state.loginError = (action.payload as AxiosError).response?.data.error || (action.payload as AxiosError).response?.data.message[0];
+        state.registration.error = (action.payload as AxiosError).response?.data.error || (action.payload as AxiosError).response?.data.message[0];
       } catch (error: unknown) {
-        state.loginError = (action.payload as string);
+        state.registration.error = (action.payload as string);
       }
     });
     builder.addCase(fetchUser.fulfilled, (state, action: { payload: string }) => {
-      state.username = action.payload;
+      state.currentUser.username = action.payload;
+      initSocket();
+    });
+    builder.addCase(fetchUser.rejected, (state, action) => {
+      console.log(action.error.message);
     });
   },
 });

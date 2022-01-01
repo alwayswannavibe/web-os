@@ -45,21 +45,21 @@ export const Settings: FC<ChildrenNever> = React.memo(() => {
   function handleChangeBackground(event: React.ChangeEvent<HTMLSelectElement>) {
     const selectedBackgroundImage = event.target.selectedOptions[0].value as BackgroundImage;
     if (Object.values(BackgroundImage).includes(selectedBackgroundImage)) {
-      dispatch(setBackgroundImage({ backgroundImage: selectedBackgroundImage }));
+      dispatch(setBackgroundImage(selectedBackgroundImage));
     }
   }
 
   function handleChangeLanguage(event: React.ChangeEvent<HTMLSelectElement>) {
     const selectedLanguage = event.target.selectedOptions[0].value as Language;
     if (Object.values(Language).includes(selectedLanguage)) {
-      dispatch(setLanguage({ language: selectedLanguage }));
+      dispatch(setLanguage(selectedLanguage));
     }
   }
 
   function handleChangeTheme(event: React.ChangeEvent<HTMLSelectElement>) {
     const selectedTheme = event.target.selectedOptions[0].value as Theme;
     if (Object.values(Theme).includes(selectedTheme)) {
-      dispatch(setTheme({ theme: selectedTheme }));
+      dispatch(setTheme(selectedTheme));
     }
   }
 

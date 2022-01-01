@@ -20,9 +20,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const MessageAlert: FC<ChildrenNever> = () => {
   const messages = useSelector((state: RootState) => state.chat.messages);
-  const username = useSelector((state: RootState) => state.user.username);
+  const username = useSelector((state: RootState) => state.user.currentUser.username);
   const numberOfRender = useSelector((state: RootState) => state.chat.numberOfRender);
-  const isChatOpen = useSelector((state: RootState) => state.apps.appsState[App.Chat].isOpened);
+  const isChatOpen = useSelector((state: RootState) => state.apps.appsState[App.Chat].isOpen);
   const isChatCollapsed = useSelector((state: RootState) => state.apps.appsState[App.Chat].isCollapsed);
 
   useEffect(() => {

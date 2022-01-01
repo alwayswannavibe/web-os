@@ -5,7 +5,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import themeSlice from '@Features/theme/redux/themeSlice';
 import languageSlice from '@Features/i18n/redux/languageSlice';
 import userSlice from '@Features/user/redux/userSlice';
-import websocketSlice from '@Features/websocket/redux/websocketSlice';
 
 // Redux
 import appsSlice from 'src/redux/slices/appsSlice/appsSlice';
@@ -34,7 +33,6 @@ const store = configureStore({
     chatUsers: chatUsersSlice,
     simon: simonSlice,
     minesweeper: minesweeperSlice,
-    websocket: websocketSlice,
   },
   middleware: ((getDefaultMiddleware) => getDefaultMiddleware({
     serializableCheck: false,

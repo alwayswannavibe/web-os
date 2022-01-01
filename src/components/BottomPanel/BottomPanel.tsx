@@ -32,8 +32,8 @@ import { Button } from '@Components/Button/Button';
 import styles from './bottomPanel.module.css';
 
 export const BottomPanel: FC<ChildrenNever> = () => {
-  const username = useSelector((state: RootState) => state.user.username);
-  const loading = useSelector((state: RootState) => state.user.loading);
+  const username = useSelector((state: RootState) => state.user.currentUser.username);
+  const loading = useSelector((state: RootState) => state.user.isUserLoading);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

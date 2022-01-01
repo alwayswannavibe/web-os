@@ -19,7 +19,7 @@ const terminalProcessChangeTheme = (input: string) => {
 
   if (store.getState().theme.backgroundImages.includes(newBackgroundImage as BackgroundImage)) {
     dispatch(addTerminalHistory(`${i18n.t('terminal:themeChange')}`));
-    dispatch(setBackgroundImage({ backgroundImage: newBackgroundImage as BackgroundImage }));
+    dispatch(setBackgroundImage(newBackgroundImage as BackgroundImage));
     return;
   }
 

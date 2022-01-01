@@ -65,7 +65,30 @@
       "src/**/*.{ts,tsx}",
       "!src/index.tsx",
       "!src/hooks/useDragNDrop/index.ts"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^@Enums(.*)$": "<rootDir>/src/enums$1",
+      "^@Components(.*)$": "<rootDir>/src/components$1",
+      "^@Constants(.*)$": "<rootDir>/src/constants$1",
+      "^@Pages(.*)$": "<rootDir>/src/pages$1",
+      "^@Interfaces(.*)$": "<rootDir>/src/interfaces$1",
+      "^@Types(.*)$": "<rootDir>/src/types$1",
+      "^@Features(.*)$": "<rootDir>/src/features$1",
+      "^@Hooks(.*)$": "<rootDir>/src/hooks$1",
+      "^@Utils(.*)$": "<rootDir>/src/utils$1",
+      "^@Backgrounds(.*)$": "<rootDir>/src/assets/images/backgrounds$1",
+      "^@Icons(.*)$": "<rootDir>/src/assets/images/icons$1",
+      "^@Sounds(.*)$": "<rootDir>/src/assets/sounds$1",
+      "^@Apps(.*)$": "<rootDir>/src/apps$1",
+      "^@Chat(.*)$": "<rootDir>/src/apps/Chat$1",
+      "^@Calculator(.*)$": "<rootDir>/src/apps/Calculator$1",
+      "^@Minesweeper(.*)$": "<rootDir>/src/apps/Minesweeper$1",
+      "^@ToDo(.*)$": "<rootDir>/src/apps/ToDo$1",
+      "^@Translate(.*)$": "<rootDir>/src/apps/Translate$1",
+      "^@Simon(.*)$": "<rootDir>/src/apps/Simon$1",
+      "^@Settings(.*)$": "<rootDir>/src/apps/Settings$1",
+      "^@Terminal(.*)$": "<rootDir>/src/apps/Terminal$1"
+    }
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^7.0.2",

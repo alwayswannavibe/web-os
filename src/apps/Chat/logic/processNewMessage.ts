@@ -22,7 +22,7 @@ function processNewMessage(newMessage: Message): void {
     if (newMessage.toRoomId !== null) {
       store.dispatch(changeLastRoomMessage({ message: newMessage }));
     }
-    if (newMessage.owner.username !== store.getState().user.username) {
+    if (newMessage.owner.username !== store.getState().user.currentUser.username) {
       store.dispatch(readMessages());
     }
   } else if (newMessage.toRoomId) {
@@ -33,7 +33,7 @@ function processNewMessage(newMessage: Message): void {
     store.dispatch(incrementNewMessageCount({ userIndex }));
   }
 
-  if (!store.getState().apps.appsState[App.Chat].isOpened || store.getState().apps.appsState[App.Chat].isCollapsed) {
+  if (!store.getState().apps.appsState[App.Chat].isOpen || store.getState().apps.appsState[App.Chat].isCollapsed) {
     store.dispatch(addMessage(newMessage));
   }
 
